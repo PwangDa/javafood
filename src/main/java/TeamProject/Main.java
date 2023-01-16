@@ -26,6 +26,7 @@ public class Main extends HttpServlet {
 		System.out.println("귀범이 왔다감");
 		System.out.println("커밋테스트");
 		System.out.println("이제 이 과정을 집에서 또 해야함 ㅜ ");
+		System.out.println("Main은 메인화면용으로 씁시다 근데 저희 서블릿말고 jsp파일로 만들어야함?");
 	}
 
 	/**
