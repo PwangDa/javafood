@@ -21,6 +21,7 @@ public class Main extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("수정이 돤다");
+		System.out.println("전ㄴ왜 안된");
 	}
 
 	/**
