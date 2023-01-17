@@ -43,5 +43,4 @@ public class vod {
 	public void setLikes(String likes) {
 		this.likes = likes;
 	}
-	
 }

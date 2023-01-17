@@ -16,9 +16,7 @@ public class dbon {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
-
 	public dbon() {
-		
 		try {
 			Context ctx = new InitialContext();
 			Context envContext = (Context) ctx.lookup("java:/comp/env"); // JNDI 사용을 위한 설정
@@ -31,6 +29,7 @@ public class dbon {
 		List<vod> list = new ArrayList<>();
 		
 		try {
+			System.out.println("adsfsadf");
 			con = dataFactory.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
@@ -44,13 +43,11 @@ public class dbon {
 				vo.setSongnumber(rs.getString("songnumber"));
 				list.add(vo);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
 	public void abd () {
 		
 	}
