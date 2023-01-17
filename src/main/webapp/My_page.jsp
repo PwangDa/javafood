@@ -1,8 +1,9 @@
+<%@page import="java.util.List"%>
 <%@page import="My_Page.dbon"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
     import = "My_Page.dbon"
-    import = "java.*"
+    import = "My_Page.vod"
     %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,7 @@
 <body>
 	<div>
         <div class="head">
-            <div class="left"><strong>My pages<strong></div>
+            <div class="left"><strong>My pages</strong></div>
             <div class="right"></div>
         </div>
         <div class="tbody">
@@ -50,11 +51,11 @@
                     <th> 아티스트 </th>
                     <th> 노래 제목 <%=db.list().size() %></th>
                 </tr>
-              
-                <% for(int i=0; i<db.list().size(); i++) { System.out.println("as");%>
+                <% List<vod> vo = db.list();
+                for(int i=0; i<vo.size(); i++) { %>
                 <tr>
-                    <td><%= i%></td>
-                    <td><%= db.list().get(i).getArtistname() %></td>
+                    <td><%= i+1%></td>
+                    <td><%= vo.get(i).getArtistname() %></td>
                 </tr>
                 <%
                 	}

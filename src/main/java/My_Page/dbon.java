@@ -19,7 +19,7 @@ public class dbon {
 	public dbon() {
 		try {
 			Context ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:/comp/env"); // JNDI 사용을 위한 설정
+			Context envContext = (Context) ctx.lookup("java:/comp/env"); 
 			dataFactory = (DataSource) envContext.lookup("jdbc1/oracle2");
 		} catch (NamingException e) {
 			e.printStackTrace();
