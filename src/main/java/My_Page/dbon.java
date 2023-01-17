@@ -29,7 +29,6 @@ public class dbon {
 		List<vod> list = new ArrayList<>();
 		
 		try {
-			System.out.println("adsfsadf");
 			con = dataFactory.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
