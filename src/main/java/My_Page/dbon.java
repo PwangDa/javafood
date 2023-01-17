@@ -47,8 +47,6 @@ public class dbon {
 		}
 		return list;
 	}
-	public void abd () {
-		
-	}
+	
 	
 }

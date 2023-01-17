@@ -23,6 +23,7 @@
         .tbody{ height: 40px; font-size: 0;}
         .butt{ background-image: url(https://www.codingfactory.net/wp-content/uploads/button_search.png); background-repeat: no-repeat;background-size: contain;width: 40px;height: 40px;}
         .text{height: 30px;width: 350px; margin: 0;}
+        table { margin-left:auto; margin-right:auto;}
    </style>
 </head>
 <body>
@@ -36,7 +37,7 @@
             <td><input type="text" class="text"></td>
             <td>
                 <select style="height: 30px;">
-                    <option>옵션1</option>
+                    <option>노래검색</option>
                     <option>옵션2</option>
                     <option>옵션3</option>
                 </select>
