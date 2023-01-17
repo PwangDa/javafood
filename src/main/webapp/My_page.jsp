@@ -6,10 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>My Page</title>
-	<%
-		dbon db = new dbon();
-		db.ass();
-	%>
 </head>
 <body>
 	

@@ -14,7 +14,7 @@ public class naa extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		dbon a = new dbon();
-		a.ass();
+		response.getWriter().print(a.list().get(0).getArtistname());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

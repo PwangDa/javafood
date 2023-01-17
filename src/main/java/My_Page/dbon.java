@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -24,25 +26,33 @@ public class dbon {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		
 	}
-	public void ass(){
+	public List<vod> list () {
+		List<vod> list = new ArrayList<>();
 		
-		String id;
-		String pw;
 		try {
 			con = dataFactory.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM  LLL");
+			pstmt = con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
-			rs.next();
-			System.out.println(rs.getString("id"));
-			System.out.println(rs.getString("pwd"));
+			while(rs.next()) {
+				vod vo = new vod();
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setBygenre(rs.getString("bygenre"));
+				vo.setHits(rs.getString("hits"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setSongnumber(rs.getString("songnumber"));
+				list.add(vo);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+		return list;
+	}
+	
+	public void abd () {
 		
 	}
+	
 }
