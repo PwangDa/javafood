@@ -48,14 +48,15 @@
                 
                 <tr>
                     <th> 재생 순서 </th>
-                    <th> 아티스트 </th>
-                    <th> 노래 제목 <%=db.list().size() %></th>
+                    <th> 아티스트 이름 </th>
+                    <th> 노래 제목</th>
                 </tr>
                 <% List<vod> vo = db.list();
                 for(int i=0; i<vo.size(); i++) { %>
                 <tr>
                     <td><%= i+1%></td>
                     <td><%= vo.get(i).getArtistname() %></td>
+                    <td><%= vo.get(i).getSongname() %></td>
                 </tr>
                 <%
                 	}
