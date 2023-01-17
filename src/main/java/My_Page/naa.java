@@ -13,7 +13,7 @@ public class naa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		aas a = new aas();
+		dbon a = new dbon();
 		a.ass();
 	}
 

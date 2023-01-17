@@ -10,12 +10,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class aas {
+public class dbon {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
 
-	public aas() {
+	public dbon() {
 		
 		try {
 			Context ctx = new InitialContext();
