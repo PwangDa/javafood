@@ -17,5 +17,6 @@ public class My_page extends HttpFilter implements Filter {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8;");
 		chain.doFilter(request, response);
+		
 	}
 }

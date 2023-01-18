@@ -51,24 +51,30 @@
         <div class="body">
             <h2>최근재생목록</h2>
             <table border="1">
-                
                 <tr>
                     <th> 재생 순서 </th>
                     <th> 아티스트 이름 </th>
                     <th> 노래 제목</th>
+                    <th> 재생 </th>
+                    <th> 좋아요 </th>
                 </tr>
+<!--                 <form method="get" action="http://localhost:8080/javafood_team/My_page.jsp"> -->
                 <% List<vod> vo = db.list();
                 for(int i=0; i<vo.size(); i++) { %>
                 <tr class="low">
                     <td><%= i+1%></td>
                     <td><%= vo.get(i).getArtistname() %></td>
                     <td><a href="<%= vo.get(i).getLink() %>"  class="at"><%= vo.get(i).getSongname() %></a></td>
-                </tr>
-                <%
-                	}
-                %>
+                    <td><input type="submit" value="재생"></td>
+                    <td><input type="submit"></td>
+                </tr> <% } %>
+    			<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= db.link1(db.list().get(0)) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+<!-- 				<input type="hidden" name="song" value="1"> -->
+				
+<!-- 				</form> -->
             </table>
         </div>
     </div>
+    
 </body>
 </html>

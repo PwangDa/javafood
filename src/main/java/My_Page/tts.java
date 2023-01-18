@@ -15,6 +15,9 @@ public class tts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		dbon db = new dbon();
+		String[] link = (String[]) db.list().get(0).getLink().split("=");
+		System.out.println(link[1]);
 		response.getWriter().print("<!DOCTYPE html>\r\n"
 				+ "<html lang=\"en\">\r\n"
 				+ "<head>\r\n"
