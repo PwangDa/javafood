@@ -49,6 +49,18 @@
             frmComment.submit();
         	}
         }
+        
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = headerbarToggle
+        function headerbarToggle(){
+            var headerbar = document.getElementById("menu");
+            var currentScrollPos = window.pageYOffset;
+            if(prevScrollpos < currentScrollPos){
+                headerbar.style.opacity = 1;
+            }else{
+                headerbar.style.opacity = 0.5;
+            }
+        }
   </script>
   <style>
         body{
@@ -66,11 +78,10 @@
             color: white;
             width: 100%;
             position:fixed;
-            /* top: 0; */
-            /* display: flex; */
-            height: 35px;
-            padding: 2px;
+            height: 53px;
+            border-bottom:1px solid rgb(70, 70, 70);
             z-index: 1;
+            transition: opacity 0.4s;
         }
 
         a{
@@ -88,7 +99,7 @@
                 rgba(0, 0, 0, 0.75) 75%,
                 rgb(0, 0, 0) 100%
             ),
-            url("https://w.namu.la/s/35d25c55317e8d29d11fa9fa1a41348ee63d3a010f356d360a9dcdc95513885e4c3143831db6c08d2e387e6db67702b7a8631594931a4200d1d5eb23b2d2153d359217d8630e5821bf8ec71ff102cbfead094989d147315b5f1f38bb42304b78bf798ebd30fb0e36f557e05d33780995") ;
+            url("https://i.pinimg.com/1200x/08/81/34/088134b9c3c6d6a1fa2c037bae1d5b49.jpg") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -217,9 +228,9 @@
 
     </style>
 </head>
-<body>
+<body onload="chkSize(event)" onscroll="headerbarToggle()">
     <header id ="menu">
-        메뉴상단바입니다
+        <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header>
     <div id = "home">
         <div id = "cont" class = "contain">

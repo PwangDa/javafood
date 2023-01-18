@@ -226,6 +226,7 @@
             </div>
             <div class="command">
                 댓글이 추가되면서 쌓일곳
+                시범입니다시범
             </div>
         </div>
 
