@@ -22,7 +22,7 @@
         .right{width: 11%;float: right; background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100623_29%2Fduchest_1277244964920QJ0WY_jpg%2Fdailysculpt_100622_cristiano_ronaldo02_duchest.jpg&type=sc960_832); background-repeat: no-repeat; background-size: cover;background-position: center; }
         .tbody{ position: sticky;top: 0px; height: 40px; background: white;}
         input{vertical-align: middle;}
-        .butt{ background: url(https://www.codingfactory.net/wp-content/uploads/button_search.png)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
+        .butt{font-size: 0px; background: url(https://www.codingfactory.net/wp-content/uploads/button_search.png)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
         .text{ height: 30px;width: 350px; margin: 0;}
         table{margin: auto; border: 1px solid black; border-collapse: collapse;}
         th,td{border-top: 1px solid black;}
@@ -38,18 +38,20 @@
             <div class="left"><a href="http://localhost:8080/javafood_team/My_page.jsp" class="at"><strong>My pages</strong></a></div>
             <div class="right"></div>
         </div>
+       	<form method="get" action="http://localhost:8080/javafood_team/My_page.jsp">
         <div class="tbody">
             <td>
                 <select style="height: 30px;">
-                    <option>노래검색</option>
-                    <option>가수검색</option>
+                    <option value="sing">노래검색</option>
+                    <option value="man">가수검색</option>
                 </select>
             </td>
             <td><input type="text" class="text"></td>
-            <td><input type="button" class="butt"></td>
+            <td><input type="submit" class="butt"></td>
         </div>
+        </form>
         <div class="body">
-            <h2>최근재생목록<%System.out.println(request.getParameter("id")); %></h2>
+            <h2>최근재생목록</h2>
             <table border="1">
                 <tr>
                     <th> 재생 순서 </th>
@@ -58,7 +60,6 @@
                     <th> 재생 </th>
                     <th> 좋아요 </th>
                 </tr>
-<!--            		<form method="get" action="http://localhost:8080/javafood_team/My_page.jsp"> -->
                 <% List<vod> vo = db.list();
                 for(int i=0; i<vo.size(); i++) { %>
                 <tr class="low">
@@ -70,7 +71,6 @@
                     </td>
                     <td><input type="submit"></td>
                 </tr> <% } %>
-<!-- 				<input type="hidden" name="song" value="start"> -->
     				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
             </table>
         </div>
