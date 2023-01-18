@@ -68,6 +68,7 @@ public class dbon {
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -94,6 +95,7 @@ public class dbon {
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -120,6 +122,7 @@ public class dbon {
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -147,6 +150,7 @@ public class dbon {
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -174,6 +178,7 @@ public class dbon {
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -201,6 +206,7 @@ public class dbon {
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
