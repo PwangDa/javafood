@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
- <script>
+<title>test</title>
+    <script>
         function fn_sendComment(){
             frmComment.method = "post";
             frmComment.action = "artistcomment";
             frmComment.submit();
         }
-  </script>
-  <style>
+    </script>
+    <style>
         body{
             background-color: black;
             margin: 0;
@@ -77,7 +77,6 @@
             text-align: left;     
 
         }
-        
         hr{
             width: 62%;
             border: 0;
@@ -90,9 +89,11 @@
         .comment{
             display: flex;
             justify-content: center;
+            /* border: 1px solid white; */
         }
         .text2{
             padding-top: 20px;
+            /* border: 1px solid white; */
         }
 
         textarea{
@@ -140,16 +141,48 @@
         .btn:hover{
             background-color:rgba(173, 173, 173, 0.545);
         }
-
         .command{
             text-align: center;
+        }
+        
+         /* ---------------------------------------- */
+        .cont2{
+            /* border: 1px solid rgb(70, 70, 70); */
+            width: 500px;
+            margin: 11px;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .id2{
+            /* border: 1px solid rgb(70, 70, 70); */
+            color :rgb(113, 113, 113);
+            border-radius: 15px;
+            width: 130px;
+            font-size: 15px;
+        }
+
+        .image2{
+            width: 75px;
+            border-radius: 70%;          
+        }
+        .date1{
+            /* border: 1px solid rgb(70, 70, 70); */
+            border-radius: 15px;
+            margin: 11px;
+            padding: 1px;
+            text-align: right;
+            color :rgb(113, 113, 113);
+            font-size: 13px;
         }
 
     </style>
 </head>
 <body>
     <header id ="menu">
-        메뉴상단바입니다
+        메뉴상단바
     </header>
     <div id = "home">
         <div id = "cont" class = "contain">
@@ -224,12 +257,53 @@
                     <input type ="hidden" name="command" value="addcomment">
             </form>
             </div>
+            <!-- --------------------------- -->
             <div class="command">
-                
+                    <hr>
+                    <!-- --------------------------- -->
+                    <div class="comment">
+                        <div class="text2 cont2_1">
+                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+                            <div class="id2">today</div>
+                        </div>
+                        <div class="text2">
+                            <div class="cont2">이번 앨범 너무 좋아요! </div>
+                            <div class="date1">날짜출력</div>
+                        </div>
+                        <div class="text2">
+                            <button class="btn" type="button"> 삭제 </button>
+                        </div>
+                    </div>
+                    <!-- --------------------------- -->
+                    <div class="comment">
+                        <div class="text2 cont2_1">
+                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+                            <div class="id2">수영shin</div>
+                        </div>
+                        <div class="text2">
+                            <div class="cont2">다음 앨범은 언제되야 나올까요?</div>
+                            <div class="date1">날짜출력</div>
+                        </div>
+                        <div class="text2">
+                            <button class="btn" type="button"> 삭제 </button>
+                        </div>
+                    </div>
+                     <!-- --------------------------- -->
+                     <div class="comment">
+                        <div class="text2 cont2_1">
+                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+                            <div class="id2">안개구름</div>
+                        </div>
+                        <div class="text2">
+                            <div class="cont2">데뷔 때부터 좋아한 가수! 마음을 따뜻하게 해주는 음악이 많아서 좋아요!</div>
+                            <div class="date1">날짜출력</div>
+                        </div>
+                        <div class="text2">
+                            <button class="btn" type="button"> 삭제 </button>
+                        </div>
+                    </div>
             </div>
         </div>
-
-    </div>
 
 </body>
 </html>

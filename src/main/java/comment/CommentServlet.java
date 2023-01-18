@@ -86,7 +86,7 @@ public class CommentServlet extends HttpServlet {
 	      out.write("            z-index: 1;\r\n");
 	      out.write("        }\r\n");
 	      out.write("\r\n");
-	      out.write("        a{\r\n");
+	      out.write("        .namu{\r\n");
 	      out.write("            text-decoration: none;\r\n");
 	      out.write("            color: white;\r\n");
 	      out.write("        }\r\n");
@@ -196,6 +196,38 @@ public class CommentServlet extends HttpServlet {
 	      out.write("            text-align: center;\r\n");
 	      out.write("        }\r\n");
 	      out.write("\r\n");
+	      out.write("        .cont2{\r\n");
+	      out.write("            /* border: 1px solid rgb(70, 70, 70); */\r\n");
+	      out.write("            width: 500px;\r\n");
+	      out.write("            margin: 11px;\r\n");
+	      out.write("            padding: 10px;\r\n");
+	      out.write("            box-sizing: border-box;\r\n");
+	      out.write("            border-radius: 15px;\r\n");
+	      out.write("            text-align: left;\r\n");
+	      out.write("        }\r\n");
+	      out.write("\r\n");
+	      out.write("        .id2{\r\n");
+	      out.write("            /* border: 1px solid rgb(70, 70, 70); */\r\n");
+	      out.write("            color :rgb(113, 113, 113);\r\n");
+	      out.write("            border-radius: 15px;\r\n");
+	      out.write("            width: 130px;\r\n");
+	      out.write("            font-size: 15px;\r\n");
+	      out.write("        }\r\n");
+	      out.write("\r\n");
+	      out.write("        .image2{\r\n");
+	      out.write("            width: 75px;\r\n");
+	      out.write("            border-radius: 70%;          \r\n");
+	      out.write("        }\r\n");
+	      out.write("        .date1{\r\n");
+	      out.write("            /* border: 1px solid rgb(70, 70, 70); */\r\n");
+	      out.write("            border-radius: 15px;\r\n");
+	      out.write("            margin: 11px;\r\n");
+	      out.write("            padding: 1px;\r\n");
+	      out.write("            text-align: right;\r\n");
+	      out.write("            color :rgb(113, 113, 113);\r\n");
+	      out.write("            font-size: 13px;\r\n");
+	      out.write("        }\r\n");
+	      out.write("\r\n");
 	      out.write("    </style>\r\n");
 	      out.write("</head>\r\n");
 	      out.write("<body>\r\n");
@@ -208,7 +240,7 @@ public class CommentServlet extends HttpServlet {
 	      out.write("                <h1>아이유(IU)</h1>\r\n");
 	      out.write("                <p>아이유는 대한민국의 가수이자 배우이다. 배우로 활동할 때는 본명을 사용한다. \r\n");
 	      out.write("                <br>'아이유'라는 예명은 'I'와 'You'를 합친 합성어로 '너와 내가 음악으로 하나가 된다.'라는 의미이다.</p>\r\n");
-	      out.write("                <div> <a target=\"_blank\" href=\"https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0\">출처:namuwiki</a></div>\r\n");
+	      out.write("                <div> <a class=\"namu\" target=\"_blank\" href=\"https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0\">출처:namuwiki</a></div>\r\n");
 	      out.write("            </div>\r\n");
 	      out.write("        </div>\r\n");
 	      out.write("        <div id =\"cont1_1\">\r\n");
@@ -276,7 +308,7 @@ public class CommentServlet extends HttpServlet {
 	      out.write("            </form>\r\n");
 	      out.write("            </div>\r\n");
 	      out.write("            <div class=\"command\">\r\n");
-	      out.write("                댓글이 추가되면서 쌓일곳\r\n");
+	      out.write("                    <hr>\r\n");
 	      for(int i= 0; i<list.size(); i++) {
 	    	  CommentVO vo = list.get(i);
 	    	  
@@ -284,6 +316,23 @@ public class CommentServlet extends HttpServlet {
 	    	  String id = vo.getComment_id();
 	    	  String cont = vo.getComment_cont();
 	    	  Date date = vo.getComment_Date();
+	    	  
+	    	  out.write("                    <div class=\"comment\">\r\n");
+	          out.write("                        <div class=\"text2 cont2_1\">\r\n");
+	          out.write("                            <img class=\"image2\" src=\"http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png\">\r\n");
+	          out.write("                            <div class='id2'>"+id+"</div>\r\n");
+	          out.write("                        </div>\r\n");
+	          out.write("                        <div class=\"text2\">\r\n");
+	          out.write("                            <div class='cont2'>"+cont+"</div>\r\n");
+	          out.write("                            <div class='date1'>"+date+"</div>\r\n");
+	          out.write("                        </div>\r\n");
+	          out.write("                        <div class=\"text2\">\r\n");
+	          out.write("                            <a href='/javafood_team/artistcomment?command=delcommnet&id="+id+"><button class=\"btn\" type=\"button\"> 삭제 </button></a>\r\n");
+//	          out.write("                            <button class=\"btn\" type=\"button\"> 삭제 </button>\r\n");
+	          out.write("                        </div>\r\n");
+	          out.write("                    </div>\r\n");
+	    	  
+	    	  
 	      }
 	      out.write("            </div>\r\n");
 	      out.write("        </div>\r\n");
