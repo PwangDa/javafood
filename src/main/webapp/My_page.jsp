@@ -13,14 +13,16 @@
 	%>
 <meta charset="UTF-8">
 <title>My Page</title>
- <style>        
- 		div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
+ <style>      
+         body{cursor: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIwR9P%2FbtraRjIi6El%2FofkcHd4wk3BWMKZorWGH0k%2Fimg.png"), auto;}
+ 		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
         .head{ height: 100px; background-color: antiquewhite; }
-        .body{cursor: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIwR9P%2FbtraRjIi6El%2FofkcHd4wk3BWMKZorWGH0k%2Fimg.png"), auto; height: 500px; text-align: center;margin: 30px;}
+        .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
-        .right{width: 11%;float: right; background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100623_29%2Fduchest_1277244964920QJ0WY_jpg%2Fdailysculpt_100622_cristiano_ronaldo02_duchest.jpg&type=sc960_832); background-repeat: no-repeat; background-size: contain; }
-        .tbody{ height: 40px; font-size: 0;}
-        .butt{ background-image: url(https://www.codingfactory.net/wp-content/uploads/button_search.png); background-repeat: no-repeat;background-size: contain;width: 40px;height: 40px;}
+        .right{width: 11%;float: right; background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100623_29%2Fduchest_1277244964920QJ0WY_jpg%2Fdailysculpt_100622_cristiano_ronaldo02_duchest.jpg&type=sc960_832); background-repeat: no-repeat; background-size: cover;background-position: center; }
+        .tbody{ position: sticky;top: 0px; height: 40px;}
+        input{vertical-align: middle;}
+        .butt{ background: url(https://www.codingfactory.net/wp-content/uploads/button_search.png)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
         .text{ height: 30px;width: 350px; margin: 0;}
         table{margin: auto; border: 1px solid black; border-collapse: collapse;}
         th,td{border-top: 1px solid black;}
@@ -31,21 +33,20 @@
    </style>
 </head>
 <body>
-	<div>
+	<div style="width: 100%;height: 100%;">
         <div class="head">
             <div class="left"><strong>My pages</strong></div>
             <div class="right"></div>
         </div>
         <div class="tbody">
-            <td><img src="https://www.codingfactory.net/wp-content/uploads/button_search.png"></td>
-            <td><input type="text" class="text"></td>
             <td>
                 <select style="height: 30px;">
                     <option>노래검색</option>
-                    <option>옵션2</option>
-                    <option>옵션3</option>
+                    <option>가수검색</option>
                 </select>
             </td>
+            <td><input type="text" class="text"></td>
+            <td><input type="button" class="butt"></td>
         </div>
         <div class="body">
             <h2>최근재생목록</h2>
