@@ -8,6 +8,7 @@ public class vod {
 	String hits;
 	String likes;
 	String link;
+	String ranking;
 	public String getLink() {
 		return link;
 	}
@@ -49,5 +50,9 @@ public class vod {
 	}
 	public void setLikes(String likes) {
 		this.likes = likes;
+	}
+	public void setRanking(String ranking) {
+		this.ranking = ranking;
+		
 	}
 }
