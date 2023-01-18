@@ -1,6 +1,7 @@
 package My_Page;
 
 public class vod {
+<<<<<<< HEAD
 	String songnumber;
 	String artistname;
 	String songname;
@@ -9,6 +10,16 @@ public class vod {
 	String likes;
 	String link;
 	String ranking;
+=======
+	private String songnumber;
+	private String artistname;
+	private String songname;
+	private String bygenre;
+	private String hits;
+	private String likes;
+	private String link;
+	
+>>>>>>> 66c22394662dd0c9d5d8c8049eaa969b43a242b3
 	public String getLink() {
 		return link;
 	}
