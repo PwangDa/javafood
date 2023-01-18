@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Artist Info</title>
 <% 		CommentDAO dao = new CommentDAO();
 
 		String command = request.getParameter("command"); 

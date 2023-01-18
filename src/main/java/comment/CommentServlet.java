@@ -55,7 +55,7 @@ public class CommentServlet extends HttpServlet {
 	      out.write("<html>\r\n");
 	      out.write("<head>\r\n");
 	      out.write("<meta charset=\"UTF-8\">\r\n");
-	      out.write("<title>Insert title here</title>\r\n");
+	      out.write("<title>Artist Info</title>\r\n");
 	      out.write(" <script>\r\n");
 	      out.write("        function fn_sendComment(){\r\n");
 	      out.write("        	\r\n");
