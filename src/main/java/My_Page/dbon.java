@@ -48,7 +48,10 @@ public class dbon {
 		}
 		return list;
 	}
-	
+	public String link1(vod list) {
+		String st= (String)list.getLink().split("=")[1];
+		return st ;
+	}
 	
 	public List<vod> ballade () {
 		List<vod> list = new ArrayList<>();
