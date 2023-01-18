@@ -66,24 +66,12 @@
                     <td><%= vo.get(i).getArtistname() %></td>
                     <td><a href="<%= vo.get(i).getLink() %>"  class="at"><%= vo.get(i).getSongname() %></a></td>
                     <td>
-                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: purple;">재생</a>
+                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
                     </td>
                     <td><input type="submit"></td>
                 </tr> <% } %>
 <!-- 				<input type="hidden" name="song" value="start"> -->
-    			<%
-    			for(int i=0; i<db.list().size(); i++){
-    				String a = String.valueOf(i);
-    				if(a.equals(request.getParameter("id"))){
-    					System.out.print(db.list().get(i).getLink());
-    				}
-    			}
-    			%>
-    			<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= db.link1(db.list().get(0)) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-    			<%
-    			
-    			%>
-				</form>
+    				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
             </table>
         </div>
     </div>
