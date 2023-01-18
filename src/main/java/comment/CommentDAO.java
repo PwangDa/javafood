@@ -99,14 +99,14 @@ public class CommentDAO {
 		try {
 			this.con = dataFactory.getConnection();
 			
-			String query = " delete from comment_t";
+			String query = " delete from comment_c";
 			query +=       " where comment_id = ?";
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, id);
 			
 			int result = pstmt.executeUpdate();
-			System.out.println("삭제결과 확인"+result);
+			System.out.println("삭제결과 확인"+id);
 			pstmt.close();
 			con.close();
 		} catch (SQLException e) {

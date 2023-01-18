@@ -1,10 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "comment.CommentDAO"
+    import = "comment.CommentVO"
+    import = "comment.CommentServlet"
+    import = "java.sql.Date"
+    import = "java.util.List"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<% 		CommentDAO dao = new CommentDAO();
+
+		String command = request.getParameter("command"); 
+		
+		if("addcomment".equals(command)) {
+			String id_1 = request.getParameter("id");
+			String cont_1 = request.getParameter("cont");
+			
+			CommentVO vo = new CommentVO();
+			vo.setComment_id(id_1);
+			vo.setComment_cont(cont_1);
+			
+			dao.addcomment(vo);
+		}else if("delcommnet".equals(command)) {
+			
+			String id_2 = request.getParameter("id");
+			System.out.println("delete 확인"+id_2);
+			dao.delcomment(id_2);
+		}
+		
+		List<CommentVO> list = dao.listComment();%>
  <script>
         function fn_sendComment(){
             frmComment.method = "post";
@@ -144,6 +171,38 @@
         .command{
             text-align: center;
         }
+        
+        .cont2{
+            /* border: 1px solid rgb(70, 70, 70); */
+            width: 500px;
+            margin: 11px;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .id2{
+            /* border: 1px solid rgb(70, 70, 70); */
+            color :rgb(113, 113, 113);
+            border-radius: 15px;
+            width: 130px;
+            font-size: 15px;
+        }
+
+        .image2{
+            width: 75px;
+            border-radius: 70%;          
+        }
+        .date1{
+            /* border: 1px solid rgb(70, 70, 70); */
+            border-radius: 15px;
+            margin: 11px;
+            padding: 1px;
+            text-align: right;
+            color :rgb(113, 113, 113);
+            font-size: 13px;
+        }
 
     </style>
 </head>
@@ -222,14 +281,36 @@
                         <button class="btn" type="button" onclick="fn_sendComment()"> 등록 </button>
                     </div>
                     <input type ="hidden" name="command" value="addcomment">
+                </div>
             </form>
             </div>
             <div class="command">
+            <hr>
+                <% for(int i= 0; i<list.size(); i++) {
+	    	    	  CommentVO vo = list.get(i);
+	    	    	  
+	    	    	  String num = vo.getComment_num();
+	    	    	  String id = vo.getComment_id();
+	    	    	  String cont = vo.getComment_cont();
+	    	    	  Date date = vo.getComment_Date(); %>
+                <div class="comment">
+                        <div class="text2 cont2_1">
+                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+                            <div class="id2"><%= id %></div>
+                        </div>
+                        <div class="text2">
+                            <div class="cont2"><%= cont %></div>
+                            <div class="date1"><%= date %></div>
+                        </div>
+                        <div class="text2">
+                            <a href="/javafood_team/artistcomment?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>
+                        </div>
+                </div> <% } %>
+                
                 
             </div>
         </div>
 
-    </div>
 
 </body>
 </html>

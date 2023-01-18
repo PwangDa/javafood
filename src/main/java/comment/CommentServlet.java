@@ -327,8 +327,7 @@ public class CommentServlet extends HttpServlet {
 	          out.write("                            <div class='date1'>"+date+"</div>\r\n");
 	          out.write("                        </div>\r\n");
 	          out.write("                        <div class=\"text2\">\r\n");
-	          out.write("                            <a href='/javafood_team/artistcomment?command=delcommnet&id="+id+"><button class=\"btn\" type=\"button\"> 삭제 </button></a>\r\n");
-//	          out.write("                            <button class=\"btn\" type=\"button\"> 삭제 </button>\r\n");
+	          out.write("                            <a href='/javafood_team/artistcomment?command=delcommnet&id="+id+"'><button class='btn' type='button'>삭제</button></a>\r\n");
 	          out.write("                        </div>\r\n");
 	          out.write("                    </div>\r\n");
 	    	  
