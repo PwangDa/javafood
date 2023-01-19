@@ -1,7 +1,6 @@
 package Chart;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,7 +82,7 @@ public List<vod> chart(String songnumber){
 		
 	}
 	
-public void addMember(vod vo) {
+public void addSong(vod vo) {
 	try {
 		String number = vo.getSongnumber();
 		String artistname = vo.getArtistname();
@@ -126,7 +125,7 @@ public void addMember(vod vo) {
 	}
 }
 
-public void delMember(String artistname) {
+public void delSong(String artistname) {
 	
 	try {
 		// DB 접속
@@ -151,7 +150,7 @@ public void delMember(String artistname) {
 	}
 }
 
-public void updateMember(vod vo) {
+public void updateSong(vod vo) {
 	try {
 		String number = vo.getSongnumber();
 		String artistname = vo.getArtistname();
@@ -177,7 +176,7 @@ public void updateMember(vod vo) {
 		query += 	   " 	,likes = ?";
 		query += 	   " 	,link = ?";
 		query += 	   " 	,ranking = ?";
-		query += 	   " WHERE songname = ?";
+		query += 	   " WHERE songnumber = ?";
 		
 		pstmt = con.prepareStatement(query);
 		
@@ -201,7 +200,7 @@ public void updateMember(vod vo) {
 	}
 }
 
-public vod getMember(String songnumber){
+public vod getSong(String songnumber){
 	vod vo = new vod();
 	
 	try {
@@ -227,7 +226,9 @@ public vod getMember(String songnumber){
 			System.out.println("id : "+ id);
 			
 			String number = rs.getString("songnumber");
+			System.out.println(songnumber);
 			String artistname = rs.getString("artistname");
+			System.out.println(artistname);
 			String songname = rs.getString("songname");
 			String bygenre = rs.getString("bygenre");
 			String hits = rs.getString("hits");

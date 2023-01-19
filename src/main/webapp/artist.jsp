@@ -52,7 +52,9 @@
         
         var prevScrollpos = window.pageYOffset;
         window.onscroll = headerbarToggle
+        window.onload = headerbarToggle
         function headerbarToggle(){
+            console.log(1234);
             var headerbar = document.getElementById("menu");
             var currentScrollPos = window.pageYOffset;
             if(prevScrollpos < currentScrollPos){
@@ -228,7 +230,7 @@
 
     </style>
 </head>
-<body onload="chkSize(event)" onscroll="headerbarToggle()">
+<body  onscroll="headerbarToggle()">
     <header id ="menu">
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header>

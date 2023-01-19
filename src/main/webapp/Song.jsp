@@ -10,9 +10,9 @@
     <title>Document</title>
     <script>
     function fn_send(){
-		frmMember.method = "post";
-		document.frmMember.action = "javafood_team/song";
-		document.frmMember.submit();
+		javafood.method = "post";
+		document.javafood.action = "/javafood_team/song";
+		document.javafood.submit();
 	}
     </script>
     <style>
@@ -81,7 +81,7 @@
     </style>
 
 <body>
-    <form action="search">
+    <form method="post" name="javafood" action="/javafood_team/song">
         <div>
             <h1 class="title">자바미식회 선정 인기차트</h1>
         </div>
@@ -168,25 +168,23 @@
         	<input  type="button" name="front" value="next">
         </div>
         <div class="page">
-        	<input  type="buton" name="page" value="My page"><br>
+        	<input  type="button" name="page" value="My page"><br>
         </div>
         	
         
-    <div class="enter">  
-		<form method="post" action="http://localhost:8080/javafood_team/song">
-        	노래번호 : <input type="text" name="songnumber" size="10px" name="노래번호"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	아티스트명 : <input type="text" name="artistname" size="10px" name="아티스트명"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	노래제목 : <input type="text" name="songname" size="10px" name="노래제목"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	링크 : <input type="text" name="link" size="10px" name="링크"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	장르 : <input type="text" name="bygenre" size="10px" name="장르"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	조회수 : <input type="text" name="hits" size="10px" name="조회수"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	좋아요 : <input type="text" name="likes" size="10px" name="좋아요"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-        	순위 : <input type="text" name="ranking" size="10px" name="순위"><input type="submit" name="search" value="검색" action="http://localhost:8080/javafood_team/song" onclick="fn_sendmember()"><br>
-		</form>
-	</div>
-    </form>
-
-
+    	<div class="enter">  
+        	노래번호 : <input type="text" name="songnumber" size="10px" name="노래번호"><input type="submit" name="search" placeholder="번호검색" onclick="fn_send()"><br>
+        	아티스트명 : <input type="text" name="artistname" size="10px" name="아티스트명"><input type="submit" name="search" placeholder="가수명검색" onclick="fn_send()"><br>
+        	노래제목 : <input type="text" name="songname" size="10px" name="노래제목"><input type="submit" name="search" placeholder="노래제목검색" onclick="fn_send()"><br>
+        	링크 : <input type="text" name="link" size="10px" name="링크"><input type="submit" name="search" placeholder="링크검색" onclick="fn_send()"><br>
+        	장르 : <input type="text" name="bygenre" size="10px" name="장르"><input type="submit" name="search" placeholder="장르검색" onclick="fn_send()"><br>
+        	조회수 : <input type="text" name="hits" size="10px" name="조회수"><input type="submit" name="search" placeholder="조회수검색" onclick="fn_send()"><br>
+        	좋아요 : <input type="text" name="likes" size="10px" name="좋아요"><input type="submit" name="search" placeholder="좋아요검색" onclick="fn_send()"><br>
+        	순위 : <input type="text" name="ranking" size="10px" name="순위"><input type="submit" name="search" placeholder="순위검색" onclick="fn_send()"><br>
+		</div>
+		<input type="button" value="버튼" onclick="fn_send()">
+		<input type="hidden" name="command" value="updateSong">
+ 	</form>
 
 </body>
 
