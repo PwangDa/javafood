@@ -38,8 +38,8 @@
             <div class="left"><a href="http://localhost:8080/javafood_team/My_page.jsp" class="at"><strong>My pages</strong></a></div>
             <div class="right"></div>
         </div>
-       	<form method="get" action="My_page.jsp">
         <div class="tbody">
+       	<form method="get" action="My_page.jsp">
             <td>
                 <select name="option" style="height: 30px;">
                     <option  value="sing">노래검색</option>
@@ -48,8 +48,8 @@
             </td>
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
-        </div>
         </form>
+        </div>
         <div class="body">
             <h2>최근재생목록</h2>
             <table border="1">

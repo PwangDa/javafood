@@ -30,7 +30,7 @@ public class dbon {
 	public List<vod> list () {
 		List<vod> list = new ArrayList<>();
 		try {
-			con = dataFactory.getConnection();
+			con = this.dataFactory.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -58,7 +58,7 @@ public class dbon {
 	public List<vod> Search(String option, String text) {
 		List<vod> list = new ArrayList<>();
 		try {
-			con = dataFactory.getConnection();
+			con = this.dataFactory.getConnection();
 			if("man".equals(option)) pstmt = con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
 			else if("sing".equals(option)) pstmt = con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
@@ -77,6 +77,17 @@ public class dbon {
 			e.printStackTrace();
 		}
 		return list;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void like() {
+		try {
+			con=this.dataFactory.getConnection();
+			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = 1 WHERE SONGNUMBER = 1");
+			ResultSet rs = this.pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> getGenre (String a) {
