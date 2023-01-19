@@ -58,7 +58,7 @@ public class PlayList extends HttpServlet
 				//커넥션 풀 작동 코드
 				Context ctx = new InitialContext();
 				Context envContext = (Context) ctx.lookup("java:/comp/env");
-				DataSource dataFactory = (DataSource) envContext.lookup("jdbc/javafood");
+				DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle2");
 				Connection con = dataFactory.getConnection();
 				/////////////////////////////////////
 				
@@ -83,7 +83,7 @@ public class PlayList extends HttpServlet
 			//커넥션 풀 작동 코드
 			Context ctx = new InitialContext();
 			Context envContext = (Context) ctx.lookup("java:/comp/env");
-			DataSource dataFactory = (DataSource) envContext.lookup("jdbc/javafood");
+			DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle2");
 			Connection con = dataFactory.getConnection();
 			/////////////////////////////////////
 			
@@ -228,12 +228,12 @@ public class PlayList extends HttpServlet
 							+ "            <input type=\"button\" name=\"addList_btn\" class=\"addList_btn\" value=\"\uCD94\uAC00\">\r\n"
 							+ "            <input type=\"hidden\" name=\"doAddList\" value=\"do\"> \r\n"
 							+ "        </form>\r\n"
-							+ "    </div>");
+							+ "    <br><br></div>");
 			out.println
 			//a 태그의 주소 수정하기.
 			("<a href=\"/jf/plc?PL_ID=" + PL_ID + "\">\r\n"
 					+ "        <div class=\"playList\">\r\n"
-					//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 주소쪽 수정이 필요함.
+					//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
 					+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
 					
 					+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
