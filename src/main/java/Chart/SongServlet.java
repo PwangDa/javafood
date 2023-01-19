@@ -2,13 +2,19 @@ package Chart;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 import My_Page.vod;
 
@@ -25,7 +31,8 @@ public class SongServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -35,6 +42,7 @@ public class SongServlet extends HttpServlet {
 			//한글깨짐 방지
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8;");
+			
 			
 			
 			//out 변수에 값 입력하여 출력
@@ -47,7 +55,7 @@ public class SongServlet extends HttpServlet {
 			System.out.println("command : "+ command);
 			
 			// 추가
-			if(command != null && "addMember".equals(command)) {
+			if(command != null && "addSong".equals(command)) {
 				// 전달 받음
 				String number = request.getParameter("songnumber");
 				String artistname = request.getParameter("artistname");
@@ -69,15 +77,15 @@ public class SongServlet extends HttpServlet {
 				vo.setRanking(ranking);
 				
 				// 추가 메소드 실행
-				dao.addMember(vo);
-			} else if(command != null && command.equals("delMember")){
+				dao.addSong(vo);
+			} else if(command != null && command.equals("delSong")){
 				
 				String songnumber = request.getParameter("songnumber");
-				System.out.println("delMember : songnumber : "+ songnumber);
+				System.out.println("delSong : songnumber : "+ songnumber);
 				
-				dao.delMember(songnumber);
+				dao.delSong(songnumber);
 				
-			} else if("updateMember".equals(command)){
+			} else if("updateSong".equals(command)){
 				
 				// 전달 받음
 				String number = request.getParameter("songnumber");
@@ -101,9 +109,9 @@ public class SongServlet extends HttpServlet {
 				vo.setRanking(ranking);
 				
 				// 수정 메소드 실행
-				dao.updateMember(vo);
+				dao.updateSong(vo);
 				
-			} else if(command != null && command.equals("fix")){
+			} else if(command != null && command.equals("fixSong")){
 				
 				// 전달 받음
 				String number = request.getParameter("songnumber");
@@ -123,9 +131,9 @@ public class SongServlet extends HttpServlet {
 				out.println("<meta charset='UTF-8'>");
 				out.println("<title>Insert title here</title>");
 				out.println("<script>");
-				out.println("	function fn_sendmember(){");
+				out.println("	function fn_send(){");
 				out.println("		document.frmMember.method = 'post';");
-				out.println("		document.frmMember.action = 'song';");
+				out.println("		document.frmMember.action = 'javafood_team/song';");
 				out.println("		document.frmMember.submit();");
 				out.println("	}");
 				out.println("</script>");
@@ -189,17 +197,17 @@ public class SongServlet extends HttpServlet {
 				out.println("			</tr>");
 				out.println("			<tr>");
 				out.println("		</table>");
-				out.println("		<input type='button' value='클릭' onclick='fn_sendmember()'>");
-				out.println("		<input type='hidden' name='command' value='updateMember'>");
+				out.println("		<input type='button' value='클릭' onclick='fn_send()'>");
+				out.println("		<input type='hidden' name='command' value='updateSong'>");
 				out.println("	</form>");
 				out.println("</body>");
 				out.println("</html>");
 				return;
-			} else if ("fix".equals(command)) {
+			} else if ("fixSong2".equals(command)) {
 				
 				String songnumber = request.getParameter("songnumber");
-			
-			List<vod> list = dao.chart(vo.getSongnumber());
+				System.out.println(songnumber);
+			List<vod> list = (List<vod>) dao.getSong(songnumber);
 			if(list !=null && list.size() > 0) {
 				vo = list.get(0);
 			}
@@ -219,9 +227,9 @@ public class SongServlet extends HttpServlet {
 			out.println("<meta charset='UTF-8'>");
 			out.println("<title>Insert title here</title>");
 			out.println("<script>");
-			out.println("	function fn_sendmember(){");
+			out.println("	function fn_send(){");
 			out.println("		document.frmMember.method = 'post';");
-			out.println("		document.frmMember.action = 'song';");
+			out.println("		document.frmMember.action = 'javafood_team/song';");
 			out.println("		document.frmMember.submit();");
 			out.println("	}");
 			out.println("</script>");
@@ -285,8 +293,8 @@ public class SongServlet extends HttpServlet {
 			out.println("			</tr>");
 			out.println("			<tr>");
 			out.println("		</table>");
-			out.println("		<input type='button' value='클릭' onclick='fn_sendmember()'>");
-			out.println("		<input type='hidden' name='command' value='updateMember'>");
+			out.println("		<input type='button' value='클릭' onclick='fn_send()'>");
+			out.println("		<input type='hidden' name='command' value='updateSong'>");
 			out.println("	</form>");
 			out.println("</body>");
 			out.println("</html>");
