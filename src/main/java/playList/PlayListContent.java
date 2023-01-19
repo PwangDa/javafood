@@ -49,7 +49,7 @@ public class PlayListContent extends HttpServlet
 			//커넥션 풀 작동 코드
 			Context ctx = new InitialContext();
 			Context envContext = (Context) ctx.lookup("java:/comp/env");
-			DataSource dataFactory = (DataSource) envContext.lookup("jdbc/javafood");
+			DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle2");
 			Connection con = dataFactory.getConnection();
 			/////////////////////////////////////////////////////
 
@@ -84,7 +84,7 @@ public class PlayListContent extends HttpServlet
 					+ "\r\n"
 					+ "            text-align: center;\r\n"
 					+ "            font-size: 14px;\r\n"
-					+ "            color:rgb(78, 78, 78);\r\n"
+					+ "            color:thistle;\r\n"
 					+ "        }\r\n"
 					+ "        div.album_explain\r\n"
 					+ "        {\r\n"
@@ -177,7 +177,14 @@ public class PlayListContent extends HttpServlet
 					+ "        div.noList\r\n"
 					+ "        {\r\n"
 					+ "            color:white;\r\n"
-					+ "            padding:35%;\r\n"
+					+ "            padding:37%;\r\n"
+					+ "            text-align:center;\r\n"
+					+ "        }\r\n"
+					+ "        button.add_btn\r\n"
+					+ "        {\r\n"
+					+ "            background-color:black;\r\n"
+					+ "            color:white;\r\n"
+					+ "            margin:2%;\r\n"
 					+ "        }\r\n"
 					+ "    </style>\r\n"
 					+ "</head>"
@@ -212,8 +219,6 @@ public class PlayListContent extends HttpServlet
 				PL_explain = rs.getString("PL_EXPLAIN");
 				artistName = rs.getString("ARTISTNAME");
 				
-				
-				
 				if(req_PL_ID == PL_ID)
 				{
 					System.out.println("PL_ID : " + PL_ID); //확인용
@@ -245,12 +250,8 @@ public class PlayListContent extends HttpServlet
 					);
 					
 					break;
-					
 				}
-				
 			}
-			
-			
 			
 			while(rs.next() )
 			{
@@ -285,7 +286,10 @@ public class PlayListContent extends HttpServlet
 			
 			if(noList == true)
 			{
-				out.println("<div class='noList'>등록된 곡이 없습니다. 곡을 추가해주세요.</div>");
+				out.println("<div class='noList'>등록된 곡이 없습니다. 곡을 추가해주세요."
+						+ "<a href='genre'>"
+						+ "<button type='button' class='add_btn'>\uCD94\uAC00\uD558\uAE30</button></div>"
+						+ "</a>");
 			}
 			
 			out.println("</body></html>");

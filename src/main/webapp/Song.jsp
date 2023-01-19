@@ -78,10 +78,19 @@
         	color:white;
         	text-align: center;
         }
+        .search {
+        
+        }
+        .search2{
+        
+        }
+        .search3{
+        
+        }
     </style>
 
 <body>
-    <form method="post" name="javafood" action="/javafood_team/song">
+    
         <div>
             <h1 class="title">자바미식회 선정 인기차트</h1>
         </div>
@@ -93,70 +102,12 @@
         <div class="text">
             <table border="1" class="table">
                 <caption>인기차트</caption>
-                <thead>
                     <tr>
                         <th>순위</th>
-                        <th>변동</th>
+                        <th>좋아요 수</th>
                         <th>제목</th>
                         <th>아티스트</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1등</td>
-                        <td>1↓</td>
-                        <td>여행</td>
-                        <td>볼빨간사춘기</td>
-                    </tr>
-                    <tr>
-                        <td>2등</td>
-                        <td>10↑</td>
-                        <td>안녕</td>
-                        <td>폴킴</td>
-                    </tr>
-                    <tr>
-                        <td>3등</td>
-                        <td>20↑</td>
-                        <td>여행을 떠나요</td>
-                        <td>이승기</td>
-                    </tr>
-                    <tr>
-                        <td>4등</td>
-                        <td>50↑</td>
-                        <td>좋은날</td>
-                        <td>아이유</td>
-                    </tr>
-                    <tr>
-                        <td>5등</td>
-                        <td>80↑</td>
-                        <td>에잇</td>
-                        <td>아이유</td>
-                    </tr>
-                    <tr>
-                        <td>6등</td>
-                        <td>20↓</td>
-                        <td>막걸리 한잔</td>
-                        <td>영탁</td>
-                    </tr>
-                    <tr>
-                        <td>7등</td>
-                        <td>2↑</td>
-                        <td>사건의 지평선</td>
-                        <td>윤하</td>
-                    </tr>
-                    <tr>
-                        <td>8등</td>
-                        <td>1↑</td>
-                        <td>해요(2022)</td>
-                        <td>#안녕</td>
-                    </tr>
-                    <tr>
-                        <td>9등</td>
-                        <td>15↑</td>
-                        <td>Into the Unknown</td>
-                        <td>Aurora</td>
-                    </tr>
-                </tbody>
         </table>
         </div>
         
@@ -171,20 +122,20 @@
         	<input  type="button" name="page" value="My page"><br>
         </div>
         	
-        
-    	<div class="enter">  
-        	노래번호 : <input type="text" name="songnumber" size="10px" name="노래번호"><input type="submit" name="search" placeholder="번호검색" onclick="fn_send()"><br>
-        	아티스트명 : <input type="text" name="artistname" size="10px" name="아티스트명"><input type="submit" name="search" placeholder="가수명검색" onclick="fn_send()"><br>
-        	노래제목 : <input type="text" name="songname" size="10px" name="노래제목"><input type="submit" name="search" placeholder="노래제목검색" onclick="fn_send()"><br>
-        	링크 : <input type="text" name="link" size="10px" name="링크"><input type="submit" name="search" placeholder="링크검색" onclick="fn_send()"><br>
-        	장르 : <input type="text" name="bygenre" size="10px" name="장르"><input type="submit" name="search" placeholder="장르검색" onclick="fn_send()"><br>
-        	조회수 : <input type="text" name="hits" size="10px" name="조회수"><input type="submit" name="search" placeholder="조회수검색" onclick="fn_send()"><br>
-        	좋아요 : <input type="text" name="likes" size="10px" name="좋아요"><input type="submit" name="search" placeholder="좋아요검색" onclick="fn_send()"><br>
-        	순위 : <input type="text" name="ranking" size="10px" name="순위"><input type="submit" name="search" placeholder="순위검색" onclick="fn_send()"><br>
-		</div>
-		<input type="button" value="버튼" onclick="fn_send()">
-		<input type="hidden" name="command" value="updateSong">
- 	</form>
+      <form method="post" action="javafood_team/song">
+        <div class="search">
+            <td>
+                <select name="option" style="height: 30px;">
+                    <option  value="song">노래검색</option>
+                    <option  value="artist">가수검색</option>
+                </select>
+            </td>
+            <td><input type="text" class="search2" name="text"></td>
+            <td><input type="submit" class="search3"></td>
+        </div>
+        </form>
+		
+ 	
 
 </body>
 

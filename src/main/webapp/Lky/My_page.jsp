@@ -76,7 +76,9 @@
 		                    <td>
 		                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
 		                    </td>
-		                    <td><input type="submit" value="좋아요"></td>
+		                    <form method="get" action="My_page.jsp">
+		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
+		                	</form>
 		                </tr> <% } 
                 	}else if(request.getParameter("option")==null){
                 		List<vod> vo = db.list();

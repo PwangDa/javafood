@@ -299,6 +299,8 @@ public class SongServlet extends HttpServlet {
 			out.println("</body>");
 			out.println("</html>");
 			
+			}else {
+				System.out.println("null");
 			}
 	
 	}
