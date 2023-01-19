@@ -3,7 +3,7 @@ package playList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
+//import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +27,52 @@ public class PlayList extends HttpServlet
 	{
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset = utf-8;");
+		
+		//리스트에 아무것도 추가된 것이 없을 때 쓸 표지.
+//		String nullImage = "https://cdn.pixabay.com/photo/2015/11/03/09/10/question-mark-1020165_960_720.jpg";
+		
+		//주소로 넘어온 값을 받기
+		String doAddList = request.getParameter("doAddList");
+		/////////////////////////////////////////////
+		
+		if("do".equals(doAddList) )
+		{
+			//주소로 넘어온 값을 받기
+			String addList_title = request.getParameter("addList_title");
+			String addList_explain = request.getParameter("addList_explain");
+			/////////////////////////////////////////////
+			
+			//쿼리문 작성
+			String addList_query = "INSERT INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
+					+ " VALUES("
+					+ "seq_PL_ID.nextval, "
+					+ "'testAdmin', " //회원 아이디. 회원가입 및 목록, 마이페이지가 완성되면 수정할 것.
+					+ "'" + addList_title + "', "
+					+ "'" + addList_explain + "'"
+					+ ")";
+			System.out.println("addList_query : " + addList_query); //확인용
+			//////////////////////////////////////////////////////////////
+			
+			//쿼리 실행
+			try {
+				//커넥션 풀 작동 코드
+				Context ctx = new InitialContext();
+				Context envContext = (Context) ctx.lookup("java:/comp/env");
+				DataSource dataFactory = (DataSource) envContext.lookup("jdbc/javafood");
+				Connection con = dataFactory.getConnection();
+				/////////////////////////////////////
+				
+				//DB 접속 코드
+				PreparedStatement pstmt = con.prepareStatement(addList_query);
+				ResultSet rs = pstmt.executeQuery();
+				/////////////////////////////////////////////
+			}
+			catch (NamingException | SQLException e)
+			{
+				e.printStackTrace();
+			}
+			/////////////////////////////////////////////////////
+		}
 		
 		PrintWriter out = response.getWriter();
 		
@@ -103,6 +149,55 @@ public class PlayList extends HttpServlet
 					+ "            text-decoration: none; /* \uB9C1\uD06C\uC758 \uBC11\uC904 \uC81C\uAC70 */\r\n"
 					+ "            color: inherit; /* \uB9C1\uD06C\uC758 \uC0C9\uC0C1 \uC81C\uAC70 */\r\n"
 					+ "        }\r\n"
+					+ "\r\n"
+					+ "        input.addList_textbar\r\n"
+					+ "        {\r\n"
+					+ "            border:hidden;\r\n"
+					+ "            border-radius: 5px;\r\n"
+					+ "\r\n"
+					+ "            margin:0 0 1% 1%;\r\n"
+					+ "\r\n"
+					+ "            background-color: rgb(63, 63, 63);\r\n"
+					+ "            color:rgb(247, 212, 147);\r\n"
+					+ "            \r\n"
+					+ "            width:50%;\r\n"
+					+ "            height: 30px;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        input.addList_ex_textbar\r\n"
+					+ "        {\r\n"
+					+ "            border:hidden;\r\n"
+					+ "            border-radius: 5px;\r\n"
+					+ "\r\n"
+					+ "            margin:0 0 1% 1%;\r\n"
+					+ "\r\n"
+					+ "            background-color: rgb(63, 63, 63);\r\n"
+					+ "            color:rgb(247, 212, 147);\r\n"
+					+ "            \r\n"
+					+ "            width:50%;\r\n"
+					+ "            height: 150px;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        input.addList_btn\r\n"
+					+ "        {\r\n"
+					+ "            border:hidden;\r\n"
+					+ "\r\n"
+					+ "            background-color:black;\r\n"
+					+ "            color:white;\r\n"
+					+ "\r\n"
+					+ "            width:6%;\r\n"
+					+ "            height: 32px;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        .hidden\r\n"
+					+ "        {\r\n"
+					+ "            display:none;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        span.addList\r\n"
+					+ "        {\r\n"
+					+ "            vertical-align: top;\r\n"
+					+ "        }\r\n"
 					+ "    </style>\r\n"
 					+ "</head>");
 			
@@ -112,25 +207,34 @@ public class PlayList extends HttpServlet
 			/////////////////////////////////////////////
 			
 			rs.next();
-			
+//			
 			String ID2 = rs.getString("ID2");
 			int PL_ID = rs.getInt("PL_ID");
 			String PL_Title = rs.getString("PL_TITLE");
-			Date PL_Date = rs.getDate("PL_DATE");
-			String PL_Explain = rs.getString("PL_EXPLAIN");
-			/////////////////////////////////
+//			Date PL_Date = rs.getDate("PL_DATE"); //자바에선 필요없음.
+//			String PL_Explain = rs.getString("PL_EXPLAIN"); //이 서블릿에선 필요없음.
 			
 			//html 작성하기
 			out.println
 			("<body>\r\n"
-					+ "    <div class=\"title\"><h1> " + ID2 + "님의 플레이 리스트 </h1></div><br><hr>");
+							//회원목록이 생성되면 아래의 아이디 부분을 수정할 것.
+					+ "    <div class=\"title\"><h1> " + "아이디 : 아직 회원목록이 없어서 쓰는 임시 아이디." + "님의 플레이 리스트 </h1></div><br><hr>\r\n"
+							+ "<img class=\"addList\" src=\"https://cdn-icons-png.flaticon.com/512/7598/7598663.png\"> "
+							+ "<span class=\"addList\">\uB9AC\uC2A4\uD2B8 \uCD94\uAC00</span><br>"
+							+ "<div class=\"search hidden\">\r\n"
+							+ "        <form name = \"PL_addList\">\r\n"
+							+ "            <input type=\"text\" name=\"addList_title\" class=\"addList_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC81C\uBAA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
+							+ "            <input type=\"text\" name=\"addList_explain\" class=\"addList_ex_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC124\uBA85\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
+							+ "            <input type=\"button\" name=\"addList_btn\" class=\"addList_btn\" value=\"\uCD94\uAC00\">\r\n"
+							+ "            <input type=\"hidden\" name=\"doAddList\" value=\"do\"> \r\n"
+							+ "        </form>\r\n"
+							+ "    </div>");
 			out.println
 			//a 태그의 주소 수정하기.
 			("<a href=\"/jf/plc?PL_ID=" + PL_ID + "\">\r\n"
 					+ "        <div class=\"playList\">\r\n"
 					//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 주소쪽 수정이 필요함.
 					+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
-					
 					
 					+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
 			
@@ -143,8 +247,8 @@ public class PlayList extends HttpServlet
 				
 				PL_ID = rs.getInt("PL_ID");
 				PL_Title = rs.getString("PL_TITLE");
-				PL_Date = rs.getDate("PL_DATE");
-				PL_Explain = rs.getString("PL_EXPLAIN");
+//				PL_Date = rs.getDate("PL_DATE");
+//				PL_Explain = rs.getString("PL_EXPLAIN");
 				/////////////////////////////////
 				
 				//html 작성하기
@@ -152,12 +256,43 @@ public class PlayList extends HttpServlet
 				//a 태그의 주소 수정하기.
 				("<a href=\"/jf/plc?id=" + ID2 + "&PL_ID=" + PL_ID + "\">\r\n"
 						+ "        <div class=\"playList\">\r\n"
-						//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 주소쪽 수정이 필요함.
+						//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
 						+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
-						
-						
 						+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
 			}
+			
+			out.println
+			("<script>\r\n"
+					+ "        document.querySelector(\"img.addList\").addEventListener('click', ()=>\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelector(\"div.search\").classList.toggle(\"hidden\");\r\n"
+					+ "        });\r\n"
+					+ "        document.querySelector(\"span.addList\").addEventListener('click', ()=>\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelector(\"div.search\").classList.toggle(\"hidden\");\r\n"
+					+ "        });\r\n"
+					+ "\r\n"
+					+ "        function fn_addList()\r\n"
+					+ "        {\r\n"
+					+ "            let title = PL_addList.addList_title.value;\r\n"
+					+ "            let explain = PL_addList.addList_explain.value;\r\n"
+					+ "\r\n"
+					+ "            if(title.length == 0 || title == \"\")\r\n"
+					+ "            {\r\n"
+					+ "                alert(\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC81C\uBAA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\")\r\n"
+					+ "            }\r\n"
+					+ "            else\r\n"
+					+ "            {\r\n"
+					+ "                PL_addList.method='post';\r\n"
+					+ "                PL_addList.action='pl';\r\n"
+					+ "                PL_addList.submit();\r\n"
+					+ "            }\r\n"
+					+ "        }\r\n"
+					+ "        document.querySelector(\"input.addList_btn\").addEventListener('click', ()=>\r\n"
+					+ "        {\r\n"
+					+ "            fn_addList();\r\n"
+					+ "        });\r\n"
+					+ "    </script>");
 			
 			out.println("</body></html>");
 		}
@@ -170,7 +305,7 @@ public class PlayList extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		
+		doGet(request, response);
 	}
 
 }
