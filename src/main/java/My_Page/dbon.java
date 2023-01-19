@@ -11,11 +11,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class dbon {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public dbon() {
 		try {
 			Context ctx = new InitialContext();
@@ -25,9 +26,9 @@ public class dbon {
 			e.printStackTrace();
 		}
 	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> list () {
 		List<vod> list = new ArrayList<>();
-		
 		try {
 			con = dataFactory.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM  song");
@@ -48,11 +49,36 @@ public class dbon {
 		}
 		return list;
 	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String link1(vod list) {
 		String st= (String)list.getLink().split("=")[1];
 		return st ;
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<vod> Search(String option, String text) {
+		List<vod> list = new ArrayList<>();
+		try {
+			con = dataFactory.getConnection();
+			if("man".equals(option)) pstmt = con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if("sing".equals(option)) pstmt = con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vod vo = new vod();
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setBygenre(rs.getString("bygenre"));
+				vo.setHits(rs.getString("hits"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> ballade () {
 		List<vod> list = new ArrayList<>();
 		
