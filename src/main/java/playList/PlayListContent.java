@@ -41,7 +41,7 @@ public class PlayListContent extends HttpServlet
 				+ " JOIN playList pl ON (pc.PL_ID = pl.PL_ID)"
 				+ " JOIN Song s ON (pc.SONGNUMBER = s.SONGNUMBER)"
 				+ " ORDER BY LISTNUMBER";
-		System.out.println("query : " + query); //확인용
+//		System.out.println("query : " + query); //확인용
 		
 		
 		try
@@ -148,12 +148,43 @@ public class PlayListContent extends HttpServlet
 					+ "            font-size:20px;\r\n"
 					+ "            font-weight: bold;\r\n"
 					+ "        }\r\n"
+					+ "\r\n"
+					+ "        input.search_textbar\r\n"
+					+ "        {\r\n"
+					+ "            border:hidden;\r\n"
+					+ "            border-radius: 5px;\r\n"
+					+ "\r\n"
+					+ "            margin:1% 0 1% 1%;\r\n"
+					+ "\r\n"
+					+ "            background-color: rgb(63, 63, 63);\r\n"
+					+ "            color:rgb(247, 212, 147);\r\n"
+					+ "            \r\n"
+					+ "            width:80%;\r\n"
+					+ "            height: 30px;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        input.search_btn\r\n"
+					+ "        {\r\n"
+					+ "            border:hidden;\r\n"
+					+ "\r\n"
+					+ "            background-color:black;\r\n"
+					+ "            color:white;\r\n"
+					+ "\r\n"
+					+ "            width:6%;\r\n"
+					+ "            height: 32px;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        div.noList\r\n"
+					+ "        {\r\n"
+					+ "            color:white;\r\n"
+					+ "            padding:35%;\r\n"
+					+ "        }\r\n"
 					+ "    </style>\r\n"
 					+ "</head>"
 			);
 			
 			//DB 접속 코드
-			System.out.println("////////DB쿼리 : " + query);
+//			System.out.println("////////DB쿼리 : " + query); //확인용
 			PreparedStatement pstmt = con.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();
 //			System.out.println("rs.next() : " + rs.next() ); //확인용
@@ -162,27 +193,32 @@ public class PlayListContent extends HttpServlet
 			out.println("<body>");
 			
 			int PL_ID;
-			int PL_listNumber;
+//			int PL_listNumber; //DB에선 필요하나, 자바에선 필요없음.
 			String songName;
 			String PL_title;
 			String PL_explain;
 			String artistName;
 			
+			boolean noList = true;
+			
 			while(rs.next() )
 			{
-				System.out.println("while(rs.next() ) 실행됨."); //확인용
+//				System.out.println("while(rs.next() ) 실행됨."); //확인용
 				
 				PL_ID = rs.getInt("PL_ID");
-				PL_listNumber = rs.getInt("LISTNUMBER");
+//				PL_listNumber = rs.getInt("LISTNUMBER");
 				songName = rs.getString("SONGNAME");
 				PL_title = rs.getString("PL_TITLE");
 				PL_explain = rs.getString("PL_EXPLAIN");
 				artistName = rs.getString("ARTISTNAME");
 				
 				
+				
 				if(req_PL_ID == PL_ID)
 				{
 					System.out.println("PL_ID : " + PL_ID); //확인용
+					
+					noList = false;
 					
 					out.println
 					("<div class=\"album_info\">\r\n"
@@ -209,13 +245,17 @@ public class PlayListContent extends HttpServlet
 					);
 					
 					break;
+					
 				}
+				
 			}
+			
+			
 			
 			while(rs.next() )
 			{
 				PL_ID = rs.getInt("PL_ID");
-				PL_listNumber = rs.getInt("LISTNUMBER");
+//				PL_listNumber = rs.getInt("LISTNUMBER");
 				songName = rs.getString("SONGNAME");
 				PL_title = rs.getString("PL_TITLE");
 				PL_explain = rs.getString("PL_EXPLAIN");
@@ -243,7 +283,14 @@ public class PlayListContent extends HttpServlet
 				}
 			}
 			
+			if(noList == true)
+			{
+				out.println("<div class='noList'>등록된 곡이 없습니다. 곡을 추가해주세요.</div>");
+			}
+			
 			out.println("</body></html>");
+			
+			pstmt.close();
 		}
 		catch (NamingException | SQLException e)
 		{

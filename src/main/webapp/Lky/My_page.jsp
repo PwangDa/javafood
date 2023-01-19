@@ -33,13 +33,18 @@
    </style>
 </head>
 <body>
+	<%
+		if(request.getParameter("good")!=null){
+			db.like(request.getParameter("good"));
+		}
+	%>
 	<div style="width: 100%;height: 100%;">
         <div class="head">
             <div class="left"><a href="http://localhost:8080/javafood_team/My_page.jsp" class="at"><strong>My pages</strong></a></div>
             <div class="right"></div>
         </div>
-       	<form method="get" action="My_page.jsp">
         <div class="tbody">
+       	<form method="get" action="My_page.jsp">
             <td>
                 <select name="option" style="height: 30px;">
                     <option  value="sing">노래검색</option>
@@ -48,8 +53,8 @@
             </td>
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
-        </div>
         </form>
+        </div>
         <div class="body">
             <h2>최근재생목록</h2>
             <table border="1">
@@ -83,13 +88,14 @@
 		                    <td>
 		                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
 		                    </td>
-		                    <td><input type="submit" value="좋아요"></td>
+		                    <form method="get" action="My_page.jsp">
+		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
+		                	</form>
 		                </tr> <% }
 		                } %>
     				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
             </table>
         </div>
     </div>
-    
 </body>
 </html>
