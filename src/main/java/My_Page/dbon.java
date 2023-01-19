@@ -79,12 +79,18 @@ public class dbon {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void like() {
+	public void like(String i) {
 		try {
 			con=this.dataFactory.getConnection();
-			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = 1 WHERE SONGNUMBER = 1");
+			this.pstmt = con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
-			
+			rs.next();
+			vod vo = new vod();
+			vo.setLikes(rs.getString("likes"));
+			String a = vo.getLikes();
+			if(a.equals("0")) 	this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = 1 WHERE SONGNUMBER = "+i);
+			else this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = 0 WHERE SONGNUMBER = "+i);
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
