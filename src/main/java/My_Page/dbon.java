@@ -54,7 +54,6 @@ public class dbon {
 		String st= (String)list.getLink().split("=")[1];
 		return st ;
 	}
-<<<<<<< HEAD
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> Search(String option, String text) {
 		List<vod> list = new ArrayList<>();
@@ -80,11 +79,7 @@ public class dbon {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<vod> ballade () {
-=======
-	
 	public List<vod> getGenre (String a) {
->>>>>>> 95cc9dca4df9fbbbd85d7d971e287b47408e7bb3
 		List<vod> list = new ArrayList<>();
 		
 		
