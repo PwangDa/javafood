@@ -38,15 +38,15 @@
             <div class="left"><a href="http://localhost:8080/javafood_team/My_page.jsp" class="at"><strong>My pages</strong></a></div>
             <div class="right"></div>
         </div>
-       	<form method="get" action="http://localhost:8080/javafood_team/My_page.jsp">
+       	<form method="get" action="My_page.jsp">
         <div class="tbody">
             <td>
-                <select style="height: 30px;">
-                    <option value="sing">노래검색</option>
-                    <option value="man">가수검색</option>
+                <select name="option" style="height: 30px;">
+                    <option  value="sing">노래검색</option>
+                    <option  value="man">가수검색</option>
                 </select>
             </td>
-            <td><input type="text" class="text"></td>
+            <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
         </div>
         </form>
@@ -60,17 +60,32 @@
                     <th> 재생 </th>
                     <th> 좋아요 </th>
                 </tr>
-                <% List<vod> vo = db.list();
-                for(int i=0; i<vo.size(); i++) { %>
-                <tr class="low">
-                    <td><%= i+1%></td>
-                    <td><%= vo.get(i).getArtistname() %></td>
-                    <td><a href="<%= vo.get(i).getLink() %>"  class="at"><%= vo.get(i).getSongname() %></a></td>
-                    <td>
-                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
-                    </td>
-                    <td><input type="submit"></td>
-                </tr> <% } %>
+                <% 
+                	if(request.getParameter("option")!=null){
+						List<vod> vo1 = db.Search(request.getParameter("option"),request.getParameter("text"));
+		                	for(int i=0; i<vo1.size(); i++) { %>
+		                <tr class="low">
+		                    <td><%= i+1%></td>
+		                    <td><%= vo1.get(i).getArtistname() %></td>
+		                    <td><a href="<%= vo1.get(i).getLink() %>"  class="at"><%= vo1.get(i).getSongname() %></a></td>
+		                    <td>
+		                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
+		                    </td>
+		                    <td><input type="submit" value="좋아요"></td>
+		                </tr> <% } 
+                	}else if(request.getParameter("option")==null){
+                		List<vod> vo = db.list();
+		                for(int i=0; i<vo.size(); i++) { %>
+		                <tr class="low">
+		                    <td><%= i+1%></td>
+		                    <td><%= vo.get(i).getArtistname() %></td>
+		                    <td><a href="<%= vo.get(i).getLink() %>"  class="at"><%= vo.get(i).getSongname() %></a></td>
+		                    <td>
+		                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
+		                    </td>
+		                    <td><input type="submit" value="좋아요"></td>
+		                </tr> <% }
+		                } %>
     				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
             </table>
         </div>
