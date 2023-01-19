@@ -1,6 +1,9 @@
 package My_Page;
 
 public class vod {
+
+
+
 	private String songnumber;
 	private String artistname;
 	private String songname;
@@ -10,6 +13,7 @@ public class vod {
 	private String link;
 	private String ranking;
 	
+
 	public String getLink() {
 		return link;
 	}
@@ -34,6 +38,9 @@ public class vod {
 	public String getLikes() {
 		return likes;
 	}
+	public String getRanking() {
+		return ranking;
+	}
 	public void setSongnumber(String songnumber) {
 		this.songnumber = songnumber;
 	}
@@ -52,10 +59,8 @@ public class vod {
 	public void setLikes(String likes) {
 		this.likes = likes;
 	}
-	public String getRanking() {
-		return ranking;
-	}
 	public void setRanking(String ranking) {
 		this.ranking = ranking;
+		
 	}
 }

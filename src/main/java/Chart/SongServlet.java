@@ -2,24 +2,14 @@ package Chart;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
-import My_Page.dbon;
 import My_Page.vod;
 
 /**
@@ -29,48 +19,9 @@ import My_Page.vod;
 public class SongServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	static PreparedStatement pstmt;
-	static Connection con;
-	static DataSource dataFactory;
-	
-	public void dbon() {
-		try {
-			Context ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:/comp/env"); 
-			dataFactory = (DataSource) envContext.lookup("jdbc1/oracle2");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	static List<vod> list () {
-		List<vod> list = new ArrayList<>();
-		
-		try {
-			con = dataFactory.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM  song");
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				vod vo = new vod();
-				vo.setArtistname(rs.getString("artistname"));
-				vo.setBygenre(rs.getString("bygenre"));
-				vo.setHits(rs.getString("hits"));
-				vo.setLikes(rs.getString("likes"));
-				vo.setSongname(rs.getString("songname"));
-				vo.setSongnumber(rs.getString("songnumber"));
-				vo.setLink(rs.getString("link"));
-				vo.setRanking(rs.getString("ranking"));
-				list.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
@@ -80,93 +31,267 @@ public class SongServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
+				
 			//한글깨짐 방지
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8;");
 			
 			
+			//out 변수에 값 입력하여 출력
+			PrintWriter out = response.getWriter();
 			
-			System.out.println("doPost 실행");
+			SongDAO dao = new SongDAO();
+			vod vo = new vod();
 			
-			//DB연결
-			try {
-				dbon db = new dbon();
-				dbon();
-				this.con = dataFactory.getConnection();
-				
-				//DB 테이블 정보 가져오기
-				String query = "select * from song";
-					   query += " where songnumber=?";
-				
-				
-				List<vod> list = new ArrayList();
-				
-				//값 넣기
-				pstmt = this.con.prepareStatement(query);
-				//전달해서 해당 값을 뽑아오기
-				pstmt.setString(1, "3");
-				//to do : for문 안에 list get 값을 넣어서 자동화 시키기
-//				for(int i=0; i<list.size(); i++) {
-//					pstmt.setString(1,db.list().get(0).getSongnumber() );
-//				}
-				
-				//결과 반환
-				int result = pstmt.executeUpdate();
-				System.out.println("result : " + result);
-				
-				ResultSet rs = pstmt.executeQuery();
-//				((ServletRequest) request).getParameter("");
+			String command = request.getParameter("command");
+			System.out.println("command : "+ command);
+			
+			// 추가
+			if(command != null && "addMember".equals(command)) {
+				// 전달 받음
+				String number = request.getParameter("songnumber");
+				String artistname = request.getParameter("artistname");
+				String songname = request.getParameter("songname");
+				String bygenre = request.getParameter("bygenre");
+				String hits = request.getParameter("hits");
+				String likes = request.getParameter("likes");
+				String link = request.getParameter("link");
+				String ranking = request.getParameter("ranking");
 				
 				
+				vo.setSongnumber(number);
+				vo.setArtistname(artistname);
+				vo.setSongname(songname);
+				vo.setBygenre(bygenre);
+				vo.setHits(hits);
+				vo.setLikes(likes);
+				vo.setLink(link);
+				vo.setRanking(ranking);
 				
-					
-						
-					//정보 가져오기
-					while(rs.next()) {
-							vod song = new vod();
-							
-							String songnumber = rs.getString("songnumber");
-							String artistname = rs.getString("artistname");
-							String songname = rs.getString("songname");
-							System.out.println("artistname : "+ artistname);
-							System.out.println("songname : "+ songname);
-							String link = rs.getString("link");
-							String bygenre = rs.getString("bygenre");
-							String hits = rs.getString("hits");
-							String likes = rs.getString("likes");
-							String ranking = rs.getString("ranking");
-							
-//							System.out.println("songnumber : " + songnumber);
-//							System.out.println("artistname : " + artistname);
-//							System.out.println("songname : " + songname);
-//							System.out.println("link : " + link);
-//							System.out.println("bygenre : " + bygenre);
-//							System.out.println("hits : " + hits);
-//							System.out.println("likes : " + likes);
-//							System.out.println("ranking : " + ranking);
-							
-							
-							PrintWriter out = response.getWriter();
-							
-							
-						}
-					
-							
-				rs.close();
-				this.pstmt.close();
-				this.con.close();
+				// 추가 메소드 실행
+				dao.addMember(vo);
+			} else if(command != null && command.equals("delMember")){
 				
-			} catch (SQLException e) {
+				String songnumber = request.getParameter("songnumber");
+				System.out.println("delMember : songnumber : "+ songnumber);
 				
-				e.printStackTrace();
+				dao.delMember(songnumber);
+				
+			} else if("updateMember".equals(command)){
+				
+				// 전달 받음
+				String number = request.getParameter("songnumber");
+				String artistname = request.getParameter("artistname");
+				String songname = request.getParameter("songname");
+				String bygenre = request.getParameter("bygenre");
+				String hits = request.getParameter("hits");
+				String likes = request.getParameter("likes");
+				String link = request.getParameter("link");
+				String ranking = request.getParameter("ranking");
+				
+				// vo 클래스에 저장
+				
+				vo.setSongnumber(number);
+				vo.setArtistname(artistname);
+				vo.setSongname(songname);
+				vo.setBygenre(bygenre);
+				vo.setHits(hits);
+				vo.setLikes(likes);
+				vo.setLink(link);
+				vo.setRanking(ranking);
+				
+				// 수정 메소드 실행
+				dao.updateMember(vo);
+				
+			} else if(command != null && command.equals("fix")){
+				
+				// 전달 받음
+				String number = request.getParameter("songnumber");
+				String artistname = request.getParameter("artistname");
+				String songname = request.getParameter("songname");
+				String bygenre = request.getParameter("bygenre");
+				String hits = request.getParameter("hits");
+				String likes = request.getParameter("likes");
+				String link = request.getParameter("link");
+				String ranking = request.getParameter("ranking");
+				
+				
+
+				out.println("<!DOCTYPE html>");
+				out.println("<html>");
+				out.println("<head>");
+				out.println("<meta charset='UTF-8'>");
+				out.println("<title>Insert title here</title>");
+				out.println("<script>");
+				out.println("	function fn_sendmember(){");
+				out.println("		document.frmMember.method = 'post';");
+				out.println("		document.frmMember.action = 'song';");
+				out.println("		document.frmMember.submit();");
+				out.println("	}");
+				out.println("</script>");
+				out.println("</head>");
+				out.println("<body>");
+				out.println("	<form name='frmMember'>");
+				out.println("		<table>");
+				out.println("			<th>차트</th>");
+				out.println("			<tr>");
+				out.println("				<td>노래번호</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='songnumber' value='"+ number +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("				<td>아티스트명</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='artistname' value='"+ artistname +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("				<td>노래제목</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='songname' value='"+ songname +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("			<tr>");
+				out.println("				<td>장르</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='bygenre' value='"+ bygenre +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("			<tr>");
+				out.println("				<td>조회수</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='hits' value='"+ hits +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("			<tr>");
+				out.println("				<td>좋아요</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='likes' value='"+ likes +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("			<tr>");
+				out.println("				<td>링크</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='link' value='"+ link +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("			<tr>");
+				out.println("				<td>순위</td>");
+				out.println("				<td>");
+				out.println("					<input type='text' name='ranking' value='"+ ranking +"'>");
+				out.println("				</td>");
+				out.println("			</tr>");
+				out.println("			<tr>");
+				out.println("		</table>");
+				out.println("		<input type='button' value='클릭' onclick='fn_sendmember()'>");
+				out.println("		<input type='hidden' name='command' value='updateMember'>");
+				out.println("	</form>");
+				out.println("</body>");
+				out.println("</html>");
+				return;
+			} else if ("fix".equals(command)) {
+				
+				String songnumber = request.getParameter("songnumber");
+			
+			List<vod> list = dao.chart(vo.getSongnumber());
+			if(list !=null && list.size() > 0) {
+				vo = list.get(0);
 			}
 			
+			String number = vo.getSongnumber();
+			String artistname = vo.getArtistname();
+			String songname = vo.getSongname();
+			String bygenre = vo.getBygenre();
+			String hits = vo.getHits();
+			String likes = vo.getLikes();
+			String link = vo.getLink();
+			String ranking = vo.getRanking();
+			
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<meta charset='UTF-8'>");
+			out.println("<title>Insert title here</title>");
+			out.println("<script>");
+			out.println("	function fn_sendmember(){");
+			out.println("		document.frmMember.method = 'post';");
+			out.println("		document.frmMember.action = 'song';");
+			out.println("		document.frmMember.submit();");
+			out.println("	}");
+			out.println("</script>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("	<form name='frmMember'>");
+			out.println("		<table>");
+			out.println("			<th>차트</th>");
+			out.println("			<tr>");
+			out.println("				<td>노래번호</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='songnumber' value='"+ number +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("				<td>아티스트명</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='artistname' value='"+ artistname +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("				<td>노래제목</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='songname' value='"+ songname +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("			<tr>");
+			out.println("				<td>장르</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='bygenre' value='"+ bygenre +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("			<tr>");
+			out.println("				<td>조회수</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='hits' value='"+ hits +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("			<tr>");
+			out.println("				<td>좋아요</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='likes' value='"+ likes +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("			<tr>");
+			out.println("				<td>링크</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='link' value='"+ link +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("			<tr>");
+			out.println("				<td>순위</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='ranking' value='"+ ranking +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("		</table>");
+			out.println("		<input type='button' value='클릭' onclick='fn_sendmember()'>");
+			out.println("		<input type='hidden' name='command' value='updateMember'>");
+			out.println("	</form>");
+			out.println("</body>");
+			out.println("</html>");
 			
 			}
-	}
-
-
 	
-
+	}
+}
