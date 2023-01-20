@@ -38,8 +38,13 @@ public class SongDAO {
 		try {
 			this.con = dataFactory.getConnection();
 			
+			String songnumber = vo.getSongnumber();
+			String ranking = vo.getRanking();
 			String songname = vo.getSongname();
 			String artistname = vo.getArtistname();
+			String bygenre = vo.getBygenre();
+			String hits = vo.getHits();
+			String likes = vo.getLikes();
 			
 			String query = "SELECT * FROM SONG";
 			
@@ -47,8 +52,14 @@ public class SongDAO {
 			
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, songname);
-			pstmt.setString(2, artistname);
+			pstmt.setString(1, songnumber);
+			pstmt.setString(2, ranking);
+			pstmt.setString(3, songname);
+			pstmt.setString(4, artistname);
+			pstmt.setString(5, bygenre);
+			pstmt.setString(6, hits);
+			pstmt.setString(7, likes);
+			
 			pstmt.executeUpdate();
 			
 			pstmt.close();
@@ -74,13 +85,24 @@ public class SongDAO {
 			   ResultSet rs = pstmt.executeQuery();
 			   
 			   while(rs.next()) {
+				   String songnumber = rs.getString("songnumber");
+				   String ranking = rs.getString("ranking");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
+				   String bygenre = rs.getString("bygenre");
+				   String hits = rs.getString("hits");
+				   String likes = rs.getString("likes");
+				   
 				   
 				   
 				   vod vo = new vod();
+				   vo.setSongnumber(songnumber);
+				   vo.setRanking(ranking);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
+				   vo.setBygenre(bygenre);
+				   vo.setHits(hits);
+				   vo.setLikes(likes);
 				   list.add(vo);
 			   }
 			   

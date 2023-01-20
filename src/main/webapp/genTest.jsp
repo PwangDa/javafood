@@ -9,7 +9,8 @@
 
 </script>
 <style>
-            body{
+        body{
+        
             background-color: black;
             margin: 0;
         }
