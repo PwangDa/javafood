@@ -27,8 +27,25 @@ public class dbon {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<vod>listID(){
+		List<vod> list = new ArrayList<vod>();
+		try {
+			con=this.dataFactory.getConnection();
+			this.pstmt = con.prepareStatement("SELECT * FROM  login");
+			ResultSet rs=this.pstmt.executeQuery();
+			while(rs.next()) {
+				vod vo = new vod();
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> list () {
-		List<vod> list = new ArrayList<>();
+		List<vod> list = new ArrayList<vod>();
 		try {
 			con = this.dataFactory.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM  song");
