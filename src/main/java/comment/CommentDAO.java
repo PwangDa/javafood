@@ -68,6 +68,7 @@ public class CommentDAO {
 			
 			   //가져올 테이블 선택(불러오기)
 			   String query = "select * from comment_c";
+			   query += " ORDER BY COMMENT_DATE DESC";
 			   System.out.println(query);
 			   
 			   pstmt = this.con.prepareStatement(query);

@@ -60,6 +60,11 @@ public class SongServlet extends HttpServlet {
 	      out.write("<meta charset=\"UTF-8\">\r\n");
 	      out.write("<title>Song list</title>\r\n");
 	      out.write(" <script>\r\n");
+	      out.write(" </script>\r\n");
+	      out.write("  <style>\r\n");
+	      out.write("    </style>\r\n");
+	      out.write("</head>\r\n");
+	      out.write("</html>\r\n");
 	      
 	      for(int i= 0; i<list.size(); i++) {
 	    	  vod vo = list.get(i);
@@ -73,20 +78,25 @@ public class SongServlet extends HttpServlet {
 			  String likes = vo.getLikes();
 			 
 
-	      out.write("</body>\r\n");
-	      out.write("</html>");
-	      out.write("<head>");
-	      out.write("<meta charset=\"UTF-8\">\r\n");
-	      out.write("<title>Artist Info</title>\r\n");
-	      out.write(" <script>\r\n");
-	      out.write("        function fn_send(){\r\n");
-	      out.write("        	\r\n");
-	      out.write("        	var frmCommand = document.frmComment;\r\n");
-	      out.write("        	var id = frmCommand.id.value;\r\n");
-	      out.write("        	var cont = frmCommand.cont.value;\r\n");
-	      out.write("        	\r\n");
-	      
+			  out.write("                    <div class=\"songlist\">\r\n");
+	          out.write("                            <div class='song'>"+songnumber+"</div>\r\n");
+	          out.write("                            <div class='song'>"+ranking+"</div>\r\n");
+	          out.write("                            <div class='song'>"+songname+"</div>\r\n");
+	          out.write("                            <div class='song'>"+artistname+"</div>\r\n");
+	          out.write("                            <div class='song'>"+bygenre+"</div>\r\n");
+	          out.write("                            <div class='song'>"+hits+"</div>\r\n");
+	          out.write("                            <div class='song'>"+likes+"</div>\r\n");
+	          out.write("                    </div>\r\n");
+	         
+	         
 	      
 	      }
+	      out.write("            </div>\r\n");
+	      out.write("        </div>\r\n");
+	      out.write("\r\n");
+	      out.write("    </div>\r\n");
+	      out.write("\r\n");
+	      out.write("</body>\r\n");
+	      out.write("</html>");
 	}
 }

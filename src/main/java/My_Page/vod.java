@@ -3,7 +3,7 @@ package My_Page;
 public class vod {
 
 
-
+///////----------song-----------//////////
 	private String songnumber;
 	private String artistname;
 	private String songname;
@@ -12,8 +12,58 @@ public class vod {
 	private String likes;
 	private String link;
 	private String ranking;
+///////---------login-----------//////////
+	private String id;
+	private String pw;
+	private String nic;
+	private String pn;
+	private String phone;
+	private String email;
+	private String home;
 	
-
+	
+	public String getId() {
+		return id;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public String getNic() {
+		return nic;
+	}
+	public String getPn() {
+		return pn;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public String getHome() {
+		return home;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	public void setNic(String nic) {
+		this.nic = nic;
+	}
+	public void setPn(String pn) {
+		this.pn = pn;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setHome(String home) {
+		this.home = home;
+	}
 	public String getLink() {
 		return link;
 	}
