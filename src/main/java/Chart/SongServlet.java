@@ -58,14 +58,20 @@ public class SongServlet extends HttpServlet {
 	      out.write("<html>\r\n");
 	      out.write("<head>\r\n");
 	      out.write("<meta charset=\"UTF-8\">\r\n");
-	      out.write("<title>Artist Info</title>\r\n");
+	      out.write("<title>Song list</title>\r\n");
 	      out.write(" <script>\r\n");
 	      
 	      for(int i= 0; i<list.size(); i++) {
 	    	  vod vo = list.get(i);
 	    	  
-	    	  String songname = vo.getSongname();
-	    	  String artistname = vo.getArtistname();    
+	    	  String songnumber = vo.getSongnumber();
+			  String ranking = vo.getRanking();
+			  String songname = vo.getSongname();
+			  String artistname = vo.getArtistname();
+			  String bygenre = vo.getBygenre();
+			  String hits = vo.getHits();
+			  String likes = vo.getLikes();
+			 
 
 	      out.write("</body>\r\n");
 	      out.write("</html>");

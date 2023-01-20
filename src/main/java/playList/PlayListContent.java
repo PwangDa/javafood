@@ -182,9 +182,21 @@ public class PlayListContent extends HttpServlet
 					+ "        }\r\n"
 					+ "        button.add_btn\r\n"
 					+ "        {\r\n"
-					+ "            background-color:black;\r\n"
+					+ "            background-color: black;\r\n"
 					+ "            color:white;\r\n"
 					+ "            margin:2%;\r\n"
+					+ "        }\r\n"
+					+ "\r\n"
+					+ "        span.delete\r\n"
+					+ "        {\r\n"
+					+ "            color:white;\r\n"
+					+ "            margin:2%;\r\n"
+					+ "            height: 5%;\r\n"
+					+ "        }\r\n"
+					+ "        \r\n"
+					+ "        .hidden\r\n"
+					+ "        {\r\n"
+					+ "           display: none;\r\n"
 					+ "        }\r\n"
 					+ "    </style>\r\n"
 					+ "</head>"
@@ -235,7 +247,12 @@ public class PlayListContent extends HttpServlet
 							+ "        <div class=\"album_explain\">\r\n"
 							+ "            " + PL_explain + "\r\n"
 							+ "        </div>\r\n"
-							+ "    </div>"							
+							+ "    </div>"
+							+ "<span class=\"delete\">\r\n"
+							+ "            <img class=\"delete_icon\" src=\"https://popcat.click/twitter-card.jpg\" width=\"50\">\r\n"
+							+ "            <img class=\"delete_icon2 hidden\" src=\"https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM\" width=\"50\">\r\n"
+							+ "            <div style=\"font-size: 12px; text-align: center;\">\uC0AD\uC81C\uD558\uAE30</div>\r\n"
+							+ "    </span>"							
 							+ "<div class=\"list_parent\">"
 							+ "<div class=\"list_child\">\r\n"
 //							+ "            <div class=\"list_number\">" + PL_listNumber + "</div>\r\n"
@@ -247,11 +264,16 @@ public class PlayListContent extends HttpServlet
 							+ "                \uC5D0\uC787\r\n"
 							+ "            </div>\r\n"
 							+ "        </div>"
+							+ "        <form name=\"PLC_delete_list\">\r\n"
+							+ "            <input type=\"hidden\" name=\"doDeleteList\" value=\"doDelete\">"
+							+ "            <input type=\"hidden\" name=\"res.PL_ID\" value=\"" + PL_ID + "\">\r\n"
+							+ "        </form>\r\n"
 					);
 					
 					break;
 				}
 			}
+			
 			
 			while(rs.next() )
 			{
@@ -261,7 +283,6 @@ public class PlayListContent extends HttpServlet
 				PL_title = rs.getString("PL_TITLE");
 				PL_explain = rs.getString("PL_EXPLAIN");
 				artistName = rs.getString("ARTISTNAME");
-				
 				
 				if(req_PL_ID == PL_ID)
 				{
@@ -281,6 +302,7 @@ public class PlayListContent extends HttpServlet
 					);
 					
 					continue;
+					
 				}
 			}
 			
@@ -290,7 +312,49 @@ public class PlayListContent extends HttpServlet
 						+ "<a href='genre'>"
 						+ "<button type='button' class='add_btn'>\uCD94\uAC00\uD558\uAE30</button></div>"
 						+ "</a>");
+//						+ "<span class=\"delete\">\r\n"
+//						+ "            <img class=\"delete_icon\" src=\"https://popcat.click/twitter-card.jpg\" width=\"50\">\r\n"
+//						+ "            <img class=\"delete_icon2 hidden\" src=\"https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM\" width=\"50\">\r\n"
+//						+ "            <div style=\"font-size: 12px; text-align: center;\">\uC0AD\uC81C\uD558\uAE30</div>\r\n"
+//						+ "    </span>"
+//						+ "        <form name=\"PLC_delete_list\">\r\n"
+//						+ "            <input type=\"hidden\" name=\"doDeleteList\" value=\"doDelete\">"
+//						+ "            <input type=\"hidden\" name=\"res.PL_ID\" value=\"" + noList_id + "\">\r\n"
+//						+ "        </form>\r\n");
 			}
+			
+			out.println
+			("</div><script>\r\n"
+					+ "        window.onload = function()\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelector(\"img.delete_icon\").addEventListener(\"mouseover\", ()=>\r\n"
+					+ "            {\r\n"
+					+ "                document.querySelector(\"img.delete_icon\").classList.toggle(\"hidden\");\r\n"
+					+ "                document.querySelector(\"img.delete_icon2\").classList.toggle(\"hidden\");\r\n"
+					+ "            });\r\n"
+					+ "    \r\n"
+					+ "            document.querySelector(\"img.delete_icon\").addEventListener(\"mouseout\", ()=>\r\n"
+					+ "            {\r\n"
+					+ "                document.querySelector(\"img.delete_icon\").classList.toggle(\"hidden\");\r\n"
+					+ "                document.querySelector(\"img.delete_icon2\").classList.toggle(\"hidden\");\r\n"
+					+ "            });\r\n"
+					+ "    \r\n"
+					+ "            document.querySelector(\"span.delete\").addEventListener('click', ()=>\r\n"
+					+ "            {\r\n"
+					+ "                if(confirm(\"\uC815\uB9D0\uB85C \uD574\uB2F9 \uD50C\uB808\uC774 \uB9AC\uC2A4\uD2B8\uB97C \uC0AD\uC81C\uD558\uACA0\uC2B5\uB2C8\uAE4C?\") )\r\n"
+					+ "                {\r\n"
+					+ "                    function fn_deleteList()\r\n"
+					+ "                    {\r\n"
+					+ "                        PLC_delete_list.method='get';\r\n"
+					+ "                        PLC_delete_list.action='pl';\r\n"
+					+ "                        PLC_delete_list.submit();\r\n"
+					+ "                    }\r\n"
+					+ "    \r\n"
+					+ "                    fn_deleteList();\r\n"
+					+ "                }\r\n"
+					+ "            });\r\n"
+					+ "        }\r\n"
+					+ "    </script>");
 			
 			out.println("</body></html>");
 			

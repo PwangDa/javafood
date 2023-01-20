@@ -39,7 +39,7 @@
 
 		String command = request.getParameter("command"); 
 		
-		if("listcomment".equals(command)) {
+		if("songcomment".equals(command)) {
 			String songname = request.getParameter("songname");
 			String artistname = request.getParameter("artistname");
 			
@@ -48,7 +48,7 @@
 			vo.setArtistname(artistname);
 			
 			dao.listsong().add(vo);
-		}else if("notlistcomment".equals(command)) {
+		}else if("notsongcomment".equals(command)) {
 			
 			String songname2 = request.getParameter("songname");
 			System.out.println("리스트에 없습니다"+songname2);
@@ -73,7 +73,7 @@
 		cellspacing="1">
 
 		<tr align="center" bgcolor="#ffffff">
-			<td align="center" colspan="8">테이블명: SONG
+			<td align="center" colspan="8">테이블명: 인기차트
 			<td>
 		</tr>
 
@@ -85,7 +85,6 @@
 			<td align="center">장르</td>
 			<td align="center">조회수</td>
 			<td align="center">좋아요</td>
-			<td align="center">링크</td>
 		</tr>
 
 <%
@@ -103,19 +102,20 @@
 			rs = stmt.executeQuery(query);
 
 			while (rs.next()) {
-				System.out.println("rs.next() : " + rs.next());
-				String Songnumber = rs.getString("songnumber");
-				String Ranking = rs.getString("ranking");
-				String Songname = rs.getString("songname");
-				String Artistname = rs.getString("artistname");
-				String Bygenre = rs.getString("bygenre");
-				String Hits = rs.getString("hits");
-				String Likes = rs.getString("likes");
-				String Rink = rs.getString("rink");
-
-				out.print("<tr align=\"center\" bgcolor=\"#ffffff\">" + "<td>" + Songnumber + "</td>" + "<td>" + Ranking
-				+ "</td>" + "<td>" + Songname + "</td>" + "<td>" + Artistname + "</td>" + "<td>" + Bygenre + "</td>"
-				+ "<td>" + Hits + "</td>" + "<td>" + Likes + "</td>" + "<td>" + Rink + "</td>" + "</tr>");
+				
+				String songnumber = rs.getString("songnumber");
+				String ranking = rs.getString("ranking");
+				String songname = rs.getString("songname");
+				String artistname = rs.getString("artistname");
+				String bygenre = rs.getString("bygenre");
+				String hits = rs.getString("hits");
+				String likes = rs.getString("likes");
+				
+				
+				
+				out.print("<tr align=\"center\" bgcolor=\"#ffffff\">" + "<td>" + songnumber +"<td>" + ranking + "</td>" + "</td>" +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"<td>" + "<td>" + likes +"<td>"
+				+"</tr>");
+				
 			}
 
 		} catch (Exception e) {
@@ -124,7 +124,6 @@
 			try {
 				rs.close();
 				stmt.close();
-				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
