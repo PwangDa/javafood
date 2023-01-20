@@ -112,8 +112,10 @@
 				String likes = rs.getString("likes");
 				
 				
+				
 				out.print("<tr align=\"center\" bgcolor=\"#ffffff\">" + "<td>" + songnumber +"<td>" + ranking + "</td>" + "</td>" +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"<td>" + "<td>" + likes +"<td>"
 				+"</tr>");
+				
 			}
 
 		} catch (Exception e) {
@@ -122,7 +124,6 @@
 			try {
 				rs.close();
 				stmt.close();
-				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

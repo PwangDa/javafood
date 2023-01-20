@@ -58,7 +58,7 @@ public class SongServlet extends HttpServlet {
 	      out.write("<html>\r\n");
 	      out.write("<head>\r\n");
 	      out.write("<meta charset=\"UTF-8\">\r\n");
-	      out.write("<title>Artist Info</title>\r\n");
+	      out.write("<title>Song list</title>\r\n");
 	      out.write(" <script>\r\n");
 	      
 	      for(int i= 0; i<list.size(); i++) {
