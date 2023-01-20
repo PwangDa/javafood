@@ -59,8 +59,6 @@
                                 <input type="text" class="phone" name="phone3"><br>
                                 <input type="button" id="butt5" value="연락처 확인"><br>
                 <hr>
-                현제 거주지 : <input type="text" name="home">
-                <hr>
                 <a href="login.jsp" class="at">취소</a>
                 <input class="sub" type="submit" value="회원가입">
                 <input class="sub" type="reset" value="다시작성">
