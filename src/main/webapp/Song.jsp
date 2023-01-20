@@ -64,27 +64,25 @@
  </script>
 <style>
 	.table {
-		border="1"
+		border:1px solid black;
+		
 	}
 </style>
 </head>
 <body>
-	<table class="table" align="center" bacolor="#000000" border="0" cellpadding="5"
-		cellspacing="1">
-
-		<tr align="center" bgcolor="#ffffff">
-			<td align="center" colspan="8">테이블명: 인기차트
+	<table class="table">
+		<tr>
+			<td align="center" colspan="8">인기차트
 			<td>
 		</tr>
-
-		<tr align="center" bgcolor="#ffffff">
-			<td align="center">번호</td>
-			<td align="center">순위</td>
-			<td align="center">노래 제목</td>
-			<td align="center">아티스트 명</td>
-			<td align="center">장르</td>
-			<td align="center">조회수</td>
-			<td align="center">좋아요</td>
+		<tr>
+			<td>번호</td>
+			<td>순위</td>
+			<td>노래 제목</td>
+			<td>아티스트 명</td>
+			<td>장르</td>
+			<td>조회수</td>
+			<td>좋아요</td>
 		</tr>
 
 <%
@@ -128,7 +126,6 @@
 				e.printStackTrace();
 			}
 		} %>
-
-	</table>
+</table>
 </body>
 </html>
