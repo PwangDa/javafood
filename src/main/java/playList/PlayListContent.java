@@ -249,12 +249,9 @@ public class PlayListContent extends HttpServlet
 							+ "        </div>\r\n"
 							+ "    </div>"
 							+ "<span class=\"delete\">\r\n"
-							+ "        <form name=\"PLC_delete_list\">\r\n"
 							+ "            <img class=\"delete_icon\" src=\"https://popcat.click/twitter-card.jpg\" width=\"50\">\r\n"
 							+ "            <img class=\"delete_icon2 hidden\" src=\"https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM\" width=\"50\">\r\n"
 							+ "            <div style=\"font-size: 12px; text-align: center;\">\uC0AD\uC81C\uD558\uAE30</div>\r\n"
-							+ "            <input type=\"hidden\" name=\"res.PL_title\" value=\"YoGiSeo JAVA CODE JJaGi\">\r\n"
-							+ "        </form>\r\n"
 							+ "    </span>"							
 							+ "<div class=\"list_parent\">"
 							+ "<div class=\"list_child\">\r\n"
@@ -267,11 +264,16 @@ public class PlayListContent extends HttpServlet
 							+ "                \uC5D0\uC787\r\n"
 							+ "            </div>\r\n"
 							+ "        </div>"
+							+ "        <form name=\"PLC_delete_list\">\r\n"
+							+ "            <input type=\"hidden\" name=\"doDeleteList\" value=\"doDelete\">"
+							+ "            <input type=\"hidden\" name=\"res.PL_ID\" value=\"" + PL_ID + "\">\r\n"
+							+ "        </form>\r\n"
 					);
 					
 					break;
 				}
 			}
+			
 			
 			while(rs.next() )
 			{
@@ -281,7 +283,6 @@ public class PlayListContent extends HttpServlet
 				PL_title = rs.getString("PL_TITLE");
 				PL_explain = rs.getString("PL_EXPLAIN");
 				artistName = rs.getString("ARTISTNAME");
-				
 				
 				if(req_PL_ID == PL_ID)
 				{
@@ -299,6 +300,9 @@ public class PlayListContent extends HttpServlet
 							+ "            </div>\r\n"
 							+ "        </div>"
 					);
+					
+					continue;
+					
 				}
 			}
 			
@@ -308,6 +312,15 @@ public class PlayListContent extends HttpServlet
 						+ "<a href='genre'>"
 						+ "<button type='button' class='add_btn'>\uCD94\uAC00\uD558\uAE30</button></div>"
 						+ "</a>");
+//						+ "<span class=\"delete\">\r\n"
+//						+ "            <img class=\"delete_icon\" src=\"https://popcat.click/twitter-card.jpg\" width=\"50\">\r\n"
+//						+ "            <img class=\"delete_icon2 hidden\" src=\"https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM\" width=\"50\">\r\n"
+//						+ "            <div style=\"font-size: 12px; text-align: center;\">\uC0AD\uC81C\uD558\uAE30</div>\r\n"
+//						+ "    </span>"
+//						+ "        <form name=\"PLC_delete_list\">\r\n"
+//						+ "            <input type=\"hidden\" name=\"doDeleteList\" value=\"doDelete\">"
+//						+ "            <input type=\"hidden\" name=\"res.PL_ID\" value=\"" + noList_id + "\">\r\n"
+//						+ "        </form>\r\n");
 			}
 			
 			out.println
