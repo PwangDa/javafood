@@ -26,6 +26,28 @@
 <title>Insert title here</title>
 <script>
 
+		function checkSelectAll(){
+			
+			  const checkboxes = document.querySelectorAll('input[name="chk"]');
+			  const checked = document.querySelectorAll('input[name="chk"]:checked');
+			  const selectAll = document.querySelector('input[name="selectall"]');
+			  
+			  if(checkboxes.length === checked.length)  {
+			    selectAll.checked = true;
+			  }else {
+			    selectAll.checked = false;
+			  }
+		
+			}
+		function selectAll(selectAll)  {
+			console.log(selectAll.checked);
+			  const checkboxes = document.getElementsByName("chk");
+			  
+			  checkboxes.forEach((checkbox) => {
+			    checkbox.checked = selectAll.checked;
+			  })
+		}
+
 </script>
 <style>
         body{
@@ -76,6 +98,10 @@
         }
         .tab1:hover{
             cursor: pointer;
+            background-color:rgba(173, 173, 173, 0.545);
+        }
+        .tab1:active{
+            transform: scale(1.1);
         }
         .tab1_1{
             border-left: 6px solid rgb(194, 233, 255);
@@ -98,22 +124,36 @@
 
         /*담기*/
 
-        .push{
+        <%--.push{
             margin-top: 40px;
             height: 60px;
-        }
+        }--%>
 
         input[type="checkbox"]{
-            display: none;
+            -webkit-appearance: none;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            outline: none !important;
+            border: 1px solid #eeeeee;
+            border-radius: 2px;
+            background: #000000;
         }
 
-        input[type="checkbox"] + label{
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            background-color: black;
-            border: 2px solid white; 
-            border-radius: 3px;
+        input[type="checkbox"]::before {
+            content: "\2713";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+            transform: scale(0) translate(-50%, -50%);
+            line-height: 1;
+        }
+        input[type="checkbox"]:checked {
+            background-color: #adadad;
+            border-color: rgb(255, 255, 255);
+            color: white;
         }
 /* 
         input#cd1 + label:before{
@@ -129,6 +169,34 @@
             border: 2px solid white;
             border-radius: 3px;
         } */
+        
+        .no_chart{
+            margin-top: 40px;
+            display: flex;
+            height: 30px;
+            padding-left: 20px;
+        }
+
+        .left_num{
+            width: 100px;
+            height: 40px;
+            text-align: center;
+        }
+        .left_song{
+            margin-left: 0px;
+            width: 400px;
+            text-align: left; 
+        }
+        .left_artist{
+            width: 100px;
+            height: 40px;
+            text-align: left;
+           
+        }
+        .heart{
+            width: 35px;
+            padding-left: 100px;
+        }
 
         /* 곡리스트 */
         .musiclist{
@@ -248,10 +316,13 @@
         <%
 		} 
 		%>
-        <div class="push">
-             <input type="checkbox" id="cb1">
-                <label for="cd1" class="chk_box"></label>
-                담기
+        <div class="no_chart">        
+                <input type="checkbox" id="cb1" name="selectall" onclick="selectAll(this)" value="selectall">
+                   <label for="cd1"></label>
+            <div class="left_num">NO</div>
+            <div class="left_song">곡이름</div>
+            <div class="left_artist">아티스트</div>
+            <div><img class="heart" src="https://www.pngkit.com/png/detail/86-865424_plain-black-heart-frame-white-heart-icon-no.png"></div>
         </div>
 
 		<%
@@ -259,10 +330,12 @@
 			%>
         <div class= "musiclist">
              <div class="cont2">
+             	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
                 <div class="left_item"><%=(i+1) %></div>
                 <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"><%=vo.get(i).getSongname() %></a></div>
-                <div class="left_item left_name"><%= vo.get(i).getArtistname()%></div>
+                <div class="left_artist"><%= vo.get(i).getArtistname()%></div>
                 <div class="right_item"><%= vo.get(i).getLikes() %></div>
+                <div class="right_item">3:35</div>
              </div>
             
         </div>
