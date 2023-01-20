@@ -251,7 +251,7 @@
                 </div>
                 <div class = "box1 text2">Blueming</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">Love Poem</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=2">Love Poem</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -260,7 +260,7 @@
                 </div>
                 <div class = "box1 text2">Celebrity</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">IU 5th Album 'LILAC'</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=1">IU 5th Album 'LILAC'</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -269,7 +269,7 @@
                 </div>
                 <div class = "box1 text2">Twenty-three</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">CHAT-SHIRE</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=3">CHAT-SHIRE</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -278,7 +278,7 @@
                 </div>
                 <div class = "box1 text2">가을 아침</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">꽃-갈피 둘</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=4">꽃-갈피 둘</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -287,7 +287,7 @@
                 </div>
                 <div class = "box1 text2">겨울잠</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">조각집</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=5">조각집</a></div>
             </div>
         </div>
         <div>

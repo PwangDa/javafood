@@ -40,7 +40,7 @@
 	%>
 	<div style="width: 100%;height: 100%;">
         <div class="head">
-            <div class="left"><a href="http://localhost:8080/javafood_team/My_page.jsp" class="at"><strong>My pages</strong></a></div>
+            <div class="left"><a href="http://localhost:8080/javafood_team/Lky/My_page.jsp" class="at"><strong>My pages</strong></a></div>
             <div class="right"></div>
         </div>
         <div class="tbody">
@@ -72,9 +72,9 @@
 		                <tr class="low">
 		                    <td><%= i+1%></td>
 		                    <td><%= vo1.get(i).getArtistname() %></td>
-		                    <td><a href="<%= vo1.get(i).getLink() %>"  class="at"><%= vo1.get(i).getSongname() %></a></td>
+		                    <td><a href="<%= vo1.get(i).getLink() %>" target="_blank" class="at"><%= vo1.get(i).getSongname() %></a></td>
 		                    <td>
-		                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
+		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
 		                    <form method="get" action="My_page.jsp">
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
@@ -86,9 +86,9 @@
 		                <tr class="low">
 		                    <td><%= i+1%></td>
 		                    <td><%= vo.get(i).getArtistname() %></td>
-		                    <td><a href="<%= vo.get(i).getLink() %>"  class="at"><%= vo.get(i).getSongname() %></a></td>
+		                    <td><a href="<%= vo.get(i).getLink() %>" target="_blank" class="at"><%= vo.get(i).getSongname() %></a></td>
 		                    <td>
-		                    	<a href="http://localhost:8080/javafood_team/My_page.jsp?id=<%=i%>" class="at" style="color: red;">재생</a>
+		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
 		                    <form method="get" action="My_page.jsp">
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
