@@ -149,8 +149,10 @@
             height: 40px;
             text-align: center;
         }
+            
+        
         .left_name{
-            width: 400px;
+         	width: 400px;
             text-align: left;
         }
         .right_item{
@@ -166,83 +168,83 @@
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header>
     <div id="home">
-        <h1>장르</h1>
+        <h1><a href='http://127.0.0.1:8080/javafood_team/Genre.jsp'>장르</a></h1>
         <%
 		if ("발라드".equals(song)) {
 		%>
         <div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else if ("댄스".equals(song)) {
 		%>
 		<div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else if ("pop".equals(song)) {
 		%>
 		<div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else if ("R&B".equals(song)) {
 		%>
 		<div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else if ("인디".equals(song)) {
 		%>
 		<div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else if ("트로트".equals(song)) {
 		%>
 		<div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else{
 		%>
 		<div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'></a>발라드</div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'></a>댄스</div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'></a>POP</div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'></a>R&B</div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'></a>인디</div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'></a>트로트</div>
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} 
@@ -259,7 +261,7 @@
         <div class= "musiclist">
              <div class="cont2">
                 <div class="left_item"><%=(i+1) %></div>
-                <div class="left_item"><a href="<%= vo.get(i).getLink() %>"><%=vo.get(i).getSongname() %></a></div>
+                <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"><%=vo.get(i).getSongname() %></a></div>
                 <div class="left_item left_name"><%= vo.get(i).getArtistname()%></div>
                 <div class="right_item"><%= vo.get(i).getLikes() %></div>
              </div>
