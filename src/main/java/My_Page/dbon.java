@@ -36,12 +36,12 @@ public class dbon {
 			while(rs.next()) {
 				vod vo = new vod();
 				vo.setId(rs.getString("id"));
-				vo.setId(rs.getString("pwd"));
-				vo.setId(rs.getString("nic"));
-				vo.setId(rs.getString("pn"));
-				vo.setId(rs.getString("phone"));
-				vo.setId(rs.getString("email"));
-				vo.setId(rs.getString("home"));
+				vo.setPw(rs.getString("pwd"));
+				vo.setNic(rs.getString("nic"));
+				vo.setPn(rs.getString("pn"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setEmail(rs.getString("email"));
+				vo.setHome(rs.getString("home"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -49,7 +49,17 @@ public class dbon {
 		}
 		return list;
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void addId(vod vo) {
+		try {
+			con = this.dataFactory.getConnection();
+			pstmt = con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"','"+vo.getHome());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> list () {
 		List<vod> list = new ArrayList<vod>();
