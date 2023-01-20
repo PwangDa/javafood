@@ -149,7 +149,6 @@
             height: 40px;
             text-align: center;
         }
-            
         
         .left_name{
          	width: 400px;
@@ -168,7 +167,7 @@
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header>
     <div id="home">
-        <h1><a href='http://127.0.0.1:8080/javafood_team/Genre.jsp'>장르</a></h1>
+        <h1><a href='http://127.0.0.1:8080/javafood_team/gentesthtml.jsp'>장르</a></h1>
         <%
 		if ("발라드".equals(song)) {
 		%>
