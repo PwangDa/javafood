@@ -76,7 +76,7 @@
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
-		                    <form method="get" action="My_page.jsp">
+		                    <form>
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vo1.get(i).getSongnumber()%>"> </td>
 		                	</form>
 		                </tr> <% } 
@@ -90,10 +90,9 @@
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
-		                    <form method="get" action="window.location.reload()" target="123">
+		                    <form>
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
 		                	</form>
-		                	<iframe name="123" style="display:none"></iframe>
 		                </tr> <% }
 		                } %>
     				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
