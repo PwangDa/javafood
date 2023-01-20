@@ -206,60 +206,20 @@ public class PlayList extends HttpServlet
 			ResultSet rs = pstmt.executeQuery();
 			/////////////////////////////////////////////
 			
-			rs.next();
-//			
-			String ID2 = rs.getString("ID2");
-			int PL_ID = rs.getInt("PL_ID");
-			String PL_Title = rs.getString("PL_TITLE");
-//			Date PL_Date = rs.getDate("PL_DATE"); //자바에선 필요없음.
-//			String PL_Explain = rs.getString("PL_EXPLAIN"); //이 서블릿에선 필요없음.
-			
-			//html 작성하기
 			out.println
 			("<body>\r\n"
-							//회원목록이 생성되면 아래의 아이디 부분을 수정할 것.
+					//회원목록이 생성되면 아래의 아이디 부분을 수정할 것.
 					+ "    <div class=\"title\"><h1> " + "아이디 : 아직 회원목록이 없어서 쓰는 임시 아이디." + "님의 플레이 리스트 </h1></div><br><hr>\r\n"
-							+ "<img class=\"addList\" src=\"https://cdn-icons-png.flaticon.com/512/7598/7598663.png\"> "
-							+ "<span class=\"addList\">\uB9AC\uC2A4\uD2B8 \uCD94\uAC00</span><br>"
-							+ "<div class=\"search hidden\">\r\n"
-							+ "        <form name = \"PL_addList\">\r\n"
-							+ "            <input type=\"text\" name=\"addList_title\" class=\"addList_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC81C\uBAA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
-							+ "            <input type=\"text\" name=\"addList_explain\" class=\"addList_ex_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC124\uBA85\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
-							+ "            <input type=\"button\" name=\"addList_btn\" class=\"addList_btn\" value=\"\uCD94\uAC00\">\r\n"
-							+ "            <input type=\"hidden\" name=\"doAddList\" value=\"do\"> \r\n"
-							+ "        </form>\r\n"
-							+ "    <br><br></div>");
-			out.println
-			//a 태그의 주소 수정하기.
-			("<a href=\"/jf/plc?PL_ID=" + PL_ID + "\">\r\n"
-					+ "        <div class=\"playList\">\r\n"
-					//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
-					+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
-					
-					+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
-			
-			
-			
-			
-			while(rs.next() )
-			{
-				//테이블에서 값 가져오기
-				
-				PL_ID = rs.getInt("PL_ID");
-				PL_Title = rs.getString("PL_TITLE");
-//				PL_Date = rs.getDate("PL_DATE");
-//				PL_Explain = rs.getString("PL_EXPLAIN");
-				/////////////////////////////////
-				
-				//html 작성하기
-				out.println
-				//a 태그의 주소 수정하기.
-				("<a href=\"/jf/plc?id=" + ID2 + "&PL_ID=" + PL_ID + "\">\r\n"
-						+ "        <div class=\"playList\">\r\n"
-						//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
-						+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
-						+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
-			}
+					+ "<img class=\"addList\" src=\"https://cdn-icons-png.flaticon.com/512/7598/7598663.png\"> "
+					+ "<span class=\"addList\">\uB9AC\uC2A4\uD2B8 \uCD94\uAC00</span><br>"
+					+ "<div class=\"search hidden\">\r\n"
+					+ "        <form name = \"PL_addList\">\r\n"
+					+ "            <input type=\"text\" name=\"addList_title\" class=\"addList_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC81C\uBAA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
+					+ "            <input type=\"text\" name=\"addList_explain\" class=\"addList_ex_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC124\uBA85\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
+					+ "            <input type=\"button\" name=\"addList_btn\" class=\"addList_btn\" value=\"\uCD94\uAC00\">\r\n"
+					+ "            <input type=\"hidden\" name=\"doAddList\" value=\"do\"> \r\n"
+					+ "        </form>\r\n"
+					+ "    <br><br></div>");
 			
 			out.println
 			("<script>\r\n"
@@ -293,6 +253,49 @@ public class PlayList extends HttpServlet
 					+ "            fn_addList();\r\n"
 					+ "        });\r\n"
 					+ "    </script>");
+			
+			rs.next();
+//			
+			String ID2 = rs.getString("ID2");
+			int PL_ID = rs.getInt("PL_ID");
+			String PL_Title = rs.getString("PL_TITLE");
+//			Date PL_Date = rs.getDate("PL_DATE"); //자바에선 필요없음.
+//			String PL_Explain = rs.getString("PL_EXPLAIN"); //이 서블릿에선 필요없음.
+			
+			//html 작성하기
+			out.println
+			//a 태그의 주소 수정하기.
+			("<a href=\"/jf/plc?PL_ID=" + PL_ID + "\">\r\n"
+					+ "        <div class=\"playList\">\r\n"
+					//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
+					+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
+					
+					+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
+			
+			
+			
+			
+			while(rs.next() )
+			{
+				//테이블에서 값 가져오기
+				
+				PL_ID = rs.getInt("PL_ID");
+				PL_Title = rs.getString("PL_TITLE");
+//				PL_Date = rs.getDate("PL_DATE");
+//				PL_Explain = rs.getString("PL_EXPLAIN");
+				/////////////////////////////////
+				
+				//html 작성하기
+				out.println
+				//a 태그의 주소 수정하기.
+				("<a href=\"/jf/plc?id=" + ID2 + "&PL_ID=" + PL_ID + "\">\r\n"
+						+ "        <div class=\"playList\">\r\n"
+						//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
+						+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
+						+ "            <div class=\"plText\">" + PL_Title + "</div></div></a>");
+			}
+			
+			
 			
 			out.println("</body></html>");
 		}
