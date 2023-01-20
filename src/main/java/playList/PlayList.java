@@ -33,14 +33,15 @@ public class PlayList extends HttpServlet
 		
 		//주소로 넘어온 값을 받기
 		String doAddList = request.getParameter("doAddList");
+		String doDeleteList = request.getParameter("doDeleteList");
 		/////////////////////////////////////////////
 		
-		if("do".equals(doAddList) )
+		//리스트 추가하기
+		if("doAdd".equals(doAddList) )
 		{
 			//주소로 넘어온 값을 받기
 			String addList_title = request.getParameter("addList_title");
 			String addList_explain = request.getParameter("addList_explain");
-			/////////////////////////////////////////////
 			
 			//쿼리문 작성
 			String addList_query = "INSERT INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
@@ -65,14 +66,73 @@ public class PlayList extends HttpServlet
 				//DB 접속 코드
 				PreparedStatement pstmt = con.prepareStatement(addList_query);
 				ResultSet rs = pstmt.executeQuery();
+				
+				//doAddList 초기화
+//				doAddList = "don't do";
 				/////////////////////////////////////////////
 			}
 			catch (NamingException | SQLException e)
 			{
 				e.printStackTrace();
 			}
-			/////////////////////////////////////////////////////
 		}
+		/////////////////////////////////////////////////////
+		
+		//리스트 삭제하기
+		if("doDelete".equals(doDeleteList) )
+		{
+			//주소로 넘어온 값을 받기
+			String res_PL_ID = request.getParameter("res.PL_ID");
+			
+			//쿼리문 작성
+			String deleteList_query = "DELETE FROM PLAYLIST_CONTENT\r\n"
+					+ " WHERE PL_ID = " + res_PL_ID;
+			//////////////////////////////////////////////////////////////
+			
+			//쿼리 실행
+			try {
+				//커넥션 풀 작동 코드
+				Context ctx = new InitialContext();
+				Context envContext = (Context) ctx.lookup("java:/comp/env");
+				DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle2");
+				Connection con = dataFactory.getConnection();
+				/////////////////////////////////////
+				
+				//DB 접속 코드
+				PreparedStatement pstmt = con.prepareStatement(deleteList_query);
+				ResultSet rs = pstmt.executeQuery();
+				/////////////////////////////////////////////
+			}
+			catch (NamingException | SQLException e)
+			{
+				e.printStackTrace();
+			}
+			
+			//쿼리문 작성
+			deleteList_query = "DELETE FROM PLAYLIST\r\n"
+					+ " WHERE PL_ID = " + res_PL_ID;
+			//////////////////////////////////////////////////////////////
+			
+			//쿼리 실행
+			try {
+				//커넥션 풀 작동 코드
+				Context ctx = new InitialContext();
+				Context envContext = (Context) ctx.lookup("java:/comp/env");
+				DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle2");
+				Connection con = dataFactory.getConnection();
+				/////////////////////////////////////
+				
+				//DB 접속 코드
+				PreparedStatement pstmt = con.prepareStatement(deleteList_query);
+				ResultSet rs = pstmt.executeQuery();
+				/////////////////////////////////////////////
+			}
+			catch (NamingException | SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		////////////////////////////////////////////////////////////////////////////////////
 		
 		PrintWriter out = response.getWriter();
 		
@@ -217,7 +277,7 @@ public class PlayList extends HttpServlet
 					+ "            <input type=\"text\" name=\"addList_title\" class=\"addList_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC81C\uBAA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
 					+ "            <input type=\"text\" name=\"addList_explain\" class=\"addList_ex_textbar\" placeholder=\"\uD50C\uB808\uC774\uB9AC\uC2A4\uD2B8 \uC124\uBA85\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.\"> <br>\r\n"
 					+ "            <input type=\"button\" name=\"addList_btn\" class=\"addList_btn\" value=\"\uCD94\uAC00\">\r\n"
-					+ "            <input type=\"hidden\" name=\"doAddList\" value=\"do\"> \r\n"
+					+ "            <input type=\"hidden\" name=\"doAddList\" value=\"doAdd\"> \r\n"
 					+ "        </form>\r\n"
 					+ "    <br><br></div>");
 			

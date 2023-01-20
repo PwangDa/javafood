@@ -26,6 +26,7 @@
 	}
 	%>
 	<style>
+	
 
 	#top {
 		width: auto;
@@ -81,6 +82,7 @@
 	.btline {
 		text-decoration: underline;
 	}
+	
 	</style>
 	</head>
 	<body>
