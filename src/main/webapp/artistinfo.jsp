@@ -1,15 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8"
+    import = "comment.CommentDAO"
+    import = "comment.CommentVO"
+    import = "comment.CommentServlet"
+    import = "java.sql.Date"
+    import = "java.util.List"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Artist Info</title>
+<title>Artist.jsp Test전용</title>
+<% 		CommentDAO dao = new CommentDAO();
+
+		String command = request.getParameter("command"); 
+		
+		if("addcomment".equals(command)) {
+			String id_1 = request.getParameter("id");
+			String cont_1 = request.getParameter("cont");
+			
+			CommentVO vo = new CommentVO();
+			vo.setComment_id(id_1);
+			vo.setComment_cont(cont_1);
+			
+			dao.addcomment(vo);
+		}else if("delcommnet".equals(command)) {
+			
+			String id_2 = request.getParameter("id");
+			System.out.println("delete 확인"+id_2);
+			dao.delcomment(id_2);
+		}
+		
+		List<CommentVO> list = dao.listComment();%>
  <script>
         function fn_sendComment(){
+        	
+        	var frmCommand = document.frmComment;
+        	var id = frmCommand.id.value;
+        	var cont = frmCommand.cont.value;
+        	
+        	if(id.length == 0 || id == ""){
+        		alert("아이디를 입력해주세요")
+        	}else if(cont.length == 0 || cont == ""){
+        		alert("내용을 입력해주세요")
+        	}else{
             frmComment.method = "post";
             frmComment.action = "artistcomment";
             frmComment.submit();
+        	}
+        }
+        
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = headerbarToggle
+        window.onload = headerbarToggle
+        function headerbarToggle(){
+            console.log(1234);
+            var headerbar = document.getElementById("menu");
+            var currentScrollPos = window.pageYOffset;
+            if(prevScrollpos < currentScrollPos){
+                headerbar.style.opacity = 1;
+            }else{
+                headerbar.style.opacity = 0.5;
+            }
         }
   </script>
   <style>
@@ -28,11 +80,10 @@
             color: white;
             width: 100%;
             position:fixed;
-            /* top: 0; */
-            /* display: flex; */
-            height: 35px;
-            padding: 2px;
+            height: 53px;
+            border-bottom:1px solid rgb(70, 70, 70);
             z-index: 1;
+            transition: opacity 0.4s;
         }
 
         a{
@@ -50,7 +101,7 @@
                 rgba(0, 0, 0, 0.75) 75%,
                 rgb(0, 0, 0) 100%
             ),
-            url("https://w.namu.la/s/35d25c55317e8d29d11fa9fa1a41348ee63d3a010f356d360a9dcdc95513885e4c3143831db6c08d2e387e6db67702b7a8631594931a4200d1d5eb23b2d2153d359217d8630e5821bf8ec71ff102cbfead094989d147315b5f1f38bb42304b78bf798ebd30fb0e36f557e05d33780995") ;
+            url("https://i.pinimg.com/1200x/08/81/34/088134b9c3c6d6a1fa2c037bae1d5b49.jpg") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -144,13 +195,46 @@
         .command{
             text-align: center;
         }
+        
+        .cont2{
+            /* border: 1px solid rgb(70, 70, 70); */
+            width: 500px;
+            margin: 11px;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .id2{
+            /* border: 1px solid rgb(70, 70, 70); */
+            color :rgb(113, 113, 113);
+            border-radius: 15px;
+            width: 130px;
+            font-size: 15px;
+        }
+
+        .image2{
+            width: 75px;
+            border-radius: 70%;          
+        }
+        .date1{
+            /* border: 1px solid rgb(70, 70, 70); */
+            border-radius: 15px;
+            margin: 11px;
+            padding: 1px;
+            text-align: right;
+            color :rgb(113, 113, 113);
+            font-size: 13px;
+        }
 
     </style>
 </head>
-<body>
+<body  onscroll="headerbarToggle()">
     <header id ="menu">
-        메뉴상단바12한글
+        <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header>
+    <%-- String num = request.getParameter("a.ALBUM_NUM"); --%>
     <div id = "home">
         <div id = "cont" class = "contain">
             <div class = "text1">
@@ -168,7 +252,7 @@
                 </div>
                 <div class = "box1 text2">Blueming</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">Love Poem</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=2">Love Poem</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -177,7 +261,7 @@
                 </div>
                 <div class = "box1 text2">Celebrity</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">IU 5th Album 'LILAC'</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=1">IU 5th Album 'LILAC'</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -186,7 +270,7 @@
                 </div>
                 <div class = "box1 text2">Twenty-three</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">CHAT-SHIRE</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=3">CHAT-SHIRE</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -195,7 +279,7 @@
                 </div>
                 <div class = "box1 text2">가을 아침</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">꽃-갈피 둘</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=4">꽃-갈피 둘</a></div>
             </div>
             <hr>
             <div id = "cont1">
@@ -204,7 +288,7 @@
                 </div>
                 <div class = "box1 text2">겨울잠</div>
                 <div class = "box1 text2">아이유(IU)</div>
-                <div class = "box1 text2">조각집</div>
+                <div class = "box1 text2"><a href="/javafood_team/Album.jsp?a.ALBUM_NUM=5">조각집</a></div>
             </div>
         </div>
         <div>
@@ -222,15 +306,36 @@
                         <button class="btn" type="button" onclick="fn_sendComment()"> 등록 </button>
                     </div>
                     <input type ="hidden" name="command" value="addcomment">
+                </div>
             </form>
             </div>
             <div class="command">
-                댓글이 추가되면서 쌓일곳
-                시범입니다시범
+            <hr>
+                <% for(int i= 0; i<list.size(); i++) {
+	    	    	  CommentVO vo = list.get(i);
+	    	    	  
+	    	    	  String num = vo.getComment_num();
+	    	    	  String id = vo.getComment_id();
+	    	    	  String cont = vo.getComment_cont();
+	    	    	  Date date = vo.getComment_Date(); %>
+                <div class="comment">
+                        <div class="text2 cont2_1">
+                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+                            <div class="id2"><%= id %></div>
+                        </div>
+                        <div class="text2">
+                            <div class="cont2"><%= cont %></div>
+                            <div class="date1"><%= date %></div>
+                        </div>
+                        <div class="text2">
+                            <a href="/javafood_team/artistcomment?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>
+                        </div>
+                </div> <% } %>
+                
+                
             </div>
         </div>
 
-    </div>
 
 </body>
 </html>

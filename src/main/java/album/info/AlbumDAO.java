@@ -95,7 +95,8 @@ public class AlbumDAO {
 		}
 	}
 	
-	public List<AlbumVO> listAlbum(){
+	//앨범수록곡 리스트 출력하는 메소드
+	public List<AlbumVO> listAlbum(String num){
 		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
 		
 		try {
@@ -103,9 +104,12 @@ public class AlbumDAO {
 			
 			String query = "SELECT * FROM ALBUM a";
 			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NUM = i.ALBUM_NUM)";
-			query += " WHERE a.ALBUM_NUM = 1";
+//			query += " WHERE a.ALBUM_NUM = 1";
+			query += " WHERE a.ALBUM_NUM = ?";
 			
+			System.out.println("num : "+num);
 			pstmt = this.con.prepareStatement(query);
+			pstmt.setString(1, num);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
