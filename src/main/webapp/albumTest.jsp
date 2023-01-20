@@ -79,7 +79,7 @@
         .cont2:hover{
             cursor: pointer;
         }
-
+        
         .left_item{
             width: 100px;
             height: 40px;

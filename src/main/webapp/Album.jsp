@@ -109,7 +109,9 @@
     </div>
     <% 
 	    AlbumDAO dao = new AlbumDAO();
-	    List<AlbumVO> list = dao.listAlbum(); 
+    	String num = request.getParameter("a.ALBUM_NUM");
+    	System.out.println("num : "+num);
+	    List<AlbumVO> list = dao.listAlbum(num); 
 	    for (int i =0; i < 1; i++) {
 	    	AlbumVO vo = list.get(i);
 	    	
