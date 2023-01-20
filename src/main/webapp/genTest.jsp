@@ -56,7 +56,12 @@
         }
         .tab1:hover{
             cursor: pointer;
+            background-color:rgba(173, 173, 173, 0.545);
         }
+        .tab1:active{
+            transform: scale(1.1);
+        }
+
         .tab1_1{
             border-left: 6px solid rgb(194, 233, 255);
         }
@@ -78,41 +83,93 @@
 
         /*담기*/
 
-        .push{
-            margin-top: 40px;
-            height: 60px;
-        }
-
-        input[type="checkbox"]{
+        
+        /* input[type="checkbox"]{
             display: none;
+        } */
+        
+        /* input[id="cb1"] + label{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            margin: -2px 10px 0 0;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        input[id="cb1"]:checked + label{
+            background-color: #a7a7a7;
+        } */
+        /* input[id="cb1"] {
+            display: none;
+        } */
+
+            input[type="checkbox"]{
+                -webkit-appearance: none;
+                position: relative;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                outline: none !important;
+                border: 1px solid #eeeeee;
+                border-radius: 2px;
+                background: #000000;
+            }
+            
+            input[type="checkbox"]::before {
+                content: "\2713";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                overflow: hidden;
+                transform: scale(0) translate(-50%, -50%);
+                line-height: 1;
+            }
+        
+            /* input[type="checkbox"]:hover {
+                border-color: rgba(170, 170, 170, 0.5);
+            } */
+        
+            input[type="checkbox"]:checked {
+                background-color: #adadad;
+                border-color: rgb(255, 255, 255);
+                color: white;
+            }
+        
+            /* input[type="checkbox"]:checked::before {
+                border-radius: 2px;
+                transform: scale(1) translate(-50%, -50%)
+            } */
+
+        .no_chart{
+            margin-top: 40px;
+            display: flex;
+            height: 30px;
         }
 
-        input[type="checkbox"] + label{
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            background-color: black;
-            border: 2px solid white; 
-            border-radius: 3px;
+        .left_num{
+            width: 60px;
+            height: 40px;
+            text-align: center;
         }
-/* 
-        input#cd1 + label:before{
-            width: 30px;
-            height: 30px;
-            background-color: black;
-            border: 2px solid white;
-            border-radius: 3px;
-        } */
-        /* input[id="cd1"] + label:after{
-            width: 20px;
-            background-color: rgb(103, 103, 103);
-            border: 2px solid white;
-            border-radius: 3px;
-        } */
+        .left_song{
+            margin-left: 30px;
+            width: 400px;
+            text-align: left; 
+        }
+        .left_artist{
+            width: 100px;
+            height: 40px;
+            text-align: left;
+           
+        }
+        .heart{
+            width: 35px;
+        }
 
         /* 곡리스트 */
         .musiclist{
-            margin-top: 40px;
+            margin-top: 30px;
         }
         .cont2{
             display: flex;
@@ -155,30 +212,40 @@
             <div class="tab1 tab1_5">인디</div>
             <div class="tab1 tab1_6">트로트</div>
         </div>
-        
-        <div class="push">
-             <input type="checkbox" id="cb1">
-                <label for="cd1" class="chk_box"></label>
-                담기
+
+
+        <div class="no_chart">        
+                <input type="checkbox" id="cb1">
+                   <label for="cd1"></label><strong>담기</strong>
+            <div class="left_num">NO</div>
+            <div class="left_song">곡이름</div>
+            <div class="left_artist">아티스트</div>
+            <div><img class="heart" src="https://www.pngkit.com/png/detail/86-865424_plain-black-heart-frame-white-heart-icon-no.png"></div>
         </div>
 
         <div class= "musiclist">
              <div class="cont2">
+                <input type="checkbox" id="cb1">
                 <div class="left_item">1</div>
                 <div class="left_item left_name">라일락</div>
+                <div class="left_artist">아티스트명</div>
+                <div class="right_item">좋아요숫자</div>
                 <div class="right_item">3:35</div>
              </div>
             <div class="cont2">
+                <input type="checkbox" id="cb1">
                 <div class="left_item">2</div>
                 <div class="left_item left_name">Flu</div>
                 <div class="right_item">3:09</div>
              </div>
             <div class="cont2">
+                <input type="checkbox" id="cb1">
                 <div class="left_item">3</div>
                 <div class="left_item left_name">Coin</div>
                 <div class="right_item">3:14</div>
             </div>
             <div class="cont2">
+                <input type="checkbox" id="cb1">
                 <div class="left_item">4</div>
                 <div class="left_item left_name">봄 안녕 봄</div>
                 <div class="right_item">5:25</div>
