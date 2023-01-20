@@ -325,7 +325,7 @@ public class PlayList extends HttpServlet
 			//html 작성하기
 			out.println
 			//a 태그의 주소 수정하기.
-			("<a href=\"/jf/plc?PL_ID=" + PL_ID + "\">\r\n"
+			("<a href=\"plc?PL_ID=" + PL_ID + "\">\r\n"
 					+ "        <div class=\"playList\">\r\n"
 					//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
 					+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
@@ -348,7 +348,7 @@ public class PlayList extends HttpServlet
 				//html 작성하기
 				out.println
 				//a 태그의 주소 수정하기.
-				("<a href=\"/jf/plc?id=" + ID2 + "&PL_ID=" + PL_ID + "\">\r\n"
+				("<a href=\"plc?id=" + ID2 + "&PL_ID=" + PL_ID + "\">\r\n"
 						+ "        <div class=\"playList\">\r\n"
 						//다음 코드는 앨범 표지를 표시하는 곳임. 나중에 src 수정이 필요함.
 						+ "            <img class=\"album\" src=\"https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined\">\r\n"
