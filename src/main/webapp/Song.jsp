@@ -58,33 +58,59 @@
 		
 		%>
 		
-		
- <script>
-	
- </script>
 <style>
-	.table {
-		border:1px solid black;
+ 	header{
+            background-color: black;
+            color: white;
+            width: 100%;
+            position:fixed;
+            height: 25px;
+            border-bottom:1px solid rgb(70, 70, 70);
+            z-index: 1;
+            
+    }
+    
+	body{
+		background-color: #000000;	
+		width:100%;
+        margin: 0 auto;
 		
 	}
+	
+	div {
+		width:100%;
+		
+	}
+	
+	#table {
+		border:1px solid white;
+		width:800px;
+		margin: 0 auto;
+	}
+	
+	.tr {
+		text-align:center;
+		background-color: #FFFFFF;
+	}
+	
 </style>
 </head>
 <body>
-	<table class="table">
-		<tr>
-			<td align="center" colspan="8">인기차트
-			<td>
+ <header id ="song">
+        <span style="font-size: 17px; font-weight: 250;">Music</span>
+ </header>
+   <div>
+	<table id="table">
+		<tr class="tr">
+			<td class="td">번호</td>
+			<td class="td">순위</td>
+			<td class="td">노래 제목</td>
+			<td class="td">아티스트 명</td>
+			<td class="td">장르</td>
+			<td class="td">조회수</td>
+			<td class="td">좋아요</td>
 		</tr>
-		<tr>
-			<td>번호</td>
-			<td>순위</td>
-			<td>노래 제목</td>
-			<td>아티스트 명</td>
-			<td>장르</td>
-			<td>조회수</td>
-			<td>좋아요</td>
-		</tr>
-
+	
 <%
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -110,9 +136,10 @@
 				String likes = rs.getString("likes");
 				
 				
+	
+				out.print("<tr align=\"center\" bgcolor=\"#ffffff\">" + "<td>" + songnumber + "</td>" + "<td>" + ranking + "</td>"  +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"</td>" + "<td>" + likes +"</td>"
+				+ "</tr>");
 				
-				out.print("<tr align=\"center\" bgcolor=\"#ffffff\">" + "<td>" + songnumber +"<td>" + ranking + "</td>" + "</td>" +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"<td>" + "<td>" + likes +"<td>"
-				+"</tr>");
 				
 			}
 
@@ -126,6 +153,7 @@
 				e.printStackTrace();
 			}
 		} %>
+	</div>	
 </table>
 </body>
 </html>

@@ -228,6 +228,10 @@
             text-align: center;
             margin-left: auto;
         }
+        .btline {
+		text-decoration: underline;
+		text-decoration-color: white;
+	}
 </style>
 </head>
 <body>
@@ -240,7 +244,7 @@
 		if ("발라드".equals(song)) {
 		%>
         <div class="tab">
-            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_1 btline"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
             <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
@@ -252,7 +256,7 @@
 		%>
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
-            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_2 btline"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
             <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
@@ -264,7 +268,7 @@
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
-            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
+            <div class="tab1 tab1_3 btline"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
@@ -276,7 +280,7 @@
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
             <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
-            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_4 btline"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
@@ -288,7 +292,7 @@
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=댄스'>댄스</a></div>
             <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
-            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
+            <div class="tab1 tab1_5 btline"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
@@ -300,7 +304,7 @@
             <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=pop'>POP</a></div>
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=인디'>인디</a></div>
-            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_6 btline"><a href='http://localhost:8080/javafood_team/gentesthtml.jsp?genre=트로트'>트로트</a></div>
         </div>
         <%
 		} else{

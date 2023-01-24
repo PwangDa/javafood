@@ -14,12 +14,12 @@
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
-         body{cursor: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIwR9P%2FbtraRjIi6El%2FofkcHd4wk3BWMKZorWGH0k%2Fimg.png"), auto;}
+         body{background-color :black; cursor: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIwR9P%2FbtraRjIi6El%2FofkcHd4wk3BWMKZorWGH0k%2Fimg.png"), auto;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
-        .head{ height: 100px; background-color: antiquewhite; }
+        .head{ height: 100px; background-color: black; color: white;}
         .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
-        .right{width: 11%;float: right; background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100623_29%2Fduchest_1277244964920QJ0WY_jpg%2Fdailysculpt_100622_cristiano_ronaldo02_duchest.jpg&type=sc960_832); background-repeat: no-repeat; background-size: cover;background-position: center; }
+        .right{line-height: 80px; width: 11%;float: right; background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100623_29%2Fduchest_1277244964920QJ0WY_jpg%2Fdailysculpt_100622_cristiano_ronaldo02_duchest.jpg&type=sc960_832); background-repeat: no-repeat; background-size: cover;background-position: center; }
         .tbody{ position: sticky;top: 0px; height: 40px; background: white;}
         input{vertical-align: middle;}
         .butt{font-size: 0px; background: url(https://www.codingfactory.net/wp-content/uploads/button_search.png)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
@@ -29,7 +29,7 @@
         th{background-color: cornflowerblue;}
         .low{background-color: darkkhaki;}
         tr.low:hover {background-color: rgb(148, 100, 237); border: 1px solid black;}
-        .at{color: black; text-decoration: none;}
+        .at{color: white; text-decoration: none;}
    </style>
 </head>
 <body>
@@ -41,7 +41,7 @@
 	<div style="width: 100%;height: 100%;">
         <div class="head">
             <div class="left"><a href="http://localhost:8080/javafood_team/Lky/My_page.jsp" class="at"><strong>My pages</strong></a></div>
-            <div class="right"></div>
+            <div class="right">ID</div>
         </div>
         <div class="tbody">
        	<form method="get" action="My_page.jsp">
@@ -76,7 +76,7 @@
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
-		                    <form method="get" action="My_page.jsp">
+		                    <form>
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vo1.get(i).getSongnumber()%>"> </td>
 		                	</form>
 		                </tr> <% } 
@@ -90,10 +90,9 @@
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
-		                    <form method="get" action="window.location.reload()" target="123">
+		                    <form>
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
 		                	</form>
-		                	<iframe name="123" style="display:none"></iframe>
 		                </tr> <% }
 		                } %>
     				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
