@@ -97,15 +97,12 @@
         </form>
         <div class="body"></div>
         <script>
-<<<<<<< HEAD
-=======
                 document.querySelector("#butt1").addEventListener("click",function(){
                     let id = document.querySelector('#Id');
                     
                     if()alert("아이디 중복.");
                     }else alert("아이디 사용가능.");
                 })
->>>>>>> parent of f247526 (로그인)
                 document.querySelector("#butt2").addEventListener("click",function(){
                     if(document.querySelector("#pw1").value != document.querySelector("#pw2").value){
                        alert("잘못입력 하셨습니다.");
