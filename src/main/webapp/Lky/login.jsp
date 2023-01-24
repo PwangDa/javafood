@@ -30,7 +30,7 @@
     .head{text-align: left;}
     .pn{width: 43%;}
     .phone{width: 26%;}
-    td{width: 100px;}
+    th, td{width: 100%;}
     table{background-size: contain; background-image: url(https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.stack.imgur.com%2FZMTS3.png&type=sc960_832);   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
     
 </style>
