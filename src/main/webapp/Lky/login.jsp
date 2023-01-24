@@ -23,7 +23,7 @@
 <%if("O".equals(request.getParameter("new"))) {%>
 <title>javafood 회원가입</title>
 <style>
-	body{background-size: contain; color: white; background-position: center; text-align: center; background-image: url(https://velog.velcdn.com/images/gigymi2005/post/c941bf05-995a-4b90-a4b5-63ecd6b5374f/pankaj-patel-u2Ru4QBXA5Q-unsplash.jpg);}
+	body{background-size: contain; color: white; background-color: black; text-align: center;;}
     div{display: inline-block; width: 100%; height: 100%;}
     .sub{margin-top: 10px;width: 100px; height: 30px;}
     .at{color: white; text-decoration: none;}
@@ -31,7 +31,7 @@
     .pn{width: 43%;}
     .phone{width: 26%;}
     td{width: 100px;}
-    table{background-size: contain; background-image: url(https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.stack.imgur.com%2FZMTS3.png&type=sc960_832);   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
+    table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
     
 </style>
 </head>
@@ -42,7 +42,7 @@
               <table>
         <tr>
             <th>아이디 : </th>
-            <td><input type="text" name="ID"></td>
+            <td><input type="text" name="ID" id="Id"></td>
             <td><input type="button" id="butt1" value="중복 확인"></td>
         </tr>
         <tr>
@@ -97,15 +97,38 @@
         </form>
         <div class="body"></div>
         <script>
+                document.querySelector("#butt1").addEventListener("click",function(){
+                    let id = document.querySelector('#Id');
+                    
+                    if()alert("아이디 중복.");
+                    }else alert("아이디 사용가능.");
+                })
                 document.querySelector("#butt2").addEventListener("click",function(){
                     if(document.querySelector("#pw1").value != document.querySelector("#pw2").value){
                        alert("잘못입력 하셨습니다.");
                     }else alert("비밀번호가 일치합니다.");
                 })
+                
         </script>
 </body>
 </html>
-<% }else {%>
+<% }else if(request.getParameter("ID") != null){%>
+<title>javafood</title>
+</head>
+<body>
+	<% for(int i =0; i<vo.size(); i++){
+		if(request.getParameter("ID").equals(vo.get(i).getId())){
+			System.out.println("아이디 일치");
+			if(request.getParameter("PW").equals(vo.get(i).getPw())){
+				System.out.println("페스워드 일치"); %>
+				<h1>javafood 로그인성공</h1>
+				<h1><%=vo.get(i).getNic() %> 님 환영합니다.</h1>
+</body>
+</html>
+			<%} 
+		} 
+	}%>
+<%}else {%>
 <title>javafood 로그인</title>
 <style>
 	body{background-size: contain; color: white; background-position: center; text-align: center; background-image: url(https://velog.velcdn.com/images/gigymi2005/post/c941bf05-995a-4b90-a4b5-63ecd6b5374f/pankaj-patel-u2Ru4QBXA5Q-unsplash.jpg);}
@@ -126,7 +149,6 @@
         </div>
     </form>
     <div class="body"></div>
-<%--     <%for(int i=0; ) %> --%>
 </body>
 </html>
 <%}%>
