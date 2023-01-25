@@ -145,5 +145,57 @@ public class AlbumDAO {
 		
 		return listAlbum;
 	}
+	//앨범수록곡 리스트 출력하는 메소드
+	public List<AlbumVO> listAlbum(){
+		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+		
+		try {
+			this.con = dataFactory.getConnection();
+			
+			String query = "SELECT * FROM ALBUM a";
+			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NUM = i.ALBUM_NUM)";
+//			query += " WHERE a.ALBUM_NUM = 1";
+			query += " WHERE i.MUSIC_NUM = 1";
+			
+//			System.out.println("num : "+num);
+			pstmt = this.con.prepareStatement(query);
+//			pstmt.setString(1, num);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String alNum = rs.getString("album_num");
+				String cover = rs.getString("album_cover");
+				String alname = rs.getString("album_name");
+				String into = rs.getString("album_into");
+				String artist = rs.getString("artist");
+				
+				String music_num = rs.getString("music_num");
+				String music_name = rs.getString("music_name");
+				String music_link = rs.getString("music_link");
+				String music_time = rs.getString("music_time");
+				
+				AlbumVO albumVO = new AlbumVO();
+				
+				albumVO.setAlbum_num(alNum);
+				albumVO.setAlbum_cover(cover);
+				albumVO.setAlbum_name(alname);
+				albumVO.setAlbum_into(into);
+				albumVO.setArtist(artist);
+				
+				albumVO.setMusic_num(music_num);
+				albumVO.setMusic_name(music_name);
+				albumVO.setMusic_link(music_link);
+				albumVO.setMusic_time(music_time);
+				
+				listAlbum.add(albumVO);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listAlbum;
+	}
 	
 }

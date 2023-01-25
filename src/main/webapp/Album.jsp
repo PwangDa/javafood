@@ -54,6 +54,11 @@
         p{
             color: rgb(150, 150, 150);
         }
+        
+        a{
+            text-decoration: none;
+            color: white;
+        }
 
         .btn{
             background-color: black;
@@ -80,7 +85,7 @@
             border-bottom: 1px solid rgb(98, 98, 98);
             margin : 20px;
         }
-        .cont2:hover{
+        .cont2:hover {
             cursor: pointer;
         }
 
@@ -99,6 +104,33 @@
             text-align: center;
             margin-left: auto;
         }
+        
+        /*.cont2:hover + .right_item{
+        	display : none;
+        }*/
+        
+        .chek1:hover{
+        	display: none;
+        }
+        
+        .chek1:hover + .but{
+        	display : block;
+        }
+        .but:checked {
+        	display : block;
+        }
+        
+        .but:checked + .chek1{
+        	display : none;
+        }
+        .but{
+        	display : none;
+        	width: 20px;
+            height: 20px;
+            text-align: center;
+            margin-left: 40px;
+        }  
+        
 </style>
 </head>
 <body>
@@ -150,8 +182,11 @@
         <div class= "musiclist">
             <div class="cont2">
                 <div class="left_item"><%= music_num%></div>
-                <div class="left_item left_name"><%= music_name %></div>
-                <div class="right_item"><%= music_time %></div>
+                <div class="left_item left_name"><a href="<%= music_link %>"><%= music_name %></a></div>
+                <div class="right_item">
+                <span class="chek1"><%= music_time %></span>
+                <input type="checkbox" class="but">
+                </div>
             </div>		
         </div>
         <% } %>
