@@ -9,19 +9,19 @@
 <%@ page import="My_Page.vod"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
-   import="Chart.SongServlet"%>
+	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
+	import="Chart.SongServlet"%>
 <%!String dbhost = "jdbc:oracle:thin:@todair.synology.me:51521:xe";
-   String dbuser = "javafood";
-   String dbpass = "javafood";
-   String query = "SELECT * FROM SONG";
-   String title = "인기차트";
+	String dbuser = "javafood";
+	String dbpass = "javafood";
+	String query = "SELECT * FROM SONG";
+	String title = "인기차트";
 
-   Connection conn = null;
-   Statement stmt = null;
-   ResultSet rs = null;
-   List<vod> vo = null;
-   dbon db = new dbon();%>
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	List<vod> vo = null;
+	dbon db = new dbon();%>
 
 <!DOCTYPE html>
 <html>
@@ -29,42 +29,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-   function fn_sendSong(){
-      document.frmSong.method = "post";
-      document.frmSong.action = "/javafood_team/song";
-      document.frmSong.submit();
-   }
+	function fn_sendSong(){
+		document.frmSong.method = "post";
+		document.frmSong.action = "/javafood_team/song";
+		document.frmSong.submit();
+	}
 </script>
 </head>
 <body>
-   <form name="frmSong">
-      <table>
-         <th>노래 업데이트</th>
-         <tr>
-            <td>노래제목</td>
-            <td>
-               <input type="text" name="songname">
-            </td>
-         </tr>
-         <tr>
-            <td>아티스트 명</td>
-            <td>
-               <input type="text" name="artistname">
-            </td>
-         </tr>
-         <tr>
-            <td>링크</td>
-            <td>
-               <input type="text" name="link">
-            </td>
-         </tr>
-      </table>
-      <input type="button" value="제목 수정" onclick="fn_sendSong()">
-      <input type="hidden" name="command" value="UpdateSong">
-      <input type="button" value="링크 추가" onclick="fn_sendSong()">
-      <input type="hidden" name="command" value="UpdateSong">
-      <input type="button" value="노래 추가" onclick="fn_sendSong()">
-      <input type="hidden" name="command" value="addSong">
-   </form>
+	<form name="frmSong">
+		<table>
+			<th>노래 업데이트</th>
+			<tr>
+				<td>노래제목</td>
+				<td>
+					<input type="text" name="songname">
+				</td>
+			</tr>
+			<tr>
+				<td>아티스트 명</td>
+				<td>
+					<input type="text" name="artistname">
+				</td>
+			</tr>
+		</table>
+		<input type="button" value="제목 수정" onclick="fn_sendSong()">
+		<input type="hidden" name="command" value="UpdateSong">
+		<input type="button" value="노래 추가" onclick="fn_sendSong()">
+		<input type="hidden" name="command" value="addSong">
+	</form>
 </body>
 </html>
