@@ -55,7 +55,7 @@ public class dbon {
 	public void addId(vod vo) {
 		try {
 			con = this.dataFactory.getConnection();
-			pstmt = con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"','"+vo.getHome());
+			pstmt = con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"',null)");
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
