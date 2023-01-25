@@ -8,12 +8,18 @@
 <%
 	if(request.getParameter("mail")!=null){
 		vod vo1 = new vod();
-		vo1.setId(request.getParameter("Id"));
-		vo1.setPw(request.getParameter("PW1")+request.getParameter("PW2"));
+		vo1.setId(request.getParameter("ID"));
+		vo1.setPw(request.getParameter("PW1"));
 		vo1.setNic(request.getParameter("nic"));
-		vo1.setPn(request.getParameter("pn1")+request.getParameter("pn2"));
-		vo1.setPhone(request.getParameter("phone1")+request.getParameter("phone2")+request.getParameter("phone3"));
+		vo1.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
+		vo1.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 		vo1.setEmail(request.getParameter("mail"));
+		System.out.println(request.getParameter("ID"));
+		System.out.println(request.getParameter("PW1"));
+		System.out.println(request.getParameter("nic"));
+		System.out.println(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
+		System.out.println(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
+		System.out.println(request.getParameter("mail"));
 	}
 	
 	dbon db = new dbon(); 
