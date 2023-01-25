@@ -44,8 +44,7 @@ public class SongServlet extends HttpServlet {
 			String bygenre = request.getParameter("bygenre");
 			String hits = request.getParameter("hits");
 			String likes = request.getParameter("likes");
-			//id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//			String id = request.getParameter("id");
+			String playtime = request.getParameter("playtime");
 			
 			//vod 클래스에 저장
 			vod vo = new vod();
@@ -56,8 +55,7 @@ public class SongServlet extends HttpServlet {
 			vo.setBygenre(bygenre);
 			vo.setHits(hits);
 			vo.setLikes(likes);
-			//id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//			vo.setId(id);
+			vo.setPlaytime(playtime);
 			
 			dao.listsong().add(vo);
 			//노래 지움
@@ -75,10 +73,12 @@ public class SongServlet extends HttpServlet {
 			// 전달 받음
 			String songname = request.getParameter("songname");
 			String artistname = request.getParameter("artistname");
+			String link = request.getParameter("link");
 			// vo 클래스에 저장
 			vod vo = new vod();
 			vo.setSongname(songname);
 			vo.setArtistname(artistname);
+			vo.setLink(link);
 
 			dao.updateSong(vo);
 			//노래 추가
@@ -87,11 +87,13 @@ public class SongServlet extends HttpServlet {
 			//전달 받음
 			String songname = request.getParameter("songname");
 			String artistname = request.getParameter("artistname"); 
+			String link = request.getParameter("link");
 			
 			//// vo 클래스에 저장
 			vod vo = new vod();
 			vo.setSongname(songname);
 			vo.setArtistname(artistname);
+			vo.setLink(link);
 			
 			dao.addSong(vo);
 			
@@ -105,7 +107,7 @@ public class SongServlet extends HttpServlet {
 			String bygenre = request.getParameter("bygenre");
 			String hits = request.getParameter("hits");
 			String likes = request.getParameter("likes");
-			String id = request.getParameter("id");
+			String playtime = request.getParameter("playtime");
 			
 			out.println("<!DOCTYPE html>");
 			out.println("<html>");
@@ -166,12 +168,12 @@ public class SongServlet extends HttpServlet {
 			out.println("					<input type='text' name='likes' value='"+ likes +"'>");
 			out.println("				</td>");
 			out.println("			</tr>");
-//			out.println("			<tr>");
-//			out.println("				<td>회원 클릭수</td>");
-//			out.println("				<td>");
-//			out.println("					<input type='text' name='id' value='"+ id +"'>");
-//			out.println("				</td>");
-//			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("				<td>재생 시간</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='playtime' value='"+ playtime +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
 			out.println("		</table>");
 			out.println("		<input type='button' value='수정하기' onclick='fn_sendSong()'>");
 			out.println("		<input type='hidden' name='command' value='UpdateSong'>");
@@ -204,6 +206,7 @@ public class SongServlet extends HttpServlet {
 		    String bygenre = vo.getBygenre();
 		    String hits = vo.getHits();
 		    String likes = vo.getLikes();
+		    String playtime = vo.getPlaytime();
 		    
 		    out.println("<!DOCTYPE html>");
 			out.println("<html>");
@@ -264,12 +267,12 @@ public class SongServlet extends HttpServlet {
 			out.println("					<input type='text' name='likes' value='"+ likes +"'>");
 			out.println("				</td>");
 			out.println("			</tr>");
-//			out.println("			<tr>");
-//			out.println("				<td>회원 아이디</td>");
-//			out.println("				<td>");
-//			out.println("					<input type='text' name='id' value='"+ id +"'>");
-//			out.println("				</td>");
-//			out.println("			</tr>");
+			out.println("			<tr>");
+			out.println("				<td>재생 시간</td>");
+			out.println("				<td>");
+			out.println("					<input type='text' name='playtime' value='"+ playtime +"'>");
+			out.println("				</td>");
+			out.println("			</tr>");
 			out.println("		</table>");
 			out.println("		<input type='button' value='수정하기' onclick='fn_sendSong()'>");
 			out.println("		<input type='hidden' name='command' value='UpdateSong'>");
@@ -298,7 +301,7 @@ public class SongServlet extends HttpServlet {
 		out.println("		<th>장르</th>");
 		out.println("		<th>조회수</th>");
 		out.println("		<th>좋아요</th>");
-//		out.println("		<th>회원 아이디</th>");
+		out.println("		<th>재생 시간</th>");
 		out.println("	</tr>");
 	      
 	      for(int i= 0; i<list.size(); i++) {
@@ -311,9 +314,8 @@ public class SongServlet extends HttpServlet {
 			  String bygenre = vo.getBygenre();
 			  String hits = vo.getHits();
 			  String likes = vo.getLikes();
+			  String playtime = vo.getPlaytime();
 			
-			//id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//			  String id = vo.getId();
 	          
 			  out.println("<tr>");
 			  out.println("		<td>"+ songnumber +"</td>");
@@ -323,11 +325,11 @@ public class SongServlet extends HttpServlet {
 			  out.println("		<td>"+ bygenre +"</td>");
 			  out.println("		<td>"+ hits +"</td>");
 			  out.println("		<td>"+ likes +"</td>");
-//			  out.println("		<td>"+ id +"</td>");
-			  // +"&id="+ id + 변수 생성되면 해당 변수명으로추가
-			  out.println("		<td><a href='/javafood_team/song?command=SongDetail&songnumber="+ songnumber +"&ranking="+ ranking +"&songname="+ songname +"&artistname="+ artistname +"&bygenre="+ bygenre +"&hits="+ hits +"&likes="+ likes+"'>전체수정</a></td>");
-			  out.println("		<td><a href='/javafood_team/song?command=SongDetail3&songname="+ songname +"'>노래제목 수정</a></td>");
-			  out.println("		<td><a href=\"/javafood_team/song?command=Delsong&songname="+ songname +"\">노래삭제</a></td>");
+			  out.println("		<td>"+ playtime +"</td>");
+			
+//			  out.println("		<td><a href='/javafood_team/song?command=SongDetail&songnumber="+ songnumber +"&ranking="+ ranking +"&songname="+ songname +"&artistname="+ artistname +"&bygenre="+ bygenre +"&hits="+ hits +"&likes="+ likes+"'>전체수정</a></td>");
+			  out.println("		<td><a href=\"/javafood_team/song?command=SongDetail3&songname="+ songname +"\">수정</a></td>");
+			  out.println("		<td><a href=\"/javafood_team/song?command=Delsong&songname="+ songname +"\">삭제</a></td>");
 			  out.println("</tr>");
 	      }
 	      out.println("</table>");
