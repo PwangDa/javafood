@@ -12,10 +12,7 @@ public class vod {
 	private String likes;
 	private String link;
 	private String ranking;
-<<<<<<< HEAD
-=======
 	private String record;
->>>>>>> 070d22b53f43c985b349f35cc174154d3100bdbf
 	private String playtime;
 ///////---------login-----------//////////
 	private String id;

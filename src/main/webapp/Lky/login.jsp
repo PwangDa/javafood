@@ -8,13 +8,12 @@
 <%
 	if(request.getParameter("mail")!=null){
 		vod vo1 = new vod();
-		vo1.setId(request.getParameter("ID"));
-		vo1.setPw(request.getParameter("PW1"));
+		vo1.setId(request.getParameter("Id"));
+		vo1.setPw(request.getParameter("PW1")+request.getParameter("PW2"));
 		vo1.setNic(request.getParameter("nic"));
-		vo1.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
-		vo1.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
+		vo1.setPn(request.getParameter("pn1")+request.getParameter("pn2"));
+		vo1.setPhone(request.getParameter("phone1")+request.getParameter("phone2")+request.getParameter("phone3"));
 		vo1.setEmail(request.getParameter("mail"));
-// 		vo1.setHome(home);
 	}
 	
 	dbon db = new dbon(); 
@@ -32,7 +31,7 @@
     .phone{width: 26%;}
     td{width: 100px;}
     table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
-    
+   .tr{height: 80px; }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
@@ -41,7 +40,7 @@
         <form method="post" action="login.jsp">
             <div class="head">
               <table>
-        <tr>
+        <tr class="tr">
             <th>아이디 : </th>
             <td><input type="text" name="ID" id="Id" placeholder="아이디를 입력하시오"></td>
             <td><input type="button" id="butt1" value="중복 확인"></td>
@@ -56,7 +55,7 @@
             <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
             <td></td>
         </tr>
-        <tr>
+        <tr class="tr">
             <th>닉네임 : </th>
             <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
             <td><input type="button" id="butt3" value="중복확인"></td>
@@ -68,11 +67,11 @@
         </tr>
         <tr id="mail">
             <th>인증번호 : </th>
-            <td><input type="text" placeholder="메일에 온 인증번호를 입력하시오."></td>
+            <td><input type="text" placeholder="메일 인증번호"></td>
             <td><input type="button" id="butt12" value="인증확인"></td>
         </tr>
         <tr>
-            <th id="pn">주민등록 번호 : </th>
+            <th id="pn" class="tr">주민등록 번호 : </th>
             <td>
                 <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
                 <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
@@ -80,7 +79,7 @@
             <td><input type="button" id="butt5" value="중복확인"></td>
         </tr>
         <tr>
-            <th>휴대폰 번호 : </th>
+            <th class="tr">휴대폰 번호 : </th>
             <td>
                 <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
                 <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
