@@ -23,15 +23,15 @@
 <%if("O".equals(request.getParameter("new"))) {%>
 <title>javafood 회원가입</title>
 <style>
-	body{background-size: contain; color: white; background-position: center; text-align: center; background-image: url(https://velog.velcdn.com/images/gigymi2005/post/c941bf05-995a-4b90-a4b5-63ecd6b5374f/pankaj-patel-u2Ru4QBXA5Q-unsplash.jpg);}
+	body{background-size: contain; color: white; background-color: black; text-align: center;;}
     div{display: inline-block; width: 100%; height: 100%;}
     .sub{margin-top: 10px;width: 100px; height: 30px;}
     .at{color: white; text-decoration: none;}
-    .head{text-align: right;}
+    .head{text-align: left;}
     .pn{width: 43%;}
     .phone{width: 26%;}
-    th, td{width: 100%;}
-    table{background-color: black;    text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
+    td{width: 100px;}
+    table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
     
 </style>
 </head>
@@ -42,7 +42,7 @@
               <table>
         <tr>
             <th>아이디 : </th>
-            <td><input type="text" name="ID"></td>
+            <td><input type="text" name="ID" id="Id"></td>
             <td><input type="button" id="butt1" value="중복 확인"></td>
         </tr>
         <tr>
@@ -63,7 +63,7 @@
         <tr>
             <th>이메일 : </th>
             <td><input type="text" id="pw1" name="mail"></td>
-            <td><input type="button" id="butt3" value="인증하기"></td>
+            <td><input type="button" id="butt4" value="인증하기"></td>
         </tr>
         <tr id="mail">
             <th>인증번호 : </th>
@@ -73,10 +73,10 @@
         <tr>
             <th id="pn">주민등록 번호 : </th>
             <td>
-                <input type="text" class="pn" name="pn1">
-                <input type="password" class="pn" name="pn2">
+                <input type="text" class="pn" name="pn1" id="pn1">
+                <input type="password" class="pn" name="pn2" id="pn2">
             </td>
-            <td><input type="button" id="butt4" value="중복확인"></td>
+            <td><input type="button" id="butt5" value="중복확인"></td>
         </tr>
         <tr>
             <th>휴대폰 번호 : </th>
@@ -85,7 +85,7 @@
                 <input type="text" class="phone" name="phone2">
                 <input type="text" class="phone" name="phone3">
             </td>
-            <td><input type="button" id="butt5" value="연락처 확인"></td>
+            <td><input type="button" id="butt6" value="연락처 확인"></td>
         </tr>
         <tr>
             <th><a href="login.jsp" class="at">취소</a></th>
@@ -97,21 +97,69 @@
         </form>
         <div class="body"></div>
         <script>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 document.querySelector("#butt1").addEventListener("click",function(){
-                    let id = document.querySelector('#Id');
-                    
-                    if()alert("아이디 중복.");
-                    }else alert("아이디 사용가능.");
+                    let id = document.querySelector('#Id').value;
+                    let ii;
+                    let q = 0;
+                    <%
+                    	for(vod v:vo){%>
+                    		ii='<%=v.getId()%>'
+                    		ii==id?q++:q;
+                    	<%}%>
+                    q!=0?alert('아이디 중복'):alert('생성 가능');
                 })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 document.querySelector("#butt2").addEventListener("click",function(){
-                    if(document.querySelector("#pw1").value != document.querySelector("#pw2").value){
-                       alert("잘못입력 하셨습니다.");
-                    }else alert("비밀번호가 일치합니다.");
+                    document.querySelector("#pw1").value != document.querySelector("#pw2").value ? alert("잘못입력 하셨습니다.") : alert("비밀번호가 일치합니다.");
                 })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                document.querySelector("#butt3").addEventListener("click",function(){
+                    let nic = document.querySelector('#nic').value;
+                    let ii;
+                    let q = 0;
+                    <%
+                    	for(vod v: vo){%>
+                    		ii='<%=v.getNic()%>'
+                    		ii==nic?q++:q;
+                    	<%}%>
+                    q!=0?alert('닉네임 중복'):alert('사용 가능');
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                document.querySelector("#butt5").addEventListener("click",function(){
+                    let pn = document.querySelector('#pn1').value +","+ document.querySelector('#pn2').value;
+                    let ii;
+                    let q = 0;
+                    <%
+                   			for(vod v: vo){%> 
+                    		ii='<%=v.getPn()%>'
+                    		ii==pn?q++:q;
+		                    console.log(pn);
+                    		console.log(<%=v.getPn()%>)
+                    	<%}%>
+                    q!=0?alert('계정이 있습니다.'):alert('확인됬습니다.');
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         </script>
 </body>
 </html>
-<% }else {%>
+<% }else if(request.getParameter("ID") != null){%>
+<title>javafood</title>
+</head>
+<body>
+	<% for(vod v:vo){
+		if(request.getParameter("ID").equals(v.getId())){
+			System.out.println("아이디 일치");
+			if(request.getParameter("PW").equals(v.getPw())){
+				System.out.println("페스워드 일치"); %>
+				<h1>javafood 로그인성공</h1>
+				<h1><%=v.getNic() %> 님 환영합니다.</h1>
+</body>
+</html>
+			<%} 
+		} 
+	}%>
+<%}else {%>
 <title>javafood 로그인</title>
 <style>
 	body{background-size: contain; color: white; background-position: center; text-align: center; background-image: url(https://velog.velcdn.com/images/gigymi2005/post/c941bf05-995a-4b90-a4b5-63ecd6b5374f/pankaj-patel-u2Ru4QBXA5Q-unsplash.jpg);}
@@ -132,7 +180,6 @@
         </div>
     </form>
     <div class="body"></div>
-<%--     <%for(int i=0; ) %> --%>
 </body>
 </html>
 <%}%>
