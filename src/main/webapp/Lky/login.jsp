@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <%
+	dbon db = new dbon(); 
 	if(request.getParameter("mail")!=null){
 		vod vo1 = new vod();
 		vo1.setId(request.getParameter("ID"));
@@ -20,9 +21,9 @@
 		System.out.println(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
 		System.out.println(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 		System.out.println(request.getParameter("mail"));
+		db.addId(vo1);
 	}
 	
-	dbon db = new dbon(); 
 	List<vod> vo = db.listID();
 %>
 <%if("O".equals(request.getParameter("new"))) {%>
