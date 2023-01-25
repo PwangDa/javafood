@@ -170,11 +170,18 @@
             border-radius: 3px;
         } */
         
-        .no_chart{
+        /*.no_chart{
             margin-top: 40px;
             display: flex;
             height: 30px;
             padding-left: 20px;
+        }*/
+        .no_chart{
+            display: flex;
+            height: 40px;
+            border-bottom: 1px solid rgb(98, 98, 98);
+            margin : 20px;
+            justify-content: space-between;
         }
 
         .left_num{
@@ -184,7 +191,7 @@
         }
         .left_song{
             margin-left: 0px;
-            width: 400px;
+            width: 395px;
             text-align: left; 
         }
         .left_artist{
@@ -198,19 +205,20 @@
         }
         .heart{
             width: 35px;
+            padding-right: 35px;
             padding-left: 40px;
-            padding-right: 20px;
         }
 
         /* 곡리스트 */
         .musiclist{
-            margin-top: 40px;
+            margin-top: 20px;
         }
         .cont2{
             display: flex;
             height: 40px;
             border-bottom: 1px solid rgb(98, 98, 98);
             margin : 20px;
+            justify-content: space-between;
         }
         .cont2:hover{
             cursor: pointer;
@@ -230,25 +238,27 @@
             width: 100px;
             height: 40px;
             text-align: center;
-          /*margin-left: auto;*/
-            margin-left: 95px;
+         	margin-left: 140px;
+             /*margin-left: 95px;*/
         }
-        .right_top_item{
+        /*.right_top_item{
             width: 100px;
             height: 40px;
             text-align: center;
             margin-left: auto;
-        }
+        }*/
         .btline {
 			text-decoration: underline;
 			text-decoration-color: white;
 		}
 	
 		.right_top_item_1{
-            width: 80px;
+            width: 45px;
             height: 40px;
             text-align: center;
             margin-left: 0;
+            margin-bottom:20px;
+            text-overflow : ellipsis;
         }
         #like{
         	margin-left: 10px;
@@ -256,10 +266,15 @@
         .btn{
         	width: 40px;
         	border:none;
-        	padding-left: 10px;
+        	padding: 0px;
+        	margin-left: 5px;
+        	border-radius: 30%;
         }
-        .btn_1{
+        
+        .img{
         	width: 30px;
+        	margin-left: 0px;
+        	border-radius: 30%;
         	
         }
 </style>
@@ -356,7 +371,7 @@
             <div class="left_num">NO</div>
             <div class="left_song">곡이름</div>
             <div class="left_artist">아티스트</div>
-            <div class="right_top_item">재생시간</div>
+            <div class="right_item">재생시간</div>
             <div><img class="heart" src="https://han.gl/CJMPm"></div>
             <div class="right_top_item_1">듣기</div>
             <div class="right_top_item_1">담기</div>
@@ -373,7 +388,8 @@
                 <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div>
                 <div class="right_item"><%= vo.get(i).getPlayTime() %></div>
                 <div class="right_item" id="like"><%= vo.get(i).getLikes() %></div>
-                <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="btn_1" src="https://url.kr/e4lkai"></a></button></div>
+                <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div>
+                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div>
              </div>
             
         </div>
