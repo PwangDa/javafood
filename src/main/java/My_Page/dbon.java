@@ -62,18 +62,6 @@ public class dbon {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean id1(String idd) {
-		String id = idd;
-		boolean idi = false;
-		List<vod> vo = this.listID();
-		for(int i =0; i<vo.size(); i++) {
-			if(id.equals(vo.get(i).getId())) {
-				idi=true; break;
-			}
-		}
-		return idi;
-	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> list () {
 		List<vod> list = new ArrayList<vod>();
 		try {

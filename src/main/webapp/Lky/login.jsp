@@ -63,7 +63,7 @@
         <tr>
             <th>이메일 : </th>
             <td><input type="text" id="pw1" name="mail"></td>
-            <td><input type="button" id="butt3" value="인증하기"></td>
+            <td><input type="button" id="butt4" value="인증하기"></td>
         </tr>
         <tr id="mail">
             <th>인증번호 : </th>
@@ -76,7 +76,7 @@
                 <input type="text" class="pn" name="pn1">
                 <input type="password" class="pn" name="pn2">
             </td>
-            <td><input type="button" id="butt4" value="중복확인"></td>
+            <td><input type="button" id="butt5" value="중복확인"></td>
         </tr>
         <tr>
             <th>휴대폰 번호 : </th>
@@ -85,7 +85,7 @@
                 <input type="text" class="phone" name="phone2">
                 <input type="text" class="phone" name="phone3">
             </td>
-            <td><input type="button" id="butt5" value="연락처 확인"></td>
+            <td><input type="button" id="butt6" value="연락처 확인"></td>
         </tr>
         <tr>
             <th><a href="login.jsp" class="at">취소</a></th>
@@ -97,26 +97,35 @@
         </form>
         <div class="body"></div>
         <script>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 document.querySelector("#butt1").addEventListener("click",function(){
                     let id = document.querySelector('#Id').value;
                     let ii;
                     let q = 0;
                     <%
-                    	for(int i=0; i<vo.size(); i++){%>
-                    		ii='<%=vo.get(i).getId()%>'
-                            console.log(ii);
-                    		console.log(id);
+                    	for(vod v:vo){%>
+                    		ii='<%=v.getId()%>'
                     		ii==id?q++:q;
-                    		console.log(q);
                     	<%}%>
-                    	q!=0?alert('아이디 중복'):alert('생성가능');
+                    q!=0?alert('아이디 중복'):alert('생성 가능');
                 })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 document.querySelector("#butt2").addEventListener("click",function(){
-                    if(document.querySelector("#pw1").value != document.querySelector("#pw2").value){
-                       alert("잘못입력 하셨습니다.");
-                    }else alert("비밀번호가 일치합니다.");
+                    document.querySelector("#pw1").value != document.querySelector("#pw2").value ? alert("잘못입력 하셨습니다.") : alert("비밀번호가 일치합니다.");
                 })
-                
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                document.querySelector("#butt3").addEventListener("click",function(){
+                    let nic = document.querySelector('#nic').value;
+                    let ii;
+                    let q = 0;
+                    <%
+                    	for(vod v: vo){%>
+                    		ii='<%=v.getNic()%>'
+                    		ii==nic?q++:q;
+                    	<%}%>
+                    q!=0?alert('닉네임 중복'):alert('사용 가능');
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         </script>
 </body>
 </html>
@@ -124,13 +133,13 @@
 <title>javafood</title>
 </head>
 <body>
-	<% for(int i =0; i<vo.size(); i++){
-		if(request.getParameter("ID").equals(vo.get(i).getId())){
+	<% for(vod v:vo){
+		if(request.getParameter("ID").equals(v.getId())){
 			System.out.println("아이디 일치");
-			if(request.getParameter("PW").equals(vo.get(i).getPw())){
+			if(request.getParameter("PW").equals(v.getPw())){
 				System.out.println("페스워드 일치"); %>
 				<h1>javafood 로그인성공</h1>
-				<h1><%=vo.get(i).getNic() %> 님 환영합니다.</h1>
+				<h1><%=v.getNic() %> 님 환영합니다.</h1>
 </body>
 </html>
 			<%} 
