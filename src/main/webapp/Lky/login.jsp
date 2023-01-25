@@ -100,13 +100,16 @@
                 document.querySelector("#butt1").addEventListener("click",function(){
                     let id = document.querySelector('#Id').value;
                     let ii;
+                    let q = 0;
                     <%
                     	for(int i=0; i<vo.size(); i++){%>
                     		ii='<%=vo.get(i).getId()%>'
                             console.log(ii);
+                    		console.log(id);
+                    		ii==id?q++:q;
+                    		console.log(q);
                     	<%}%>
-<%--                     if(<%>) alert("아이디 중복."); --%>
-//                     }else alert("아이디 사용가능.");
+                    	q!=0?alert('아이디 중복'):alert('생성가능');
                 })
                 document.querySelector("#butt2").addEventListener("click",function(){
                     if(document.querySelector("#pw1").value != document.querySelector("#pw2").value){
