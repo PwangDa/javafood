@@ -37,7 +37,7 @@
 <title>인기차트</title>
 <% 		SongDAO dao = new SongDAO();
 
-		String command = request.getParameter("command"); 
+		/* String command = request.getParameter("command"); 
 		
 		if("songcomment".equals(command)) {
 			String songname = request.getParameter("songname");
@@ -53,7 +53,7 @@
 			String songname2 = request.getParameter("songname");
 			System.out.println("리스트에 없습니다"+songname2);
 			dao.songlist(null);
-		}
+		} */
 		
 		
 		%>

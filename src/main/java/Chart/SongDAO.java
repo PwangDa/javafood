@@ -90,98 +90,98 @@ public class SongDAO {
 		
 	}
 	
-	//노래 추가
-	public void addSong(vod vo) {
-		try {
-			String songname = vo.getSongname();
-			String artistname = vo.getArtistname();
-			String link = vo.getLink();
-			
-			con = dataFactory.getConnection();
-			
-			String query = " insert into song";
-			query 		+= " (songname, artistname, link)"; 
-			query 		+= " values (?, ?, ?)";
-			
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, songname);
-			pstmt.setString(2, artistname);
-			pstmt.setString(3, link);
-			
-			int result = pstmt.executeUpdate();
-			
-			System.out.println("excuteUpdate 결과 : "+ result);
-			
-			pstmt.close();
-			con.close();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	//노래 추가
+//	public void addSong(vod vo) {
+//		try {
+//			String songname = vo.getSongname();
+//			String artistname = vo.getArtistname();
+//			String link = vo.getLink();
+//			
+//			con = dataFactory.getConnection();
+//			
+//			String query = " insert into song";
+//			query 		+= " (songname, artistname, link)"; 
+//			query 		+= " values (?, ?, ?)";
+//			
+//			pstmt = con.prepareStatement(query);
+//			
+//			pstmt.setString(1, songname);
+//			pstmt.setString(2, artistname);
+//			pstmt.setString(3, link);
+//			
+//			int result = pstmt.executeUpdate();
+//			
+//			System.out.println("excuteUpdate 결과 : "+ result);
+//			
+//			pstmt.close();
+//			con.close();
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
-	//노래 지움(to do : 메소드 수정하여 삭제 기능 만들기)
-	public void delSong(String songname) {
-		
-		try {
-			// DB 접속
-			con = dataFactory.getConnection();
-			
-			// SQL 준비
-			String query = " delete from song";
-			query += 	   " where songname = ?";
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, songname);
-			
-			// SQL 실행
-			int result = pstmt.executeUpdate();
-			// 실행 결과 활용
-			System.out.println("삭제 결과 : "+ result);
-			
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+//	//노래 지움(to do : 메소드 수정하여 삭제 기능 만들기)
+//	public void delSong(String songname) {
+//		
+//		try {
+//			// DB 접속
+//			con = dataFactory.getConnection();
+//			
+//			// SQL 준비
+//			String query = " delete from song";
+//			query += 	   " where songname = ?";
+//			pstmt = con.prepareStatement(query);
+//			pstmt.setString(1, songname);
+//			
+//			// SQL 실행
+//			int result = pstmt.executeUpdate();
+//			// 실행 결과 활용
+//			System.out.println("삭제 결과 : "+ result);
+//			
+//			pstmt.close();
+//			con.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
-	//노래 업데이트(제목 수정등)
-	public void updateSong(vod vo) {
-		try {
-			String songnumber = vo.getSongnumber();
-			String songname = vo.getSongname();
-			String artistname = vo.getArtistname();
-			System.out.println("songnumber" + songnumber + "songname"+ songname +", artistname : "+ artistname);
-			
-			// db 접속
-			con = dataFactory.getConnection();
-			
-			//곡 제목 업데이트
-			String query = " UPDATE song ";
-			query += 	   " SET songname = ?";
-			query += 	   " 	,artistname = ?";
-			query += 	   " WHERE songnumber = ?";
-			
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, songnumber);
-			pstmt.setString(2, artistname);
-			pstmt.setString(3, songname);
-
-			// SQL 실행
-			int result = pstmt.executeUpdate();
-			System.out.println("excuteUpdate 결과 : "+ result);
-			
-			pstmt.close();
-			con.close();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
+//	//노래 업데이트(제목 수정등)
+//	public void updateSong(vod vo) {
+//		try {
+//			String songnumber = vo.getSongnumber();
+//			String songname = vo.getSongname();
+//			String artistname = vo.getArtistname();
+//			System.out.println("songnumber" + songnumber + "songname"+ songname +", artistname : "+ artistname);
+//			
+//			// db 접속
+//			con = dataFactory.getConnection();
+//			
+//			//곡 제목 업데이트
+//			String query = " UPDATE song ";
+//			query += 	   " SET songname = ?";
+//			query += 	   " 	,artistname = ?";
+//			query += 	   " WHERE songnumber = ?";
+//			
+//			pstmt = con.prepareStatement(query);
+//			
+//			pstmt.setString(1, songnumber);
+//			pstmt.setString(2, artistname);
+//			pstmt.setString(3, songname);
+//
+//			// SQL 실행
+//			int result = pstmt.executeUpdate();
+//			System.out.println("excuteUpdate 결과 : "+ result);
+//			
+//			pstmt.close();
+//			con.close();
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
 	
 	//노래 리스트
 	public void songlist(vod vo) {
