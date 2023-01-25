@@ -12,7 +12,10 @@ public class vod {
 	private String likes;
 	private String link;
 	private String ranking;
+<<<<<<< HEAD
+=======
 	private String record;
+>>>>>>> 070d22b53f43c985b349f35cc174154d3100bdbf
 	private String playtime;
 ///////---------login-----------//////////
 	private String id;
@@ -105,6 +108,9 @@ public class vod {
 	public String getRanking() {
 		return ranking;
 	}
+	public String getPlayTime() {
+		return playtime;
+	}
 	public void setSongnumber(String songnumber) {
 		this.songnumber = songnumber;
 	}
@@ -125,6 +131,10 @@ public class vod {
 	}
 	public void setRanking(String ranking) {
 		this.ranking = ranking;
+		
+	}
+	public void setPlayTime(String playtime) {
+		this.playtime = playtime;
 		
 	}
 }
