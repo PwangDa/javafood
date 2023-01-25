@@ -39,7 +39,7 @@
 <body>
 	<form name="frmSong">
 		<table>
-			<th>노래 업데이트</th>
+			<th>관리 페이지</th>
 			<tr>
 				<td>노래제목</td>
 				<td>
@@ -52,8 +52,14 @@
 					<input type="text" name="artistname">
 				</td>
 			</tr>
+				<tr>
+				<td>링크</td>
+				<td>
+					<input type="text" name="link">
+				</td>
+			</tr>
 		</table>
-		<input type="button" value="제목 수정" onclick="fn_sendSong()">
+		<input type="button" value="노래정보 수정" onclick="fn_sendSong()">
 		<input type="hidden" name="command" value="UpdateSong">
 		<input type="button" value="노래 추가" onclick="fn_sendSong()">
 		<input type="hidden" name="command" value="addSong">

@@ -61,8 +61,7 @@ public class SongDAO {
 				   String bygenre = rs.getString("bygenre");
 				   String hits = rs.getString("hits");
 				   String likes = rs.getString("likes");
-				 //id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//				   String id = rs.getString("id");
+				   String playtime = rs.getString("playtime");
 				   
 				   
 				   
@@ -74,8 +73,7 @@ public class SongDAO {
 				   vo.setBygenre(bygenre);
 				   vo.setHits(hits);
 				   vo.setLikes(likes);
-				 //id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//				   vo.setId(id);
+				   vo.setPlaytime(playtime);
 				   
 				   list.add(vo);
 			   }
@@ -97,17 +95,19 @@ public class SongDAO {
 		try {
 			String songname = vo.getSongname();
 			String artistname = vo.getArtistname();
+			String link = vo.getLink();
 			
 			con = dataFactory.getConnection();
 			
 			String query = " insert into song";
-			query 		+= " (songname, artistname)"; 
-			query 		+= " values (?, ?)";
+			query 		+= " (songname, artistname, link)"; 
+			query 		+= " values (?, ?, ?)";
 			
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setString(1, songname);
 			pstmt.setString(2, artistname);
+			pstmt.setString(3, link);
 			
 			int result = pstmt.executeUpdate();
 			
@@ -121,7 +121,7 @@ public class SongDAO {
 		}
 	}
 	
-	//노래 지움
+	//노래 지움(to do : 메소드 수정하여 삭제 기능 만들기)
 	public void delSong(String songname) {
 		
 		try {
@@ -148,7 +148,7 @@ public class SongDAO {
 		
 	}
 	
-	//노래 업데이트
+	//노래 업데이트(제목 수정등)
 	public void updateSong(vod vo) {
 		try {
 			String songnumber = vo.getSongnumber();
@@ -195,8 +195,8 @@ public class SongDAO {
 			String bygenre = vo.getBygenre();
 			String hits = vo.getHits();
 			String likes = vo.getLikes();
-			//id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//			String id = vo.getId();
+			String playtime = vo.getPlaytime();
+			
 			
 			
 			String query = "SELECT * FROM SONG";
@@ -212,8 +212,8 @@ public class SongDAO {
 			pstmt.setString(5, bygenre);
 			pstmt.setString(6, hits);
 			pstmt.setString(7, likes);
-			//id당 클릭 조회수를 나타내야해서변수 생성되면 해당 변수명으로 추가
-//			pstmt.setString(8, id);
+			pstmt.setString(8, playtime);
+			
 			
 			
 			pstmt.executeUpdate();
