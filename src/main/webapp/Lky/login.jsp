@@ -73,8 +73,8 @@
         <tr>
             <th id="pn">주민등록 번호 : </th>
             <td>
-                <input type="text" class="pn" name="pn1">
-                <input type="password" class="pn" name="pn2">
+                <input type="text" class="pn" name="pn1" id="pn1">
+                <input type="password" class="pn" name="pn2" id="pn2">
             </td>
             <td><input type="button" id="butt5" value="중복확인"></td>
         </tr>
@@ -124,6 +124,20 @@
                     		ii==nic?q++:q;
                     	<%}%>
                     q!=0?alert('닉네임 중복'):alert('사용 가능');
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                document.querySelector("#butt5").addEventListener("click",function(){
+                    let pn = document.querySelector('#pn1').value +","+ document.querySelector('#pn2').value;
+                    let ii;
+                    let q = 0;
+                    <%
+                   			for(vod v: vo){%> 
+                    		ii='<%=v.getPn()%>'
+                    		ii==pn?q++:q;
+		                    console.log(pn);
+                    		console.log(<%=v.getPn()%>)
+                    	<%}%>
+                    q!=0?alert('계정이 있습니다.'):alert('확인됬습니다.');
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         </script>
