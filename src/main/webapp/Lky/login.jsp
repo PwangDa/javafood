@@ -34,6 +34,7 @@
     table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
     
 </style>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
         <h1>javafood 회원가입</h1>
@@ -42,48 +43,48 @@
               <table>
         <tr>
             <th>아이디 : </th>
-            <td><input type="text" name="ID" id="Id"></td>
+            <td><input type="text" name="ID" id="Id" placeholder="아이디를 입력하시오"></td>
             <td><input type="button" id="butt1" value="중복 확인"></td>
         </tr>
         <tr>
             <th>비밀번호 1 :  </th>
-            <td><input type="password" id="pw1" name="PW1"></td>
+            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
             <td rowspan="2"><input type="button" id="butt2" value="일치 확인"></td>
         </tr>
         <tr>
             <th>비밀번호 2 : </th>
-            <td><input type="password" id="pw2"></td>
+            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
             <td></td>
         </tr>
         <tr>
             <th>닉네임 : </th>
-            <td><input type="text" id="nic" name="nic"></td>
+            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
             <td><input type="button" id="butt3" value="중복확인"></td>
         </tr>
         <tr>
             <th>이메일 : </th>
-            <td><input type="text" id="pw1" name="mail"></td>
+            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
             <td><input type="button" id="butt4" value="인증하기"></td>
         </tr>
         <tr id="mail">
             <th>인증번호 : </th>
-            <td><input type="text" ></td>
+            <td><input type="text" placeholder="메일에 온 인증번호를 입력하시오."></td>
             <td><input type="button" id="butt12" value="인증확인"></td>
         </tr>
         <tr>
             <th id="pn">주민등록 번호 : </th>
             <td>
-                <input type="text" class="pn" name="pn1" id="pn1">
-                <input type="password" class="pn" name="pn2" id="pn2">
+                <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
+                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
             </td>
             <td><input type="button" id="butt5" value="중복확인"></td>
         </tr>
         <tr>
             <th>휴대폰 번호 : </th>
             <td>
-                <input type="text" class="phone" name="phone1">
-                <input type="text" class="phone" name="phone2">
-                <input type="text" class="phone" name="phone3">
+                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
             </td>
             <td><input type="button" id="butt6" value="연락처 확인"></td>
         </tr>
@@ -98,8 +99,8 @@
         <div class="body"></div>
         <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                document.querySelector("#butt1").addEventListener("click",function(){
-                    let id = document.querySelector('#Id').value;
+                $("#butt1").on("click",function(){
+                    let id = $('#Id').val();
                     let ii;
                     let q = 0;
                     <%
@@ -107,15 +108,15 @@
                     		ii='<%=v.getId()%>'
                     		ii==id?q++:q;
                     	<%}%>
-                    q!=0?alert('아이디 중복'):alert('생성 가능');
+                    q!=0?alert('사용중인 아이디 입니다.'):alert('생성 가능');
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                document.querySelector("#butt2").addEventListener("click",function(){
-                    document.querySelector("#pw1").value != document.querySelector("#pw2").value ? alert("잘못입력 하셨습니다.") : alert("비밀번호가 일치합니다.");
+                $("#butt2").on("click",function(){
+                    $("#pw1").val() != $("#pw2").val() ? alert("잘못입력 하셨습니다.") : alert("비밀번호가 일치합니다.");
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                document.querySelector("#butt3").addEventListener("click",function(){
-                    let nic = document.querySelector('#nic').value;
+                $("#butt3").on("click",function(){
+                    let nic = $('#nic').val();
                     let ii;
                     let q = 0;
                     <%
@@ -123,11 +124,23 @@
                     		ii='<%=v.getNic()%>'
                     		ii==nic?q++:q;
                     	<%}%>
-                    q!=0?alert('닉네임 중복'):alert('사용 가능');
+                    q!=0?alert('사용중인 닉네임 입니다.'):alert('사용 가능');
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                document.querySelector("#butt5").addEventListener("click",function(){
-                    let pn = document.querySelector('#pn1').value +","+ document.querySelector('#pn2').value;
+                $("#butt4").on("click",function(){
+                    let email = $('#email').val();
+                    let ii;
+                    let q = 0;
+                    <%
+                    	for(vod v: vo){%>
+                    		ii='<%=v.getEmail()%>'
+                    		ii==email?q++:q;
+                    	<%}%>
+                    q!=0?alert('사용중인 주소 입니다.'):alert('인증번호를 발송했습니다.');
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                $("#butt5").on("click",function(){
+                    let pn = $('#pn1').val() +"-"+ $('#pn2').val();
                     let ii;
                     let q = 0;
                     <%
@@ -137,7 +150,21 @@
 		                    console.log(pn);
                     		console.log(<%=v.getPn()%>)
                     	<%}%>
-                    q!=0?alert('계정이 있습니다.'):alert('확인됬습니다.');
+                    q!=0?alert('이미 계정이 있습니다.'):alert('확인됬습니다.');
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                $("#butt6").on("click",function(){
+                    let phone = $('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
+                    let ii;
+                    let q = 0;
+                    <%
+                   			for(vod v: vo){%> 
+                    		ii='<%=v.getPn()%>'
+                    		ii==pn?q++:q;
+		                    console.log(phone);
+                    		console.log(<%=v.getPhone()%>)
+                    	<%}%>
+                    q!=0?alert('이미 계정이 있습니다.'):alert('확인됬습니다.');
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         </script>
