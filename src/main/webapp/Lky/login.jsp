@@ -7,21 +7,16 @@
 <meta charset="UTF-8">
 <%
 	dbon db = new dbon(); 
-	if(request.getParameter("mail")!=null){
+	if(request.getParameter("Id1")!=null){
 		vod vo1 = new vod();
-		vo1.setId(request.getParameter("ID"));
+		vo1.setId(request.getParameter("Id1"));
 		vo1.setPw(request.getParameter("PW1"));
 		vo1.setNic(request.getParameter("nic"));
 		vo1.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
 		vo1.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 		vo1.setEmail(request.getParameter("mail"));
-		System.out.println(request.getParameter("ID"));
-		System.out.println(request.getParameter("PW1"));
-		System.out.println(request.getParameter("nic"));
-		System.out.println(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
-		System.out.println(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
-		System.out.println(request.getParameter("mail"));
 		db.addId(vo1);
+		%><script>alert("회원가입 성공")</script>  <%
 	}
 	
 	List<vod> vo = db.listID();
@@ -49,7 +44,7 @@
               <table>
         <tr class="tr">
             <th>아이디 : </th>
-            <td><input type="text" name="ID" id="Id" placeholder="아이디를 입력하시오"></td>
+            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
             <td><input type="button" id="butt1" value="중복 확인"></td>
         </tr>
         <tr>
@@ -106,7 +101,7 @@
         <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 $("#butt1").on("click",function(){
-                    let id = $('#Id').val();
+                    let id = $('#Id1').val();
                     let ii;
                     let q = 0;
                     <%
@@ -195,18 +190,19 @@
 <%}else {%>
 <title>javafood 로그인</title>
 <style>
-	body{background-size: contain; color: white; background-position: center; text-align: center; background-image: url(https://velog.velcdn.com/images/gigymi2005/post/c941bf05-995a-4b90-a4b5-63ecd6b5374f/pankaj-patel-u2Ru4QBXA5Q-unsplash.jpg);}
-    div{display: inline-block; border: 1px solid red; width: 100%; height: 100px;}
+	body{background-size: contain; color: white; background-position: center; text-align: center;background-color: black;}
+    div{display: inline-block;  width: 100%; height: 100px;}
     .sub{margin-top: 10px;width: 100px; height: 30px;}
     .at{color: white; text-decoration: none;}
+    .head{margin-top: 50px;}
 </style>
 </head>
 <body>
 	<h1>javafood 로그인</h1>
     <form method="post" action="login.jsp">
         <div class="head">
-             아 이 디 &nbsp;: <input type="text" name="ID"><br>
-            비밀번호 : <input type="text" name="PW"><br>
+             아 이 디 &nbsp;: <input type="text" name="ID"><br><br>
+            비밀번호 : <input type="text" name="PW"><br><br>
             <a href="login.jsp?new=O" class="at">회원가입</a>
             <input class="sub" type="submit" value="로그인">
             <input class="sub" type="reset" value="다시작성">
