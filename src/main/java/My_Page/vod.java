@@ -12,6 +12,8 @@ public class vod {
 	private String likes;
 	private String link;
 	private String ranking;
+	private String record;
+	private String playtime;
 ///////---------login-----------//////////
 	private String id;
 	private String pw;
@@ -22,6 +24,18 @@ public class vod {
 	private String home;
 	
 	
+	public String getRecord() {
+		return record;
+	}
+	public String getPlaytime() {
+		return playtime;
+	}
+	public void setRecord(String record) {
+		this.record = record;
+	}
+	public void setPlaytime(String playtime) {
+		this.playtime = playtime;
+	}
 	public String getId() {
 		return id;
 	}

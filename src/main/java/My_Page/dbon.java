@@ -77,6 +77,7 @@ public class dbon {
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
+				vo.setPlaytime(rs.getString("playtime"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
