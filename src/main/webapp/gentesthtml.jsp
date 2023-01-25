@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
+	<%
 	String song = request.getParameter("genre");
 	%>
 	
@@ -240,8 +240,8 @@
             margin-left: auto;
         }
         .btline {
-		text-decoration: underline;
-		text-decoration-color: white;
+			text-decoration: underline;
+			text-decoration-color: white;
 		}
 	
 		.right_top_item_1{
@@ -256,6 +256,7 @@
         .btn{
         	width: 40px;
         	border:none;
+        	padding-left: 10px;
         }
         .btn_1{
         	width: 30px;

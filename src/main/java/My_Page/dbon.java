@@ -77,11 +77,8 @@ public class dbon {
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
-<<<<<<< HEAD
 				vo.setPlayTime(rs.getString("playtime"));
-=======
-				vo.setPlaytime(rs.getString("playtime"));
->>>>>>> 070d22b53f43c985b349f35cc174154d3100bdbf
+
 				list.add(vo);
 			}
 		} catch (SQLException e) {
