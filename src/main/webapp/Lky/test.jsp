@@ -7,20 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<iframe id="프레임네임"  src=""  width="530"> </iframe>
-
-
-<form name="폼네임">
-	<input type="text" id="id" name="id" value="user1"/>
-	<input type="hidden" id="password" name="password" value="myNameis"/>
-	<input type="submit" value="제출">
-</form>
-
-
+	<input type="text" value="abc" name="ajax1">
+	<input type="button" value="test" name="ajax">
 <script>
-    document.폼네임.target = "프레임네임";
-    document.폼네임.submit();
-
+	$.ajax({
+		type : "get",
+		url:"http://localhost:8080/javafood_team/Lky/test.jsp?id=1",
+				datatype : "text",
+				error : function () {
+					
+				}
+	})
 </script>
 </body>
 </html>
