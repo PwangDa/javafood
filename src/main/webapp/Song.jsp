@@ -19,7 +19,7 @@
 	String dbuser = "javafood";
 	String dbpass = "javafood";
 	String query = "SELECT * FROM SONG";
-	String title = "인기차트";
+	String title = "JavaFood Music";
 
 	Connection conn = null;
 	Statement stmt = null;
@@ -34,7 +34,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>인기차트</title>
+<title>JavaFood Music</title>
 <% 		SongDAO dao = new SongDAO();
 
 		/* String command = request.getParameter("command"); 
@@ -78,10 +78,14 @@
 	}
 	.table2 {
 		color: white;
+		border: 2px solid white;
+		font-size : 20px;
 	}
 	
 header{
+      text-align: center;
       color: white;
+      font-size : 40px;
         }
      
         
@@ -91,21 +95,27 @@ header{
     	color: white;
     	border: 1px solid white;
     }
-
+    #div {
+    	width: 100%;
+    	text-align: left;
+    	font-size : 20px;
+    }
+	
 </style>
 </head>
-<header align="center" colspan="8">인기차트</header>
 <body>
+<header><strong>JavaFood Music</strong></header>
+<div id="div"><a href='/javafood_team/Lky/login.jsp'>로그인 페이지로 이동</a></div>
 	<table class="table">
 		<tr class="table2">
-			<th>번호</th>
-			<th>순위</th>
-			<th>노래 제목</th>
-			<th>아티스트 명</th>
-			<th>장르</th>
-			<th>조회수</th>
-			<th>좋아요</th>
-			<th>재생 시간</th>
+			<td><strong>번호</strong></td>
+			<td><strong>순위</strong></td>
+			<td><strong>노래 제목</strong></td>
+			<td><strong>아티스트 명</strong></td>
+			<td><strong>장르</strong></td>
+			<td><strong>조회수</strong></td>
+			<td><strong>좋아요</strong></td>
+			<td><strong>재생 시간</strong></td>
 		</tr>
 
 <%

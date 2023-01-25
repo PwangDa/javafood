@@ -46,7 +46,8 @@ public class SongDAO {
 			this.con = dataFactory.getConnection();
 			
 			   
-			   String query = "SELECT * FROM SONG";
+			   String query = "SELECT * FROM song";
+			   		
 			   		 
 			   System.out.println(query);
 			   

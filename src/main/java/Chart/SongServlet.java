@@ -304,7 +304,8 @@ public class SongServlet extends HttpServlet {
 		out.println("		<th>좋아요</th>");
 		out.println("		<th>재생 시간</th>");
 		out.println("	</tr>");
-	      
+		
+		
 	      for(int i= 0; i<list.size(); i++) {
 	    	  vod vo = list.get(i);
 	    	  
@@ -320,7 +321,7 @@ public class SongServlet extends HttpServlet {
 	          
 			  out.println("<tr>");
 			  out.println("		<td>"+ songnumber +"</td>");
-			  out.println("		<td>"+ ranking +"</td>");
+			  out.println("		<td>"+i+"</td>");
 			  out.println("		<td>"+ songname +"</td>");
 			  out.println("		<td>"+ artistname +"</td>");
 			  out.println("		<td>"+ bygenre +"</td>");
@@ -341,6 +342,9 @@ public class SongServlet extends HttpServlet {
 	      out.println("</body>");
 	      out.println("</html>");
 	     
+	      //to do : 조회수(*1) + 좋아요(*1.5) 값을 순위(1,2,3등)으로 매겨서 table에 표시하기(현재 null값 출력, dbeaver에 ranking 테이블 있음)
+	     
+	      
 	      
 	}
 }
