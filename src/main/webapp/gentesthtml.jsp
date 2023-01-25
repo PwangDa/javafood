@@ -191,11 +191,15 @@
             width: 100px;
             height: 40px;
             text-align: left;
+            text-overflow : ellipsis;
+            white-space : nowrap;
+            overflow : hidden;
            
         }
         .heart{
             width: 35px;
-            padding-left: 100px;
+            padding-left: 40px;
+            padding-right: 20px;
         }
 
         /* 곡리스트 */
@@ -226,12 +230,37 @@
             width: 100px;
             height: 40px;
             text-align: center;
+          /*margin-left: auto;*/
+            margin-left: 95px;
+        }
+        .right_top_item{
+            width: 100px;
+            height: 40px;
+            text-align: center;
             margin-left: auto;
         }
         .btline {
 		text-decoration: underline;
 		text-decoration-color: white;
-	}
+		}
+	
+		.right_top_item_1{
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            margin-left: 0;
+        }
+        #like{
+        	margin-left: 10px;
+        }
+        .btn{
+        	width: 40px;
+        	border:none;
+        }
+        .btn_1{
+        	width: 30px;
+        	
+        }
 </style>
 </head>
 <body>
@@ -326,7 +355,10 @@
             <div class="left_num">NO</div>
             <div class="left_song">곡이름</div>
             <div class="left_artist">아티스트</div>
-            <div><img class="heart" src="https://www.pngkit.com/png/detail/86-865424_plain-black-heart-frame-white-heart-icon-no.png"></div>
+            <div class="right_top_item">재생시간</div>
+            <div><img class="heart" src="https://han.gl/CJMPm"></div>
+            <div class="right_top_item_1">듣기</div>
+            <div class="right_top_item_1">담기</div>
         </div>
 
 		<%
@@ -336,10 +368,11 @@
              <div class="cont2">
              	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
                 <div class="left_item"><%=(i+1) %></div>
-                <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"><%=vo.get(i).getSongname() %></a></div>
-                <div class="left_artist"><%= vo.get(i).getArtistname()%></div>
-                <div class="right_item"><%= vo.get(i).getLikes() %></div>
-                <div class="right_item">3:35</div>
+                <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"target='_blank'><%=vo.get(i).getSongname() %></a></div>
+                <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div>
+                <div class="right_item"><%= vo.get(i).getPlayTime() %></div>
+                <div class="right_item" id="like"><%= vo.get(i).getLikes() %></div>
+                <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="btn_1" src="https://url.kr/e4lkai"></a></button></div>
              </div>
             
         </div>
