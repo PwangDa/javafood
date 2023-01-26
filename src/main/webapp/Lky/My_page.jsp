@@ -23,7 +23,7 @@
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
-         body{background-color :black; cursor: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIwR9P%2FbtraRjIi6El%2FofkcHd4wk3BWMKZorWGH0k%2Fimg.png"), auto;}
+         body{background-color :black; cursor: url("https://zrr.kr/Wlm3"), auto;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
         .head{position: sticky;top:0px; height: 100px; background-color: black; color: white;}
         .body{height: 100%; text-align: center;margin: 30px;}
@@ -31,7 +31,7 @@
         .right{line-height: 80px; width: 11%;float: right; background-image:url(<%=a.get(0).getMyimg()%>); background-repeat: no-repeat; background-size: cover;background-position: center; }
         .tbody{ position: sticky;top: 100px; height: 40px; background: white;}
         input{vertical-align: middle;}
-        .butt{font-size: 0px; background: url(https://www.codingfactory.net/wp-content/uploads/button_search.png)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
+        .butt{font-size: 0px; background: url(https://zrr.kr/Ovva)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
         .text{ height: 30px;width: 350px; margin: 0;}
         table{margin: auto; border: 1px solid black; border-collapse: collapse;}
         th,td{border-top: 1px solid black;}
