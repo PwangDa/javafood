@@ -18,7 +18,7 @@
 <%!String dbhost = "jdbc:oracle:thin:@todair.synology.me:51521:xe";
 	String dbuser = "javafood";
 	String dbpass = "javafood";
-	String query = "SELECT * FROM SONG";
+	 String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
 	String title = "JavaFood Music";
 
 	Connection conn = null;
@@ -109,6 +109,7 @@ header{
 	<table class="table">
 		<tr class="table2">
 			<td><strong>번호</strong></td>
+			<td><strong>좋아요+조회수 합산</strong></td>
 			<td><strong>순위</strong></td>
 			<td><strong>노래 제목</strong></td>
 			<td><strong>아티스트 명</strong></td>
@@ -132,9 +133,12 @@ header{
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
 
+			//순위 표시용 변수 i default 값 : 1부터 시작
+			int i = 1;
 			while (rs.next()) {
 				
 				String songnumber = rs.getString("songnumber");
+				String rank2 = rs.getString("rank2");
 				String ranking = rs.getString("ranking");
 				String songname = rs.getString("songname");
 				String artistname = rs.getString("artistname");
@@ -145,9 +149,13 @@ header{
 				
 				
 				
-				out.print("<tr>" + "<td>" + songnumber +"</td>" + "<td>" + ranking + "</td>" +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"</td>" + "<td>" + likes +"</td>" + "<td>" + playtime +"</td>"
+// 				out.print("<tr>" + "<td>" + songnumber +"</td>" + "<td>" + rank2 + "</td>" + "<td>" + ranking + "</td>" +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"</td>" + "<td>" + likes +"</td>" + "<td>" + playtime +"</td>"
+// 				+"</tr>");
+				//기존 ranking 변수 대신 i 값 넣어서 순위 표시
+				out.print("<tr>" + "<td>" + songnumber +"</td>" + "<td>" + rank2 + "</td>" + "<td>" + i + "</td>" +"<td>" + songname + "</td>" + "<td>" + artistname + "</td>" + "<td>" + bygenre + "</td>" +"<td>" + hits +"</td>" + "<td>" + likes +"</td>" + "<td>" + playtime +"</td>"
 				+"</tr>");
-				
+				//i 1씩 증가
+				i++;
 			}
 
 		} catch (Exception e) {

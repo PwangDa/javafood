@@ -10,17 +10,19 @@
 <head>
 	<%
 		dbon db = new dbon();
+		System.out.println(session.getAttribute("login"));
+		
 	%>
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
          body{background-color :black; cursor: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIwR9P%2FbtraRjIi6El%2FofkcHd4wk3BWMKZorWGH0k%2Fimg.png"), auto;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
-        .head{ height: 100px; background-color: black; color: white;}
+        .head{position: sticky;top:0px; height: 100px; background-color: black; color: white;}
         .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
         .right{line-height: 80px; width: 11%;float: right; background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100623_29%2Fduchest_1277244964920QJ0WY_jpg%2Fdailysculpt_100622_cristiano_ronaldo02_duchest.jpg&type=sc960_832); background-repeat: no-repeat; background-size: cover;background-position: center; }
-        .tbody{ position: sticky;top: 0px; height: 40px; background: white;}
+        .tbody{ position: sticky;top: 100px; height: 40px; background: white;}
         input{vertical-align: middle;}
         .butt{font-size: 0px; background: url(https://www.codingfactory.net/wp-content/uploads/button_search.png)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
         .text{ height: 30px;width: 350px; margin: 0;}
@@ -99,7 +101,7 @@
             </table>
         </div>
     </div>
-    <script type="text/javascript">
+    <script>
 			
     </script>
 </body>
