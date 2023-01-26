@@ -186,9 +186,9 @@
 				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
 				<script>
                     setInterval (function time(){
-                        
+                        let dd
                         location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp';
-                    },1000)
+                    },3000)
 				</script>
 </body>
 </html>
