@@ -280,6 +280,14 @@
         	border-radius: 30%;
         	
         }
+        .sub{
+        	background-image: url('https://han.gl/CJMPm');
+   			background-position:  0px 0px;
+    		background-repeat: no-repeat;
+ 			cursor:pointer;
+ 			outline: 0;
+ 			width: 35px;
+        }
 </style>
 </head>
 <body>
@@ -395,8 +403,8 @@
                 <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"target='_blank'><%=vo.get(i).getSongname() %></a></div>
                 <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div>
                 <div class="right_item"><%= vo.get(i).getPlayTime() %></div>
-                <form>
-                <div class="right_item" id="like"><%= vo.get(i).getLikes() %><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%= vo.get(i).getLikes() %>">
+                <form action="/javafood_team/gentesthtml.jsp">
+                <div class="right_item" id="like"><%= vo.get(i).getLikes() %><input type="submit" value="" class="sub"><input type="hidden" name="good" value="<%= i+1%>">
                 <input type="hidden" name="number" value="<%= vo.get(i).getSongnumber()%>">
                 </div>
                 </form>
