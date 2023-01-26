@@ -178,6 +178,7 @@ public class dbon {
 				vo.setPlayTime(rs.getString("playtime"));
 				list.add(vo);
 			}
+			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
