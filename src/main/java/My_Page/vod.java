@@ -24,8 +24,15 @@ public class vod {
 	private String phone;
 	private String email;
 	private String home;
+	private String myimg;
 	
 	
+	public String getMyimg() {
+		return myimg;
+	}
+	public void setMyimg(String myimg) {
+		this.myimg = myimg;
+	}
 	public String getRecord() {
 		return record;
 	}

@@ -43,6 +43,7 @@ public class dbon {
 			vo.setPhone(rs.getString("phone"));
 			vo.setEmail(rs.getString("email"));
 			vo.setHome(rs.getString("home"));
+			vo.setMyimg(rs.getString("img"));
 			list.add(vo);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,6 +67,7 @@ public class dbon {
 				vo.setPhone(rs.getString("phone"));
 				vo.setEmail(rs.getString("email"));
 				vo.setHome(rs.getString("home"));
+				vo.setMyimg(rs.getString("img"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
