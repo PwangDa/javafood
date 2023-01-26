@@ -211,8 +211,8 @@
         .but:checked {
         	display : block;
         }
-        
-        .but:checked + .chek1{
+       /*체크박스가 체그되면 유지되게. */  
+        .but:checked ~ .chek1{
         	display : none;
         }
         .but{
