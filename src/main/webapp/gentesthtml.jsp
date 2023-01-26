@@ -12,6 +12,9 @@
 	dbon db = new dbon();
 	%>
 	<%
+	
+	%>
+	<%
 	List<vod> vo = null;
 	%>
 	
@@ -378,6 +381,11 @@
         </div>
 
 		<%
+			if(request.getParameter("good")!=null){
+			db.like(request.getParameter("good"));
+			}
+			%>
+		<%
 			for (int i = 0; i < vo.size(); i++) {
 			%>
         <div class= "musiclist">
@@ -387,7 +395,11 @@
                 <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"target='_blank'><%=vo.get(i).getSongname() %></a></div>
                 <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div>
                 <div class="right_item"><%= vo.get(i).getPlayTime() %></div>
-                <div class="right_item" id="like"><%= vo.get(i).getLikes() %></div>
+                <form>
+                <div class="right_item" id="like"><%= vo.get(i).getLikes() %><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%= vo.get(i).getLikes() %>">
+                <input type="hidden" name="number" value="<%= vo.get(i).getSongnumber()%>">
+                </div>
+                </form>
                 <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div>
                 <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div>
              </div>
