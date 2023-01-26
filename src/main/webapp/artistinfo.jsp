@@ -35,6 +35,7 @@
 		
 		List<CommentVO> list = dao.listComment();%>
  <script>
+ 		/*댓글 입력창 if문*/
         function fn_sendComment(){
         	
         	var frmCommand = document.frmComment;
@@ -57,6 +58,7 @@
         window.onload = headerbarToggle
         function headerbarToggle(){
             console.log(1234);
+        /*메뉴상단 스크롤 함수*/
             var headerbar = document.getElementById("menu");
             var currentScrollPos = window.pageYOffset;
             if(prevScrollpos < currentScrollPos){
@@ -64,26 +66,41 @@
             }else{
                 headerbar.style.opacity = 0.5;
             }
+            
+            /*앨범 < > 함수*/
+            let prev = document.querySelector(".prev");
+            let next = document.querySelector(".next");
+            let slides = document.querySelector(".clides");
+            let slds = document.querySelector("#slds");
+            let slidelmg = document.querySelectorAll(".clides li");
+            let current = 0;
+            let slideCount = slidelmg.length;
 
-        var prev = document.querySelector(".prev");
-        var next = document.querySelector(".next");
-        var slides = document.querySelector(".clides");
-        var slidelmg = document.querySelectorAll(".clides li");
-        var current = 0;
-        var slideCount = slidelmg.length;
-        const slideWidth = 900; //한개의 슬라이드 넓이
-        const slideMargin = 25; //슬라이드간의 margin 값
-
-        slides.style.width = (slideWidth + slideMargin) * slideCount + 'px';
-
-        function moveSlide(num){
-            slides.style.left = -num * 400 + "px";
-            current = num;
+    	       next.addEventListener('click', function() {
+    	           console.log(slideCount); /*5*/
+    	           if(current !== slideCount){
+    	           		console.log('안녕 친구들');
+    	        	    current = slideCount;
+    	        	    console.log(current);
+    	           		slds.classList.add("marLeft");
+    	           }
+    	       });
+    	        
+    	       prev.addEventListener('click', function() {
+    	    	   if(current !== 0){
+    	           	console.log('hello');
+    	           	console.log(slideCount);
+    	           	slds.classList.remove("marLeft");
+    	           	current = 0;
+    	    	   }
+    	       });
+    	       
         }
 
-        }
   </script>
   <style>
+  
+  		/*공통으로 적용 될거*/
         body{
             background-color: black;
             margin: 0;
@@ -94,6 +111,17 @@
             color : white;
             /* vertical-align: middle; */
         }
+        
+        img{
+        	border-radius: 12px;
+        }
+        
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        
+        /*메뉴 상단바*/
         header{
             background-color: black;
             color: white;
@@ -105,10 +133,6 @@
             transition: opacity 0.4s;
         }
 
-        a{
-            text-decoration: none;
-            color: white;
-        }
         
         #cont{
             background-image:
@@ -157,7 +181,8 @@
         .img1{
             width: 60px;
         }
-
+		
+		/* 댓글 style*/
         .comment{
             display: flex;
             justify-content: center;
@@ -165,7 +190,8 @@
         .text2{
             padding-top: 20px;
         }
-
+        
+		/*textarea input 스타일*/
         textarea{
             width: 500px;
             height: 110px;
@@ -238,8 +264,9 @@
             width: 75px;
             border-radius: 70%;          
         }
+        
+        /*댓글 입력한 날짜출력 스타일*/
         .date1{
-            /* border: 1px solid rgb(70, 70, 70); */
             border-radius: 15px;
             margin: 11px;
             padding: 1px;
@@ -247,21 +274,26 @@
             color :rgb(113, 113, 113);
             font-size: 13px;
         }
-
+        
+        /* 앨범  < > 용 스타일*/
         #cont3{
-            border: 1px solid white;
-            /* width: 500px; */
-            /* display: flex; */
+            margin-top : 20px;
             text-align: center;
         }
         #cont3_1{
-            border: 1px solid white;
+            /*border: 1px solid white;*/
             width: 900px;
             height: 250px;
             position: relative;
             margin: 15px auto;
             overflow: hidden;
         }
+        
+        /*슬라이드 애니메이션*/
+        #slds{
+        	transition: margin 0.8s;
+        }
+        
         li{
             list-style-type: none;
         }
@@ -276,35 +308,37 @@
             left: 0;
             top: 0;
             width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
-            transition: left 0.5s ease-out; 
-            /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
          }
 
          .clides li{
             float: left;
             margin-right: 25px;
             }
+            
+        /* < > 화살표 */    
         .point{
-            border: 1px solid white;
+            border: 1px solid rgb(98, 98, 98);
             background-color: transparent;
             border-radius: 70%;
-            padding: 2px 3px;
-            /* text-align: center; */
-            /* width: 200px; */
-            /* height: 100px; */
-            font-size: 30px;
+            width : 30px;
+            margin : 10px;
+            padding: 0px 3px;
+            padding-bottom: 3px;
+            font-size: 25px;
+            display: inline-block;
         }
 
         .point:hover{
             background-color: rgba(128, 128, 128, 0.652);
-        }
-
-        .prev{
-            left: 10px;
+            cursor: pointer;
         }
 
         .image{
             width: 190px;
+        }
+        
+        .marLeft{
+        	margin-left: -885px;
         }
     </style>
 </head>
@@ -312,7 +346,6 @@
     <header id ="menu">
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header>
-    <%-- String num = request.getParameter("a.ALBUM_NUM"); --%>
     <div id = "home">
         <div id = "cont" class = "contain">
             <div class = "text1">
@@ -335,13 +368,10 @@
             	String alNum = vo.getAlbum_num();
     	    	String cover = vo.getAlbum_cover();
     			String alname = vo.getAlbum_name();
-    			String into =  vo.getAlbum_into();
     			String artist = vo.getArtist();
             	
-    			String music_num = vo.getMusic_num();
     			String music_name = vo.getMusic_name();
     			String music_link = vo.getMusic_link();
-    			String music_time = vo.getMusic_time();
             	%>
             
             <div id = "cont1">
@@ -356,40 +386,30 @@
             <%} %>
         </div>
         <div id = "cont3">
+                <p class="point prev">&lang;</p>
             <h3 style="text-align: center; margin: 0px; display: inline;">앨범</h3>
-                <span class="point prev">&lang;</span>
-                <span class="point next">&rang;</span>
+                <p class="point next">&rang;</p>
             <div id="cont3_1">
-                <ul class="clides">
+                <ul id = "slds" class="clides">
+                <% for(int h=0; h<Albumlist.size(); h++){ 
+                	AlbumVO vo = Albumlist.get(h);
+                	
+                	String alNum = vo.getAlbum_num();
+        	    	String cover = vo.getAlbum_cover();
+        			String alname = vo.getAlbum_name();
+
+                %>
                     <li>
-                        <img  class="image" src="https://w.namu.la/s/dd10984aec9e0100e8472908ccf9f3d5be391ae2f0e7f962706df43e750fc092d386e38f2f238ca014202108ecc9ee63d7237a18804a56b32c0c0b4f48d65229cf9c0fee9a61326cc53c12f939c2aaeecfcfb8fcf71831154a974db7ca2416fbfa31eec0ca0b899915b8b7e2e2d90a6d">
+                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><img  class="image" src="<%= cover%>"></a>
                         <br>
-                        <span>앨범명</span>
+                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><span><%= alname %></span></a>
                     </li>
-                    <li>
-                        <img  class="image" src="https://w.namu.la/s/dd10984aec9e0100e8472908ccf9f3d5be391ae2f0e7f962706df43e750fc092d386e38f2f238ca014202108ecc9ee63d7237a18804a56b32c0c0b4f48d65229cf9c0fee9a61326cc53c12f939c2aaeecfcfb8fcf71831154a974db7ca2416fbfa31eec0ca0b899915b8b7e2e2d90a6d">
-                        <br>
-                        <span>앨범명</span>
-                    </li>
-                    <li>
-                        <img  class="image" src="https://w.namu.la/s/dd10984aec9e0100e8472908ccf9f3d5be391ae2f0e7f962706df43e750fc092d386e38f2f238ca014202108ecc9ee63d7237a18804a56b32c0c0b4f48d65229cf9c0fee9a61326cc53c12f939c2aaeecfcfb8fcf71831154a974db7ca2416fbfa31eec0ca0b899915b8b7e2e2d90a6d">
-                        <br>
-                        <span>앨범명</span>
-                    </li>
-                    <li>
-                        <img  class="image" src="https://w.namu.la/s/dd10984aec9e0100e8472908ccf9f3d5be391ae2f0e7f962706df43e750fc092d386e38f2f238ca014202108ecc9ee63d7237a18804a56b32c0c0b4f48d65229cf9c0fee9a61326cc53c12f939c2aaeecfcfb8fcf71831154a974db7ca2416fbfa31eec0ca0b899915b8b7e2e2d90a6d">
-                        <br>
-                        <span>앨범명</span>
-                    </li>
-                    <li>
-                        <img  class="image" src="https://w.namu.la/s/dd10984aec9e0100e8472908ccf9f3d5be391ae2f0e7f962706df43e750fc092d386e38f2f238ca014202108ecc9ee63d7237a18804a56b32c0c0b4f48d65229cf9c0fee9a61326cc53c12f939c2aaeecfcfb8fcf71831154a974db7ca2416fbfa31eec0ca0b899915b8b7e2e2d90a6d">
-                        <br>
-                        <span>앨범명</span>
-                    </li>
+                    <%} %>
                 </ul>
             </div>
         </div>
         <div>
+        	<br>
             <h3 style="text-align: center; margin: 0px;">댓글</h3>
             <form name="frmComment">
                 <div class="comment">
@@ -411,7 +431,6 @@
             <hr>
                 <% for(int i= 0; i<list.size(); i++) {
 	    	    	  CommentVO vo = list.get(i);
-	    	    	  
 	    	    	  
 	    	    	  String id = vo.getComment_id();
 	    	    	  String cont = vo.getComment_cont();

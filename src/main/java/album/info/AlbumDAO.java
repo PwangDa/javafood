@@ -136,8 +136,11 @@ public class AlbumDAO {
 				albumVO.setMusic_time(music_time);
 				
 				listAlbum.add(albumVO);
-				
+
 			}
+			
+			pstmt.close();
+			con.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -190,6 +193,9 @@ public class AlbumDAO {
 				listAlbum.add(albumVO);
 				
 			}
+			
+			pstmt.close();
+			con.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
