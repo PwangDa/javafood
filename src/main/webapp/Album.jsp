@@ -40,6 +40,7 @@
 
         img{
             width: 300px;
+        	border-radius: 12px;
         }
 
         .cont1{
