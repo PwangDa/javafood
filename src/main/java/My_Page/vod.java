@@ -14,7 +14,9 @@ public class vod {
 	private String ranking;
 	private String record;
 	private String playtime;
-///////---------login-----------//////////
+	private String rank2;
+
+	///////---------login-----------//////////
 	private String id;
 	private String pw;
 	private String nic;
@@ -105,6 +107,10 @@ public class vod {
 	public String getRanking() {
 		return ranking;
 	}
+	public String getRank2() {
+		return rank2;
+	}
+	
 	public String getPlayTime() {
 		return playtime;
 	}
@@ -129,6 +135,9 @@ public class vod {
 	public void setRanking(String ranking) {
 		this.ranking = ranking;
 		
+	}
+	public void setRank2(String rank2) {
+		this.rank2 = rank2;
 	}
 	public void setPlayTime(String playtime) {
 		this.playtime = playtime;
