@@ -10,6 +10,8 @@
 <head>
 	<%
 		dbon db = new dbon();
+		System.out.println(session.getAttribute("login"));
+		
 	%>
 <meta charset="UTF-8">
 <title>My Page</title>

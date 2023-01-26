@@ -182,6 +182,8 @@
 				System.out.println("페스워드 일치"); %>
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
+				<h1><%=v.getNic() %> 님 환영합니다.</h1>
+				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
 </body>
 </html>
 			<%} 
