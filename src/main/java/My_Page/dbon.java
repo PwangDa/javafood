@@ -146,9 +146,9 @@ public class dbon {
 			rs.next();
 			vod vo = new vod();
 			vo.setLikes(rs.getString("likes"));
-			String a = vo.getLikes();
-			if(a.equals("0")) 	this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = 1 WHERE SONGNUMBER = "+i);
-			else this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = 0 WHERE SONGNUMBER = "+i);
+			int a = Integer.parseInt(vo.getLikes())+1;
+			System.out.println(a);
+			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

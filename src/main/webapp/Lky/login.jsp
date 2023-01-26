@@ -182,8 +182,14 @@
 				System.out.println("페스워드 일치"); %>
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
-				<h1><%=v.getNic() %> 님 환영합니다.</h1>
+				<h1> <input id="time" value="" type="text" readonly/> 초후 마이페이지로 이동됩니다.</h1>
 				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
+				<script>
+                    setInterval (function time(){
+                        
+                        location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp';
+                    },1000)
+				</script>
 </body>
 </html>
 			<%} 
