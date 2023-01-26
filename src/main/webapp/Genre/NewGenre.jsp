@@ -12,8 +12,8 @@
 		dbon db = new dbon();
 	%>
 	<%
-		if(request.getParameter("good")!=null){
-		db.like(request.getParameter("good"));
+		if(request.getParameter("number")!=null){
+		db.like(request.getParameter("number"));
 		}
 	%>
 	<%
