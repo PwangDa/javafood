@@ -11,7 +11,14 @@
 	<%
 		dbon db = new dbon();
 		System.out.println(session.getAttribute("login"));
-		
+		List<vod> a = db.session((String)session.getAttribute("login"));
+		System.out.println(a.get(0).getId());
+		System.out.println(a.get(0).getPw());
+		System.out.println(a.get(0).getNic());
+		System.out.println(a.get(0).getPn());
+		System.out.println(a.get(0).getPhone());
+		System.out.println(a.get(0).getEmail());
+		System.out.println(a.get(0).getHome());
 	%>
 <meta charset="UTF-8">
 <title>My Page</title>

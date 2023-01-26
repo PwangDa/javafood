@@ -30,7 +30,24 @@ public class dbon {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void  session() {
+	public List<vod> session(String login) {
+		List<vod> list = new ArrayList<vod>();
+		try {
+			ResultSet rs = this.dataFactory.getConnection().prepareStatement("SELECT *  FROM login WHERE ID = '"+login+"'").executeQuery();
+			vod vo = new vod();
+			rs.next();
+			vo.setId(rs.getString("id"));
+			vo.setPw(rs.getString("pwd"));
+			vo.setNic(rs.getString("nic"));
+			vo.setPn(rs.getString("pn"));
+			vo.setPhone(rs.getString("phone"));
+			vo.setEmail(rs.getString("email"));
+			vo.setHome(rs.getString("home"));
+			list.add(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
