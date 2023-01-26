@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <meta charset="UTF-8">
 <%
 	dbon db = new dbon(); 
@@ -35,7 +36,6 @@
     table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
    .tr{height: 80px; }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
         <h1>javafood 회원가입</h1>
@@ -182,13 +182,19 @@
 				System.out.println("페스워드 일치"); %>
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
-				<h1> <input id="time" value="" type="text" readonly/> 초후 마이페이지로 이동됩니다.</h1>
+				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
 				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
 				<script>
-                    setInterval (function time(){
-                        let dd
-                        location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp';
-                    },3000)
+				let time=5;
+                $("#time").append(time);
+                    setInterval (function(){
+                        console.log(time);
+                        time--;
+                        $("#time").text(time);
+                    	if (time==0){
+                            location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp';
+                        }
+                    },1000)
 				</script>
 </body>
 </html>
