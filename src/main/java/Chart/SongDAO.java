@@ -45,8 +45,11 @@ public class SongDAO {
 		try {
 			this.con = dataFactory.getConnection();
 			
-			   
-			   String query = "SELECT * FROM song";
+			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
+			   String query = " SELECT s.*,songname ";
+			   		  query += " (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s";
+			   		  query += " ORDER BY RANK2 DESC";
+			   		  
 			   		
 			   		 
 			   System.out.println(query);
@@ -57,6 +60,7 @@ public class SongDAO {
 			   while(rs.next()) {
 				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
+				   String rank2 = rs.getString("rank2");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -69,6 +73,7 @@ public class SongDAO {
 				   vod vo = new vod();
 				   vo.setSongnumber(songnumber);
 				   vo.setRanking(ranking);
+				   vo.setRanking(rank2);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
 				   vo.setBygenre(bygenre);
@@ -191,6 +196,7 @@ public class SongDAO {
 			
 			String songnumber = vo.getSongnumber();
 			String ranking = vo.getRanking();
+			String rank2 = vo.getRank2();
 			String songname = vo.getSongname();
 			String artistname = vo.getArtistname();
 			String bygenre = vo.getBygenre();
@@ -208,12 +214,13 @@ public class SongDAO {
 			
 			pstmt.setString(1, songnumber);
 			pstmt.setString(2, ranking);
-			pstmt.setString(3, songname);
-			pstmt.setString(4, artistname);
-			pstmt.setString(5, bygenre);
-			pstmt.setString(6, hits);
-			pstmt.setString(7, likes);
-			pstmt.setString(8, playtime);
+			pstmt.setString(3, rank2);
+			pstmt.setString(4, songname);
+			pstmt.setString(5, artistname);
+			pstmt.setString(6, bygenre);
+			pstmt.setString(7, hits);
+			pstmt.setString(8, likes);
+			pstmt.setString(9, playtime);
 			
 			
 			

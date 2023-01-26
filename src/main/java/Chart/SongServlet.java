@@ -296,6 +296,7 @@ public class SongServlet extends HttpServlet {
 		out.println("<table>");
 		out.println("	<tr>");
 		out.println("		<th>번호</th>");
+		out.println("		<th>좋아요+조회수 합산</th>");
 		out.println("		<th>순위</th>");
 		out.println("		<th>노래제목</th>");
 		out.println("		<th>아티스트 명</th>");
@@ -310,6 +311,7 @@ public class SongServlet extends HttpServlet {
 	    	  vod vo = list.get(i);
 	    	  
 	    	  String songnumber = vo.getSongnumber();
+	    	  String rank2 = vo.getRank2();
 			  String ranking = vo.getRanking();
 			  String songname = vo.getSongname();
 			  String artistname = vo.getArtistname();
@@ -321,7 +323,8 @@ public class SongServlet extends HttpServlet {
 	          
 			  out.println("<tr>");
 			  out.println("		<td>"+ songnumber +"</td>");
-			  out.println("		<td>"+i+"</td>");
+			  out.println("		<td>"+ rank2 +"</td>");
+			  out.println("		<td>"+ranking+"</td>");
 			  out.println("		<td>"+ songname +"</td>");
 			  out.println("		<td>"+ artistname +"</td>");
 			  out.println("		<td>"+ bygenre +"</td>");
