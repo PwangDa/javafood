@@ -286,9 +286,39 @@ public class SongServlet extends HttpServlet {
 		List<vod> list = dao.listsong();
 		out.println("<html>");
 		out.println("<head>");
+		out.println("<script>");
+		out.println("function refresh(){");
+		out.println("setTimeout('location.reload()',300000);");
+		out.println("}");
+		out.println("function nowtime() {");
+		out.println("let now = new Date();");
+		out.println("let hour = now.getHours();");
+		out.println("let minute = now.getMinutes();");
+		out.println("let second = now.getSeconds();");
+		out.println("if (hour < 10) {");
+		out.println("hour = '0' + hour;");
+		out.println("}");
+		out.println("if (minute < 10) {");
+		out.println("minute = '0' + minute;");
+		out.println("}");
+		out.println("if (second < 10) {");
+		out.println("second = '0' + second;");
+		out.println("}");
+		out.println("document.getElementById('timebox').value = hour + ':' + minute + ':'");
+		out.println("+ second;");
+		out.println("}");
+		out.println("window.onload = function() {");
+		out.println("nowtime();");
+		out.println("setInterval(function() {");
+		out.println("nowtime();");
+		out.println("}, 1000);");
+		out.println("refresh();");
+		out.println("}");
+		out.println("</script>");
 		out.println("	<style>");
 		out.println("		th, td { ");
 		out.println("			border: 1px solid black;");
+		out.println("			text-align: center;");
 		out.println("		}");
 		out.println("	</style>");
 		out.println("</head>");
@@ -324,7 +354,7 @@ public class SongServlet extends HttpServlet {
 			  out.println("<tr>");
 			  out.println("		<td>"+ songnumber +"</td>");
 			  out.println("		<td>"+ rank2 +"</td>");
-			  out.println("		<td>"+ranking+"</td>");
+			  out.println("		<td>"+(i+1)+"</td>");
 			  out.println("		<td>"+ songname +"</td>");
 			  out.println("		<td>"+ artistname +"</td>");
 			  out.println("		<td>"+ bygenre +"</td>");
@@ -335,17 +365,20 @@ public class SongServlet extends HttpServlet {
 //			  out.println("		<td><a href='/javafood_team/song?command=SongDetail&songnumber="+ songnumber +"&ranking="+ ranking +"&songname="+ songname +"&artistname="+ artistname +"&bygenre="+ bygenre +"&hits="+ hits +"&likes="+ likes+"'>전체수정</a></td>");
 //			  out.println("		<td><a href=\"/javafood_team/song?command=SongDetail3&songname="+ songname +"\">수정</a></td>");
 //			  out.println("		<td><a href=\"/javafood_team/song?command=Delsong&songname="+ songname +"\">삭제</a></td>");
-//			  out.println("</tr>");
+			  out.println("</tr>");
 	      }
 	      out.println("</table>");
 			
 	      out.println("<a href='/javafood_team/Song.jsp'>인기 차트</a>");
+	      out.println("<div id='hour'>");
+	      out.println("<input type='text' size='10' id='timebox'> 현재시각 기준");
+	      out.println("</div>");
 //	      out.println("<br><a href='/javafood_team/UpdateSong.jsp'>음악리스트 수정하기</a>");
 		
 	      out.println("</body>");
 	      out.println("</html>");
 	     
-	      //to do : 조회수(*1) + 좋아요(*1.5) 값을 순위(1,2,3등)으로 매겨서 table에 표시하기(현재 null값 출력, dbeaver에 ranking 테이블 있음)
+	     
 	     
 	      
 	      
