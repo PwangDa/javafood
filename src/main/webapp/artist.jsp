@@ -431,7 +431,7 @@
 </head>
 <body  onscroll="headerbarToggle()">
     <header id ="menu" >
-        <span style="font-size: 34px; font-weight: 600; cursor: pointer;">Music</span>
+        <span style="font-size: 34px; font-weight: 600; cursor: pointer;">JV Music</span>
         <div class="menu-box">
             <span class="main main_1" >홈</span>
             <span class="main main_2" >인기차트</span>
