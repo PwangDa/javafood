@@ -182,10 +182,10 @@
         %>
         <div class= "musiclist">
             <div class="cont2">
-                <div class="left_item"><%= music_num%></div>
-                <div class="left_item left_name"><a href="<%= music_link %>"><%= music_name %></a></div>
+                <div class="left_item" style="color: rgb(187, 187, 187);"><%= music_num%></div>
+                <div class="left_item left_name"><a href="<%= music_link %>"><strong><%= music_name %></strong></a></div>
                 <div class="right_item">
-                <span class="chek1"><%= music_time %></span>
+                <span class="chek1" style="color: rgb(187, 187, 187);"><%= music_time %></span>
                 <input type="checkbox" class="but">
                 </div>
             </div>		
