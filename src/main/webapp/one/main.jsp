@@ -151,25 +151,30 @@
             </tr>
 
             <tr>
-                <td id="log">로그인</td>
+                <td id="log"><a href="http://localhost:8080/javafood_team/Lky/login.jsp">로그인</a>
+                </td>
                 
-                <td id="my">마이페이지</td>
-                <td id="cha">인기차트</td>
+                <td id="my"><a href="http://localhost:8080/javafood_team/Lky/My_page.jsp">마이페이지</a></td>
+
+                <td id="cha"><a href="http://localhost:8080/javafood_team/Song.jsp">인기차트</a></td>
             </tr>
 
                 <tr>
-                 <td id="list">재생목록</td>
+                 <td id="list"><a href="http://localhost:8080/javafood_team/Song.jsp">재생목록</a>
+                </td>
+
                  </tr>
 
                  <tr>
-                    <td id="ac">장르별 목록</td>
-                    </tr>
+                    <td id="ac"><a href="http://localhost:8080/javafood_team/Genre/Genre.jsp">장르별목록</a>
+                    </td>
+                  </tr>
+
                     <tr>
-                        <td id="al">앨범</td>
+                        <td id="al"><a href="http://localhost:8080/javafood_team/artistcomment">앨범</a></td>
                         </tr>
 
                         <img id="dog" src="giphy (1).gif">
-<a href="http://localhost:8080/javafood_team/Lky/login.jsp">새로고침</a>
 
     
 </body>
