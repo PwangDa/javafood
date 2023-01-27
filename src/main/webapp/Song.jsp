@@ -58,6 +58,27 @@ if("songcomment".equals(command)) {
 } */
 %>
 
+
+<%
+		dbon db = new dbon();
+		System.out.println(session.getAttribute("login"));
+		if(session.getAttribute("login")==null){%>
+			<script>
+				alert('로그인을 하셔야합니다.')
+                location.href='http://localhost:8080/javafood_team/Lky/login.jsp';
+			</script>
+		<%}else{
+		List<vod> a = db.session((String)session.getAttribute("login"));
+		System.out.println("id : "+a.get(0).getId());
+		System.out.println("Pw : "+a.get(0).getPw());
+		System.out.println("Nic : "+a.get(0).getNic());
+		System.out.println("Pn : "+a.get(0).getPn());
+		System.out.println("Phone : "+a.get(0).getPhone());
+		System.out.println("Email : "+a.get(0).getEmail());
+		System.out.println("Home : "+a.get(0).getHome());
+	%>
+
+
 <script type="text/javascript">
 
 	function refresh(){
@@ -100,6 +121,8 @@ if("songcomment".equals(command)) {
 		
 		refresh();
 	}
+	
+	
 </script>
 <style>
 body {
@@ -153,7 +176,7 @@ td {
 		<strong>JavaFood Music</strong>
 	</header>
 	<div id="div">
-		<a href='/javafood_team/Lky/login.jsp'>로그인 페이지로 이동</a>
+		<a href='/javafood_team/one/main.jsp'>메인 페이지로 이동</a>
 	</div>
 	<div id="hour">
 		<input type="text" size="10" id="timebox"> 현재시각 기준
@@ -219,7 +242,8 @@ td {
 				e.printStackTrace();
 			}
 		}
-		%>
+		}%>
+	
 	</table>
 </body>
 </html>
