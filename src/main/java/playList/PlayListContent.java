@@ -27,19 +27,54 @@ public class PlayListContent extends HttpServlet
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset = utf-8;");
 		
+		
 		//주소로 넘어온 값들 받기
 //		String req_id = request.getParameter("id");
 //		System.out.println("id : " + req_id); //확인용
 		int req_PL_ID = Integer.parseInt(request.getParameter("PL_ID") );
-		System.out.println("req_PL_ID : " + req_PL_ID); //확인용
+		String doDeleteSong = request.getParameter("doDeleteSong");
+//		System.out.println("req_PL_ID : " + req_PL_ID); //확인용
 		
 		PrintWriter out = response.getWriter();
 		
+		//리스트 추가하기
+		if("do".equals(doDeleteSong) )
+		{
+			//주소로 넘어온 값을 받기
+			String deleteNumber = request.getParameter("res.ListNumber");
+					
+			//쿼리문 작성
+			String delSong_query = "DELETE FROM playList_Content"
+					+ " WHERE ListNumber = " + deleteNumber;
+			System.out.println("delSong_query : " + delSong_query); //확인용
+			//////////////////////////////////////////////////////////////
+					
+			//쿼리 실행
+			try {
+				//커넥션 풀 작동 코드
+				Context ctx = new InitialContext();
+				Context envContext = (Context) ctx.lookup("java:/comp/env");
+				DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle2");
+				Connection con = dataFactory.getConnection();
+				/////////////////////////////////////
+						
+				//DB 접속 코드
+				PreparedStatement pstmt = con.prepareStatement(delSong_query);
+				ResultSet rs = pstmt.executeQuery();
+				/////////////////////////////////////////////
+			}
+			catch (NamingException | SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		/////////////////////////////////////////////////////
+		
 		//아래 쿼리는 DB가 정식적으로 만들어 졌을 때 다시 수정할 것.
 		String query = "SELECT *"
-				+ " FROM playList_Content pc"
-				+ " JOIN playList pl ON (pc.PL_ID = pl.PL_ID)"
-				+ " JOIN Song s ON (pc.SONGNUMBER = s.SONGNUMBER)"
+				+ " FROM playList_Content plc"
+				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
+				+ " JOIN Song s ON (plc.SONGNUMBER = s.SONGNUMBER)"
 				+ " ORDER BY LISTNUMBER";
 //		System.out.println("query : " + query); //확인용
 		
@@ -216,7 +251,7 @@ public class PlayListContent extends HttpServlet
 			out.println("<body>");
 			
 			int PL_ID;
-//			int PL_listNumber; //DB에선 필요하나, 자바에선 필요없음.
+			int PL_listNumber;
 			String songName;
 			String PL_title;
 			String PL_explain;
@@ -229,7 +264,7 @@ public class PlayListContent extends HttpServlet
 //				System.out.println("while(rs.next() ) 실행됨."); //확인용
 				
 				PL_ID = rs.getInt("PL_ID");
-//				PL_listNumber = rs.getInt("LISTNUMBER");
+				PL_listNumber = rs.getInt("LISTNUMBER");
 				songName = rs.getString("SONGNAME");
 				PL_title = rs.getString("PL_TITLE");
 				PL_explain = rs.getString("PL_EXPLAIN");
@@ -268,11 +303,12 @@ public class PlayListContent extends HttpServlet
 							+ "                \uC5D0\uC787\r\n"
 							+ "            </div>\r\n"
 							+ "			   <span class=\"deleteSong\">\r\n"
-							+ "                <form name=\"PLC_delete_Song\">\r\n"
+							+ "                <form class=\"PLC_delete_Song\">\r\n"
 							+ "                    <img class=\"sDelete_icon\" src=\"https://popcat.click/twitter-card.jpg\" width=\"25\">\r\n"
 							+ "                    <img class=\"sDelete_icon2 hidden\" src=\"https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM\" width=\"25\">\r\n"
 							+ "                    <input type=\"hidden\" name=\"doDeleteSong\" value=\"do\">\r\n"
-							+ "                    <input type=\"hidden\" name=\"res.ListNumber\" value=\"YoGiSeo JAVA CODE JJaGi\">\r\n"
+							+ "                    <input type=\"hidden\" name=\"res.ListNumber\" value=\"" + PL_listNumber + "\">\r\n"
+							+ "					   <input type=\"hidden\" name=\"PL_ID\" value='" + req_PL_ID +"'>"
 							+ "                </form>\r\n"
 							+ "            </span>"
 							+ "        </div>"
@@ -286,11 +322,10 @@ public class PlayListContent extends HttpServlet
 				}
 			}
 			
-			
 			while(rs.next() )
 			{
 				PL_ID = rs.getInt("PL_ID");
-//				PL_listNumber = rs.getInt("LISTNUMBER");
+				PL_listNumber = rs.getInt("LISTNUMBER");
 				songName = rs.getString("SONGNAME");
 				PL_title = rs.getString("PL_TITLE");
 				PL_explain = rs.getString("PL_EXPLAIN");
@@ -311,11 +346,12 @@ public class PlayListContent extends HttpServlet
 							+ "                \uC5D0\uC787\r\n"
 							+ "            </div>\r\n"
 							+ "			   <span class=\"deleteSong\">\r\n"
-							+ "                <form name=\"PLC_delete_Song\">\r\n"
+							+ "                <form class=\"PLC_delete_Song\">\r\n"
 							+ "                    <img class=\"sDelete_icon\" src=\"https://popcat.click/twitter-card.jpg\" width=\"25\">\r\n"
 							+ "                    <img class=\"sDelete_icon2 hidden\" src=\"https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM\" width=\"25\">\r\n"
 							+ "                    <input type=\"hidden\" name=\"doDeleteSong\" value=\"do\">\r\n"
-							+ "                    <input type=\"hidden\" name=\"res.ListNumber\" value=\"YoGiSeo JAVA CODE JJaGi\">\r\n"
+							+ "                    <input type=\"hidden\" name=\"res.ListNumber\" value=\"" + PL_listNumber + "\">\r\n"
+							+ "					   <input type=\"hidden\" name=\"PL_ID\" value='" + req_PL_ID +"'>"
 							+ "                </form>\r\n"
 							+ "            </span>"
 							+ "        </div>"
@@ -345,64 +381,59 @@ public class PlayListContent extends HttpServlet
 			
 			out.println
 			("</div><script>\r\n"
-					+ "            document.querySelector(\"img.delete_icon\").addEventListener(\"mouseover\", ()=>\r\n"
+					+ "        document.querySelector(\"img.delete_icon\").addEventListener(\"mouseover\", ()=>\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelector(\"img.delete_icon\").classList.toggle(\"hidden\");\r\n"
+					+ "            document.querySelector(\"img.delete_icon2\").classList.toggle(\"hidden\");\r\n"
+					+ "        });\r\n"
+					+ "    \r\n"
+					+ "        document.querySelector(\"img.delete_icon\").addEventListener(\"mouseout\", ()=>\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelector(\"img.delete_icon\").classList.toggle(\"hidden\");\r\n"
+					+ "            document.querySelector(\"img.delete_icon2\").classList.toggle(\"hidden\");\r\n"
+					+ "        });\r\n"
+					+ "    \r\n"
+					+ "        function fn_deleteList()\r\n"
+					+ "        {\r\n"
+					+ "            PLC_delete_list.method='get';\r\n"
+					+ "            PLC_delete_list.action='pl';\r\n"
+					+ "            PLC_delete_list.submit();\r\n"
+					+ "        }\r\n"
+					+ "        document.querySelector(\"span.delete\").addEventListener('click', ()=>\r\n"
+					+ "        {\r\n"
+					+ "            if(confirm(\"\uC815\uB9D0\uB85C \uD574\uB2F9 \uD50C\uB808\uC774 \uB9AC\uC2A4\uD2B8\uB97C \uC0AD\uC81C\uD558\uACA0\uC2B5\uB2C8\uAE4C?\") )\r\n"
 					+ "            {\r\n"
-					+ "                document.querySelector(\"img.delete_icon\").classList.toggle(\"hidden\");\r\n"
-					+ "                document.querySelector(\"img.delete_icon2\").classList.toggle(\"hidden\");\r\n"
+					+ "    \r\n"
+					+ "                fn_deleteList();\r\n"
+					+ "            }\r\n"
+					+ "        });\r\n"
+					+ "\r\n"
+					+ "        for(let i = 0; i < document.querySelectorAll(\"img.sDelete_icon\").length; i++)\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelectorAll(\"img.sDelete_icon\")[i].addEventListener(\"mouseover\", ()=>\r\n"
+					+ "            {\r\n"
+					+ "                document.querySelectorAll(\"img.sDelete_icon\")[i].classList.toggle(\"hidden\");\r\n"
+					+ "                document.querySelectorAll(\"img.sDelete_icon2\")[i].classList.toggle(\"hidden\");\r\n"
 					+ "            });\r\n"
 					+ "    \r\n"
-					+ "            document.querySelector(\"img.delete_icon\").addEventListener(\"mouseout\", ()=>\r\n"
+					+ "            document.querySelectorAll(\"img.sDelete_icon\")[i].addEventListener(\"mouseout\", ()=>\r\n"
 					+ "            {\r\n"
-					+ "                document.querySelector(\"img.delete_icon\").classList.toggle(\"hidden\");\r\n"
-					+ "                document.querySelector(\"img.delete_icon2\").classList.toggle(\"hidden\");\r\n"
+					+ "                document.querySelectorAll(\"img.sDelete_icon\")[i].classList.toggle(\"hidden\");\r\n"
+					+ "                document.querySelectorAll(\"img.sDelete_icon2\")[i].classList.toggle(\"hidden\");\r\n"
 					+ "            });\r\n"
-					+ "    \r\n"
-					+ "            document.querySelector(\"span.delete\").addEventListener('click', ()=>\r\n"
+					+ "        }\r\n"
+					+ "        for(let i = 0; i < document.querySelectorAll(\"span.deleteSong\").length; i++)\r\n"
+					+ "        {\r\n"
+					+ "            document.querySelectorAll(\"span.deleteSong form\")[i].addEventListener('click', (event)=>\r\n"
 					+ "            {\r\n"
-					+ "                if(confirm(\"\uC815\uB9D0\uB85C \uD574\uB2F9 \uD50C\uB808\uC774 \uB9AC\uC2A4\uD2B8\uB97C \uC0AD\uC81C\uD558\uACA0\uC2B5\uB2C8\uAE4C?\") )\r\n"
+					+ "                if(confirm(\"\uC815\uB9D0\uB85C \uD574\uB2F9 \uACE1\uC744 \uB9AC\uC2A4\uD2B8\uC5D0\uC11C \uC0AD\uC81C\uD558\uACA0\uC2B5\uB2C8\uAE4C?\") )\r\n"
 					+ "                {\r\n"
-					+ "                    function fn_deleteList()\r\n"
-					+ "                    {\r\n"
-					+ "                        PLC_delete_list.method='get';\r\n"
-					+ "                        PLC_delete_list.action='pl';\r\n"
-					+ "                        PLC_delete_list.submit();\r\n"
-					+ "                    }\r\n"
-					+ "    \r\n"
-					+ "                    fn_deleteList();\r\n"
+					+ "                    event.currentTarget.method='get';\r\n"
+					+ "                    event.currentTarget.action='plc';\r\n"
+					+ "                    event.currentTarget.submit();\r\n"
 					+ "                }\r\n"
 					+ "            });\r\n"
-					+ "            \r\n"
-					+ "            for(let i = 0; i < document.querySelectorAll(\"img.sDelete_icon\").length; i++)\r\n"
-					+ "            {\r\n"
-					+ "                document.querySelectorAll(\"img.sDelete_icon\")[i].addEventListener(\"mouseover\", ()=>\r\n"
-					+ "                {\r\n"
-					+ "                    document.querySelectorAll(\"img.sDelete_icon\")[i].classList.toggle(\"hidden\");\r\n"
-					+ "                    document.querySelectorAll(\"img.sDelete_icon2\")[i].classList.toggle(\"hidden\");\r\n"
-					+ "                });\r\n"
-					+ "    \r\n"
-					+ "                document.querySelectorAll(\"img.sDelete_icon\")[i].addEventListener(\"mouseout\", ()=>\r\n"
-					+ "                {\r\n"
-					+ "                    document.querySelectorAll(\"img.sDelete_icon\")[i].classList.toggle(\"hidden\");\r\n"
-					+ "                    document.querySelectorAll(\"img.sDelete_icon2\")[i].classList.toggle(\"hidden\");\r\n"
-					+ "                });\r\n"
-					+ "            }\r\n"
-					+ "\r\n"
-					+ "            for(let i = 0; i < document.querySelectorAll(\"span.deleteSong\").length; i++)\r\n"
-					+ "            {\r\n"
-					+ "                document.querySelectorAll(\"span.deleteSong\")[i].addEventListener('click', ()=>\r\n"
-					+ "                {\r\n"
-					+ "                    if(confirm(\"\uC815\uB9D0\uB85C \uD574\uB2F9 \uACE1\uC744 \uB9AC\uC2A4\uD2B8\uC5D0\uC11C \uC0AD\uC81C\uD558\uACA0\uC2B5\uB2C8\uAE4C?\") )\r\n"
-					+ "                    {\r\n"
-					+ "                        function fn_deleteSong()\r\n"
-					+ "                        {\r\n"
-					+ "                            PLC_delete_list.method='get';\r\n"
-					+ "                            PLC_delete_list.action='pl';\r\n"
-					+ "                            PLC_delete_list.submit();\r\n"
-					+ "                        }\r\n"
-					+ "                        fn_deleteSong();\r\n"
-					+ "                    }\r\n"
-					+ "                });\r\n"
-					+ "            }\r\n"
+					+ "        }\r\n"
 					+ "    </script>");
 			
 			out.println("</body></html>");
