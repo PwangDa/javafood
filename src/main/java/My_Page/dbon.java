@@ -45,6 +45,7 @@ public class dbon {
 			vo.setHome(rs.getString("home"));
 			vo.setMyimg(rs.getString("img"));
 			list.add(vo);
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +71,9 @@ public class dbon {
 				vo.setMyimg(rs.getString("img"));
 				list.add(vo);
 			}
+			this.con.close();
+			this.pstmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,9 +82,11 @@ public class dbon {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void addId(vod vo) {
 		try {
-			con = this.dataFactory.getConnection();
-			pstmt = con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"',null)");
-			pstmt.executeUpdate();
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"',null)");
+			this.pstmt.executeUpdate();
+			this.con.close();
+			this.pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,8 +95,8 @@ public class dbon {
 	public List<vod> list () {
 		List<vod> list = new ArrayList<vod>();
 		try {
-			con = this.dataFactory.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM  song");
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vod vo = new vod();
@@ -105,6 +111,9 @@ public class dbon {
 
 				list.add(vo);
 			}
+			this.con.close();
+			this.pstmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -119,9 +128,9 @@ public class dbon {
 	public List<vod> Search(String option, String text) {
 		List<vod> list = new ArrayList<>();
 		try {
-			con = this.dataFactory.getConnection();
-			if("man".equals(option)) pstmt = con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("sing".equals(option)) pstmt = con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
+			this.con = this.dataFactory.getConnection();
+			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vod vo = new vod();
@@ -134,6 +143,10 @@ public class dbon {
 				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
+			this.con.close();
+			this.pstmt.close();
+			rs.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -142,8 +155,8 @@ public class dbon {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void like(String i) {
 		try {
-			con=this.dataFactory.getConnection();
-			this.pstmt = con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
+			this.con=this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			vod vo = new vod();
@@ -151,7 +164,10 @@ public class dbon {
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
 			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
-			pstmt.executeUpdate();
+			this.pstmt.executeUpdate();
+			this.con.close();
+			this.pstmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -162,11 +178,11 @@ public class dbon {
 		
 		
 		try {
-			con = dataFactory.getConnection();
+			this.con = this.dataFactory.getConnection();
 			String genre = " SELECT * FROM  song";
 			genre += " where bygenre = ?";
-			pstmt = con.prepareStatement (genre);
-			pstmt.setString(1, a);
+			this.pstmt = con.prepareStatement (genre);
+			this.pstmt.setString(1, a);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vod vo = new vod();
@@ -181,6 +197,8 @@ public class dbon {
 				list.add(vo);
 			}
 			this.con.close();
+			this.pstmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

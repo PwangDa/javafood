@@ -100,16 +100,40 @@
         <div class="body"></div>
         <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                $("#butt1").on("click",function(){
-                    let id = $('#Id1').val();
-                    let ii;
-                    let q = 0;
-                    <%
-                    	for(vod v:vo){%>
-                    		ii='<%=v.getId()%>'
-                    		ii==id?q++:q;
-                    	<%}%>
-                    q!=0?alert('사용중인 아이디 입니다.'):alert('생성 가능');
+                    let c;
+                    function aj(id){
+                        let xml = new XMLHttpRequest();
+                        xml.open('get','http://localhost:8080/javafood_team/aj?'+id);
+                        xml.send();
+                        xml.onload=function(){
+                            console.log(xml.responseText);
+                        	c=xml.responseText;
+                        	console.log("c1 : "+c);
+                        }
+                    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					function name() {
+						
+					}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                 $("#butt1").on("click",function(){
+//                     let id = $('#Id1').val();
+//                     let ii;
+//                     let q = 0;
+<%--                     <% --%>
+<%--                     	for(vod v:vo){%> --%>
+<%--                     		ii='<%=v.getId()%>' --%>
+//                     		ii==id?q++:q;
+<%--                     	<%}%> --%>
+//                     q!=0?alert('사용중인 아이디 입니다.'):alert('생성 가능');
+//                 })
+				
+				$('#butt1').on('click',function(){
+					let a = "id="+$('#Id1').val();
+					aj(a);
+					console.log("c2 : "+c);
+// 					if()console.log("123");
+// 					if()console.log("321");
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 $("#butt2").on("click",function(){
@@ -175,14 +199,17 @@
 <title>javafood</title>
 </head>
 <body>
-	<% for(vod v:vo){
+	<% int a =0;
+		for(vod v:vo){
 		if(request.getParameter("ID").equals(v.getId())){
 			System.out.println("아이디 일치");
+			a++;
 			if(request.getParameter("PW").equals(v.getPw())){
-				System.out.println("페스워드 일치"); %>
+				System.out.println("페스워드 일치");a++; %>
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
 				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
+				<a href="http://localhost:8080/javafood_team/Song.jsp"><h1>5초안에 누르시오(Java Food Music)</h1></a>
 				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
 				<script>
 				let time=5;
@@ -198,9 +225,12 @@
 				</script>
 </body>
 </html>
-			<%} 
-		} 
-	}%>
+			<%}
+		}
+	}
+	if(a==0){%> <script>alert('아이디가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
+	else if(a==1){%> <script>alert('페스워드가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
+	%>
 <%}else {%>
 <title>javafood 로그인</title>
 <style>
