@@ -175,11 +175,13 @@
 <title>javafood</title>
 </head>
 <body>
-	<% for(vod v:vo){
+	<% int a =0;
+		for(vod v:vo){
 		if(request.getParameter("ID").equals(v.getId())){
 			System.out.println("아이디 일치");
+			a++;
 			if(request.getParameter("PW").equals(v.getPw())){
-				System.out.println("페스워드 일치"); %>
+				System.out.println("페스워드 일치");a++; %>
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
 				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
@@ -198,9 +200,12 @@
 				</script>
 </body>
 </html>
-			<%} 
-		} 
-	}%>
+			<%}
+		}
+	}
+	if(a==0){%> <script>alert('아이디가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
+	else if(a==1){%> <script>alert('페스워드가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
+	%>
 <%}else {%>
 <title>javafood 로그인</title>
 <style>

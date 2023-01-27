@@ -31,7 +31,7 @@
  <style>      
          body{background-color :black; cursor: url("https://zrr.kr/Wlm3"), auto;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
-        .head{position: sticky;top:0px; height: 100px; background-color: black; color: white;}
+        .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;}
         .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
         .right{line-height: 80px; width: 11%;float: right; background-image:url(<%=a.get(0).getMyimg()%>); background-repeat: no-repeat; background-size: cover;background-position: center; }
