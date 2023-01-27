@@ -51,7 +51,7 @@ public class PlayList extends HttpServlet
 					+ "'" + addList_title + "', "
 					+ "'" + addList_explain + "'"
 					+ ")";
-			System.out.println("addList_query : " + addList_query); //확인용
+//			System.out.println("addList_query : " + addList_query); //확인용
 			//////////////////////////////////////////////////////////////
 			
 			//쿼리 실행
