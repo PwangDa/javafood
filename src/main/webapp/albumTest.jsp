@@ -21,10 +21,6 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
         let checkbox = document.querySelectorAll(".but");
         let cont2 = document.getElementsByClassName("cont2");
 
-        let btn1 = document.querySelector(".btn1");
-        let btn2 = document.querySelector(".btn2");
-        let btn3 = document.querySelector(".btn3");
-
         for(let x=0; x<checkbox.length; x++){
             checkbox[x].addEventListener('click', function(event){
                 //부모의 부모가져오기
@@ -41,57 +37,8 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
                     }
             }
             });
-
         }
         
-        
-        // btn1.addEventListener('click', function(event){
-        //     //부모의 부모가져오기
-        //     // console.log("커렌트타켓"+event.currentTarget.parentNode.parentNode);
-        //     let checked = btn1.checked;
-
-        //     for(let i=0; i<cont2.length; i++){
-        //         if(checked == true){
-        //             console.log(checked);
-        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
-        //         }else if(checked == false){
-        //             console.log(checked);
-        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
-        //         }
-        // }
-        // });
-
-        // btn2.addEventListener('click', function(event){
-        //     let checked = btn2.checked;
-        //     for(let i=0; i<cont2.length; i++){
-        //         if(checked == true){
-        //             console.log(checked);
-        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
-        //         }else if(checked == false){
-        //             console.log(checked);
-        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
-        //         }
-        // }
-        // });
-
-        // btn3.addEventListener('click', function(event){
-        //     let checked = btn3.checked;
-        //     for(let i=0; i<cont2.length; i++){
-        //         if(checked == true){
-        //             console.log(checked);
-        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
-        //         }else if(checked == false){
-        //             console.log(checked);
-        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
-        //         }
-        // }
-        // });
-
-
-
-
-
-
 	}
 
 </script>
@@ -231,7 +178,7 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
 
         .cont1{
             display: flex;
-            margin-bottom: 26px;
+            margin-bottom: 29px;
         }
         .cont1_1{
             /* display: inline-block; */
@@ -255,9 +202,6 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
             cursor: pointer;
         }
 
-        .musiclist{
-            /* margin: 20px 0px; */
-        }
         .cont2{
             display: flex;
             height: 50px;
