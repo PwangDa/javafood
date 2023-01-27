@@ -178,7 +178,7 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
 
         .cont1{
             display: flex;
-            margin-bottom: 26px;
+            margin-bottom: 29px;
         }
         .cont1_1{
             /* display: inline-block; */
@@ -202,9 +202,6 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
             cursor: pointer;
         }
 
-        .musiclist{
-            /* margin: 20px 0px; */
-        }
         .cont2{
             display: flex;
             height: 50px;
