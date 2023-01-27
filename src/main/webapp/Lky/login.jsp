@@ -46,6 +46,7 @@
             <th>아이디 : </th>
             <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
             <td><input type="button" id="butt1" value="중복 확인"></td>
+            <td><input type="checkbox" id="ch1"></td>
         </tr>
         <tr>
             <th>비밀번호 1 :  </th>
@@ -100,7 +101,7 @@
         <div class="body"></div>
         <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    let c=0;
+                    let c= false;
                     function aj(id, callback){
                         let xml = new XMLHttpRequest();
                         xml.open('get','http://localhost:8080/javafood_team/aj?'+id);
@@ -121,7 +122,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     function fn(call){
                     	console.log("z : ",call);
-                    	c++;
+                        function(){
+                            $('#ch1').trigger
+                        }
                     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				$('#butt1').on('click',function(){
@@ -195,7 +198,6 @@
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
 				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
-				<a href="http://localhost:8080/javafood_team/Song.jsp"><h1>5초안에 누르시오(Java Food Music)</h1></a>
 				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
 				<script>
 				let time=5;
@@ -205,7 +207,7 @@
                         time--;
                         $("#time").text(time);
                     	if (time==0){
-                            location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp';
+                            location.href='http://localhost:8080/javafood_team/one/main.jsp';
                         }
                     },1000)
 				</script>
