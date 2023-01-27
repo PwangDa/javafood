@@ -269,7 +269,7 @@ public class PlayList extends HttpServlet
 			out.println
 			("<body>\r\n"
 					//회원목록이 생성되면 아래의 아이디 부분을 수정할 것.
-					+ "    <div class=\"title\"><h1> " + "아이디 : 아직 회원목록이 없어서 쓰는 임시 아이디." + "님의 플레이 리스트 </h1></div><br><hr>\r\n"
+					+ "    <div class=\"title\"><h1> " + "아직 회원목록DB에 연결을 해두지 않아서 쓰는 임시 아이디." + "님의 플레이 리스트 </h1></div><br><hr>\r\n"
 					+ "<img class=\"addList\" src=\"https://cdn-icons-png.flaticon.com/512/7598/7598663.png\"> "
 					+ "<span class=\"addList\">\uB9AC\uC2A4\uD2B8 \uCD94\uAC00</span><br>"
 					+ "<div class=\"search hidden\">\r\n"

@@ -408,11 +408,13 @@
             background-color: transparent;
             border-radius: 70%;
             width : 30px;
+            height: 31px;
             margin : 10px;
             padding: 0px 3px;
             padding-bottom: 3px;
-            font-size: 25px;
+            font-size: 20px;
             display: inline-block;
+            font-weight: 200;
         }
 
         .point:hover{
