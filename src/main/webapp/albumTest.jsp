@@ -9,6 +9,92 @@
 <head>
 <meta charset="UTF-8">
 <title>Album Test</title>
+<% 	    
+AlbumDAO dao = new AlbumDAO();
+String num = request.getParameter("a.ALBUM_NUM");
+System.out.println("num : "+num);
+List<AlbumVO> list = dao.listAlbum(num);  %>
+<script>
+
+    window.onload = function(){
+
+        let checkbox = document.querySelectorAll(".but");
+        let cont2 = document.getElementsByClassName("cont2");
+
+        let btn1 = document.querySelector(".btn1");
+        let btn2 = document.querySelector(".btn2");
+        let btn3 = document.querySelector(".btn3");
+
+        for(let x=0; x<checkbox.length; x++){
+            checkbox[x].addEventListener('click', function(event){
+                //부모의 부모가져오기
+                // console.log("커렌트타켓"+event.currentTarget.parentNode.parentNode);
+                let checked = checkbox[x].checked;
+    
+                for(let i=0; i<cont2.length; i++){
+                    if(checked == true){
+                        console.log(checked);
+                        event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
+                    }else if(checked == false){
+                        console.log(checked);
+                        event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
+                    }
+            }
+            });
+
+        }
+        
+        
+        // btn1.addEventListener('click', function(event){
+        //     //부모의 부모가져오기
+        //     // console.log("커렌트타켓"+event.currentTarget.parentNode.parentNode);
+        //     let checked = btn1.checked;
+
+        //     for(let i=0; i<cont2.length; i++){
+        //         if(checked == true){
+        //             console.log(checked);
+        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
+        //         }else if(checked == false){
+        //             console.log(checked);
+        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
+        //         }
+        // }
+        // });
+
+        // btn2.addEventListener('click', function(event){
+        //     let checked = btn2.checked;
+        //     for(let i=0; i<cont2.length; i++){
+        //         if(checked == true){
+        //             console.log(checked);
+        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
+        //         }else if(checked == false){
+        //             console.log(checked);
+        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
+        //         }
+        // }
+        // });
+
+        // btn3.addEventListener('click', function(event){
+        //     let checked = btn3.checked;
+        //     for(let i=0; i<cont2.length; i++){
+        //         if(checked == true){
+        //             console.log(checked);
+        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
+        //         }else if(checked == false){
+        //             console.log(checked);
+        //             event.currentTarget.parentNode.parentNode.style.backgroundColor = 'transparent';
+        //         }
+        // }
+        // });
+
+
+
+
+
+
+	}
+
+</script>
 <style>
     /*공통사항*/
      body{
@@ -125,7 +211,7 @@
 
         .search-btn:hover{
             color: rgb(206, 206, 206);
-            background-color: rgb(91, 91, 91);
+            background-color: rgb(86, 86, 86);
         }
 
         /*프로필사진*/
@@ -145,6 +231,7 @@
 
         .cont1{
             display: flex;
+            margin-bottom: 26px;
         }
         .cont1_1{
             /* display: inline-block; */
@@ -169,13 +256,14 @@
         }
 
         .musiclist{
-            margin-top: 40px;
+            /* margin: 20px 0px; */
         }
         .cont2{
             display: flex;
-            height: 40px;
+            height: 50px;
             border-bottom: 1px solid rgb(98, 98, 98);
-            margin : 20px;
+            margin : 0px 20px;
+            padding-top: 13px;
         }
         .cont2:hover {
             cursor: pointer;
@@ -184,6 +272,7 @@
         .left_item{
             width: 100px;
             height: 40px;
+            padding: 7px;
             text-align: center;
         }
         .left_name{
@@ -193,35 +282,73 @@
         .right_item{
             width: 100px;
             height: 40px;
+            padding: 7px;
             text-align: center;
             margin-left: auto;
         }
-        
-        /*.cont2:hover + .right_item{
+        /*해당 div에 커서올리면 체크박스 나오게*/
+        <% for(int i=0; i<list.size(); i++) {%>
+        .cont2_<%= i+1%>:hover span{
         	display : none;
-        }*/
-        
-        .chek1:hover{
-        	display: none;
         }
-        
-        .chek1:hover + .but{
+  
+        .cont2_<%= i+1%>:hover .but{
         	display : block;
+        }
+        <%}%>
+        
+        /*체크박스*/
+        /*.but{
+            display : none;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            margin-left: 40px;
+        }  */
+        
+       /*체크박스가 체크되면 유지되게. */  
+       /* > 는 자식요소 / ~는 모두다 /+형제에서 다음형제?*/
+        .but:checked + span{
+        	display : none;
         }
         .but:checked {
         	display : block;
         }
         
-        .but:checked + .chek1{
-        	display : none;
-        }
-        .but{
-        	display : none;
-        	width: 20px;
-            height: 20px;
-            text-align: center;
-            margin-left: 40px;
-        }  
+        
+        
+		/*체크박스 디자인*/
+        input[type="checkbox"]{
+                -webkit-appearance: none;
+                position: relative;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                outline: none !important;
+                border: 1px solid #eeeeee;
+                border-radius: 2px;
+                background: #000000;
+                
+                text-align: center;
+            	margin-left: 40px;
+            	display : none;
+            }
+            
+            input[type="checkbox"]::before {
+                content: "\2713";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                overflow: hidden;
+                transform: scale(0) translate(-50%, -50%);
+                line-height: 1;
+            }
+
+            input[type="checkbox"]:checked {
+                background-color: #adadad;
+                border-color: rgb(255, 255, 255);
+                color: white;
+            }        
         
 </style>
 </head>
@@ -241,12 +368,7 @@
             <img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
         </header>
     </div>
-    <% 
-	    AlbumDAO dao = new AlbumDAO();
-    	String num = request.getParameter("a.ALBUM_NUM");
-    	System.out.println("num : "+num);
-	    List<AlbumVO> list = dao.listAlbum(num); 
-	    for (int i =0; i < 1; i++) {
+    <%	for (int i =0; i < 1; i++) {
 	    	AlbumVO vo = list.get(i);
 	    	
 	    	String cover = vo.getAlbum_cover();
@@ -281,13 +403,13 @@
 			String music_link = vo.getMusic_link();
 			String music_time = vo.getMusic_time();
         %>
-        <div class= "musiclist">
-            <div class="cont2">
+        <div class= "musiclist ">
+            <div class="cont2 cont2_<%=i+1 %>">
                 <div class="left_item" style="color: rgb(187, 187, 187);"><%= music_num%></div>
                 <div class="left_item left_name"><a href="<%= music_link %>"><strong><%= music_name %></strong></a></div>
                 <div class="right_item">
+                <input type="checkbox" class="but btn<%=i+1%>">
                 <span class="chek1" style="color: rgb(187, 187, 187);"><%= music_time %></span>
-                <input type="checkbox" class="but">
                 </div>
             </div>		
         </div>
