@@ -161,7 +161,7 @@
             </tr>
 
                 <tr>
-                 <td id="list"><a class="lin" href="http://localhost:8080/javafood_team/Song.jsp"
+                 <td id="list"><a class="lin" href="http://localhost:8080/javafood_team/PlayList"
                     style="text-decoration:none"
                    >재생목록</a>
                 </td>
