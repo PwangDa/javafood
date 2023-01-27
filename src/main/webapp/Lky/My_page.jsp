@@ -11,6 +11,12 @@
 	<%
 		dbon db = new dbon();
 		System.out.println(session.getAttribute("login"));
+		if(session.getAttribute("login")==null){%>
+			<script>
+				alert('로그인을 하셔야합니다.')
+                location.href='http://localhost:8080/javafood_team/Lky/login.jsp';
+			</script>
+		<%}else{
 		List<vod> a = db.session((String)session.getAttribute("login"));
 		System.out.println("id : "+a.get(0).getId());
 		System.out.println("Pw : "+a.get(0).getPw());
@@ -25,7 +31,7 @@
  <style>      
          body{background-color :black; cursor: url("https://zrr.kr/Wlm3"), auto;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
-        .head{position: sticky;top:0px; height: 100px; background-color: black; color: white;}
+        .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;}
         .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
         .right{line-height: 80px; width: 11%;float: right; background-image:url(<%=a.get(0).getMyimg()%>); background-repeat: no-repeat; background-size: cover;background-position: center; }
@@ -113,3 +119,4 @@
     </script>
 </body>
 </html>
+<%}%>
