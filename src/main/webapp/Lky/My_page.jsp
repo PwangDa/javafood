@@ -11,6 +11,12 @@
 	<%
 		dbon db = new dbon();
 		System.out.println(session.getAttribute("login"));
+		if(session.getAttribute("login")==null){%>
+			<script>
+				alert('로그인을 하셔야합니다.')
+                location.href='http://localhost:8080/javafood_team/Lky/login.jsp';
+			</script>
+		<%}else{
 		List<vod> a = db.session((String)session.getAttribute("login"));
 		System.out.println("id : "+a.get(0).getId());
 		System.out.println("Pw : "+a.get(0).getPw());
@@ -113,3 +119,4 @@
     </script>
 </body>
 </html>
+<%}%>
