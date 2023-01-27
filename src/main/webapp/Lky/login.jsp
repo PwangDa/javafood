@@ -52,6 +52,8 @@
             <th>비밀번호 1 :  </th>
             <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
             <td rowspan="2"><input type="button" id="butt2" value="일치 확인"></td>
+            <td><input type="checkbox" id="ch1"></td>
+            <td><input type="checkbox" id="ch1"></td>
         </tr>
         <tr>
             <th>비밀번호 2 : </th>
