@@ -1,6 +1,7 @@
 package My_Page;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,11 +21,38 @@ public class ajax extends HttpServlet {
 		String email = request.getParameter("email");
 		String pn = request.getParameter("pn");
 		String phone = request.getParameter("phone");
-		response.getWriter().println(id);
-		response.getWriter().println(pw);
-		response.getWriter().println(nic);
-		response.getWriter().println(email);
-		response.getWriter().println(pn);
-		response.getWriter().println(phone);
+		dbon db = new dbon();
+		int a1 = 0;
+		int a2 = 0;
+		int a3 = 0;
+		int a4 = 0;
+		int a5 = 0;
+		int a6 = 0;
+		
+		List<vod> vo = db.listID();
+		for(int i=0; i<vo.size();i++) {
+			if(id.equals(vo.get(i).getId())) {
+				System.out.println(vo.get(i).getId());
+				a1=1;
+			}
+			if(id.equals(vo.get(i).getNic())) {
+				System.out.println(vo.get(i).getNic());
+				a1=1;
+			}
+			if(id.equals(vo.get(i).getEmail())) {
+				System.out.println(vo.get(i).getEmail());
+				a1=1;
+			}
+			if(id.equals(vo.get(i).getPn())) {
+				System.out.println(vo.get(i).getPn());
+				a1=1;
+			}
+			if(id.equals(vo.get(i).getPhone())) {
+				System.out.println(vo.get(i).getPhone());
+				a1=1;
+			}
+		}
+		response.getWriter().print(a1);
+		
 	}
 }
