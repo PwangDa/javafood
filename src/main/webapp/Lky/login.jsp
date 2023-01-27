@@ -209,6 +209,7 @@
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
 				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
+				<a href="http://localhost:8080/javafood_team/Song.jsp"><h1>5초안에 누르시오(Java Food Music)</h1></a>
 				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
 				<script>
 				let time=5;
