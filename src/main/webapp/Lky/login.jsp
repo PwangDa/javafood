@@ -35,6 +35,7 @@
     td{width: 100px;}
     table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
    .tr{height: 80px; }
+   input[type="checkbox"]{display: none;}
 </style>
 </head>
 <body>
@@ -45,15 +46,14 @@
         <tr class="tr">
             <th>아이디 : </th>
             <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
-            <td><input type="button" id="butt1" value="중복 확인"></td>
-            <td><input type="checkbox" id="ch1"></td>
+            <td><input type="button" id="idbutt" value="중복 확인"></td>
+            <td><input type="checkbox" id="ch1" class="ch"></td>
         </tr>
         <tr>
             <th>비밀번호 1 :  </th>
             <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
-            <td rowspan="2"><input type="button" id="butt2" value="일치 확인"></td>
-            <td><input type="checkbox" id="ch1"></td>
-            <td><input type="checkbox" id="ch1"></td>
+            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
+            <td><input type="checkbox" id="ch2" class="ch"></td>
         </tr>
         <tr>
             <th>비밀번호 2 : </th>
@@ -63,17 +63,20 @@
         <tr class="tr">
             <th>닉네임 : </th>
             <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
-            <td><input type="button" id="butt3" value="중복확인"></td>
+            <td><input type="button" id="nicbutt" value="중복확인"></td>
+            <td><input type="checkbox" id="ch3" class="ch"></td>
         </tr>
         <tr>
             <th>이메일 : </th>
             <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
-            <td><input type="button" id="butt4" value="인증하기"></td>
+            <td><input type="button" id="mailbutt" value="인증하기"></td>
+            <td><input type="checkbox" id="ch4" class="ch"></td>
         </tr>
         <tr id="mail">
             <th>인증번호 : </th>
             <td><input type="text" placeholder="메일 인증번호"></td>
-            <td><input type="button" id="butt12" value="인증확인"></td>
+            <td><input type="button" id="mailchbutt" value="인증확인"></td>
+            <td><input type="checkbox" id="ch5" class="ch"></td>
         </tr>
         <tr>
             <th id="pn" class="tr">주민등록 번호 : </th>
@@ -81,7 +84,8 @@
                 <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
                 <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
             </td>
-            <td><input type="button" id="butt5" value="중복확인"></td>
+            <td><input type="button" id="pnbutt" value="중복확인"></td>
+            <td><input type="checkbox" id="ch6" class="ch"></td>
         </tr>
         <tr>
             <th class="tr">휴대폰 번호 : </th>
@@ -90,12 +94,13 @@
                 <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
                 <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
             </td>
-            <td><input type="button" id="butt6" value="연락처 확인"></td>
+            <td><input type="button" id="phonebutt" value="연락처 확인"></td>
+            <td><input type="checkbox" id="ch7" class="ch"></td>
         </tr>
         <tr>
             <th><a href="login.jsp" class="at">취소</a></th>
-            <th><input class="sub" type="submit" value="회원가입"></th>
-            <th><input class="sub" type="reset" value="다시작성"></th>
+            <th><input class="sub" type="submit" value="회원가입" id="end"disabled></th>
+            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
         </tr>
     </table>
             </div>
@@ -103,85 +108,69 @@
         <div class="body"></div>
         <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				$('#re').on('click',function(){
+                    $('#end').attr('disabled',true);
+                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     let c= false;
-                    function aj(id, callback){
+                    function aj(key, callback, chak){
                         let xml = new XMLHttpRequest();
-                        xml.open('get','http://localhost:8080/javafood_team/aj?'+id);
+                        xml.open('get','http://localhost:8080/javafood_team/aj?'+key);
                         xml.send();
                         xml.onload=function(){
                         	let z = 0;
                         	c=xml.responseText;
                         	if(c!=1){
+                                z=1;
                         		alert('사용가능.');
-                        		z=1;
                         	}else{
+                                z=0;
                         		alert('사용중입니다.');
-                        		z=0;
                         	}
-                        	callback(z);
+                           callback(z,chak);
                         }
                     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    function fn(call){
-                    	console.log("z : ",call);
-                        function(){
-                            $('#ch1').trigger
+                    function fn(call,chak){
+                        call!=1?$(chak).prop('checked',false):$(chak).prop('checked',true);
+                        let j=0;
+                        for(let i =0; i<$('.ch').length; i++){
+                            if($('.ch')[i].checked==true)j++;
                         }
+                        j==6?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
                     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				$('#butt1').on('click',function(){
-					let a = "id="+$('#Id1').val();
-					aj(a, fn);
+				$('#idbutt').on('click',function(){
+					aj("id="+$('#Id1').val(), fn, '#ch1');
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                $("#butt2").on("click",function(){
-                    $("#pw1").val() != $("#pw2").val() ? alert("잘못입력 하셨습니다.") : alert("비밀번호가 일치합니다.");
+                $("#pwbutt").on("click",function(){
+                    if($("#pw1").val() == $("#pw2").val()){
+                        alert("비밀번호가 일치합니다.");
+                        fn(1,'#ch2');
+                    }else {
+                        alert("잘못입력 하셨습니다.");
+                        fn(0,'#ch2');
+                    }
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                $("#butt3").on("click",function(){
-                    let a = "nic="+$('#nic').val();
-                    aj(a, fn);
+                $("#nicbutt").on("click",function(){
+                    aj("nic="+$('#nic').val(), fn, '#ch3');
                 })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                 $("#butt4").on("click",function(){
-//                     let email = $('#email').val();
-//                     let ii;
-//                     let q = 0;
-<%--                     <% --%>
-<%--                     	for(vod v: vo){%> --%>
-<%--                     		ii='<%=v.getEmail()%>' --%>
-//                     		ii==email?q++:q;
-<%--                     	<%}%> --%>
-//                     q!=0?alert('사용중인 주소 입니다.'):alert('인증번호를 발송했습니다.');
-//                 })
+                $("#mailbutt").on("click",function(){
+                    aj('email='+$('#email').val(), fn, '#ch4')
+                })
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                 $("#butt5").on("click",function(){
-//                     let pn = $('#pn1').val() +"-"+ $('#pn2').val();
-//                     let ii;
-//                     let q = 0;
-<%--                     <% --%>
-<%--                    			for(vod v: vo){%>  --%>
-<%--                     		ii='<%=v.getPn()%>' --%>
-//                     		ii==pn?q++:q;
-// 		                    console.log(pn);
-<%--                     		console.log(<%=v.getPn()%>) --%>
-<%--                     	<%}%> --%>
-//                     q!=0?alert('이미 계정이 있습니다.'):alert('확인됬습니다.');
-//                 })
+                $("#pnbutt").on("click",function(){
+                    let pn = 'pn='+$('#pn1').val() +"-"+ $('#pn2').val();
+                    aj(pn,fn,'#ch6');
+                })
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                 $("#butt6").on("click",function(){
-//                     let phone = $('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
-//                     let ii;
-//                     let q = 0;
-<%--                     <% --%>
-<%--                    			for(vod v: vo){%>  --%>
-<%--                     		ii='<%=v.getPn()%>' --%>
-//                     		ii==pn?q++:q;
-// 		                    console.log(phone);
-<%--                     		console.log(<%=v.getPhone()%>) --%>
-<%--                     	<%}%> --%>
-//                     q!=0?alert('이미 계정이 있습니다.'):alert('확인됬습니다.');
-//                 })
+                $("#phonebutt").on("click",function(){
+                    let phone = 'phone='+$('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
+                    aj(phone,fn,'#ch7');
+                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         </script>
 </body>
