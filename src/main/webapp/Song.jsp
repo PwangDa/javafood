@@ -59,7 +59,7 @@ if("songcomment".equals(command)) {
 %>
 
 
-<%
+<%-- <%
 		dbon db = new dbon();
 		System.out.println(session.getAttribute("login"));
 		if(session.getAttribute("login")==null){%>
@@ -76,7 +76,7 @@ if("songcomment".equals(command)) {
 		System.out.println("Phone : "+a.get(0).getPhone());
 		System.out.println("Email : "+a.get(0).getEmail());
 		System.out.println("Home : "+a.get(0).getHome());
-	%>
+	%> --%>
 
 
 <script type="text/javascript">
@@ -242,7 +242,7 @@ td {
 				e.printStackTrace();
 			}
 		}
-		}%>
+		%>
 	
 	</table>
 </body>
