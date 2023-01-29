@@ -30,6 +30,72 @@ public class dbon {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//특정 아이디에 노래 조회수 증가
+	public void addhit(String id, String songnumber) {
+		try {
+			this.con = this.dataFactory.getConnection();
+//			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
+//			ResultSet rs = this.pstmt.executeQuery();
+//			List list = new ArrayList();
+//			while(rs.next()) {
+//				list.add(rs.getString("songnumber"));
+//			}
+//			int q =0;
+//			for(int i=0; i<list.size(); i++) {
+//				String a = (String) list.get(i);
+//				if(a.equals(songnumber)) {
+//					q++;
+//					break;
+//				}
+//			}
+//			if(q==0) {
+//				try {
+//					this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+songnumber+"')");
+//					this.pstmt.executeUpdate();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"' AND SONGNUMBER  = '"+songnumber+"'");
+			ResultSet rs1 = this.pstmt.executeQuery();
+			rs1.next();
+			int a = rs1.getInt("hit")+1;
+//			int a = (Integer.parseInt(rs1.getString("hit")))+1;
+			this.pstmt = this.con.prepareStatement("UPDATE songhit SET HIT = '"+a+"' WHERE ID = '"+id+"' AND SONGNUMBER = '"+songnumber+"';");
+			this.pstmt.executeUpdate();
+			rs1.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//특정 아이디에 조회수, 노래번호 가져오기
+	public List<vod> uresong(String id){
+		List<vod> list = new ArrayList<vod>();
+		try {
+			this.con=this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT s.ID ,s.HIT ,s.SONGNUMBER FROM songhit s JOIN song s2 \n"
+					+ "ON s.SONGNUMBER =s2.SONGNUMBER \n"
+					+ "WHERE s.ID = '"+id+"'");
+			ResultSet rs = this.pstmt.executeQuery();
+			vod vo = new vod();
+			while(rs.next()) {
+				vo.setHits(rs.getString("hit"));
+				vo.setSongnumber(rs.getString("songnumber"));
+				list.add(vo);
+			}
+			this.con.close();
+			this.pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod> session(String login) {
 		List<vod> list = new ArrayList<vod>();
 		try {
@@ -50,7 +116,6 @@ public class dbon {
 			e.printStackTrace();
 		}
 		return list;
-		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<vod>listID(){
@@ -145,7 +210,6 @@ public class dbon {
 			}
 			this.con.close();
 			this.pstmt.close();
-			rs.close();
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

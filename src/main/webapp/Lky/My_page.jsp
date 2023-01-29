@@ -19,12 +19,15 @@
 		<%}else{
 		List<vod> a = db.session((String)session.getAttribute("login"));
 		System.out.println("id : "+a.get(0).getId());
-		System.out.println("Pw : "+a.get(0).getPw());
 		System.out.println("Nic : "+a.get(0).getNic());
-		System.out.println("Pn : "+a.get(0).getPn());
-		System.out.println("Phone : "+a.get(0).getPhone());
-		System.out.println("Email : "+a.get(0).getEmail());
-		System.out.println("Home : "+a.get(0).getHome());
+// 		System.out.println("Pw : "+a.get(0).getPw());
+// 		System.out.println("Pn : "+a.get(0).getPn());
+// 		System.out.println("Phone : "+a.get(0).getPhone());
+// 		System.out.println("Email : "+a.get(0).getEmail());
+// 		System.out.println("Home : "+a.get(0).getHome());
+		if(request.getParameter("id")!=null){
+			db.addhit(a.get(0).getId(), request.getParameter("id"));
+		}
 	%>
 <meta charset="UTF-8">
 <title>My Page</title>
