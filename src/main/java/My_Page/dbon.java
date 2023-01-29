@@ -32,44 +32,45 @@ public class dbon {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//특정 아이디에 노래 조회수 증가
 	public void addhit(String id, String songnumber) {
+		int s = (Integer.parseInt(songnumber))+1;
 		try {
 			this.con = this.dataFactory.getConnection();
-//			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
-//			ResultSet rs = this.pstmt.executeQuery();
-//			List list = new ArrayList();
-//			while(rs.next()) {
-//				list.add(rs.getString("songnumber"));
-//			}
-//			int q =0;
-//			for(int i=0; i<list.size(); i++) {
-//				String a = (String) list.get(i);
-//				if(a.equals(songnumber)) {
-//					q++;
-//					break;
-//				}
-//			}
-//			if(q==0) {
-//				try {
-//					this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+songnumber+"')");
-//					this.pstmt.executeUpdate();
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"' AND SONGNUMBER  = '"+songnumber+"'");
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
+			ResultSet rs = this.pstmt.executeQuery();
+			List list = new ArrayList();
+			while(rs.next()) {
+				list.add(rs.getString("songnumber"));
+			}
+			rs.close();
+			int q =0;
+			for(int i=0; i<list.size(); i++) {
+				int a = Integer.parseInt((String) list.get(i));
+				if(a==s) {
+					q++;
+					break;
+				}
+			}
+			if(q==0) {
+				try {
+					this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+s+"')");
+					this.pstmt.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"' AND SONGNUMBER  = '"+s+"'");
 			ResultSet rs1 = this.pstmt.executeQuery();
 			rs1.next();
 			int a = rs1.getInt("hit")+1;
-//			int a = (Integer.parseInt(rs1.getString("hit")))+1;
-			this.pstmt = this.con.prepareStatement("UPDATE songhit SET HIT = '"+a+"' WHERE ID = '"+id+"' AND SONGNUMBER = '"+songnumber+"';");
-			this.pstmt.executeUpdate();
 			rs1.close();
+			this.pstmt.close();
+			this.pstmt = this.con.prepareStatement("UPDATE songhit SET HIT = '"+a+"' WHERE ID = '"+id+"' AND SONGNUMBER = '"+s+"'");
+			this.pstmt.executeUpdate();
 			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//특정 아이디에 조회수, 노래번호 가져오기

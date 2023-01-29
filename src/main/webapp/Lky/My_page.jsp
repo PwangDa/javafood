@@ -72,6 +72,7 @@
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
         </form>
+        <div style="color: white;"><a href="?p=1" class="at"><%=a.get(0).getId()%> 의 재생기록 확인</a> </div>
         </div>
         <div class="body">
             <h2>최근재생목록</h2>
@@ -84,6 +85,22 @@
                     <th> 좋아요 </th>
                 </tr>
                 <% 
+                
+                if(request.getParameter("p")!=null){
+						List<vod> vvo = db.uresong(a.get(0).getId());
+		                	for(int i=0; i<vvo.size(); i++) { %>
+		                <tr class="low">
+		                    <td><%= i+1%></td>
+		                    <td><%= vvo.get(i).getArtistname() %></td>
+		                    <td><a href="<%= vvo.get(i).getLink() %>" target="_blank" class="at"><%= vvo.get(i).getSongname() %></a></td>
+		                    <td>
+		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
+		                    </td>
+		                    <form>
+		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vvo.get(i).getSongnumber()%>"> </td>
+		                	</form>
+		                </tr> <% } 
+                }else{
                 	if(request.getParameter("option")!=null){
 						List<vod> vo1 = db.Search(request.getParameter("option"),request.getParameter("text"));
 		                	for(int i=0; i<vo1.size(); i++) { %>
@@ -122,4 +139,4 @@
     </script>
 </body>
 </html>
-<%}%>
+<%}}%>
