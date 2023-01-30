@@ -81,6 +81,7 @@
                     <th> 재생 순서 </th>
                     <th> 아티스트 이름 </th>
                     <th> 노래 제목</th>
+                    <th> 조회수</th>
                     <th> 재생 </th>
                     <th> 좋아요 </th>
                 </tr>
@@ -88,11 +89,13 @@
                 
                 if(request.getParameter("p")!=null){
 						List<vod> vvo = db.uresong(a.get(0).getId());
-		                	for(int i=0; i<vvo.size(); i++) { %>
+		                	for(int i=0; i<vvo.size(); i++) {
+		                		 %>
 		                <tr class="low">
 		                    <td><%= i+1%></td>
 		                    <td><%= vvo.get(i).getArtistname() %></td>
 		                    <td><a href="<%= vvo.get(i).getLink() %>" target="_blank" class="at"><%= vvo.get(i).getSongname() %></a></td>
+		                    <td><%=vvo.get(i).getHits() %></td>
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
@@ -108,6 +111,7 @@
 		                    <td><%= i+1%></td>
 		                    <td><%= vo1.get(i).getArtistname() %></td>
 		                    <td><a href="<%= vo1.get(i).getLink() %>" target="_blank" class="at"><%= vo1.get(i).getSongname() %></a></td>
+		                    <td><%=vo1.get(i).getHits() %></td>
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
@@ -122,6 +126,7 @@
 		                    <td><%= i+1%></td>
 		                    <td><%= vo.get(i).getArtistname() %></td>
 		                    <td><a href="<%= vo.get(i).getLink() %>" target="_blank" class="at"><%= vo.get(i).getSongname() %></a></td>
+		                    <td><%=	vo.get(i).getHits() %></td>
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>

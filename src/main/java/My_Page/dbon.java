@@ -78,14 +78,18 @@ public class dbon {
 		List<vod> list = new ArrayList<vod>();
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT s.ID ,s.HIT ,s.SONGNUMBER FROM songhit s JOIN song s2 \n"
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song s2 \n"
 					+ "ON s.SONGNUMBER =s2.SONGNUMBER \n"
-					+ "WHERE s.ID = '"+id+"'");
+					+ "WHERE s.ID = '"+id+"' ORDER BY s.HIT DESC");
 			ResultSet rs = this.pstmt.executeQuery();
-			vod vo = new vod();
 			while(rs.next()) {
+				vod vo = new vod();
 				vo.setHits(rs.getString("hit"));
 				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setLink(rs.getString("link"));
 				list.add(vo);
 			}
 			this.con.close();
@@ -174,7 +178,6 @@ public class dbon {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlayTime(rs.getString("playtime"));
-
 				list.add(vo);
 			}
 			this.con.close();
