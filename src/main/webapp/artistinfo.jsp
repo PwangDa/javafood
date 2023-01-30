@@ -48,7 +48,7 @@
         		alert("내용을 입력해주세요")
         	}else{
             frmComment.method = "post";
-            frmComment.action = "artistcomment";
+            frmComment.action = "artistinfo.jsp";
             frmComment.submit();
         	}
         }
@@ -544,7 +544,7 @@
                             <div class="date1"><%= date %></div>
                         </div>
                         <div class="text2">
-                            <a href="/javafood_team/artistcomment?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>
+                            <a href="/javafood_team/artistinfo.jsp?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>
                         </div>
                 </div> <% } %>
                 
