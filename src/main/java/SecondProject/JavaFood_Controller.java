@@ -27,10 +27,12 @@ public class JavaFood_Controller extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("fdsjkfj;lewjfdfjsadjdsfas");
 		doGet(request, response);
 	}
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		System.out.println("java3 메소드 실행됨.");
 	}
 	protected void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
