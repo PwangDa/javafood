@@ -290,6 +290,7 @@ public class JavaFood_DAO {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 //앨범 넣는 메소드
 	public void addAlbum(AlbumVO albumVO) {
 		try {
@@ -357,7 +358,11 @@ public class JavaFood_DAO {
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======
+
+>>>>>>> e08f5227baec2bd1b8ccf51026be34dd9ea3649c
 	//앨범수록곡 리스트 출력하는 메소드
+	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
 	public List<AlbumVO> listAlbum(String num){
 		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
 		
@@ -411,7 +416,12 @@ public class JavaFood_DAO {
 		return listAlbum;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 	//앨범수록곡 리스트 출력하는 메소드
+=======
+// 아티스트 페이지에서
+//앨범수록곡 리스트 출력하는 메소드 >artistinfo.jsp에서 쓰이는 메소드
+>>>>>>> e08f5227baec2bd1b8ccf51026be34dd9ea3649c
 	public List<AlbumVO> listAlbum(){
 		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
 		
