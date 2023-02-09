@@ -27,6 +27,7 @@ public class JavaFood_Controller extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("fdsjkfj;lewjfdfjsadjdsfas");
 		doGet(request, response);
 	}
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
