@@ -26,15 +26,47 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		java2(request,response);
+		if(request.getParameter("javafood").equals(1)) {
+			java1(request,response);
+		}
+		if(request.getParameter("javafood").equals(2)) {
+			java2(request,response);
+		}
+		if(request.getParameter("javafood").equals(3)) {
+			java3(request,response);
+		}
+		if(request.getParameter("javafood").equals(4)) {
+			java4(request,response);
+		}
+		if(request.getParameter("javafood").equals(5)) {
+			java5(request,response);
+		}
+		if(request.getParameter("javafood").equals(6)) {
+			java6(request,response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		java2(request,response);
-		
+		if(request.getParameter("javafood").equals(1)) {
+			java1(request,response);
+		}
+		if(request.getParameter("javafood").equals(2)) {
+			java2(request,response);
+		}
+		if(request.getParameter("javafood").equals(3)) {
+			java3(request,response);
+		}
+		if(request.getParameter("javafood").equals(4)) {
+			java4(request,response);
+		}
+		if(request.getParameter("javafood").equals(5)) {
+			java5(request,response);
+		}
+		if(request.getParameter("javafood").equals(6)) {
+			java6(request,response);
+		}
 	}
+	
 	protected void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
@@ -46,7 +78,7 @@ public class JavaFood_Controller extends HttpServlet {
 		String songchart = request.getParameter("songchart");
 		request.setAttribute("songchart", songchart);
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("chart");
+		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
 		dispatch.forward(request, response);
 	}
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
