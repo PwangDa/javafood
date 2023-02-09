@@ -79,6 +79,7 @@ public class JavaFood_Controller extends HttpServlet {
 		nextPage = "/artistinfo.jsp";
 		
 	}
+	//귀범
 	protected void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
@@ -90,6 +91,7 @@ public class JavaFood_Controller extends HttpServlet {
 		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
 		dispatch.forward(request, response);
 	}
+	//범주
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
@@ -102,12 +104,15 @@ public class JavaFood_Controller extends HttpServlet {
 		dispatch.forward(request, response);
 		doGet(request, response);
 	}
+	//태연
 	protected void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
+	//경용
 	protected void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
+	//용준
 	protected void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String song = request.getParameter("genre");
