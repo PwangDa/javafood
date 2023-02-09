@@ -290,74 +290,8 @@ public class JavaFood_DAO {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//앨범 넣는 메소드
-	public void addAlbum(AlbumVO albumVO) {
-		try {
-			this.con = dataFactory.getConnection();
-			
-			String num = albumVO.getAlbum_num();
-			String cover = albumVO.getAlbum_cover();
-			String alname = albumVO.getAlbum_name();
-			String into = albumVO.getAlbum_into();
-			String artist = albumVO.getArtist();
-			
-			String query = "insert into Album";
-			query += "(album_num, album_cover, album_name, album_into, artist)";
-			query += " values(Album_ss.nextval, ?, ?, ?, ?)";
-			
-			System.out.println("query check" + query);
-			
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, cover);
-			pstmt.setString(2, alname);
-			pstmt.setString(3, into);
-			pstmt.setString(4, artist);
-			pstmt.executeUpdate();
-			
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//그 앨범의 수록곡 넣는 메소드
-	public void addMusic(AlbumVO albumVO) {
-		try {
-			this.con = dataFactory.getConnection();
-			
-			String key = albumVO.getAlbum_key();
-			String mnum = albumVO.getMusic_num();
-			String mname = albumVO.getMusic_name();
-			String link = albumVO.getMusic_link();
-			String time = albumVO.getMusic_time();
-			
-			String query = "insert into intoAlbum";
-			query += "(album_num, music_num, music_name, music_link, music_time)";
-			query += " values(5, home_m.nextval, ?, ?, ?)";
-			
-			System.out.println("query check" + query);
-			
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, mname);
-			pstmt.setString(2, link);
-			pstmt.setString(3, time);
-			pstmt.executeUpdate();
-			
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
+	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
 	public List<AlbumVO> listAlbum(String num){
 		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
 		
@@ -411,7 +345,9 @@ public class JavaFood_DAO {
 		return listAlbum;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//앨범수록곡 리스트 출력하는 메소드
+	//앨범수록곡 리스트 출력하는 메소드
+// 아티스트 페이지에서
+//앨범수록곡 리스트 출력하는 메소드 >artistinfo.jsp에서 쓰이는 메소드
 	public List<AlbumVO> listAlbum(){
 		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
 		
@@ -550,11 +486,12 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//listsong값이 null인 메소드 생성
+	//listsong값이 null인 메소드 생성(기본값)
 	public List<vod> listsong(){
 		List<vod> list = listsong(null);
 		return list;
 	}
+	
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
 	public List<vod> listsong(String _songname){
 		List<vod> list = new ArrayList<vod>();
@@ -612,6 +549,7 @@ public class JavaFood_DAO {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//좋아요 + 조회수 합산하여 출력하는 메소드(setString 값들을 받아서 출력하는 메소드)
 	public void songlist(vod vo) {
 		try {
 			this.con = dataFactory.getConnection();
