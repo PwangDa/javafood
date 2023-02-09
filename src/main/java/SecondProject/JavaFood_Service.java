@@ -16,7 +16,7 @@ public class JavaFood_Service {
 	
 //	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
 //    public List<AlbumVO> Albumlist(){
-//    	List<AlbumVO> Albumlist = javafoodDAO.listAlbum(); 
+//    	List<AlbumVO> Albumlist = dao.listAlbum(); 
 //    	return Albumlist; 
 //    }
 	

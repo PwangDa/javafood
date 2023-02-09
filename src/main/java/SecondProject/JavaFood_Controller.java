@@ -69,14 +69,18 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 	}
 	
-	//다영
+	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
 	protected void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
-		listAlbum = javafoodService.Albumlist();
-		request.setAttribute("listAlbum", listAlbum);
-		nextPage = "/artistinfo.jsp";
+		String action = request.getPathInfo();
+		
+		if("/artisionfo.do".equals(action)) {
+			List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+			listAlbum = service.Albumlist();
+			request.setAttribute("listAlbum", listAlbum);
+			nextPage = "/artistinfo.jsp";
+		}
 		
 	}
 	protected void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
