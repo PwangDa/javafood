@@ -43,7 +43,6 @@ public class JavaFood_Controller extends HttpServlet {
 	protected void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		
-		123123123123123123123;
 	}
 
 }
