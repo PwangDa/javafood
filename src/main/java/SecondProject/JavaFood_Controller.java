@@ -1,6 +1,8 @@
 package SecondProject;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +19,7 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,8 +33,15 @@ public class JavaFood_Controller extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-		System.out.println("java3 메소드 실행됨.");
+		System.out.println("java3 메소드 실행됨."); //확인용
+		
+		//요청된 id값 받아오기
+		String id = request.getParameter("id");
+		request.setAttribute("id", id);
+		
+		//id값을 playList에 넘겨주기
+		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
+		dispatch.forward(request, response);
 	}
 	protected void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
@@ -42,8 +51,6 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 	protected void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		
-		123123123123123123123;
 	}
 
 }
