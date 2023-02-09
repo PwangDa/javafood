@@ -1,11 +1,18 @@
 package SecondProject;
 
+import java.util.List;
+
+import Chart.SongDAO;
+import My_Page.vod;
+
 public class JavaFood_Service {
 
 	public void javafood1(){
 		
 	}
 	public void javafood2(){
+		
+		SongDAO songDAO = new SongDAO();
 		
 	}
 	public void javafood3(){
@@ -20,5 +27,6 @@ public class JavaFood_Service {
 	public void javafood6(){
 		
 	}
+	
 	
 }
