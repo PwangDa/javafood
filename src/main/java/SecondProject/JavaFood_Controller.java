@@ -20,9 +20,11 @@ public class JavaFood_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SongDAO songDAO;
 	vod vo;
-
-	public void init(ServletConfig config) throws ServletException {
+	JavaFood_Service javafoodService;
 	
+	
+	public void init(ServletConfig config) throws ServletException {
+		javafoodService = new JavaFood_Service();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,8 +69,15 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 	}
 	
+	//다영
 	protected void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+		listAlbum = javafoodService.Albumlist();
+		request.setAttribute("listAlbum", listAlbum);
+		nextPage = "/artistinfo.jsp";
+		
 	}
 	protected void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

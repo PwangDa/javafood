@@ -6,7 +6,20 @@ import Chart.SongDAO;
 import My_Page.vod;
 
 public class JavaFood_Service {
-
+	
+	JavaFood_DAO javafoodDAO;
+	
+	JavaFood_Service(){
+		javafoodDAO = new JavaFood_DAO();
+	}
+	
+	
+//	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
+//    public List<AlbumVO> Albumlist(){
+//    	List<AlbumVO> Albumlist = javafoodDAO.listAlbum(); 
+//    	return Albumlist; 
+//    }
+	
 	public void javafood1(){
 		
 	}
