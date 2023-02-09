@@ -46,7 +46,7 @@ public class JavaFood_Controller extends HttpServlet {
 		String songchart = request.getParameter("songchart");
 		request.setAttribute("songchart", songchart);
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("chart");
+		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
 		dispatch.forward(request, response);
 	}
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
