@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "SecondProject.JavaFood_DAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -23,7 +24,14 @@
 		String addList_explain = request.getParameter("addList_explain");
 		
 		//DAO에서 플레이 리스트를 추가하는 메서드 실행하기.
-		PlayListDAO pl_dao = new PlayListDAO();
+		JavaFood_DAO j_dao = new JavaFood_DAO();
+		j_dao.addList(addList_title, addList_explain, id);
+	}
+	//플레이 리스트 삭제하기
+	else if("doDelete".equals(doDeleteList) )
+	{
+		//주소로 넘어온 값들을 받기
+		String res_PL_ID = request.getParameter("res.PL_ID");
 	}
 %>
 <!DOCTYPE html>
@@ -34,7 +42,6 @@
 </head>
 <body>
 	<div class="title"><h1> <%=id %>님의 플레이 리스트 </h1></div>
-	
     <br>
     <hr>
     <img class="addList" src="https://cdn-icons-png.flaticon.com/512/7598/7598663.png"> <span class="addList">리스트 추가</span>
@@ -50,7 +57,10 @@
     
     <br>
     
-    <c:forEach 
+    <c:forEach>
+    	
+    </c:forEach>
+    
 	<script>
         document.querySelector("img.addList").addEventListener('click', ()=>
         {

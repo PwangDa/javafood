@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import SecondProject.JavaFood_DAO;
+
 @WebServlet({ "/playListContent", "/plc", "/playlistcontent" })
 public class PlayListContent extends HttpServlet
 {
@@ -27,7 +29,8 @@ public class PlayListContent extends HttpServlet
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset = utf-8;");
 		
-		PlayListDAO p_dao = new PlayListDAO();
+		JavaFood_DAO dao = new JavaFood_DAO();
+		
 		
 		//주소로 넘어온 값들 받기
 //		String req_id = request.getParameter("id");
