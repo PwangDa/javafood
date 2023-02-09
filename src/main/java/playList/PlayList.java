@@ -28,6 +28,9 @@ public class PlayList extends HttpServlet
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset = utf-8;");
 		
+		//요청받은 id값 넣기
+		String id = (String)request.getAttribute("id");
+		
 		//리스트에 아무것도 추가된 것이 없을 때 쓸 표지.
 //		String nullImage = "https://cdn.pixabay.com/photo/2015/11/03/09/10/question-mark-1020165_960_720.jpg";
 		
@@ -110,7 +113,8 @@ public class PlayList extends HttpServlet
 			
 			//쿼리문 작성
 			deleteList_query = "DELETE FROM PLAYLIST\r\n"
-					+ " WHERE PL_ID = " + res_PL_ID;
+					+ " WHERE PL_ID = " + res_PL_ID
+					+ " AND ID2 = " + id;
 			//////////////////////////////////////////////////////////////
 			
 			//쿼리 실행
@@ -269,7 +273,7 @@ public class PlayList extends HttpServlet
 			out.println
 			("<body>\r\n"
 					//회원목록이 생성되면 아래의 아이디 부분을 수정할 것.
-					+ "    <div class=\"title\"><h1> " + "아직 회원목록DB에 연결을 해두지 않아서 쓰는 임시 아이디." + "님의 플레이 리스트 </h1></div><br><hr>\r\n"
+					+ "    <div class=\"title\"><h1> " + id + "님의 플레이 리스트 </h1></div><br><hr>\r\n"
 					+ "<img class=\"addList\" src=\"https://cdn-icons-png.flaticon.com/512/7598/7598663.png\"> "
 					+ "<span class=\"addList\">\uB9AC\uC2A4\uD2B8 \uCD94\uAC00</span><br>"
 					+ "<div class=\"search hidden\">\r\n"
