@@ -550,11 +550,12 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//listsong값이 null인 메소드 생성
+	//listsong값이 null인 메소드 생성(기본값)
 	public List<vod> listsong(){
 		List<vod> list = listsong(null);
 		return list;
 	}
+	
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
 	public List<vod> listsong(String _songname){
 		List<vod> list = new ArrayList<vod>();
@@ -612,6 +613,7 @@ public class JavaFood_DAO {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//좋아요 + 조회수 합산하여 출력하는 메소드(setString 값들을 받아서 출력하는 메소드)
 	public void songlist(vod vo) {
 		try {
 			this.con = dataFactory.getConnection();
