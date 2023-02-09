@@ -27,6 +27,7 @@ public class PlayListContent extends HttpServlet
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset = utf-8;");
 		
+		PlayListDAO p_dao = new PlayListDAO();
 		
 		//주소로 넘어온 값들 받기
 //		String req_id = request.getParameter("id");
