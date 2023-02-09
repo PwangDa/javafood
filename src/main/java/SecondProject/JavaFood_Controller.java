@@ -109,6 +109,12 @@ public class JavaFood_Controller extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String song = request.getParameter("genre");
+		request.setAttribute("genre", song);
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("NewGenre.jsp");
+		dispatch.forward(request, response);
 		doGet(request, response);
 		
 	}
