@@ -45,7 +45,7 @@ public class JavaFood_DAO {
 			List list = new ArrayList();
 			while(rs.next()) {
 				list.add(rs.getString("songnumber"));
-}
+			}
 			rs.close();
 			int q =0;
 			for(int i=0; i<list.size(); i++) {
@@ -154,7 +154,6 @@ public class JavaFood_DAO {
 			rs.close();
 			this.pstmt.close();
 			this.con.close();
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -249,9 +248,9 @@ public class JavaFood_DAO {
 			System.out.println(a);
 			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
-			this.con.close();
-			this.pstmt.close();
 			rs.close();
+			this.pstmt.close();
+			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -260,8 +259,6 @@ public class JavaFood_DAO {
 	//genre 가져오기
 	public List<vod> getGenre (String a) {
 		List<vod> list = new ArrayList<>();
-		
-		
 		try {
 			this.con = this.dataFactory.getConnection();
 			String genre = " SELECT * FROM  song";
@@ -281,9 +278,9 @@ public class JavaFood_DAO {
 				vo.setPlayTime(rs.getString("playtime"));
 				list.add(vo);
 			}
-			this.con.close();
-			this.pstmt.close();
 			rs.close();
+			this.pstmt.close();
+			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -334,7 +331,7 @@ public class JavaFood_DAO {
 				listAlbum.add(albumVO);
 				
 			}
-			
+			rs.close();
 			pstmt.close();
 			con.close();
 			
@@ -392,7 +389,7 @@ public class JavaFood_DAO {
 				listAlbum.add(albumVO);
 				
 			}
-			
+			rs.close();
 			pstmt.close();
 			con.close();
 			
@@ -491,7 +488,7 @@ public class JavaFood_DAO {
 		List<vod> list = listsong(null);
 		return list;
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
 	public List<vod> listsong(String _songname){
 		List<vod> list = new ArrayList<vod>();
@@ -596,7 +593,78 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * 플레이 리스트를 추가하는 메서드 입니다.
+	 * @param title : 플레이 리스트의 제목을 입력하세요.
+	 * @param explain : 플레이 리스트의 설명을 입력하세요.
+	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
+	 */
+	public void addList(String title, String explain, String id)
+	{
+		//플레이 리스트 추가 쿼리문 작성
+		String add_query =
+				"INSTER INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
+				+ "VALUES(seq_PL_ID.next, ?, ?, ?)";
+		
+		//플레이 리스트 추가 쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(add_query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, title);
+			pstmt.setString(3, explain);
+			pstmt.executeQuery();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
+	/**
+	 * 플레이 리스트를 삭제하는 메서드 입니다.
+	 * @param PL_ID : 플레이 리스트의 id를 입력하세요.
+	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
+	 */
+	public void DeleteList(String PL_ID, String id)
+	{
+		//플레이 리스트 내용 삭제 쿼리문 작성
+		String del_query = 
+				"DELETE FROM playList_content"
+				+ "WHERE PL_ID = ?";
+		
+		//플레이 리스트 내용 삭제 쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(del_query);
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		//플레이 리스트 삭제 쿼리문 작성
+		del_query = 
+				"DELETE FROM PLAYLIST"
+				+ " WHERE PL_ID = ?"
+				+ " AND ID2 = ?";
+		
+		//플레이 리스트 삭제 쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(del_query);
+			pstmt.setString(1, PL_ID);
+			pstmt.setString(2, id);
+			pstmt.executeQuery();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
