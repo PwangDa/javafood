@@ -7,10 +7,10 @@ import My_Page.vod;
 
 public class JavaFood_Service {
 	
-	JavaFood_DAO javafoodDAO;
+	JavaFood_DAO dao;
 	
 	JavaFood_Service(){
-		javafoodDAO = new JavaFood_DAO();
+		dao = new JavaFood_DAO();
 	}
 	
 	

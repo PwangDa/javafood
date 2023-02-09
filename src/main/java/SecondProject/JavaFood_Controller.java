@@ -20,11 +20,11 @@ public class JavaFood_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SongDAO songDAO;
 	vod vo;
-	JavaFood_Service javafoodService;
+	JavaFood_Service service;
 	
 	
 	public void init(ServletConfig config) throws ServletException {
-		javafoodService = new JavaFood_Service();
+		service = new JavaFood_Service();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
