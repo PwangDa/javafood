@@ -324,7 +324,7 @@ public class JavaFood_DAO {
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//그 앨범의 수록곡 넣는 메소드
+	//그 앨범의 수록곡 넣는 메소드
 	public void addMusic(AlbumVO albumVO) {
 		try {
 			this.con = dataFactory.getConnection();
@@ -411,7 +411,7 @@ public class JavaFood_DAO {
 		return listAlbum;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//앨범수록곡 리스트 출력하는 메소드
+	//앨범수록곡 리스트 출력하는 메소드
 	public List<AlbumVO> listAlbum(){
 		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
 		
