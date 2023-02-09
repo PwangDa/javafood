@@ -15,7 +15,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
 	import="Chart.SongServlet"%>
-<%!String dbhost = "jdbc:oracle:thin:@todair.synology.me:51521:xe";
+<%-- <%!String dbhost = "jdbc:oracle:thin:@todair.synology.me:51521:xe";
 	String dbuser = "javafood";
 	String dbpass = "javafood";
 	//기존 song table과 합산용 table 함께 출력
@@ -26,7 +26,7 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 	List<vod> vo = null;
-	dbon db = new dbon();%>
+	dbon db = new dbon();%> --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,47 +36,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JavaFood Music</title>
-<%
+<%-- <%
 SongDAO dao = new SongDAO();
 
-/* String command = request.getParameter("command"); 
+%> --%>
 
-if("songcomment".equals(command)) {
-	String songname = request.getParameter("songname");
-	String artistname = request.getParameter("artistname");
-	
-	vod vo = new vod();
-	vo.setSongname(songname);
-	vo.setArtistname(artistname);
-	
-	dao.listsong().add(vo);
-}else if("notsongcomment".equals(command)) {
-	
-	String songname2 = request.getParameter("songname");
-	System.out.println("리스트에 없습니다"+songname2);
-	dao.songlist(null);
-} */
-%>
-
-
-<%-- <%
-		dbon db = new dbon();
-		System.out.println(session.getAttribute("login"));
-		if(session.getAttribute("login")==null){%>
-			<script>
-				alert('로그인을 하셔야합니다.')
-                location.href='http://localhost:8080/javafood_team/Lky/login.jsp';
-			</script>
-		<%}else{
-		List<vod> a = db.session((String)session.getAttribute("login"));
-		System.out.println("id : "+a.get(0).getId());
-		System.out.println("Pw : "+a.get(0).getPw());
-		System.out.println("Nic : "+a.get(0).getNic());
-		System.out.println("Pn : "+a.get(0).getPn());
-		System.out.println("Phone : "+a.get(0).getPhone());
-		System.out.println("Email : "+a.get(0).getEmail());
-		System.out.println("Home : "+a.get(0).getHome());
-	%> --%>
 
 
 <script type="text/javascript">
@@ -194,13 +158,13 @@ td {
 			<td><strong>재생 시간</strong></td>
 		</tr>
 
-		<%
+		<%-- <%
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		%>
+		%> --%>
 
 		<%
 		try {
@@ -242,7 +206,7 @@ td {
 				e.printStackTrace();
 			}
 		}
-		%>
+		%> --%>
 	
 	</table>
 </body>
