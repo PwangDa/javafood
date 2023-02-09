@@ -20,9 +20,11 @@ public class JavaFood_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SongDAO songDAO;
 	vod vo;
-
-	public void init(ServletConfig config) throws ServletException {
+	JavaFood_Service service;
 	
+	
+	public void init(ServletConfig config) throws ServletException {
+		service = new JavaFood_Service();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,8 +69,15 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 	}
 	
+	//다영
 	protected void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+		listAlbum = javafoodService.Albumlist();
+		request.setAttribute("listAlbum", listAlbum);
+		nextPage = "/artistinfo.jsp";
+		
 	}
 	protected void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -100,6 +109,12 @@ public class JavaFood_Controller extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String song = request.getParameter("genre");
+		request.setAttribute("genre", song);
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("NewGenre.jsp");
+		dispatch.forward(request, response);
 		doGet(request, response);
 		
 	}
