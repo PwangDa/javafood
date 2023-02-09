@@ -1,11 +1,8 @@
 package SecondProject;
 
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> 31ae8df0f957a2529650eeab53c96eef1e338ffe
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -53,7 +50,6 @@ public class JavaFood_Controller extends HttpServlet {
 		dispatch.forward(request, response);
 	}
 	protected void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
 		//요청된 id값 받아오기
@@ -63,10 +59,7 @@ public class JavaFood_Controller extends HttpServlet {
 		//id값을 playList에 넘겨주기
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
 		dispatch.forward(request, response);
-=======
 		doGet(request, response);
-		
->>>>>>> 31ae8df0f957a2529650eeab53c96eef1e338ffe
 	}
 	protected void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
