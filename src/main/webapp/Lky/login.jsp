@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <meta charset="UTF-8">
 <%
+	System.out.println("logion 실행");
 	dbon db = new dbon(); 
 	if(request.getParameter("Id1")!=null){
 		vod vo1 = new vod();

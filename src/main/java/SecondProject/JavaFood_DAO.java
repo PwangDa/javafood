@@ -45,7 +45,7 @@ public class JavaFood_DAO {
 			List list = new ArrayList();
 			while(rs.next()) {
 				list.add(rs.getString("songnumber"));
-}
+			}
 			rs.close();
 			int q =0;
 			for(int i=0; i<list.size(); i++) {
@@ -154,7 +154,6 @@ public class JavaFood_DAO {
 			rs.close();
 			this.pstmt.close();
 			this.con.close();
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -249,9 +248,9 @@ public class JavaFood_DAO {
 			System.out.println(a);
 			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
-			this.con.close();
-			this.pstmt.close();
 			rs.close();
+			this.pstmt.close();
+			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -260,8 +259,6 @@ public class JavaFood_DAO {
 	//genre 가져오기
 	public List<vod> getGenre (String a) {
 		List<vod> list = new ArrayList<>();
-		
-		
 		try {
 			this.con = this.dataFactory.getConnection();
 			String genre = " SELECT * FROM  song";
@@ -281,9 +278,9 @@ public class JavaFood_DAO {
 				vo.setPlayTime(rs.getString("playtime"));
 				list.add(vo);
 			}
-			this.con.close();
-			this.pstmt.close();
 			rs.close();
+			this.pstmt.close();
+			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -334,7 +331,7 @@ public class JavaFood_DAO {
 				listAlbum.add(albumVO);
 				
 			}
-			
+			rs.close();
 			pstmt.close();
 			con.close();
 			
@@ -392,7 +389,7 @@ public class JavaFood_DAO {
 				listAlbum.add(albumVO);
 				
 			}
-			
+			rs.close();
 			pstmt.close();
 			con.close();
 			
@@ -491,7 +488,7 @@ public class JavaFood_DAO {
 		List<vod> list = listsong(null);
 		return list;
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
 	public List<vod> listsong(String _songname){
 		List<vod> list = new ArrayList<vod>();
