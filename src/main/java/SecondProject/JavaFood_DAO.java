@@ -485,10 +485,10 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
-	public List<login_DTO> listsong(){
-		List<login_DTO> list = listsong();
-		return list;
-	}
+	/*
+	 * public List<login_DTO> listsong(){ List<login_DTO> list = null; return list;
+	 * }
+	 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
 	public List<login_DTO> listSong(){
@@ -498,7 +498,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
+			String query = " SELECT RANK() OVER (ORDER BY RANK2 desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS RANK2, s.* FROM song s ) a ";
 			   		 
 			   		  
 			   		
@@ -510,8 +510,8 @@ public class JavaFood_DAO {
 			   
 			   while(rs.next()) {
 				   String songnumber = rs.getString("songnumber");
-				   String rank2 = rs.getString("rank2");
 				   String ranking = rs.getString("ranking");
+				   String rank2 = rs.getString("rank2");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -523,8 +523,8 @@ public class JavaFood_DAO {
 				   
 				   login_DTO vo = new login_DTO();
 				   vo.setSongnumber(songnumber);
-				   vo.setRank2(rank2);
 				   vo.setRanking(ranking);
+				   vo.setRank2(rank2);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
 				   vo.setBygenre(bygenre);
@@ -548,50 +548,50 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//좋아요 + 조회수 합산하여 출력하는 메소드(setString 값들을 받아서 출력하는 메소드)
-	public void songlist(login_DTO vo) {
-		try {
-			this.con = dataFactory.getConnection();
-			
-			String songnumber = vo.getSongnumber();
-			String rank2 = vo.getRank2();
-			String ranking = vo.getRanking();
-			String songname = vo.getSongname();
-			String artistname = vo.getArtistname();
-			String bygenre = vo.getBygenre();
-			String hits = vo.getHits();
-			String likes = vo.getLikes();
-			String playtime = vo.getPlaytime();
-			
-			
-			
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
-			
-			System.out.println("query" + query);
-			
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, songnumber);
-			pstmt.setString(2, rank2);
-			pstmt.setString(3, ranking);
-			pstmt.setString(4, songname);
-			pstmt.setString(5, artistname);
-			pstmt.setString(6, bygenre);
-			pstmt.setString(7, hits);
-			pstmt.setString(8, likes);
-			pstmt.setString(9, playtime);
-			
-			
-			
-			pstmt.executeUpdate();
-			
-			pstmt.close();
-			con.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	public void songlist(login_DTO vo) {
+//		try {
+//			this.con = dataFactory.getConnection();
+//			
+//			String songnumber = vo.getSongnumber();
+//			String rank2 = vo.getRank2();
+//			String ranking = vo.getRanking();
+//			String songname = vo.getSongname();
+//			String artistname = vo.getArtistname();
+//			String bygenre = vo.getBygenre();
+//			String hits = vo.getHits();
+//			String likes = vo.getLikes();
+//			String playtime = vo.getPlaytime();
+//			
+//			
+//			
+//			String query = " SELECT RANK() OVER (ORDER BY RANK2 desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS RANK2, s.* FROM song s ) a ";
+//			
+//			System.out.println("query" + query);
+//			
+//			pstmt = con.prepareStatement(query);
+//			
+//			pstmt.setString(1, songnumber);
+//			pstmt.setString(2, ranking);
+//			pstmt.setString(3, rank2);
+//			pstmt.setString(4, songname);
+//			pstmt.setString(5, artistname);
+//			pstmt.setString(6, bygenre);
+//			pstmt.setString(7, hits);
+//			pstmt.setString(8, likes);
+//			pstmt.setString(9, playtime);
+//			
+//			
+//			
+//			pstmt.executeUpdate();
+//			
+//			pstmt.close();
+//			con.close();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
@@ -734,6 +734,11 @@ public class JavaFood_DAO {
 		
 		return playList;
 	}
-}
+	
+}	
+	
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 

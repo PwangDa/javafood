@@ -11,10 +11,10 @@ public class login_DTO {
 	private String hits;
 	private String likes;
 	private String link;
-	private String ranking;
+	private String rank2;
 	private String record;
 	private String playtime;
-	private String rank2;
+	private String ranking;
 
 	///////---------login-----------//////////
 	private String id;
@@ -26,6 +26,10 @@ public class login_DTO {
 	private String home;
 	private String myimg;
 	
+	
+	public String getRank2() {
+		return rank2;
+	}
 	
 	public String getMyimg() {
 		return myimg;
@@ -111,12 +115,11 @@ public class login_DTO {
 	public String getLikes() {
 		return likes;
 	}
+	
 	public String getRanking() {
 		return ranking;
 	}
-	public String getRank2() {
-		return rank2;
-	}
+	
 	
 	public String getPlayTime() {
 		return playtime;
@@ -139,13 +142,16 @@ public class login_DTO {
 	public void setLikes(String likes) {
 		this.likes = likes;
 	}
-	public void setRanking(String ranking) {
-		this.ranking = ranking;
-		
-	}
+	
 	public void setRank2(String rank2) {
 		this.rank2 = rank2;
 	}
+
+
+	public void setRanking(String ranking) {
+		this.ranking = ranking;
+	}
+
 	public void setPlayTime(String playtime) {
 		this.playtime = playtime;
 		

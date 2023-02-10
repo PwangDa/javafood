@@ -58,9 +58,9 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범 (차트 불러오기)
-	public List<javafood_DTO.login_DTO> javafood2(){
+	public List<login_DTO> javafood2(){
 		
-		List<javafood_DTO.login_DTO> list = dao.listSong();
+		List<login_DTO> list = dao.listSong();
 		
 		return list;
 		

@@ -132,15 +132,24 @@ public class JavaFood_Controller extends HttpServlet {
 	//귀범
 	private void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String nextPage = "";
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String nextPage = "";
-		String action = request.getPathInfo();
-		List<javafood_DTO.login_DTO> chart = new ArrayList<javafood_DTO.login_DTO>();
-
-		RequestDispatcher dispatch = request.getRequestDispatcher("Chart/Song2.jsp");
+		List<login_DTO> list_login = service.javafood2();
+		request.setAttribute("list_login", list_login);
+		nextPage = "/song.jsp";
+		System.out.println("list_login size : " + list_login.size());
+		
+//		list_login = service.javafood2();
+		
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
+//		doGet(request, response);
+		
+		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주
