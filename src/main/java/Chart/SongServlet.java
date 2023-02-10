@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import My_Page.vod;
 import My_Page.dbon;
+import javafood_DTO.login_DTO;
 
 @WebServlet("/song")
 public class SongServlet extends HttpServlet {
@@ -283,7 +283,7 @@ public class SongServlet extends HttpServlet {
 //			return;
 //		}
 		
-		List<vod> list = dao.listsong();
+		List<login_DTO> list = dao.listsong();
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<script>");
@@ -338,7 +338,7 @@ public class SongServlet extends HttpServlet {
 		
 		
 	      for(int i= 0; i<list.size(); i++) {
-	    	  vod vo = list.get(i);
+	    	  login_DTO vo = list.get(i);
 	    	  
 	    	  String songnumber = vo.getSongnumber();
 	    	  String rank2 = vo.getRank2();

@@ -13,10 +13,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import My_Page.vod;
 import album.info.AlbumVO;
 import comment.CommentVO;
 import playList.PlayListDTO;
+import javafood_DTO.login_DTO;
 
 public class JavaFood_DAO {
 ///////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +81,8 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//특정 아이디에 조회수, 노래번호 가져오기
-	public List<vod> uresong(String id){
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> uresong(String id){
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con=this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song s2 \n"
@@ -90,7 +90,7 @@ public class JavaFood_DAO {
 					+ "WHERE s.ID = '"+id+"' ORDER BY s.HIT DESC");
 			ResultSet rs = this.pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setHits(rs.getString("hit"));
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setArtistname(rs.getString("artistname"));
@@ -109,12 +109,12 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//세션
-	public List<vod> session(String login) {
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> session(String login) {
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con=this.dataFactory.getConnection();
 			ResultSet rs = con.prepareStatement("SELECT *  FROM login WHERE ID = '"+login+"'").executeQuery();
-			vod vo = new vod();
+			login_DTO vo = new login_DTO();
 			rs.next();
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
@@ -134,14 +134,14 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//아이디 리스트
-	public List<vod>listID(){
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO>listID(){
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			con=this.dataFactory.getConnection();
 			this.pstmt = con.prepareStatement("SELECT * FROM login");
 			ResultSet rs=this.pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setId(rs.getString("id"));
 				vo.setPw(rs.getString("pwd"));
 				vo.setNic(rs.getString("nic"));
@@ -162,7 +162,7 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//회원가입
-	public void addId(vod vo) {
+	public void addId(login_DTO vo) {
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"',null,null)");
@@ -175,14 +175,14 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	song리스트
-	public List<vod> list () {
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> list () {
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
@@ -203,21 +203,21 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//리스트 나누기
-	public String link1(vod list) {
+	public String link1(login_DTO list) {
 		String st= (String)list.getLink().split("=")[1];
 		return st ;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//서치
-	public List<vod> Search(String option, String text) {
-		List<vod> list = new ArrayList<>();
+	public List<login_DTO> Search(String option, String text) {
+		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
 			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
@@ -243,7 +243,7 @@ public class JavaFood_DAO {
 			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
-			vod vo = new vod();
+			login_DTO vo = new login_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
@@ -258,8 +258,8 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//genre 가져오기
-	public List<vod> getGenre (String a) {
-		List<vod> list = new ArrayList<>();
+	public List<login_DTO> getGenre (String a) {
+		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			String genre = " SELECT * FROM  song";
@@ -268,7 +268,7 @@ public class JavaFood_DAO {
 			this.pstmt.setString(1, a);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
@@ -485,14 +485,14 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
-	public List<vod> listsong(){
-		List<vod> list = listsong(null);
+	public List<login_DTO> listsong(){
+		List<login_DTO> list = listsong(null);
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
-	public List<vod> listsong(String _songname){
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> listsong(String _songname){
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -521,7 +521,7 @@ public class JavaFood_DAO {
 				   
 				   
 				   
-				   vod vo = new vod();
+				   login_DTO vo = new login_DTO();
 				   vo.setSongnumber(songnumber);
 				   vo.setRank2(rank2);
 				   vo.setRanking(ranking);
@@ -548,7 +548,7 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//좋아요 + 조회수 합산하여 출력하는 메소드(setString 값들을 받아서 출력하는 메소드)
-	public void songlist(vod vo) {
+	public void songlist(login_DTO vo) {
 		try {
 			this.con = dataFactory.getConnection();
 			

@@ -1,6 +1,6 @@
-package My_Page;
+package javafood_DTO;
 
-public class vod {
+public class login_DTO {
 
 
 ///////----------song-----------//////////

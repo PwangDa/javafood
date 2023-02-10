@@ -17,7 +17,7 @@
 		}
 	%>
 	<%
-		List<vod> vo = null;
+	List<login_DTO> vo = null;
 	%>
 	
 	<%
