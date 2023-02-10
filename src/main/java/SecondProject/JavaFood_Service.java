@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
+=======
+import Chart.SongDAO;
+import javafood_DTO.AlbumDTO;
+import javafood_DTO.CommentDTO;
+>>>>>>> 47c87ae2d79709862eb5b7447738d76c88e79149
 import javafood_DTO.login_DTO;
 
 
@@ -22,12 +28,38 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영
+
 //	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
 //    public List<AlbumVO> Albumlist(){
 //    	List<AlbumVO> Albumlist = dao.listAlbum(); 
 //    	return Albumlist; 
 //    }
 
+<<<<<<< HEAD
+=======
+
+//	다영의 메소드(앨범목록리스트 불러오기) 
+    public List<AlbumDTO> Albumlist(){
+    	List<AlbumDTO> Albumlist = dao.listAlbum(); 
+    	return Albumlist; 
+    }
+
+    //댓글 삭제 메소드
+    public void delcomment(String id) {
+    	dao.delcomment(id);
+    }
+    //댓글 등록 메소드
+    public void addcomment(CommentDTO commentDTO) {
+    	dao.addcomment(commentDTO);
+    }
+    
+    //댓글 리스트 불러오는 메소드
+    public List<CommentDTO> listComment() {
+    	List<CommentDTO> commentList = dao.listComment();
+    	return commentList;
+    }
+    
+>>>>>>> 47c87ae2d79709862eb5b7447738d76c88e79149
 	public void javafood1(){
 		
 	}
@@ -47,12 +79,17 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
-	public void javafood4(int i){
+	public Map javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
-		if(i==0) {
-			System.out.println("회원가입 클릭");
-		}
-		
+		System.out.println(i);
+		Map map = new HashMap();
+		if(i!=null) {
+			if(i.equals("O")) {
+				map.put("membership", i);
+				System.out.println("map get : "+map.get("mambership"));
+			}
+		}else System.out.println("null 값");
+		return map;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 

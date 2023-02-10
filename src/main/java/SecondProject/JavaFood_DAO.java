@@ -15,6 +15,9 @@ import javax.sql.DataSource;
 
 import album.info.AlbumVO;
 import comment.CommentVO;
+import javafood_DTO.AlbumDTO;
+import javafood_DTO.CommentDTO;
+import javafood_DTO.PlayListDTO;
 import javafood_DTO.login_DTO;
 
 public class JavaFood_DAO {
@@ -289,8 +292,8 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
 	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
-	public List<AlbumVO> listAlbum(String num){
-		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+	public List<AlbumDTO> listAlbum(String num){
+		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -316,19 +319,19 @@ public class JavaFood_DAO {
 				String music_link = rs.getString("music_link");
 				String music_time = rs.getString("music_time");
 				
-				AlbumVO albumVO = new AlbumVO();
+				AlbumDTO albumDTO = new AlbumDTO();
 				
-				albumVO.setAlbum_cover(cover);
-				albumVO.setAlbum_name(alname);
-				albumVO.setAlbum_into(into);
-				albumVO.setArtist(artist);
+				albumDTO.setAlbum_cover(cover);
+				albumDTO.setAlbum_name(alname);
+				albumDTO.setAlbum_into(into);
+				albumDTO.setArtist(artist);
 				
-				albumVO.setMusic_num(music_num);
-				albumVO.setMusic_name(music_name);
-				albumVO.setMusic_link(music_link);
-				albumVO.setMusic_time(music_time);
+				albumDTO.setMusic_num(music_num);
+				albumDTO.setMusic_name(music_name);
+				albumDTO.setMusic_link(music_link);
+				albumDTO.setMusic_time(music_time);
 				
-				listAlbum.add(albumVO);
+				listAlbum.add(albumDTO);
 				
 			}
 			rs.close();
@@ -345,8 +348,8 @@ public class JavaFood_DAO {
 	//앨범수록곡 리스트 출력하는 메소드
 // 아티스트 페이지에서
 //앨범수록곡 리스트 출력하는 메소드 >artistinfo.jsp에서 쓰이는 메소드
-	public List<AlbumVO> listAlbum(){
-		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+	public List<AlbumDTO> listAlbum(){
+		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -373,20 +376,20 @@ public class JavaFood_DAO {
 				String music_link = rs.getString("music_link");
 				String music_time = rs.getString("music_time");
 				
-				AlbumVO albumVO = new AlbumVO();
+				AlbumDTO albumDTO = new AlbumDTO();
 				
-				albumVO.setAlbum_num(alNum);
-				albumVO.setAlbum_cover(cover);
-				albumVO.setAlbum_name(alname);
-				albumVO.setAlbum_into(into);
-				albumVO.setArtist(artist);
+				albumDTO.setAlbum_num(alNum);
+				albumDTO.setAlbum_cover(cover);
+				albumDTO.setAlbum_name(alname);
+				albumDTO.setAlbum_into(into);
+				albumDTO.setArtist(artist);
 				
-				albumVO.setMusic_num(music_num);
-				albumVO.setMusic_name(music_name);
-				albumVO.setMusic_link(music_link);
-				albumVO.setMusic_time(music_time);
+				albumDTO.setMusic_num(music_num);
+				albumDTO.setMusic_name(music_name);
+				albumDTO.setMusic_link(music_link);
+				albumDTO.setMusic_time(music_time);
 				
-				listAlbum.add(albumVO);
+				listAlbum.add(albumDTO);
 				
 			}
 			rs.close();
@@ -401,12 +404,12 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글 등록 구현
-	public void addcomment(CommentVO commentVO) {
+	public void addcomment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
 			
-			String id = commentVO.getComment_id();
-			String cont = commentVO.getComment_cont();
+			String id = commentDTO.getComment_id();
+			String cont = commentDTO.getComment_cont();
 			
 			String query = "insert into comment_c";
 			query += "(comment_num, comment_id, comment_cont)";
@@ -429,8 +432,8 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글 리스트 읽기 구현
-	public List<CommentVO> listComment(){
-		List<CommentVO> list = new ArrayList<CommentVO>();
+	public List<CommentDTO> listComment(){
+		List<CommentDTO> list = new ArrayList<CommentDTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -448,7 +451,7 @@ public class JavaFood_DAO {
 				   String cont = rs.getString("comment_cont");
 				   Date date = rs.getDate("comment_date");
 				   
-				   CommentVO vo = new CommentVO();
+				   CommentDTO vo = new CommentDTO();
 				   vo.setComment_id(id);
 				   vo.setComment_cont(cont);
 				   vo.setComment_Date(date);
@@ -601,6 +604,16 @@ public class JavaFood_DAO {
 	 */
 	public void addList(String title, String explain, String id)
 	{
+		//DTO에 접속하여 플레이 리스트 제목과 설명을 세팅하기
+		PlayListDTO plDTO = new PlayListDTO();
+		plDTO.setListTitle(title);
+		plDTO.setListExplain(explain);
+		plDTO.setId(id);
+		
+		String temp_title = plDTO.getListTitle();
+		String temp_explain = plDTO.getListExplain();
+		String temp_id = plDTO.getId();
+		
 		//플레이 리스트 추가 쿼리문 작성
 		String add_query =
 				"INSTER INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
@@ -610,15 +623,19 @@ public class JavaFood_DAO {
 		try
 		{
 			pstmt = con.prepareStatement(add_query);
-			pstmt.setString(1, id);
-			pstmt.setString(2, title);
-			pstmt.setString(3, explain);
+			pstmt.setString(1, temp_id);
+			pstmt.setString(2, temp_title);
+			pstmt.setString(3, temp_explain);
 			pstmt.executeQuery();
+			
+			pstmt.close();
+			con.close();
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
+		
 	}
 	
 	/**
@@ -626,7 +643,7 @@ public class JavaFood_DAO {
 	 * @param PL_ID : 플레이 리스트의 id를 입력하세요.
 	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
 	 */
-	public void DeleteList(String PL_ID, String id)
+	public void deleteList(String PL_ID, String id)
 	{
 		//플레이 리스트 내용 삭제 쿼리문 작성
 		String del_query = 
@@ -658,12 +675,58 @@ public class JavaFood_DAO {
 			pstmt.setString(1, PL_ID);
 			pstmt.setString(2, id);
 			pstmt.executeQuery();
+			
+			pstmt.close();
+			con.close();
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 		
+	}
+	/**
+	 * 플레이 리스트를 불러옵니다.
+	 * @param id : 플레이 리스트의 주인 id를 입력하세요.
+	 * @param return : ArrayList가 return 됩니다.
+	 */
+	public List<PlayListDTO> loadPL(String id)
+	{
+		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
+		
+		//쿼리문 작성
+		String load_query = "SELECT * FROM playList"
+				+ " WHERE ID2 = ?"
+				+ " ORDER BY PL_ID DESC";
+		
+		//플레이 리스트 불러오기 쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(load_query);
+			pstmt.setString(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next() )
+			{
+				String temp_title = rs.getString("PL_TITLE");
+				String temp_id = rs.getString("ID2");
+				
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id);
+				
+				playList.add(plDTO);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return playList;
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
