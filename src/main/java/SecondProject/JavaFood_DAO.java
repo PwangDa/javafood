@@ -739,12 +739,8 @@ public class JavaFood_DAO {
 		
 		return playList;
 	}
-	
-<<<<<<< HEAD
-}	
-	
 
-=======
+
 	public List<PlayListDTO> loadPL(String id, int start, int end)
 	{
 		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
@@ -831,7 +827,7 @@ public class JavaFood_DAO {
 		return totalCount;
 	}
 }
->>>>>>> e119f44ec52210dd644750c52cc277cb1f7808fa
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
