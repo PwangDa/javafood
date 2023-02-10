@@ -59,11 +59,11 @@ public class JavaFood_Controller extends HttpServlet {
 			java3(request,response);
 		}
 		if(request.getParameter("javafood").equals("4")) {
-			System.out.println("post4번진입");
+			System.out.println("4번진입");
 			java4(request,response);
 		}
 		if(request.getParameter("javafood").equals("5")) {
-			System.out.println("post5번진입");
+			System.out.println("5번진입");
 			java5(request,response);
 		}
 		if(request.getParameter("javafood").equals("6")) {
@@ -120,7 +120,12 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-		service.javafood4(Integer.parseInt(request.getParameter("membership")));
+		service.javafood4(request.getParameter("membership"));
+		if(map!=null) {
+			System.out.println("map1"+map);
+			System.out.println("map2"+map.get("membership"));
+			request.setAttribute("membership", map.get("membership"));
+		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

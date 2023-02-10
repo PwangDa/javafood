@@ -42,12 +42,17 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
-	public void javafood4(int i){
+	public Map javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
-		if(i==0) {
-			System.out.println("회원가입 클릭");
-		}
-		
+		System.out.println(i);
+		Map map = new HashMap();
+		if(i!=null) {
+			if(i.equals("O")) {
+				map.put("membership", i);
+				System.out.println("map get : "+map.get("mambership"));
+			}
+		}else System.out.println("null 값");
+		return map;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
