@@ -72,6 +72,7 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
+	//로그인 페이지
 	public Map<String, String> javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
 		System.out.println(i);
@@ -83,6 +84,37 @@ public class JavaFood_Service {
 			}
 		}else System.out.println("null 값");
 		return map;
+	}
+	
+	//회원목록 아이디 리스트
+	public Map javafood4_1(String i, String j){
+		System.out.println("4_1번 로그인 페이지 실행");
+		System.out.println(i);
+		List<login_DTO> li = new ArrayList<login_DTO>();
+		Map ma = new HashMap<>();
+		int z=0;
+		if(i!=null) {
+			List<login_DTO> list = dao.listID();
+			for(int q = 0; q<list.size(); q++) {
+				if(list.get(q).getId().equals(i)) {
+					z++;
+					if(list.get(q).getPw().equals(j)) {
+						z++;
+						login_DTO dto = new login_DTO();
+						dto.setNic(list.get(q).getNic());
+						dto.setId(list.get(q).getId());
+						dto.setPw(list.get(q).getPw());
+						li.add(dto);
+						System.out.println(li.get(0).getId());
+						System.out.println(li.get(0).getNic());
+						System.out.println(li.get(0).getPw());
+						ma.put("login", li);
+					}
+				}
+			}
+		}
+		ma.put("log", z);
+		return ma;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 

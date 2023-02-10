@@ -187,48 +187,35 @@
 	</body>
 	</html>
  </c:if>
-<%--
-if(request.getParameter("O").equals("new")){
-}else if(request.getParameter("ID") != null){
-%>
-<title>javafood</title>
-</head>
-<body>
-	<%
-	int a =0;
-			for(login_DTO v:vo){
-			if(request.getParameter("ID").equals(v.getId())){
-		System.out.println("아이디 일치");
-		a++;
-		if(request.getParameter("PW").equals(v.getPw())){
-			System.out.println("페스워드 일치");a++;
-	%>
-				<h1>javafood 로그인성공</h1>
-				<h1><%=v.getNic() %> 님 환영합니다.</h1>
-				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
-				<%request.getSession().setAttribute("login", request.getParameter("ID")); %>
-				<script>
-				let time=5;
-                $("#time").append(time);
-                    setInterval (function(){
-                        console.log(time);
-                        time--;
-                        $("#time").text(time);
-                    	if (time==0){
-                            location.href='http://localhost:8080/javafood_team/one/main.jsp';
-                        }
-                    },1000)
-				</script>
-</body>
-</html>
-			<%}
-		}
-	}
-	if(a==0){%> <script>alert('아이디가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
-	else if(a==1){%> <script>alert('페스워드가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
-	%>
-<%}else {--%>
-<c:if test="${membership==null }">
+ <c:if test="${log==2 }">
+	<title>javafood</title>
+	</head>
+	<body>
+		<h1>javafood 로그인성공</h1>
+		<h1>${login[0].nic } 님 환영합니다.</h1>
+		<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
+		<script>
+			let time=5;
+	    	$("#time").append(time);
+	        setInterval (function(){
+	        	console.log(time);
+	            time--;
+	            $("#time").text(time);
+	            if (time==0){
+	            	location.href='javafood?javafood=5';
+	            	}
+	         	},1000)
+		</script>
+	</body>
+	</html>
+ </c:if>
+<c:if test="${log==0 }">
+	 <script>alert('아이디가 틀렸습니다.');location.href='javafood?javafood=4';</script>
+</c:if>
+<c:if test="${log==1 }">
+	 <script>alert('페스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script>
+</c:if>
+<c:if test="${membership==null&&log==null }">
 	<title>javafood 로그인</title>
 	<style>
 		body{background-size: contain; color: white; background-position: center; text-align: center;background-color: black;}
@@ -253,5 +240,6 @@ if(request.getParameter("O").equals("new")){
 	    <div class="body"></div>
 	</body>
 	</html>
+	<br>
+	<hr>
 </c:if>
-<%-- <%}%> --%>
