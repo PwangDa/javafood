@@ -622,6 +622,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 추가 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(add_query);
 			pstmt.setString(1, temp_id);
 			pstmt.setString(2, temp_title);
@@ -653,6 +655,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 내용 삭제 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(del_query);
 			pstmt.setString(1, id);
 			pstmt.executeQuery();
@@ -671,6 +675,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 삭제 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(del_query);
 			pstmt.setString(1, PL_ID);
 			pstmt.setString(2, id);
@@ -702,6 +708,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 불러오기 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(load_query);
 			pstmt.setString(1, id);
 			
