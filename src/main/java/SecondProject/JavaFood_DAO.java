@@ -485,12 +485,12 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
 	public List<login_DTO> listsong(){
-		List<login_DTO> list = listsong(null);
+		List<login_DTO> list = listsong();
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
-	public List<login_DTO> listsong(String _songname){
+	public List<login_DTO> listSong(){
 		List<login_DTO> list = new ArrayList<login_DTO>();
 		
 		try {

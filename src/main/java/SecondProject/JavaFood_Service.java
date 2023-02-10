@@ -1,10 +1,10 @@
 package SecondProject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Chart.SongDAO;
 import javafood_DTO.login_DTO;
 
 
@@ -27,16 +27,17 @@ public class JavaFood_Service {
 //    	List<AlbumVO> Albumlist = dao.listAlbum(); 
 //    	return Albumlist; 
 //    }
-<<<<<<< HEAD
 
-=======
->>>>>>> da946a06152e50c94d14ce2772a456a9af3ef228
 	public void javafood1(){
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범 
-	public void javafood2(){
+	public List<javafood_DTO.login_DTO> javafood2(){
+		
+		List<javafood_DTO.login_DTO> list = dao.listSong();
+		
+		return list;
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

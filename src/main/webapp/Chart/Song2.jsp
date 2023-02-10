@@ -6,7 +6,7 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="Chart.SongDAO"%>
 <%@ page import="Chart.SongServlet"%>
-<%@ page import="My_Page.vod"%>
+<%@ page import="javafood_DTO.login_DTO"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
@@ -25,6 +25,10 @@ String bygenre = request.getParameter("bygenre");
 String hits = request.getParameter("hits");
 String likes = request.getParameter("likes");
 String playtime = request.getParameter("playtime");
+System.out.println("songnumber : " + songnumber);
+System.out.println("rank2 : " + rank2);
+System.out.println("ranking : " + ranking);
+
 %>
 
 <%
@@ -36,14 +40,14 @@ if (request.getParameter("songnumber") != null) {
 }
 %>
 <%
-List<vod> vo = null;
+List<javafood_DTO.login_DTO> dto = null;
 %>
 
 <%
 if (songnumber == null) {
-	vo = db.list();
+	dto = db.list();
 } else {
-	vo = db.list();
+	dto = db.list();
 }
 %>
 
@@ -159,17 +163,19 @@ td {
 			</tr>
 		
 		<%
-		for (int i = 0; i < vo.size(); i++) {
+		for (int i = 0; i < dto.size(); i++) {
 		%>
-			<%=vo.get(i).getSongnumber() %></a>
-			<%=vo.get(i).getRank2() %></a>
-			<%=vo.get(i).getRanking() %></a>
-			<%=vo.get(i).getSongname() %></a>
-			<%=vo.get(i).getArtistname() %></a>
-			<%=vo.get(i).getBygenre() %></a>
-			<%=vo.get(i).getHits() %></a>
-			<%=vo.get(i).getLikes() %></a>
-			<%=vo.get(i).getPlaytime() %></a>
+			<%=dto.get(i).getSongnumber() %></a>
+			<%=dto.get(i).getRank2() %></a>
+			<%=dto.get(i).getRanking() %></a>
+			<%=dto.get(i).getSongname() %></a>
+			<%=dto.get(i).getArtistname() %></a>
+			<%=dto.get(i).getBygenre() %></a>
+			<%=dto.get(i).getHits() %></a>
+			<%=dto.get(i).getLikes() %></a>
+			<%=dto.get(i).getPlaytime() %></a>
+			
+			
 		<%
 		}
 		%>
