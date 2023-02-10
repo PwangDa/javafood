@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import Chart.SongDAO;
-import My_Page.vod;
+import javafood_DTO.login_DTO;
 
 
 
@@ -27,7 +27,10 @@ public class JavaFood_Service {
 //    	List<AlbumVO> Albumlist = dao.listAlbum(); 
 //    	return Albumlist; 
 //    }
+<<<<<<< HEAD
 
+=======
+>>>>>>> da946a06152e50c94d14ce2772a456a9af3ef228
 	public void javafood1(){
 		
 	}
@@ -43,14 +46,18 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
-	public void javafood4(){
-		System.out.println("food4 실행");
+	public void javafood4(int i){
+		System.out.println("4번 로그인 페이지 실행");
+		if(i==0) {
+			System.out.println("회원가입 클릭");
+		}
+		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
 	public Map javafood5(){
-		System.out.println("food5 실행");
-		List<vod> list = dao.list();
+		System.out.println("5번 my페이지 실행");
+		List<login_DTO> list = dao.list();
 		Map map = new HashMap();
 		map.put("list", list);
 		dao.list();
@@ -59,6 +66,13 @@ public class JavaFood_Service {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 
 	public void javafood6(){
+		System.out.println("6번 장르 실행");
+		
+		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//태연 메인 
+	public void javafoodm(){
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

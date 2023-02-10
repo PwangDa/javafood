@@ -7,10 +7,10 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <meta charset="UTF-8">
 <%
-	System.out.println("logion 실행");
+System.out.println("logion 실행");
 	dbon db = new dbon(); 
 	if(request.getParameter("Id1")!=null){
-		vod vo1 = new vod();
+		login_DTO vo1 = new login_DTO();
 		vo1.setId(request.getParameter("Id1"));
 		vo1.setPw(request.getParameter("PW1"));
 		vo1.setNic(request.getParameter("nic"));
@@ -18,12 +18,14 @@
 		vo1.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 		vo1.setEmail(request.getParameter("mail"));
 		db.addId(vo1);
-		%><script>alert("회원가입 성공")</script>  <%
-	}
-	
-	List<vod> vo = db.listID();
+%><script>alert("회원가입 성공")</script>  <%
+  }
+  	
+  	List<login_DTO> vo = db.listID();
+  %>
+<%
+if("O".equals(request.getParameter("new"))) {
 %>
-<%if("O".equals(request.getParameter("new"))) {%>
 <title>javafood 회원가입</title>
 <style>
 	body{background-size: contain; color: white; background-color: black; text-align: center;;}
@@ -176,17 +178,21 @@
         </script>
 </body>
 </html>
-<% }else if(request.getParameter("ID") != null){%>
+<%
+}else if(request.getParameter("ID") != null){
+%>
 <title>javafood</title>
 </head>
 <body>
-	<% int a =0;
-		for(vod v:vo){
-		if(request.getParameter("ID").equals(v.getId())){
-			System.out.println("아이디 일치");
-			a++;
-			if(request.getParameter("PW").equals(v.getPw())){
-				System.out.println("페스워드 일치");a++; %>
+	<%
+	int a =0;
+			for(login_DTO v:vo){
+			if(request.getParameter("ID").equals(v.getId())){
+		System.out.println("아이디 일치");
+		a++;
+		if(request.getParameter("PW").equals(v.getPw())){
+			System.out.println("페스워드 일치");a++;
+	%>
 				<h1>javafood 로그인성공</h1>
 				<h1><%=v.getNic() %> 님 환영합니다.</h1>
 				<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
@@ -227,7 +233,7 @@
         <div class="head">
              아 이 디 &nbsp;: <input type="text" name="ID"><br><br>
             비밀번호 : <input type="text" name="PW"><br><br>
-            <a href="login.jsp?new=O" class="at">회원가입</a>
+            <a href="login.jsp?membership=O" class="at">회원가입</a>
             <input class="sub" type="submit" value="로그인">
             <input class="sub" type="reset" value="다시작성">
         </div>

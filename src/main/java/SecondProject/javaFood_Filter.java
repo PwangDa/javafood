@@ -1,4 +1,4 @@
-package My_Page;
+package SecondProject;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -11,9 +11,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 
 @WebFilter("/*")
-public class My_page extends HttpFilter implements Filter {
+public class javaFood_Filter extends HttpFilter implements Filter {
        
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		System.out.println("필터 정상작동");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8;");
 		chain.doFilter(request, response);
