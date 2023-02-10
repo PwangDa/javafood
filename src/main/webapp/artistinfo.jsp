@@ -16,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Artist.jsp Test전용</title>
-<% 		CommentDAO dao = new CommentDAO();
+<%-- 		CommentDAO dao = new CommentDAO();
 
 		String command = request.getParameter("command"); 
 		
@@ -36,7 +36,7 @@
 			dao.delcomment(id_2);
 		}
 		
-		List<CommentVO> list = dao.listComment();%>
+		List<CommentVO> list = dao.listComment();--%>
  <script>
  		/*댓글 입력창 if문*/
         function fn_sendComment(){
@@ -348,7 +348,7 @@
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
             <jsp:useBean id="daoTest" class="album.info.AlbumDAO"></jsp:useBean>
-            <!-- service에 
+            <%-- service에 
             AlbumDAO albumDAO = new AlbumDAO(); 생성 [생성자선언해도 되나?]   
             
             public List<AlbumVO> Albumlist(){
@@ -376,7 +376,7 @@
                   </div>
                   <div class = "box1 text2"><a href="${album.link}">
                   
-            -->
+            --%>
             <%-- 
             AlbumDAO albumDAO = new AlbumDAO();
         	String num = request.getParameter("a.ALBUM_NUM");
@@ -395,14 +395,14 @@
     			String music_name = vo.getMusic_name();
     			String music_link = vo.getMusic_link();
             	--%>
-           <c:forEach var:"album" items="${listAlbum}">
+           <c:forEach var="album" items="${listAlbum}">
 	            <div id = "cont1">
 	                <div class = "box1">
-	                    <img class="img1" src="${album.cover }">
+	                    <img class="img1" src="${album.album_cover }">
 	                </div>
-	                <div class = "box1 text2"><a href="${album.link}"><strong>${album_name }</strong></a></div>
+	                <div class = "box1 text2"><a href="${album.music_link}"><strong>${album.album_name }</strong></a></div>
 	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artist }</div>
-	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.alNum}">${album.alname }</a></div>
+	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_num}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
             </c:forEach>
@@ -422,11 +422,11 @@
         			String alname = vo.getAlbum_name();
 
                 --%>
-                <c:forEach var:"album" items="${listAlbum}">
+                <c:forEach var ="album" items="${listAlbum}">
                     <li>
-                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.alNum}"><img  class="image" src="${album.cover }"></a>
+                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_num}"><img  class="image" src="${album.album_cover }"></a>
                         <br>
-                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.alNum}"><span><strong>${album.alname }</strong></span></a>
+                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span><strong>${album.album_name }</strong></span></a>
                     </li>
                     <%--} --%>
                 </c:forEach>
@@ -460,21 +460,21 @@
 	    	    	  String id = vo.getComment_id();
 	    	    	  String cont = vo.getComment_cont();
 	    	    	  Date date = vo.getComment_Date(); --%>
-	    	  	<c:forEach var:"comment" items="${commentList}">
+	    	  	<c:forEach var ="comment" items="${commentList}">
 	                <div class="comment">
 	                        <div class="text2 cont2_1">
 	                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-	                            <div class="id2">${comment.id }</div>
+	                            <div class="id2">${comment.comment_id }</div>
 	                        </div>
 	                        <div class="text2">
-	                            <div class="cont2">${comment.cont }</div>
-	                            <div class="date1">${comment.date }</div>
+	                            <div class="cont2">${comment.comment_cont }</div>
+	                            <div class="date1">${comment.comment_Date }</div>
 	                        </div>
 	                        <!-- 삭제하기 기능도 
 	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
 	                        -->
 	                        <div class="text2">
-	                            <a href="/javafood_team/artistinfo.jsp?command=delcommnet&id=${comment.id }"><button class='btn' type='button'> 삭제 </button></a>
+	                            <a href="/javafood_team/artistinfo.jsp?command=delcommnet&id=${comment.comment_id }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
 	                </div> 
 	            </c:forEach>
