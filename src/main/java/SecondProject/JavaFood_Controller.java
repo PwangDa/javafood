@@ -53,23 +53,16 @@ public class JavaFood_Controller extends HttpServlet {
 	protected void doHand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("javafood").equals("1")) {
-			
+			///다영 javafood=1 로 접속했을 때 
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 			
-			System.out.println("java1로 들어왔습니다");
-			
 			String nextPage = "";
-			String action = request.getPathInfo();
 			String uri = request.getRequestURI();
 			String command = request.getParameter("command");
 			
-			StringBuffer url = request.getRequestURL();
-			System.out.println("action : "+action);
-			System.out.println("command : "+command);
-			
+			System.out.println("command : "+command);		
 			System.out.println("uri : "+uri);
-			System.out.println("url : "+url);
 			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			
@@ -215,6 +208,23 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		//Service에서 플레이 리스트 불러오는 메서드 실행하기
 		List playList = service.s_loadPL(c_id);
+		
+		//페이징 테스트
+		int pageNum = 1;
+		int countPerPage = 8;
+		
+		String temp_pageNum = request.getParameter("pageNum");
+		if(temp_pageNum != null)
+		{
+			pageNum = Integer.parseInt(temp_pageNum);
+		}
+		
+		Map map = service.pl_getPagingList(pageNum, countPerPage, c_id);
+		
+		request.setAttribute("articleList", map.get("list") );
+		request.setAttribute("totalCount", map.get("totalCount") );
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("countPerPage", countPerPage);
 		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
 		request.setAttribute("playList", playList);
