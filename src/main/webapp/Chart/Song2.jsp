@@ -6,7 +6,7 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="Chart.SongDAO"%>
 <%@ page import="Chart.SongServlet"%>
-<%@ page import="My_Page.vod"%>
+<%@ page import="javafood_DTO.login_DTO"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
@@ -15,36 +15,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-String songnumber = request.getParameter("songnumber");
-String rank2 = request.getParameter("rank2");
-String ranking = request.getParameter("ranking");
-String songname = request.getParameter("songname");
-String artistname = request.getParameter("artistname");
-String bygenre = request.getParameter("bygenre");
-String hits = request.getParameter("hits");
-String likes = request.getParameter("likes");
-String playtime = request.getParameter("playtime");
-%>
 
 <%
 dbon db = new dbon();
 %>
-<%
-if (request.getParameter("songnumber") != null) {
-	db.list();
-}
-%>
-<%
-List<vod> vo = null;
-%>
 
 <%
-if (songnumber == null) {
-	vo = db.list();
-} else {
-	vo = db.list();
-}
+List<javafood_DTO.login_DTO> dto = null;
 %>
 
 <meta charset="UTF-8">
@@ -147,7 +124,9 @@ td {
 	</div>
 		<table class="table">
 			<tr class="table2">
-				<td>번호</td>
+				<td>번호
+					<a href="/javafood/viewlist.do?articleNO=${vo.articleNO }">${vo.title }</a>
+				</td>
 				<td>조회수+좋아요 합산</td>
 				<td>순위</td>
 				<td>노래제목</td>
@@ -159,17 +138,11 @@ td {
 			</tr>
 		
 		<%
-		for (int i = 0; i < vo.size(); i++) {
+		for (int i = 0; i < dto.size(); i++) {
 		%>
-			<%=vo.get(i).getSongnumber() %></a>
-			<%=vo.get(i).getRank2() %></a>
-			<%=vo.get(i).getRanking() %></a>
-			<%=vo.get(i).getSongname() %></a>
-			<%=vo.get(i).getArtistname() %></a>
-			<%=vo.get(i).getBygenre() %></a>
-			<%=vo.get(i).getHits() %></a>
-			<%=vo.get(i).getLikes() %></a>
-			<%=vo.get(i).getPlaytime() %></a>
+			
+			dssw
+			
 		<%
 		}
 		%>

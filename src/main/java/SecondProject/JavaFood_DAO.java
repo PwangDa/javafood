@@ -20,9 +20,8 @@ import javafood_DTO.CommentDTO;
 import javafood_DTO.PlayListDTO;
 import javafood_DTO.login_DTO;
 
-public class JavaFood_DAO {
-///////////////////////////////////////////////////////////////////////////////////
 	//필드
+public class JavaFood_DAO {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
@@ -196,7 +195,6 @@ public class JavaFood_DAO {
 				list.add(vo);
 			}
 			rs.close();
-			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -488,12 +486,12 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
 	public List<login_DTO> listsong(){
-		List<login_DTO> list = listsong(null);
+		List<login_DTO> list = listsong();
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
-	public List<login_DTO> listsong(String _songname){
+	public List<login_DTO> listSong(){
 		List<login_DTO> list = new ArrayList<login_DTO>();
 		
 		try {
@@ -622,6 +620,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 추가 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(add_query);
 			pstmt.setString(1, temp_id);
 			pstmt.setString(2, temp_title);
@@ -653,6 +653,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 내용 삭제 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(del_query);
 			pstmt.setString(1, id);
 			pstmt.executeQuery();
@@ -671,6 +673,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 삭제 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(del_query);
 			pstmt.setString(1, PL_ID);
 			pstmt.setString(2, id);
@@ -702,6 +706,8 @@ public class JavaFood_DAO {
 		//플레이 리스트 불러오기 쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
+			
 			pstmt = con.prepareStatement(load_query);
 			pstmt.setString(1, id);
 			

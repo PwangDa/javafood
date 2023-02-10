@@ -2,9 +2,15 @@
 <%@page import="My_Page.dbon"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
-    import = "My_Page.dbon"
-    import = "My_Page.vod"
+    import = "My_Page.*"
+    import="javafood_DTO.*"
+    import="SecondProject.*"
     %>
+    
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
