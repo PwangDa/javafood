@@ -140,24 +140,11 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String nextPage = "/javafood/listsong.do";
+		String nextPage = "";
 		String action = request.getPathInfo();
-		
-		try {
-			
-			if("/listsong.do".equals(action)) {
-				
-				
-				
-			}
-			
-		} catch (Exception e) {
-			System.out.println("list불러오기 실패");
-			e.printStackTrace();
-		}
-		
+		List<javafood_DTO.login_DTO> chart = new ArrayList<javafood_DTO.login_DTO>();
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("Chart/Song2.jsp");
 		dispatch.forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
