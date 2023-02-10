@@ -643,7 +643,7 @@ public class JavaFood_DAO {
 	 * @param PL_ID : 플레이 리스트의 id를 입력하세요.
 	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
 	 */
-	public void DeleteList(String PL_ID, String id)
+	public void deleteList(String PL_ID, String id)
 	{
 		//플레이 리스트 내용 삭제 쿼리문 작성
 		String del_query = 
@@ -688,33 +688,45 @@ public class JavaFood_DAO {
 	/**
 	 * 플레이 리스트를 불러옵니다.
 	 * @param id : 플레이 리스트의 주인 id를 입력하세요.
-	 * @param return : Map이 return 됩니다.
+	 * @param return : ArrayList가 return 됩니다.
 	 */
-	public List<PlayListDTO> loadingPL(String id)
+	public List<PlayListDTO> loadPL(String id)
 	{
-		List<PlayListDTO> list = new ArrayList<PlayListDTO>();
+		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
 		
 		//쿼리문 작성
-		String load_query = "SELECT * FROM playList";
+		String load_query = "SELECT * FROM playList"
+				+ " WHERE ID2 = ?"
+				+ " ORDER BY PL_ID DESC";
 		
 		//플레이 리스트 불러오기 쿼리 실행
 		try
 		{
 			pstmt = con.prepareStatement(load_query);
+			pstmt.setString(1, id);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
-			if(rs.next() )
+			while(rs.next() )
 			{
+				String temp_title = rs.getString("PL_TITLE");
+				String temp_id = rs.getString("ID2");
 				
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id);
+				
+				playList.add(plDTO);
 			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 		
-		return list;
+		return playList;
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

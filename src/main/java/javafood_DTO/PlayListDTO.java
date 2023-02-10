@@ -1,12 +1,13 @@
 package javafood_DTO;
 
+
 public class PlayListDTO
 {
 	private String listTitle;
 	private String listExplain;
 	private String id;
 	
-	
+
 	
 	
 	//getter setter
@@ -31,11 +32,11 @@ public class PlayListDTO
 	
 	
 	//생성자
-	PlayListDTO(){};
+	public PlayListDTO(){};
 	
-	PlayListDTO(String title, String explain)
+	public PlayListDTO(String title, String id)
 	{
 		this.listTitle = title;
-		this.listExplain = explain;
+		this.id = id;
 	}
 }
