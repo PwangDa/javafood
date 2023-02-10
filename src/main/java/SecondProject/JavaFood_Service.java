@@ -83,18 +83,16 @@ public class JavaFood_Service {
 		if(i!=null) {
 			if(i.equals("O")) {
 				map.put("membership", i);
-				System.out.println("map get : "+map.get("membership"));
 			}
 		}else System.out.println("null 값");
 		return map;
 	}
 	
 	//회원목록 아이디 리스트
-	public Map javafood4_1(String i, String j){
+	public Map<Object, Object> javafood4_1(String i, String j){
 		System.out.println("4_1번 로그인 페이지 실행");
-		System.out.println(i);
 		List<login_DTO> li = new ArrayList<login_DTO>();
-		Map ma = new HashMap<>();
+		Map<Object, Object> ma = new HashMap<Object, Object>();
 		int z=0;
 		if(i!=null) {
 			List<login_DTO> list = dao.listID();
@@ -108,9 +106,6 @@ public class JavaFood_Service {
 						dto.setId(list.get(q).getId());
 						dto.setPw(list.get(q).getPw());
 						li.add(dto);
-						System.out.println(li.get(0).getId());
-						System.out.println(li.get(0).getNic());
-						System.out.println(li.get(0).getPw());
 						ma.put("login", li);
 					}
 				}
