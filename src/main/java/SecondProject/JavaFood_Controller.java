@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Chart.SongDAO;
+import javafood_DTO.AlbumDTO;
+import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
 
 @WebServlet("/javafood")
@@ -78,15 +80,44 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		
+		String nextPage = "";
 		String action = request.getPathInfo();
+		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
 		if("/artisionfo.do".equals(action)) {
-			List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
-			List<AlbumVO> listAlbum = service.Albumlist();
-//			listAlbum = service.Albumlist();
+//			List<AlbumDTO> listAlbum = service.Albumlist();
+			listAlbum = service.Albumlist();
+			commentList = service.listComment();
 			request.setAttribute("listAlbum", listAlbum);
-			nextPage = "/artistinfo.jsp";
+			request.setAttribute("commentList", commentList);
+			nextPage = "/javafood/artistinfo.jsp";
+			
+		}else if("/addcommnet.do".equals(action)) {
+			String id_1 = request.getParameter("id");
+			String cont_1 = request.getParameter("cont");
+			
+			CommentDTO dto = new CommentDTO();
+			dto.setComment_id(id_1);
+			dto.setComment_cont(cont_1);
+			
+			service.addcomment(dto);
+			nextPage = "/javafood/artisionfo.do";
+			
+		}else if("/delcommnet.do".equals(action)) {
+			String id = request.getParameter("id");
+			System.out.println("delete id : "+id);
+			service.delcomment(id);
+			nextPage = "/javafood/artisionfo.do";
+		}else {
+			listAlbum = service.Albumlist();
+			request.setAttribute("listAlbum", listAlbum);
+			nextPage = "/javafood/artistinfo.jsp";
 		}
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+		dispatch.forward(request, response);
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import = "SecondProject.JavaFood_DAO"%>
+    import = "SecondProject.JavaFood_DAO"
+    import = "java.util.ArrayList"
+    import = "java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <% 
-	request.setCharacterEncoding("utf-8");
-	response.setContentType("text/html; charset = utf-8;");
+	//DAO 불러오기
+	JavaFood_DAO jfDAO = new JavaFood_DAO();
 	
 	//주소로 넘어 온 id값 받기.
 	String id = request.getParameter("id");
@@ -24,14 +26,16 @@
 		String addList_explain = request.getParameter("addList_explain");
 		
 		//DAO에서 플레이 리스트를 추가하는 메서드 실행하기.
-		JavaFood_DAO j_dao = new JavaFood_DAO();
-		j_dao.addList(addList_title, addList_explain, id);
+		jfDAO.addList(addList_title, addList_explain, id);
 	}
 	//플레이 리스트 삭제하기
 	else if("doDelete".equals(doDeleteList) )
 	{
 		//주소로 넘어온 값들을 받기
 		String res_PL_ID = request.getParameter("res.PL_ID");
+		
+		//DAO에서 플레이 리스트를 삭제하는 메서드 실행하기.
+		jfDAO.deleteList(res.PL_ID, id);
 	}
 %>
 <!DOCTYPE html>
@@ -41,6 +45,8 @@
 <title><%=id %>님의 플레이 리스트</title>
 </head>
 <body>
+	<jsp:include page="menu.jsp" />
+	<br>
 	<div class="title"><h1> <%=id %>님의 플레이 리스트 </h1></div>
     <br>
     <hr>
@@ -57,9 +63,21 @@
     
     <br>
     
-    <c:forEach>
-    	
-    </c:forEach>
+	<%
+		//플레이 리스트를 담은 리스트를 DAO 메서드를 통해 불러오기.
+		List playList = jfDAO.loadPL(id);
+
+   		//만약 해당 유저의 플레이 리스트가 아무것도 없다면
+		if(playList.isEmpty() )
+		{
+	%>
+			<div class="noList">등록된 리스트가 없습니다. 리스트를 추가해 주세요.</div>
+	<%
+		} else
+		{
+			
+		}
+	%>
     
 	<script>
         document.querySelector("img.addList").addEventListener('click', ()=>
@@ -197,7 +215,12 @@
             vertical-align: top;
         }
 
-        
+        div.noList
+        {
+        	color:white;
+        	padding:37%
+        	text-align:center;
+        }
     </style>
 </body>
 </html>
