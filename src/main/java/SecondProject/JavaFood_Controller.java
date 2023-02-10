@@ -156,6 +156,23 @@ public class JavaFood_Controller extends HttpServlet {
 		//Service에서 플레이 리스트 불러오는 메서드 실행하기
 		List playList = service.s_loadPL(c_id);
 		
+		//페이징 테스트
+		int pageNum = 1;
+		int countPerPage = 8;
+		
+		String temp_pageNum = request.getParameter("pageNum");
+		if(temp_pageNum != null)
+		{
+			pageNum = Integer.parseInt(temp_pageNum);
+		}
+		
+		Map map = service.pl_getPagingList(pageNum, countPerPage, c_id);
+		
+		request.setAttribute("articleList", map.get("list") );
+		request.setAttribute("totalCount", map.get("totalCount") );
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("countPerPage", countPerPage);
+		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);

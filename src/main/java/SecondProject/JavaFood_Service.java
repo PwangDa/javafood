@@ -1,11 +1,9 @@
 package SecondProject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
@@ -18,7 +16,7 @@ public class JavaFood_Service {
 	//필드 공통으로 쓰는거 아니면 필드선언 자제해주세요~
 	JavaFood_DAO dao;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//생선자   공통으로 사용하는 메소드 선언은 이곳에다가
+	//생성자   공통으로 사용하는 메소드 선언은 이곳에다가
 	JavaFood_Service(){
 		System.out.println("service 실행");
 		dao = new JavaFood_DAO();
@@ -72,6 +70,25 @@ public class JavaFood_Service {
 		System.out.println("JavaFood_Service의 s_loadPL 메서드 실행됨."); //확인용
 		List s_playList = dao.loadPL(id);
 		return s_playList;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//범주 페이지 서비스
+	public Map pl_getPagingList(int pageNum, int countPerPage, String id)
+	{
+		int start = 0;
+		int end = 0;
+		
+		start = (countPerPage*(pageNum-1) ) + 1;
+		end = start + countPerPage - 1;
+		List list = dao.loadPL(id, start, end);
+		
+		int totalCount = dao.pl_totalCount(id);
+		
+		Map map = new HashMap();
+		map.put("list", list);
+		map.put("totalCount", totalCount);
+		
+		return map;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
