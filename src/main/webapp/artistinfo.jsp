@@ -464,7 +464,7 @@
                             <div class="date1"><%= date %></div>
                         </div>
                         <!-- 삭제하기 기능도 
-                        	<a href="/javafood_team/artistinfo.do?id=${list.id}">
+                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
                         -->
                         <div class="text2">
                             <a href="/javafood_team/artistinfo.jsp?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>

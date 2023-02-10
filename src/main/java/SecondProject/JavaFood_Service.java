@@ -6,6 +6,7 @@ import java.util.Map;
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
+import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
 
 
@@ -28,6 +29,15 @@ public class JavaFood_Service {
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
     }
+    
+    public void delcomment(String id) {
+    	dao.delcomment(id);
+    }
+    
+    public void addcomment(CommentDTO commentDTO) {
+    	dao.addcomment(commentDTO);
+    }
+    
 	public void javafood1(){
 		
 	}
