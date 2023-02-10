@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import My_Page.vod;
 import album.info.AlbumVO;
 import comment.CommentVO;
+import playList.PlayListDTO;
 
 public class JavaFood_DAO {
 ///////////////////////////////////////////////////////////////////////////////////
@@ -601,6 +602,16 @@ public class JavaFood_DAO {
 	 */
 	public void addList(String title, String explain, String id)
 	{
+		//DTO에 접속하여 플레이 리스트 제목과 설명을 세팅하기
+		PlayListDTO plDTO = new PlayListDTO();
+		plDTO.setListTitle(title);
+		plDTO.setListExplain(explain);
+		plDTO.setId(id);
+		
+		String temp_title = plDTO.getListTitle();
+		String temp_explain = plDTO.getListExplain();
+		String temp_id = plDTO.getId();
+		
 		//플레이 리스트 추가 쿼리문 작성
 		String add_query =
 				"INSTER INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
@@ -610,15 +621,19 @@ public class JavaFood_DAO {
 		try
 		{
 			pstmt = con.prepareStatement(add_query);
-			pstmt.setString(1, id);
-			pstmt.setString(2, title);
-			pstmt.setString(3, explain);
+			pstmt.setString(1, temp_id);
+			pstmt.setString(2, temp_title);
+			pstmt.setString(3, temp_explain);
 			pstmt.executeQuery();
+			
+			pstmt.close();
+			con.close();
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
+		
 	}
 	
 	/**
@@ -658,12 +673,46 @@ public class JavaFood_DAO {
 			pstmt.setString(1, PL_ID);
 			pstmt.setString(2, id);
 			pstmt.executeQuery();
+			
+			pstmt.close();
+			con.close();
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 		
+	}
+	/**
+	 * 플레이 리스트를 불러옵니다.
+	 * @param id : 플레이 리스트의 주인 id를 입력하세요.
+	 * @param return : Map이 return 됩니다.
+	 */
+	public List<PlayListDTO> loadingPL(String id)
+	{
+		List<PlayListDTO> list = new ArrayList<PlayListDTO>();
+		
+		//쿼리문 작성
+		String load_query = "SELECT * FROM playList";
+		
+		//플레이 리스트 불러오기 쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(load_query);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next() )
+			{
+				
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
