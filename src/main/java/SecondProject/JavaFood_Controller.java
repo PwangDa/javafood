@@ -19,7 +19,7 @@ import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
 
-@WebServlet("/javafood")
+@WebServlet("/javafood/*")
 public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//필드 공통으로 쓰는거 아니면 필드선언 자제해주세요~
@@ -51,9 +51,58 @@ public class JavaFood_Controller extends HttpServlet {
 					//실행은 이곳에서만!
 //접속방법 : http://localhost:8080/javafood_team/javafood?javafood=[1~6]
 	protected void doHand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Hand 실행");
+		
 		if(request.getParameter("javafood").equals("1")) {
-			java1(request,response);
+			///다영 javafood=1 로 접속했을 때 
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			
+			String nextPage = "";
+			String uri = request.getRequestURI();
+			String command = request.getParameter("command");
+			
+			System.out.println("command : "+command);		
+			System.out.println("uri : "+uri);
+			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+			
+			if("artistinfo.do".equals(command)) {
+//				List<AlbumDTO> listAlbum = service.Albumlist();
+				listAlbum = service.Albumlist();
+				commentList = service.listComment();
+				request.setAttribute("listAlbum", listAlbum);
+				request.setAttribute("commentList", commentList);
+				nextPage = "/artistinfo.jsp";
+				
+			}else if("addcommnet.do".equals(command)) {
+				System.out.println("addcomment 입장");
+				String id_1 = request.getParameter("id");
+				String cont_1 = request.getParameter("cont");
+				
+				CommentDTO dto = new CommentDTO();
+				dto.setComment_id(id_1);
+				dto.setComment_cont(cont_1);
+				
+				service.addcomment(dto);
+				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+				
+			}else if("delcommnet.do".equals(command)) {
+				String id = request.getParameter("id");
+				System.out.println("delete id : "+id);
+				service.delcomment(id);
+				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+			}else {
+//				System.out.println("else action : "+action);
+				listAlbum = service.Albumlist();
+				commentList = service.listComment();
+				request.setAttribute("listAlbum", listAlbum);
+				request.setAttribute("commentList", commentList);
+				nextPage = "/artistinfo.jsp";
+			}
+			
+			System.out.println("nextPage : "+nextPage);
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+			dispatch.forward(request, response);
 		}
 		if(request.getParameter("javafood").equals("2")) {
 			java2(request,response);
@@ -86,7 +135,11 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		String action = request.getPathInfo();
+		String uri = request.getRequestURI();
+		StringBuffer url = request.getRequestURL();
 		System.out.println("action : "+action);
+		System.out.println("uri : "+uri);
+		System.out.println("url : "+url);
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
@@ -184,11 +237,27 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-		map=service.javafood4(request.getParameter("membership"));
-		if(map!=null) {
-			System.out.println("map1"+map);
-			System.out.println("map2"+map.get("membership"));
+		if(request.getParameter("membership") !=null) {
+			System.out.println("membership");
+			map = service.javafood4(request.getParameter("membership"));
 			request.setAttribute("membership", map.get("membership"));
+		}
+		if(request.getParameter("ID")!=null) {
+			System.out.println("ID");
+			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
+			request.setAttribute("login", (List<login_DTO>) map.get("login"));
+			request.setAttribute("log", (int) map.get("log"));
+			request.getSession().setAttribute("login", request.getParameter("ID"));
+		}
+		if(request.getParameter("Id1")!=null) {
+			vo = new login_DTO();
+			vo.setId(request.getParameter("Id1"));
+			vo.setPw(request.getParameter("PW1"));
+			vo.setNic(request.getParameter("nic"));
+			vo.setEmail(request.getParameter("mail"));
+			vo.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
+			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
+			request.setAttribute("good",service.javafood4_2(vo));
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}

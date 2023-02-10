@@ -92,17 +92,57 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
+	
+	//로그인 페이지
 	public Map<String, String> javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
-		System.out.println(i);
 		Map<String, String> map = new HashMap<String, String>();
 		if(i!=null) {
 			if(i.equals("O")) {
 				map.put("membership", i);
-				System.out.println("map get : "+map.get("membership"));
 			}
-		}else System.out.println("null 값");
+		}else System.out.println("javafood4 null 값");
 		return map;
+	}
+	
+	//회원목록 아이디 리스트
+	public Map<Object, Object> javafood4_1(String i, String j){
+		System.out.println("4_1번 로그인 페이지 실행");
+		List<login_DTO> li = new ArrayList<login_DTO>();
+		Map<Object, Object> ma = new HashMap<Object, Object>();
+		int z=0;
+		if(i!=null) {
+			List<login_DTO> list = dao.listID();
+			for(int q = 0; q<list.size(); q++) {
+				if(list.get(q).getId().equals(i)) {
+					z++;
+					if(list.get(q).getPw().equals(j)) {
+						z++;
+						login_DTO dto = new login_DTO();
+						dto.setNic(list.get(q).getNic());
+						dto.setId(list.get(q).getId());
+						dto.setPw(list.get(q).getPw());
+						li.add(dto);
+						ma.put("login", li);
+					}
+				}
+			}
+		}
+		ma.put("log", z);
+		return ma;
+	}
+	
+	//회원가입
+	public int javafood4_2(login_DTO DTO){
+		System.out.println("4_2번 회원가입 페이지 실행");
+		int i=0;
+		try {
+			i++;
+			dao.addId(DTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
