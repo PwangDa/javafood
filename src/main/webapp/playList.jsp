@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import = "SecondProject.JavaFood_DAO"%>
+    import = "SecondProject.JavaFood_DAO"
+    import = "java.util.HashMap"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -41,6 +42,8 @@
 <title><%=id %>님의 플레이 리스트</title>
 </head>
 <body>
+	<jsp:include page="menu.jsp" />
+	<br>
 	<div class="title"><h1> <%=id %>님의 플레이 리스트 </h1></div>
     <br>
     <hr>
@@ -57,9 +60,7 @@
     
     <br>
     
-    <c:forEach>
-    	
-    </c:forEach>
+   
     
 	<script>
         document.querySelector("img.addList").addEventListener('click', ()=>

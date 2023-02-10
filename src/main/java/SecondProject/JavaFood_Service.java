@@ -24,11 +24,20 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영
+<<<<<<< HEAD
+//	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
+//    public List<AlbumVO> Albumlist(){
+//    	List<AlbumVO> Albumlist = dao.listAlbum(); 
+//    	return Albumlist; 
+//    }
+
+=======
 //	다영의 메소드(앨범목록) 
     public List<AlbumDTO> Albumlist(){
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
     }
+<<<<<<< HEAD
     
     public void delcomment(String id) {
     	dao.delcomment(id);
@@ -38,6 +47,9 @@ public class JavaFood_Service {
     	dao.addcomment(commentDTO);
     }
     
+=======
+>>>>>>> 5df7ef46fa62f44fadbc8c358c8f424999c01dbf
+>>>>>>> 2edb813d54e54d341a1e2ea03de2c5f4958f6aa7
 	public void javafood1(){
 		
 	}
