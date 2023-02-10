@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"%>
+	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
+<body>
+
+<%-- 
 	<%
 		if(request.getParameter("number")!=null){
 		db.like(request.getParameter("number"));
 		}
-	%>
+	%> --%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
@@ -284,9 +290,9 @@
         <h1><a href='http://127.0.0.1:8080/javafood_team/Genre/NewGenre.jsp'>장르</a></h1>
         
        ${song };
-        <%
-		if ("발라드".equals(requst)) {
-		%>
+       <c:choose>
+		<c:when test="${song eq '발라드'}"> 
+	
         <div class="tab">
             <div class="tab1 tab1_1 btline"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -295,9 +301,8 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} else if ("댄스".equals(song)) {
-		%>
+        </c:when>
+        <c:when test="${song eq '댄스'}">
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2 btline"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -306,9 +311,8 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} else if ("pop".equals(song)) {
-		%>
+        </c:when>
+        <c:when test="${song eq 'pop'}">
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -317,9 +321,8 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} else if ("R&B".equals(song)) {
-		%>
+        </c:when>
+        <c:when test="${song eq 'R&B'}">
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -328,9 +331,8 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} else if ("인디".equals(song)) {
-		%>
+        </c:when>
+        <c:when test="${song eq '인디'}">
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -339,9 +341,8 @@
             <div class="tab1 tab1_5 btline"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} else if ("트로트".equals(song)) {
-		%>
+        </c:when>
+        <c:when test="${song eq '트로트'}">
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -350,9 +351,8 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6 btline"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} else{
-		%>
+        </c:when>
+		<c:otherwise>
 		<div class="tab">
             <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
             <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=댄스'>댄스</a></div>
@@ -361,9 +361,9 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=트로트'>트로트</a></div>
         </div>
-        <%
-		} 
-		%>
+        </c:otherwise>
+        </c:choose>
+        
         <div class="no_chart">        
                 <input type="checkbox" id="cb1" name="selectall" onclick="selectAll(this)" value="selectall">
                    <label for="cd1"></label>
@@ -375,7 +375,7 @@
             <div class="right_top_item_1">듣기</div>
             <div class="right_top_item_1">담기</div>
         </div>
-
+		
 		
 		<%
 			for (int i = 0; i < vo.size(); i++) {
@@ -402,4 +402,5 @@
 			%>
     </div>
 </body>
+
 </html>

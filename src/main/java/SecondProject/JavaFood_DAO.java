@@ -696,6 +696,10 @@ public class JavaFood_DAO {
 	 */
 	public List<PlayListDTO> loadPL(String id)
 	{
+		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
+		System.out.println("받은 id값 : " + id);
+		
+		
 		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
 		
 		//쿼리문 작성
@@ -717,8 +721,9 @@ public class JavaFood_DAO {
 			{
 				String temp_title = rs.getString("PL_TITLE");
 				String temp_id = rs.getString("ID2");
+				int temp_pl_id = rs.getInt("PL_ID");
 				
-				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id);
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id, temp_pl_id);
 				
 				playList.add(plDTO);
 			}

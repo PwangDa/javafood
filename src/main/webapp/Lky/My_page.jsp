@@ -20,7 +20,7 @@
 		if(session.getAttribute("login")==null){%>
 			<script>
 				alert('로그인을 하셔야합니다.')
-                location.href='http://localhost:8080/javafood_team/Lky/login.jsp';
+                location.href='javafood?javafood=4';
 			</script>
 		<%
 		}else{

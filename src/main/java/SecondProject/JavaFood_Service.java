@@ -67,29 +67,59 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 
-	public void javafood3(){
-		
+	public List s_loadPL(String id)
+	{
+		System.out.println("JavaFood_Service의 s_loadPL 메서드 실행됨."); //확인용
+		List s_playList = dao.loadPL(id);
+		return s_playList;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
-	public Map javafood4(String i){
+	//로그인 페이지
+	public Map<String, String> javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
 		System.out.println(i);
-		Map map = new HashMap();
+		Map<String, String> map = new HashMap<String, String>();
 		if(i!=null) {
 			if(i.equals("O")) {
 				map.put("membership", i);
-				System.out.println("map get : "+map.get("mambership"));
 			}
 		}else System.out.println("null 값");
 		return map;
 	}
+	
+	//회원목록 아이디 리스트
+	public Map<Object, Object> javafood4_1(String i, String j){
+		System.out.println("4_1번 로그인 페이지 실행");
+		List<login_DTO> li = new ArrayList<login_DTO>();
+		Map<Object, Object> ma = new HashMap<Object, Object>();
+		int z=0;
+		if(i!=null) {
+			List<login_DTO> list = dao.listID();
+			for(int q = 0; q<list.size(); q++) {
+				if(list.get(q).getId().equals(i)) {
+					z++;
+					if(list.get(q).getPw().equals(j)) {
+						z++;
+						login_DTO dto = new login_DTO();
+						dto.setNic(list.get(q).getNic());
+						dto.setId(list.get(q).getId());
+						dto.setPw(list.get(q).getPw());
+						li.add(dto);
+						ma.put("login", li);
+					}
+				}
+			}
+		}
+		ma.put("log", z);
+		return ma;
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
-	public Map javafood5(){
+	public Map<String, List<login_DTO>> javafood5(){
 		System.out.println("5번 my페이지 실행");
 		List<login_DTO> list = dao.list();
-		Map map = new HashMap();
+		Map<String, List<login_DTO>> map = new HashMap<String, List<login_DTO>>();
 		map.put("list", list);
 		dao.list();
 		return map;
