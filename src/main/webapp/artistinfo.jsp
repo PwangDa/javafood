@@ -8,6 +8,9 @@
     import = "java.sql.Date"
     import = "java.util.List"
     %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +51,7 @@
         		alert("내용을 입력해주세요")
         	}else{
             frmComment.method = "post";
-            frmComment.action = "artistinfo.jsp";
+            frmComment.action = "artistinfo.do";
             frmComment.submit();
         	}
         }
@@ -374,7 +377,7 @@
                   <div class = "box1 text2"><a href="${album.link}">
                   
             -->
-            <% 	    
+            <%-- 
             AlbumDAO albumDAO = new AlbumDAO();
         	String num = request.getParameter("a.ALBUM_NUM");
         	System.out.println("num : "+num);
@@ -391,18 +394,19 @@
             	
     			String music_name = vo.getMusic_name();
     			String music_link = vo.getMusic_link();
-            	%>
-            
-            <div id = "cont1">
-                <div class = "box1">
-                    <img class="img1" src="<%= cover%>">
-                </div>
-                <div class = "box1 text2"><a href="<%= music_link %>"><strong><%= music_name %></strong></a></div>
-                <div class = "box1 text2" style = "color:rgb(192, 192, 192);"><%= artist %></div>
-                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><%= alname %></a></div>
-            </div>
-            <hr>
-            <%} %>
+            	--%>
+           <c:forEach var:"album" items="${listAlbum}">
+	            <div id = "cont1">
+	                <div class = "box1">
+	                    <img class="img1" src="${album.cover }">
+	                </div>
+	                <div class = "box1 text2"><a href="${album.link}"><strong>${album_name }</strong></a></div>
+	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artist }</div>
+	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.alNum}">${album.alname }</a></div>
+	            </div>
+	            <hr>
+            </c:forEach>
+            <%--} --%>
         </div>
         <div id = "cont3">
                 <p class="point prev">&lang;</p>
@@ -410,20 +414,22 @@
                 <p class="point next">&rang;</p>
             <div id="cont3_1">
                 <ul id = "slds" class="clides">
-                <% for(int h=0; h<Albumlist.size(); h++){ 
+                <%-- for(int h=0; h<Albumlist.size(); h++){ 
                 	AlbumVO vo = Albumlist.get(h);
                 	
                 	String alNum = vo.getAlbum_num();
         	    	String cover = vo.getAlbum_cover();
         			String alname = vo.getAlbum_name();
 
-                %>
+                --%>
+                <c:forEach var:"album" items="${listAlbum}">
                     <li>
-                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><img  class="image" src="<%= cover%>"></a>
+                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.alNum}"><img  class="image" src="${album.cover }"></a>
                         <br>
-                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><span><strong><%= alname %></strong></span></a>
+                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.alNum}"><span><strong>${album.alname }</strong></span></a>
                     </li>
-                    <%} %>
+                    <%--} --%>
+                </c:forEach>
                 </ul>
             </div>
         </div>
@@ -448,28 +454,31 @@
             </div>
             <div class="command">
             <hr>
-                <% for(int i= 0; i<list.size(); i++) {
+                <%-- for(int i= 0; i<list.size(); i++) {
 	    	    	  CommentVO vo = list.get(i);
 	    	    	  
 	    	    	  String id = vo.getComment_id();
 	    	    	  String cont = vo.getComment_cont();
-	    	    	  Date date = vo.getComment_Date(); %>
-                <div class="comment">
-                        <div class="text2 cont2_1">
-                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-                            <div class="id2"><%= id %></div>
-                        </div>
-                        <div class="text2">
-                            <div class="cont2"><%= cont %></div>
-                            <div class="date1"><%= date %></div>
-                        </div>
-                        <!-- 삭제하기 기능도 
-                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
-                        -->
-                        <div class="text2">
-                            <a href="/javafood_team/artistinfo.jsp?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>
-                        </div>
-                </div> <% } %>
+	    	    	  Date date = vo.getComment_Date(); --%>
+	    	  	<c:forEach var:"comment" items="${commentList}">
+	                <div class="comment">
+	                        <div class="text2 cont2_1">
+	                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+	                            <div class="id2">${comment.id }</div>
+	                        </div>
+	                        <div class="text2">
+	                            <div class="cont2">${comment.cont }</div>
+	                            <div class="date1">${comment.date }</div>
+	                        </div>
+	                        <!-- 삭제하기 기능도 
+	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
+	                        -->
+	                        <div class="text2">
+	                            <a href="/javafood_team/artistinfo.jsp?command=delcommnet&id=${comment.id }"><button class='btn' type='button'> 삭제 </button></a>
+	                        </div>
+	                </div> 
+	            </c:forEach>
+                <%-- } --%>
                 
                 
             </div>

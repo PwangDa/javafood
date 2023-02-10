@@ -1,5 +1,6 @@
 package SecondProject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,19 +33,25 @@ public class JavaFood_Service {
 //    }
 
 
-//	다영의 메소드(앨범목록) 
+//	다영의 메소드(앨범목록리스트 불러오기) 
     public List<AlbumDTO> Albumlist(){
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
     }
 
-    
+    //댓글 삭제 메소드
     public void delcomment(String id) {
     	dao.delcomment(id);
     }
-    
+    //댓글 등록 메소드
     public void addcomment(CommentDTO commentDTO) {
     	dao.addcomment(commentDTO);
+    }
+    
+    //댓글 리스트 불러오는 메소드
+    public List<CommentDTO> listComment() {
+    	List<CommentDTO> commentList = dao.listComment();
+    	return commentList;
     }
     
 

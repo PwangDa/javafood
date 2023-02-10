@@ -84,11 +84,14 @@ public class JavaFood_Controller extends HttpServlet {
 		String nextPage = "";
 		String action = request.getPathInfo();
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
 		if("/artisionfo.do".equals(action)) {
 //			List<AlbumDTO> listAlbum = service.Albumlist();
 			listAlbum = service.Albumlist();
+			commentList = service.listComment();
 			request.setAttribute("listAlbum", listAlbum);
+			request.setAttribute("commentList", commentList);
 			nextPage = "/javafood/artistinfo.jsp";
 			
 		}else if("/addcommnet.do".equals(action)) {
