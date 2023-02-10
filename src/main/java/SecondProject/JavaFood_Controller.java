@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Chart.SongDAO;
+import javafood_DTO.AlbumDTO;
 import javafood_DTO.login_DTO;
 
 @WebServlet("/javafood")
@@ -81,9 +82,12 @@ public class JavaFood_Controller extends HttpServlet {
 		String action = request.getPathInfo();
 		
 		if("/artisionfo.do".equals(action)) {
-			List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
-			List<AlbumVO> listAlbum = service.Albumlist();
+			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+			List<AlbumDTO> listAlbum = service.Albumlist();
 //			listAlbum = service.Albumlist();
+			request.setAttribute("listAlbum", listAlbum);
+			nextPage = "/artistinfo.jsp";
+		}else {
 			request.setAttribute("listAlbum", listAlbum);
 			nextPage = "/artistinfo.jsp";
 		}
