@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import My_Page.dbon;
-import My_Page.vod;
+import javafood_DTO.login_DTO;
 
 @WebServlet("/genre")
 public class GenreServlet extends HttpServlet {
@@ -29,7 +29,7 @@ public class GenreServlet extends HttpServlet {
 		String song = request.getParameter("genre");
 		
 		dbon db = new dbon();
-		List<vod> vo = null;
+		List<login_DTO> vo = null;
 		
 		if(song==null) {
 			vo = db.list();

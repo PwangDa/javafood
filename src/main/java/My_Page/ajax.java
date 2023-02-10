@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import javafood_DTO.login_DTO;
+
 @WebServlet("/aj")
 public class ajax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +25,7 @@ public class ajax extends HttpServlet {
 		dbon db = new dbon();
 		int a = 0;
 		
-		List<vod> vo = db.listID();
+		List<login_DTO> vo = db.listID();
 		for(int i=0; i<vo.size();i++) {
 			if(id!=null) {
 				if(id.equals(vo.get(i).getId())) {

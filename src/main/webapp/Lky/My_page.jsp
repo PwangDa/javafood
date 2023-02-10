@@ -16,19 +16,20 @@
 				alert('로그인을 하셔야합니다.')
                 location.href='http://localhost:8080/javafood_team/Lky/login.jsp';
 			</script>
-		<%}else{
-		List<vod> a = db.session((String)session.getAttribute("login"));
-		System.out.println("id : "+a.get(0).getId());
-		System.out.println("Nic : "+a.get(0).getNic());
-// 		System.out.println("Pw : "+a.get(0).getPw());
-// 		System.out.println("Pn : "+a.get(0).getPn());
-// 		System.out.println("Phone : "+a.get(0).getPhone());
-// 		System.out.println("Email : "+a.get(0).getEmail());
-// 		System.out.println("Home : "+a.get(0).getHome());
-		if(request.getParameter("id")!=null){
+		<%
+		}else{
+				List<login_DTO> a = db.session((String)session.getAttribute("login"));
+				System.out.println("id : "+a.get(0).getId());
+				System.out.println("Nic : "+a.get(0).getNic());
+		// 		System.out.println("Pw : "+a.get(0).getPw());
+		// 		System.out.println("Pn : "+a.get(0).getPn());
+		// 		System.out.println("Phone : "+a.get(0).getPhone());
+		// 		System.out.println("Email : "+a.get(0).getEmail());
+		// 		System.out.println("Home : "+a.get(0).getHome());
+				if(request.getParameter("id")!=null){
 			db.addhit(a.get(0).getId(), request.getParameter("id"));
-		}
-	%>
+				}
+		%>
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
@@ -52,14 +53,14 @@
 </head>
 <body>
 	<%
-		if(request.getParameter("good")!=null){
-			db.like(request.getParameter("good"));
-		}
+	if(request.getParameter("good")!=null){
+		db.like(request.getParameter("good"));
+			}
 	%>
 	<div style="width: 100%;height: 100%;">
         <div class="head">
             <div class="left"><a href="http://localhost:8080/javafood_team/Lky/My_page.jsp" class="at"><strong>My pages</strong></a></div>
-            <div class="right"><strong><%=a.get(0).getNic() %></strong></div>
+            <div class="right"><strong><%=a.get(0).getNic()%></strong></div>
         </div>
         <div class="tbody">
        	<form method="get" action="My_page.jsp">
@@ -85,43 +86,46 @@
                     <th> 재생 </th>
                     <th> 좋아요 </th>
                 </tr>
-                <% 
-                
+                <%
                 if(request.getParameter("p")!=null){
-						List<vod> vvo = db.uresong(a.get(0).getId());
-		                	for(int i=0; i<vvo.size(); i++) {
-		                		 %>
+                				List<login_DTO> vvo = db.uresong(a.get(0).getId());
+                		                	for(int i=0; i<vvo.size(); i++) {
+                %>
 		                <tr class="low">
-		                    <td><%= i+1%></td>
-		                    <td><%= vvo.get(i).getArtistname() %></td>
-		                    <td><a href="<%= vvo.get(i).getLink() %>" target="_blank" class="at"><%= vvo.get(i).getSongname() %></a></td>
-		                    <td><%=vvo.get(i).getHits() %></td>
+		                    <td><%=i+1%></td>
+		                    <td><%=vvo.get(i).getArtistname()%></td>
+		                    <td><a href="<%=vvo.get(i).getLink()%>" target="_blank" class="at"><%=vvo.get(i).getSongname()%></a></td>
+		                    <td><%=vvo.get(i).getHits()%></td>
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
 		                    <form>
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vvo.get(i).getSongnumber()%>"> </td>
 		                	</form>
-		                </tr> <% } 
-                }else{
-                	if(request.getParameter("option")!=null){
-						List<vod> vo1 = db.Search(request.getParameter("option"),request.getParameter("text"));
-		                	for(int i=0; i<vo1.size(); i++) { %>
+		                </tr> <%
+ } 
+                 }else{
+                 	if(request.getParameter("option")!=null){
+ 				List<login_DTO> vo1 = db.Search(request.getParameter("option"),request.getParameter("text"));
+ 		                	for(int i=0; i<vo1.size(); i++) {
+ %>
 		                <tr class="low">
-		                    <td><%= i+1%></td>
-		                    <td><%= vo1.get(i).getArtistname() %></td>
-		                    <td><a href="<%= vo1.get(i).getLink() %>" target="_blank" class="at"><%= vo1.get(i).getSongname() %></a></td>
-		                    <td><%=vo1.get(i).getHits() %></td>
+		                    <td><%=i+1%></td>
+		                    <td><%=vo1.get(i).getArtistname()%></td>
+		                    <td><a href="<%=vo1.get(i).getLink()%>" target="_blank" class="at"><%=vo1.get(i).getSongname()%></a></td>
+		                    <td><%=vo1.get(i).getHits()%></td>
 		                    <td>
 		                    	<button type="button" onclick="location.href='http://localhost:8080/javafood_team/Lky/My_page.jsp?id=<%=i%>'">재생</button>
 		                    </td>
 		                    <form>
 		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vo1.get(i).getSongnumber()%>"> </td>
 		                	</form>
-		                </tr> <% } 
-                	}else if(request.getParameter("option")==null){
-                		List<vod> vo = db.list();
-		                for(int i=0; i<vo.size(); i++) { %>
+		                </tr> <%
+ } 
+                 	}else if(request.getParameter("option")==null){
+                 		List<login_DTO> vo = db.list();
+ 		                for(int i=0; i<vo.size(); i++) {
+ %>
 		                <tr class="low">
 		                    <td><%= i+1%></td>
 		                    <td><%= vo.get(i).getArtistname() %></td>

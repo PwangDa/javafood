@@ -15,7 +15,7 @@
 	dbon db = new dbon();
 	%>
 	<%
-	List<vod> vo = null;
+	List<login_DTO> vo = null;
 	%>
 	
 	<%
