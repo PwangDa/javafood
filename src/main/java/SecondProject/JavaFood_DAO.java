@@ -15,12 +15,9 @@ import javax.sql.DataSource;
 
 import album.info.AlbumVO;
 import comment.CommentVO;
-<<<<<<< HEAD
-import playList.PlayListDTO;
-=======
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
->>>>>>> 5df7ef46fa62f44fadbc8c358c8f424999c01dbf
+import javafood_DTO.PlayListDTO;
 import javafood_DTO.login_DTO;
 
 public class JavaFood_DAO {

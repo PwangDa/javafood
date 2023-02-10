@@ -1,4 +1,4 @@
-package playList;
+package javafood_DTO;
 
 public class PlayListDTO
 {
