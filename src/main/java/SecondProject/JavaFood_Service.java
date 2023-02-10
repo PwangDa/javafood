@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
-=======
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
->>>>>>> 47c87ae2d79709862eb5b7447738d76c88e79149
 import javafood_DTO.login_DTO;
 
 
@@ -35,8 +32,7 @@ public class JavaFood_Service {
 //    	return Albumlist; 
 //    }
 
-<<<<<<< HEAD
-=======
+
 
 //	다영의 메소드(앨범목록리스트 불러오기) 
     public List<AlbumDTO> Albumlist(){
@@ -59,7 +55,6 @@ public class JavaFood_Service {
     	return commentList;
     }
     
->>>>>>> 47c87ae2d79709862eb5b7447738d76c88e79149
 	public void javafood1(){
 		
 	}
