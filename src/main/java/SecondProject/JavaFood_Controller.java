@@ -69,6 +69,9 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("6")) {
 			java6(request,response);
 		}
+		if(request.getParameter("javafood").equals("m")) {
+			javam(request,response);
+		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
@@ -116,13 +119,13 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("4번실행");
+		System.out.println("4번 로그인 실행");
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("5번실행");
+		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
@@ -139,6 +142,10 @@ public class JavaFood_Controller extends HttpServlet {
 		dispatch.forward(request, response);
 		doGet(request, response);
 		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("메인 실행");
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
