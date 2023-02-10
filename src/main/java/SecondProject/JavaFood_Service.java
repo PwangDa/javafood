@@ -103,8 +103,16 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 
-	public void javafood6(){
+	public List<login_DTO> javafood6(String song){
 		System.out.println("6번 장르 실행");
+		List<login_DTO> list = null;
+		
+		if (song == null) {
+			list = dao.list();
+		} else {
+			list = dao.getGenre(song);
+		}
+		return list;
 		
 		
 	}
