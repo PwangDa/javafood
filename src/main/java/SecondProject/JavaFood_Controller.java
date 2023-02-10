@@ -148,19 +148,18 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
-		//요청된 id값 받아오기
+		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인 중.
 		
-		HttpSession session = request.getSession();
-		String c_id = (String)session.getAttribute("id");
+//		HttpSession session = request.getSession();
+//		String c_id = (String)session.getAttribute("id");
 		
 		//DAO에서 플레이 리스트 불러오는 메서드 실행하기
 		List playList = service.s_loadPL(c_id);
 		
 		//id값을 playList에 넘겨주기
 		request.setAttribute("playList", playList);
-		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
+		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp?id="+c_id);
 		dispatch.forward(request, response);
-		doGet(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
