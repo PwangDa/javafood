@@ -33,7 +33,6 @@ public class PlayListDTO
 	
 	//생성자
 	public PlayListDTO(){};
-	
 	public PlayListDTO(String title, String id)
 	{
 		this.listTitle = title;

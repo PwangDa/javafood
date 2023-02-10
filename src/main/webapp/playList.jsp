@@ -65,30 +65,25 @@
     
     <br>
     
-	<%
-		//플레이 리스트를 담은 리스트를 DAO 메서드를 통해 불러오기.
-		List<PlayListDTO> playList = jfDAO.loadPL(id);
-
-   		//만약 해당 유저의 플레이 리스트가 아무것도 없다면
-		if(playList.isEmpty() )
-		{
-	%>
+   	<c:choose>
+   		<%-- 해당 유저의 플레이 리스트가 아무것도 없다면 --%>
+		<c:when test="${empty playList }">
 			<div class="noList">등록된 리스트가 없습니다. 리스트를 추가해 주세요.</div>
-	<%
-		} else
-		{
-	%>
-	<% for(int i=0; i < playList.size(); i++)
-		{
-			System.out.println(playList.get(i) );
-		}
-	%>
-<%-- 			<a href="playListContent?PL_ID=<%= %>> --%>
-			
-<!-- 			</a> -->
-	<%
-		}
-	%>
+		</c:when>
+		
+		<%-- 해당 유저의 플레이 리스트가 하나라도 존재한다면 --%>
+		<c:when test="${!empty playList }">
+			<c:forEach items="${playList }">
+			<a href="plc?PL_ID="${PL_ID }"&ID="${ID2 }">
+				<div class="playList">
+					<!-- 앨범 표지가 추가되면 해당 부분의 scr를 수정할 것. -->
+					<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
+					<div class="plText">${PL_Title }</div>
+				</div>
+			</a>
+			</c:forEach>
+		</c:when>
+   	</c:choose>
     
 	<script>
         document.querySelector("img.addList").addEventListener('click', ()=>

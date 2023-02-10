@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
@@ -155,10 +156,15 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
 		//요청된 id값 받아오기
-		String id = request.getParameter("id");
-		request.setAttribute("id", id);
+		
+		HttpSession session = request.getSession();
+		String c_id = (String)session.getAttribute("id");
+		
+		//DAO에서 플레이 리스트 불러오는 메서드 실행하기
+		List playList = service.s_loadPL(c_id);
 		
 		//id값을 playList에 넘겨주기
+		request.setAttribute("playList", playList);
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
 		dispatch.forward(request, response);
 		doGet(request, response);
