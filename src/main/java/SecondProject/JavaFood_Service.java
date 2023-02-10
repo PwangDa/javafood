@@ -57,7 +57,7 @@ public class JavaFood_Service {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//귀범 
+	//귀범 (차트 불러오기)
 	public List<javafood_DTO.login_DTO> javafood2(){
 		
 		List<javafood_DTO.login_DTO> list = dao.listSong();
@@ -67,29 +67,32 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 
-	public void javafood3(){
-		
+	public List s_loadPL(String id)
+	{
+		System.out.println("JavaFood_Service의 s_loadPL 메서드 실행됨."); //확인용
+		List s_playList = dao.loadPL(id);
+		return s_playList;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
-	public Map javafood4(String i){
+	public Map<String, String> javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
 		System.out.println(i);
-		Map map = new HashMap();
+		Map<String, String> map = new HashMap<String, String>();
 		if(i!=null) {
 			if(i.equals("O")) {
 				map.put("membership", i);
-				System.out.println("map get : "+map.get("mambership"));
+				System.out.println("map get : "+map.get("membership"));
 			}
 		}else System.out.println("null 값");
 		return map;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
-	public Map javafood5(){
+	public Map<String, List<login_DTO>> javafood5(){
 		System.out.println("5번 my페이지 실행");
 		List<login_DTO> list = dao.list();
-		Map map = new HashMap();
+		Map<String, List<login_DTO>> map = new HashMap<String, List<login_DTO>>();
 		map.put("list", list);
 		dao.list();
 		return map;

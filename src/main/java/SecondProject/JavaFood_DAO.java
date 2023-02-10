@@ -696,6 +696,10 @@ public class JavaFood_DAO {
 	 */
 	public List<PlayListDTO> loadPL(String id)
 	{
+		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
+		
+		
+		
 		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
 		
 		//쿼리문 작성

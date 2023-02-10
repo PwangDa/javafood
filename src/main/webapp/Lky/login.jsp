@@ -14,9 +14,9 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <meta charset="UTF-8">
+
 <%--
-<%
-System.out.println("logion 실행");
+	System.out.println("logion 실행");
 	dbon db = new dbon(); 
 	if(request.getParameter("Id1")!=null){
 		login_DTO vo1 = new login_DTO();
@@ -31,8 +31,9 @@ System.out.println("logion 실행");
   }
   	
   	List<login_DTO> vo = db.listID();
-  %>
-<c:if test="${membership == O }">
+ --%>
+ 
+<c:if test="${membership!=null }">
 	<title>javafood 회원가입</title>
 	<style>
 		body{background-size: contain; color: white; background-color: black; text-align: center;;}
@@ -185,8 +186,8 @@ System.out.println("logion 실행");
 	        </script>
 	</body>
 	</html>
-</c:if>
-<%
+ </c:if>
+<%--
 if(request.getParameter("O").equals("new")){
 }else if(request.getParameter("ID") != null){
 %>
@@ -226,32 +227,31 @@ if(request.getParameter("O").equals("new")){
 	if(a==0){%> <script>alert('아이디가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
 	else if(a==1){%> <script>alert('페스워드가 틀렸습니다.');location.href='http://localhost:8080/javafood_team/Lky/login.jsp';</script> <%}
 	%>
-<%}else {%>
- --%>
-<title>javafood 로그인</title>
-<style>
-	body{background-size: contain; color: white; background-position: center; text-align: center;background-color: black;}
-    div{display: inline-block;  width: 100%; height: 100px;}
-    .sub{margin-top: 10px;width: 100px; height: 30px;}
-    .at{color: white; text-decoration: none;}
-    .head{margin-top: 50px;}
-</style>
-</head>
-<body>
-<%-- <c:if test="${membership!=null }"> --%>
-<%-- [${membership }] --%>
-<%-- </c:if> --%>
-	<h1>javafood 로그인</h1>
-    <form method="post" action="javafood?javafood=4">
-        <div class="head">
-             아 이 디 &nbsp;: <input type="text" name="ID"><br><br>
-            비밀번호 : <input type="text" name="PW"><br><br>
-            <a href="javafood?javafood=4&membership=O" class="at">회원가입</a>
-            <input class="sub" type="submit" value="로그인">
-            <input class="sub" type="reset" value="다시작성">
-        </div>
-    </form>
-    <div class="body"></div>
-</body>
-</html>
+<%}else {--%>
+<c:if test="${membership==null }">
+	<title>javafood 로그인</title>
+	<style>
+		body{background-size: contain; color: white; background-position: center; text-align: center;background-color: black;}
+	    div{display: inline-block;  width: 100%; height: 100px;}
+	    .sub{margin-top: 10px;width: 100px; height: 30px;}
+	    .at{color: white; text-decoration: none;}
+	    .head{margin-top: 50px;}
+	</style>
+	</head>
+	<body>
+	
+		<h1>javafood 로그인</h1>
+	    <form method="post" action="javafood?javafood=4">
+	        <div class="head">
+	             아 이 디 &nbsp;: <input type="text" name="ID"><br><br>
+	            비밀번호 : <input type="text" name="PW"><br><br>
+	            <a href="javafood?javafood=4&membership=O" class="at">회원가입</a>
+	            <input class="sub" type="submit" value="로그인">
+	            <input class="sub" type="reset" value="다시작성">
+	        </div>
+	    </form>
+	    <div class="body"></div>
+	</body>
+	</html>
+</c:if>
 <%-- <%}%> --%>
