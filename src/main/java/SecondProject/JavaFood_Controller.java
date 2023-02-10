@@ -153,12 +153,14 @@ public class JavaFood_Controller extends HttpServlet {
 //		HttpSession session = request.getSession();
 //		String c_id = (String)session.getAttribute("id");
 		
-		//DAO에서 플레이 리스트 불러오는 메서드 실행하기
+		//Service에서 플레이 리스트 불러오는 메서드 실행하기
 		List playList = service.s_loadPL(c_id);
 		
-		//id값을 playList에 넘겨주기
+		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
 		request.setAttribute("playList", playList);
-		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp?id="+c_id);
+		request.setAttribute("id", c_id);
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
 		dispatch.forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

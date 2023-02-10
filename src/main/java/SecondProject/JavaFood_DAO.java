@@ -721,8 +721,9 @@ public class JavaFood_DAO {
 			{
 				String temp_title = rs.getString("PL_TITLE");
 				String temp_id = rs.getString("ID2");
+				int temp_pl_id = rs.getInt("PL_ID");
 				
-				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id);
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id, temp_pl_id);
 				
 				playList.add(plDTO);
 			}

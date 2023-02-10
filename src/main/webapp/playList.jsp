@@ -12,7 +12,7 @@
 
 <% 
 	//주소로 넘어 온 id값 받기.
-	String id = request.getParameter("id");
+	String id = (String)request.getAttribute("id");
 
 	//DAO 불러오기
 	JavaFood_DAO jfDAO = new JavaFood_DAO();
@@ -78,7 +78,7 @@
 		<%-- 해당 유저의 플레이 리스트가 하나라도 존재한다면 --%>
 		<c:when test="${!empty playList }">
 			<c:forEach var="list" items="${playList }">
-			<a href="plc?PL_ID="${list.id }"&ID="${list.id }">
+			<a href="plc?PL_ID="${list.pl_id }"&ID="${list.pl_id }">
 				<div class="playList">
 					<!-- 앨범 표지가 추가되면 해당 부분의 scr를 수정할 것. -->
 					<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
