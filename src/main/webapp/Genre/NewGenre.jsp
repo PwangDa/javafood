@@ -5,26 +5,8 @@
 <html>
 <head>
 	<%
-		String song = request.getParameter("genre");
-	%>
-	
-	<%
-		dbon db = new dbon();
-	%>
-	<%
 		if(request.getParameter("number")!=null){
 		db.like(request.getParameter("number"));
-		}
-	%>
-	<%
-	List<login_DTO> vo = null;
-	%>
-	
-	<%
-		if (song == null) {
-			vo = db.list();
-		} else {
-			vo = db.getGenre(song);
 		}
 	%>
 <meta charset="UTF-8">
@@ -301,9 +283,9 @@
     <div id="home">
         <h1><a href='http://127.0.0.1:8080/javafood_team/Genre/NewGenre.jsp'>장르</a></h1>
         
-       
+       ${song };
         <%
-		if ("발라드".equals(song)) {
+		if ("발라드".equals(requst)) {
 		%>
         <div class="tab">
             <div class="tab1 tab1_1 btline"><a href='http://localhost:8080/javafood_team/Genre/NewGenre.jsp?genre=발라드'>발라드</a></div>
