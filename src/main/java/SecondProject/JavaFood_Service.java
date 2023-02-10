@@ -54,7 +54,6 @@ public class JavaFood_Service {
     	return commentList;
     }
     
->>>>>>> 47c87ae2d79709862eb5b7447738d76c88e79149
 	public void javafood1(){
 		
 	}

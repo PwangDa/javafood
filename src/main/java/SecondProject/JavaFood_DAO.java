@@ -21,6 +21,7 @@ import javafood_DTO.PlayListDTO;
 import javafood_DTO.login_DTO;
 
 	//필드
+public class JavaFood_DAO {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
