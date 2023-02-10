@@ -193,7 +193,6 @@ public class JavaFood_DAO {
 				list.add(vo);
 			}
 			rs.close();
-			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

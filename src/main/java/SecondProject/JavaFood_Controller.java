@@ -137,8 +137,10 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String song = request.getParameter("genre");
-		request.setAttribute("genre", song);
 		
+		list = service.javafood6(song);
+		request.setAttribute("genre", list);
+		request.setAttribute("song", song);
 		RequestDispatcher dispatch = request.getRequestDispatcher("NewGenre.jsp");
 		dispatch.forward(request, response);
 		doGet(request, response);
