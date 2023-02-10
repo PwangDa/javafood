@@ -188,12 +188,12 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String song = request.getParameter("genre");
 		
-		list = service.javafood6(song);
-		request.setAttribute("genre", list);
-		request.setAttribute("song", song);
-		RequestDispatcher dispatch = request.getRequestDispatcher("NewGenre.jsp");
+//		list = service.javafood6(song);
+		request.setAttribute("genre", "한글1");
+//		request.setAttribute("genre", list);
+//		request.setAttribute("song", song);
+		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
-		doGet(request, response);
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
