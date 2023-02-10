@@ -15,7 +15,12 @@ import javax.sql.DataSource;
 
 import album.info.AlbumVO;
 import comment.CommentVO;
+<<<<<<< HEAD
 import playList.PlayListDTO;
+=======
+import javafood_DTO.AlbumDTO;
+import javafood_DTO.CommentDTO;
+>>>>>>> 5df7ef46fa62f44fadbc8c358c8f424999c01dbf
 import javafood_DTO.login_DTO;
 
 public class JavaFood_DAO {
@@ -290,8 +295,8 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
 	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
-	public List<AlbumVO> listAlbum(String num){
-		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+	public List<AlbumDTO> listAlbum(String num){
+		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -317,19 +322,19 @@ public class JavaFood_DAO {
 				String music_link = rs.getString("music_link");
 				String music_time = rs.getString("music_time");
 				
-				AlbumVO albumVO = new AlbumVO();
+				AlbumDTO albumDTO = new AlbumDTO();
 				
-				albumVO.setAlbum_cover(cover);
-				albumVO.setAlbum_name(alname);
-				albumVO.setAlbum_into(into);
-				albumVO.setArtist(artist);
+				albumDTO.setAlbum_cover(cover);
+				albumDTO.setAlbum_name(alname);
+				albumDTO.setAlbum_into(into);
+				albumDTO.setArtist(artist);
 				
-				albumVO.setMusic_num(music_num);
-				albumVO.setMusic_name(music_name);
-				albumVO.setMusic_link(music_link);
-				albumVO.setMusic_time(music_time);
+				albumDTO.setMusic_num(music_num);
+				albumDTO.setMusic_name(music_name);
+				albumDTO.setMusic_link(music_link);
+				albumDTO.setMusic_time(music_time);
 				
-				listAlbum.add(albumVO);
+				listAlbum.add(albumDTO);
 				
 			}
 			rs.close();
@@ -346,8 +351,8 @@ public class JavaFood_DAO {
 	//앨범수록곡 리스트 출력하는 메소드
 // 아티스트 페이지에서
 //앨범수록곡 리스트 출력하는 메소드 >artistinfo.jsp에서 쓰이는 메소드
-	public List<AlbumVO> listAlbum(){
-		List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
+	public List<AlbumDTO> listAlbum(){
+		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -374,20 +379,20 @@ public class JavaFood_DAO {
 				String music_link = rs.getString("music_link");
 				String music_time = rs.getString("music_time");
 				
-				AlbumVO albumVO = new AlbumVO();
+				AlbumDTO albumDTO = new AlbumDTO();
 				
-				albumVO.setAlbum_num(alNum);
-				albumVO.setAlbum_cover(cover);
-				albumVO.setAlbum_name(alname);
-				albumVO.setAlbum_into(into);
-				albumVO.setArtist(artist);
+				albumDTO.setAlbum_num(alNum);
+				albumDTO.setAlbum_cover(cover);
+				albumDTO.setAlbum_name(alname);
+				albumDTO.setAlbum_into(into);
+				albumDTO.setArtist(artist);
 				
-				albumVO.setMusic_num(music_num);
-				albumVO.setMusic_name(music_name);
-				albumVO.setMusic_link(music_link);
-				albumVO.setMusic_time(music_time);
+				albumDTO.setMusic_num(music_num);
+				albumDTO.setMusic_name(music_name);
+				albumDTO.setMusic_link(music_link);
+				albumDTO.setMusic_time(music_time);
 				
-				listAlbum.add(albumVO);
+				listAlbum.add(albumDTO);
 				
 			}
 			rs.close();
@@ -402,12 +407,12 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글 등록 구현
-	public void addcomment(CommentVO commentVO) {
+	public void addcomment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
 			
-			String id = commentVO.getComment_id();
-			String cont = commentVO.getComment_cont();
+			String id = commentDTO.getComment_id();
+			String cont = commentDTO.getComment_cont();
 			
 			String query = "insert into comment_c";
 			query += "(comment_num, comment_id, comment_cont)";
@@ -430,8 +435,8 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글 리스트 읽기 구현
-	public List<CommentVO> listComment(){
-		List<CommentVO> list = new ArrayList<CommentVO>();
+	public List<CommentDTO> listComment(){
+		List<CommentDTO> list = new ArrayList<CommentDTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -449,7 +454,7 @@ public class JavaFood_DAO {
 				   String cont = rs.getString("comment_cont");
 				   Date date = rs.getDate("comment_date");
 				   
-				   CommentVO vo = new CommentVO();
+				   CommentDTO vo = new CommentDTO();
 				   vo.setComment_id(id);
 				   vo.setComment_cont(cont);
 				   vo.setComment_Date(date);
