@@ -10,9 +10,7 @@ import My_Page.vod;
 
 
 public class JavaFood_Service {
-<<<<<<< HEAD
 
-=======
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//필드 공통으로 쓰는거 아니면 필드선언 자제해주세요~
 	JavaFood_DAO dao;
@@ -29,7 +27,6 @@ public class JavaFood_Service {
 //    	List<AlbumVO> Albumlist = dao.listAlbum(); 
 //    	return Albumlist; 
 //    }
->>>>>>> e96ce918cadac8c6d00c9bc77ef02ab42b43c1f9
 	public void javafood1(){
 		
 	}
