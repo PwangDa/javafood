@@ -85,6 +85,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		String action = request.getPathInfo();
+		System.out.println("action : "+action);
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
@@ -97,6 +98,7 @@ public class JavaFood_Controller extends HttpServlet {
 			nextPage = "/artistinfo.jsp";
 			
 		}else if("/addcommnet.do".equals(action)) {
+			System.out.println("addcomment 입장");
 			String id_1 = request.getParameter("id");
 			String cont_1 = request.getParameter("cont");
 			
@@ -113,11 +115,15 @@ public class JavaFood_Controller extends HttpServlet {
 			service.delcomment(id);
 			nextPage = "/javafood/artistinfo.do";
 		}else {
+			System.out.println("action : "+action);
 			listAlbum = service.Albumlist();
+			commentList = service.listComment();
 			request.setAttribute("listAlbum", listAlbum);
+			request.setAttribute("commentList", commentList);
 			nextPage = "/artistinfo.jsp";
 		}
 		
+		System.out.println("nextPage : "+nextPage);
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 		
