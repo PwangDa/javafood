@@ -165,7 +165,7 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-		service.javafood4(request.getParameter("membership"));
+		map=service.javafood4(request.getParameter("membership"));
 		if(map!=null) {
 			System.out.println("map1"+map);
 			System.out.println("map2"+map.get("membership"));
