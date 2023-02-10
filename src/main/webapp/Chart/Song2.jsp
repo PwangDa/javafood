@@ -1,24 +1,26 @@
+<%-- <%@page import="java.util.*"%> --%>
+<%-- <%@page import="java.sql.Date"%> --%>
+<%-- <%@ page import="java.sql.ResultSet"%> --%>
+<%-- <%@ page import="java.sql.Statement"%> --%>
+<%-- <%@ page import="java.sql.Connection"%> --%>
+<%-- <%@ page import="javafood_DTO.login_DTO"%> --%>
+<%-- <%@ page import="java.sql.DriverManager"%> --%>
 <%@page import="java.util.List"%>
-<%@page import="My_Page.dbon"%>
-<%@page import="java.sql.Date"%>
-<%@ page import="java.sql.ResultSet"%>
-<%@ page import="java.sql.Statement"%>
-<%@ page import="java.sql.Connection"%>
-<%@ page import="Chart.SongDAO"%>
-<%@ page import="Chart.SongServlet"%>
-<%@ page import="javafood_DTO.login_DTO"%>
-<%@ page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
-	import="Chart.SongServlet"%>
+    pageEncoding="UTF-8" 
+    import="My_Page.*"
+    import="javafood_DTO.*"
+    import="SecondProject.*"
+    %>
 
 <!DOCTYPE html>
 <html>
 <head>
-
-<%
+</head>
+<body>
+ㄴㄴㄴㄴㄴㄴ
+<%--
 dbon db = new dbon();
-%>
 
 <%
 List<javafood_DTO.login_DTO> dto = null;
@@ -125,9 +127,10 @@ td {
 		<table class="table">
 			<tr class="table2">
 				<td>번호
-					<a href="/javafood/viewlist.do?articleNO=${vo.articleNO }">${vo.title }</a>
+					<a href="/javafood/listsong.do?songnumber=${listsong.songnumber }"></a>
 				</td>
 				<td>조회수+좋아요 합산</td>
+					<a href="/javafood/listsong.do?ranking2=${vo.ranking2 }"></a>
 				<td>순위</td>
 				<td>노래제목</td>
 				<td>아티스트명</td>
@@ -145,8 +148,8 @@ td {
 			
 		<%
 		}
-		%>
 		</table>
+	 		--%>
 		
 </body>
 </html>
