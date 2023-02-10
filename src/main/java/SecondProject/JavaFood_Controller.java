@@ -18,7 +18,7 @@ import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
 
-@WebServlet("/javafood")
+@WebServlet("/javafood/*")
 public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//필드 공통으로 쓰는거 아니면 필드선언 자제해주세요~
@@ -53,6 +53,9 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("Hand 실행");
 		if(request.getParameter("javafood").equals("1")) {
 			java1(request,response);
+			
+			
+			
 		}
 		if(request.getParameter("javafood").equals("2")) {
 			java2(request,response);
@@ -85,7 +88,9 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		String action = request.getPathInfo();
+		String uri = request.getRequestURI();
 		System.out.println("action : "+action);
+		System.out.println("uri : "+uri);
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
@@ -107,13 +112,13 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont_1);
 			
 			service.addcomment(dto);
-			nextPage = "/javafood/artistinfo.do";
+			nextPage = "/artistinfo.do";
 			
 		}else if("/delcommnet.do".equals(action)) {
 			String id = request.getParameter("id");
 			System.out.println("delete id : "+id);
 			service.delcomment(id);
-			nextPage = "/javafood/artistinfo.do";
+			nextPage = "/artistinfo.jsp";
 		}else {
 			System.out.println("action : "+action);
 			listAlbum = service.Albumlist();

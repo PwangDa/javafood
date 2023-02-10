@@ -474,7 +474,7 @@
 	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
 	                        -->
 	                        <div class="text2">
-	                            <a href="/javafood_team/delcommnet.do?id=${comment.comment_id }"><button class='btn' type='button'> 삭제 </button></a>
+	                            <a href="/javafood_team/javafood?javafood=1/delcommnet.do?id=${comment.comment_id }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
 	                </div> 
 	            </c:forEach>
