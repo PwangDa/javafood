@@ -405,7 +405,7 @@ public class JavaFood_DAO {
 	public void addcomment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
-			
+			System.out.println("댓글등록DAO 접속");
 			String id = commentDTO.getComment_id();
 			String cont = commentDTO.getComment_cont();
 			
@@ -432,7 +432,7 @@ public class JavaFood_DAO {
 	//댓글 리스트 읽기 구현
 	public List<CommentDTO> listComment(){
 		List<CommentDTO> list = new ArrayList<CommentDTO>();
-		
+		System.out.println("댓글리스트DAO 접속");
 		try {
 			this.con = dataFactory.getConnection();
 			
@@ -468,7 +468,7 @@ public class JavaFood_DAO {
 	public void delcomment(String id) {
 		try {
 			this.con = dataFactory.getConnection();
-			
+			System.out.println("댓글삭제DAO 접속");
 			String query = " delete from comment_c";
 			query +=       " where comment_id = ?";
 			

@@ -51,7 +51,7 @@
         		alert("내용을 입력해주세요")
         	}else{
             frmComment.method = "post";
-            frmComment.action = "addcommnet.do";
+            frmComment.action = "/javafood_team/javafood?javafood=1&command=addcommnet.do";
             frmComment.submit();
         	}
         }
@@ -474,7 +474,7 @@
 	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
 	                        -->
 	                        <div class="text2">
-	                            <a href="/javafood_team/javafood?javafood=1/delcommnet.do?id=${comment.comment_id }"><button class='btn' type='button'> 삭제 </button></a>
+	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do?id=${comment.comment_id }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
 	                </div> 
 	            </c:forEach>
