@@ -15,24 +15,14 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <meta charset="UTF-8">
 
-<%--
-	System.out.println("logion 실행");
-	dbon db = new dbon(); 
-	if(request.getParameter("Id1")!=null){
-		login_DTO vo1 = new login_DTO();
-		vo1.setId(request.getParameter("Id1"));
-		vo1.setPw(request.getParameter("PW1"));
-		vo1.setNic(request.getParameter("nic"));
-		vo1.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
-		vo1.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
-		vo1.setEmail(request.getParameter("mail"));
-		db.addId(vo1);
-%><script>alert("회원가입 성공")</script>  <%
-  }
-  	
-  	List<login_DTO> vo = db.listID();
- --%>
- 
+<c:if test="${good!=null }">
+	<c:if test="${good==1 }">
+		<script>alert("회원가입 성공")</script>
+	</c:if>
+	<c:if test="${good==0 }">
+		<script>alert("회원가입 실패")</script>
+	</c:if>
+</c:if>
 <c:if test="${membership!=null }">
 	<title>javafood 회원가입</title>
 	<style>
@@ -50,47 +40,47 @@
 	</style>
 	</head>
 	<body>
-	        <h1>javafood 회원가입</h1>
-	        <form method="post" action="login.jsp">
+	        <h1><c:out value="javafood 회원가입"/></h1>
+	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
 	              <table>
 	        <tr class="tr">
-	            <th>아이디 : </th>
+	            <th><c:out value=" 아이디 : "/></th>
 	            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
 	            <td><input type="button" id="idbutt" value="중복 확인"></td>
 	            <td><input type="checkbox" id="ch1" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th>비밀번호 1 :  </th>
+	            <th><c:out value="비밀번호 1 :  "/></th>
 	            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
 	            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
 	            <td><input type="checkbox" id="ch2" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th>비밀번호 2 : </th>
+	            <th><c:out value="비밀번호 2 :  "/></th>
 	            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
 	            <td></td>
 	        </tr>
 	        <tr class="tr">
-	            <th>닉네임 : </th>
+	            <th><c:out value="닉네임 : "/></th>
 	            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
 	            <td><input type="button" id="nicbutt" value="중복확인"></td>
 	            <td><input type="checkbox" id="ch3" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th>이메일 : </th>
+	            <th><c:out value="이메일 : "/></th>
 	            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
 	            <td><input type="button" id="mailbutt" value="인증하기"></td>
 	            <td><input type="checkbox" id="ch4" class="ch"></td>
 	        </tr>
 	        <tr id="mail">
-	            <th>인증번호 : </th>
+	            <th><c:out value="인증번호 : "/></th>
 	            <td><input type="text" placeholder="메일 인증번호"></td>
 	            <td><input type="button" id="mailchbutt" value="인증확인"></td>
 	            <td><input type="checkbox" id="ch5" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th id="pn" class="tr">주민등록 번호 : </th>
+	            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
 	            <td>
 	                <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
 	                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
@@ -99,7 +89,7 @@
 	            <td><input type="checkbox" id="ch6" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th class="tr">휴대폰 번호 : </th>
+	            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
 	            <td>
 	                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
 	                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
@@ -109,7 +99,7 @@
 	            <td><input type="checkbox" id="ch7" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th><a href="login.jsp" class="at">취소</a></th>
+	            <th><a href="javafood?javafood=4" class="at"><c:out value=" 취 소 "/></a></th>
 	            <th><input class="sub" type="submit" value="회원가입" id="end"disabled></th>
 	            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
 	        </tr>
@@ -191,9 +181,9 @@
 	<title>javafood</title>
 	</head>
 	<body>
-		<h1>javafood 로그인성공</h1>
-		<h1>${login[0].nic } 님 환영합니다.</h1>
-		<strong id="time"></strong>초후에 이동됩니다. 마음의 준비를 해주세요.
+		<h1><c:out value="javafood 로그인성공"/></h1>
+		<h1>${login[0].nic } <c:out value="님 환영합니다."/></h1>
+		<strong id="time"></strong><c:out value="초후에 이동됩니다. 마음의 준비를 해주세요."/>
 		<script>
 			let time=5;
 	    	$("#time").append(time);
@@ -227,12 +217,12 @@
 	</head>
 	<body>
 	
-		<h1>javafood 로그인</h1>
+		<h1><c:out value="javafood 로그인"/></h1>
 	    <form method="post" action="javafood?javafood=4">
 	        <div class="head">
-	             아 이 디 &nbsp;: <input type="text" name="ID"><br><br>
-	            비밀번호 : <input type="text" name="PW"><br><br>
-	            <a href="javafood?javafood=4&membership=O" class="at">회원가입</a>
+	             <c:out value="아 이 디 : "/>&nbsp;<input type="text" name="ID"><br><br>
+	            <c:out value=" 비밀번호 : "/><input type="text" name="PW"><br><br>
+	            <a href="javafood?javafood=4&membership=O" class="at"><c:out value="회원가입"/></a>
 	            <input class="sub" type="submit" value="로그인">
 	            <input class="sub" type="reset" value="다시작성">
 	        </div>

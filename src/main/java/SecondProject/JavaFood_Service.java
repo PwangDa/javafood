@@ -75,16 +75,16 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
+	
 	//로그인 페이지
 	public Map<String, String> javafood4(String i){
 		System.out.println("4번 로그인 페이지 실행");
-		System.out.println(i);
 		Map<String, String> map = new HashMap<String, String>();
 		if(i!=null) {
 			if(i.equals("O")) {
 				map.put("membership", i);
 			}
-		}else System.out.println("null 값");
+		}else System.out.println("javafood4 null 값");
 		return map;
 	}
 	
@@ -113,6 +113,19 @@ public class JavaFood_Service {
 		}
 		ma.put("log", z);
 		return ma;
+	}
+	
+	//회원가입
+	public int javafood4_2(login_DTO DTO){
+		System.out.println("4_2번 회원가입 페이지 실행");
+		int i=0;
+		try {
+			i++;
+			dao.addId(DTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
