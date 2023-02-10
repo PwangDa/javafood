@@ -405,7 +405,7 @@ public class JavaFood_DAO {
 	public void addcomment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
-			
+			System.out.println("댓글등록DAO 접속");
 			String id = commentDTO.getComment_id();
 			String cont = commentDTO.getComment_cont();
 			
@@ -432,7 +432,7 @@ public class JavaFood_DAO {
 	//댓글 리스트 읽기 구현
 	public List<CommentDTO> listComment(){
 		List<CommentDTO> list = new ArrayList<CommentDTO>();
-		
+		System.out.println("댓글리스트DAO 접속");
 		try {
 			this.con = dataFactory.getConnection();
 			
@@ -468,7 +468,7 @@ public class JavaFood_DAO {
 	public void delcomment(String id) {
 		try {
 			this.con = dataFactory.getConnection();
-			
+			System.out.println("댓글삭제DAO 접속");
 			String query = " delete from comment_c";
 			query +=       " where comment_id = ?";
 			
@@ -696,6 +696,10 @@ public class JavaFood_DAO {
 	 */
 	public List<PlayListDTO> loadPL(String id)
 	{
+		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
+		System.out.println("받은 id값 : " + id); //확인용
+		
+		
 		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
 		
 		//쿼리문 작성
@@ -717,8 +721,9 @@ public class JavaFood_DAO {
 			{
 				String temp_title = rs.getString("PL_TITLE");
 				String temp_id = rs.getString("ID2");
+				int temp_pl_id = rs.getInt("PL_ID");
 				
-				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id);
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id, temp_pl_id);
 				
 				playList.add(plDTO);
 			}
@@ -735,9 +740,98 @@ public class JavaFood_DAO {
 		return playList;
 	}
 	
+<<<<<<< HEAD
 }	
 	
 
+=======
+	public List<PlayListDTO> loadPL(String id, int start, int end)
+	{
+		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
+		System.out.println("받은 id값 : " + id); //확인용
+		
+		
+		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
+		
+		//쿼리문 작성
+		String load_query = "SELECT rownum as rnum, * FROM playList"
+				+ " WHERE ID2 = ?"
+				+ "	AND rnum >= ? AND rnum <= ?"
+				+ " ORDER BY PL_ID DESC";
+		
+		//플레이 리스트 불러오기 쿼리 실행
+		try
+		{
+			this.con = dataFactory.getConnection();
+			
+			pstmt = con.prepareStatement(load_query);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next() )
+			{
+				String temp_title = rs.getString("PL_TITLE");
+				String temp_id = rs.getString("ID2");
+				int temp_pl_id = rs.getInt("PL_ID");
+				
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id, temp_pl_id);
+				
+				playList.add(plDTO);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return playList;
+	}
+	
+	/**
+	 * 플레이 리스트 페이지의 페이징 시스템을 만들기 위해 퀄럼 갯수를 세는 메서드 입니다.
+	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
+	 * @return : playList의 퀄럼 갯수를 int로 return 합니다.
+	 */
+	public int pl_totalCount(String id)
+	{
+		int totalCount = 0;
+		
+		String countQuery = 
+				"SELECT count(*) cnt FROM playList"
+				+ "WHERE id = ?";
+		
+		try
+		{
+			con = dataFactory.getConnection();
+			pstmt = con.prepareStatement(countQuery);
+			pstmt.setString(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next() )
+			{
+				totalCount = rs.getInt("cnt");
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
+}
+>>>>>>> e119f44ec52210dd644750c52cc277cb1f7808fa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

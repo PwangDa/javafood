@@ -16,7 +16,8 @@ public class login_DTO {
 	private String playtime;
 	private String ranking;
 
-	///////---------login-----------//////////
+///////---------login-----------//////////
+	
 	private String id;
 	private String pw;
 	private String nic;

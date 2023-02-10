@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
@@ -18,7 +17,7 @@ public class JavaFood_Service {
 	//필드 공통으로 쓰는거 아니면 필드선언 자제해주세요~
 	JavaFood_DAO dao;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//생선자   공통으로 사용하는 메소드 선언은 이곳에다가
+	//생성자   공통으로 사용하는 메소드 선언은 이곳에다가
 	JavaFood_Service(){
 		System.out.println("service 실행");
 		dao = new JavaFood_DAO();
@@ -67,29 +66,91 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 
-	public void javafood3(){
-		
+	public List s_loadPL(String id)
+	{
+		System.out.println("JavaFood_Service의 s_loadPL 메서드 실행됨."); //확인용
+		List s_playList = dao.loadPL(id);
+		return s_playList;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//경용 로그인 
-	public Map javafood4(String i){
-		System.out.println("4번 로그인 페이지 실행");
-		System.out.println(i);
+	//범주 페이지 서비스
+	public Map pl_getPagingList(int pageNum, int countPerPage, String id)
+	{
+		int start = 0;
+		int end = 0;
+		
+		start = (countPerPage*(pageNum-1) ) + 1;
+		end = start + countPerPage - 1;
+		List list = dao.loadPL(id, start, end);
+		
+		int totalCount = dao.pl_totalCount(id);
+		
 		Map map = new HashMap();
-		if(i!=null) {
-			if(i.equals("O")) {
-				map.put("membership", i);
-				System.out.println("map get : "+map.get("mambership"));
-			}
-		}else System.out.println("null 값");
+		map.put("list", list);
+		map.put("totalCount", totalCount);
+		
 		return map;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//경용 로그인 
+	
+	//로그인 페이지
+	public Map<String, String> javafood4(String i){
+		System.out.println("4번 로그인 페이지 실행");
+		Map<String, String> map = new HashMap<String, String>();
+		if(i!=null) {
+			if(i.equals("O")) {
+				map.put("membership", i);
+			}
+		}else System.out.println("javafood4 null 값");
+		return map;
+	}
+	
+	//회원목록 아이디 리스트
+	public Map<Object, Object> javafood4_1(String i, String j){
+		System.out.println("4_1번 로그인 페이지 실행");
+		List<login_DTO> li = new ArrayList<login_DTO>();
+		Map<Object, Object> ma = new HashMap<Object, Object>();
+		int z=0;
+		if(i!=null) {
+			List<login_DTO> list = dao.listID();
+			for(int q = 0; q<list.size(); q++) {
+				if(list.get(q).getId().equals(i)) {
+					z++;
+					if(list.get(q).getPw().equals(j)) {
+						z++;
+						login_DTO dto = new login_DTO();
+						dto.setNic(list.get(q).getNic());
+						dto.setId(list.get(q).getId());
+						dto.setPw(list.get(q).getPw());
+						li.add(dto);
+						ma.put("login", li);
+					}
+				}
+			}
+		}
+		ma.put("log", z);
+		return ma;
+	}
+	
+	//회원가입
+	public int javafood4_2(login_DTO DTO){
+		System.out.println("4_2번 회원가입 페이지 실행");
+		int i=0;
+		try {
+			i++;
+			dao.addId(DTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
-	public Map javafood5(){
+	public Map<String, List<login_DTO>> javafood5(){
 		System.out.println("5번 my페이지 실행");
 		List<login_DTO> list = dao.list();
-		Map map = new HashMap();
+		Map<String, List<login_DTO>> map = new HashMap<String, List<login_DTO>>();
 		map.put("list", list);
 		dao.list();
 		return map;
