@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Chart.SongDAO;
-import My_Page.vod;
+import javafood_DTO.login_DTO;
 
 @WebServlet("/javafood")
 public class JavaFood_Controller extends HttpServlet {
@@ -23,7 +23,7 @@ public class JavaFood_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SongDAO songDAO;
 	JavaFood_Service service;
-	vod vo;
+	login_DTO vo;
 	Map map;
 	List list;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,6 +119,7 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
+		service.javafood4(Integer.parseInt(request.getParameter("membership")));
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

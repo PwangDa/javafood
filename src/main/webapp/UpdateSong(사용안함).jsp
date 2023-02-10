@@ -6,7 +6,7 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="Chart.SongDAO"%>
 <%@ page import="Chart.SongServlet"%>
-<%@ page import="My_Page.vod"%>
+<%@ page import="javafood_DTO.login_DTO"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="My_Page.dbon" import="My_Page.vod"
@@ -20,7 +20,7 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	List<vod> vo = null;
+	List<login_DTO> vo = null;
 	dbon db = new dbon();%>
 
 <!DOCTYPE html>

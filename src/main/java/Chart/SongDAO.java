@@ -13,8 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import My_Page.vod;
 import My_Page.dbon;
+import javafood_DTO.login_DTO;
 
 public class SongDAO {
 	
@@ -35,13 +35,13 @@ public class SongDAO {
 	}
 	
 	//listsong값이 null인 메소드 생성
-	public List<vod> listsong(){
-		List<vod> list = listsong(null);
+	public List<login_DTO> listsong(){
+		List<login_DTO> list = listsong(null);
 		return list;
 	}
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
-	public List<vod> listsong(String _songname){
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> listsong(String _songname){
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -70,7 +70,7 @@ public class SongDAO {
 				   
 				   
 				   
-				   vod vo = new vod();
+				   login_DTO vo = new login_DTO();
 				   vo.setSongnumber(songnumber);
 				   vo.setRank2(rank2);
 				   vo.setRanking(ranking);
@@ -190,7 +190,7 @@ public class SongDAO {
 //	
 	
 	//노래 리스트
-	public void songlist(vod vo) {
+	public void songlist(login_DTO vo) {
 		try {
 			this.con = dataFactory.getConnection();
 			

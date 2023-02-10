@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 import javax.websocket.Session;
 
 import org.apache.el.parser.AstFalse;
+
+import javafood_DTO.login_DTO;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class dbon {
 	private Connection con;
@@ -74,8 +76,8 @@ public class dbon {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//특정 아이디에 조회수, 노래번호 가져오기
-	public List<vod> uresong(String id){
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> uresong(String id){
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con=this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song s2 \n"
@@ -83,7 +85,7 @@ public class dbon {
 					+ "WHERE s.ID = '"+id+"' ORDER BY s.HIT DESC");
 			ResultSet rs = this.pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setHits(rs.getString("hit"));
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setArtistname(rs.getString("artistname"));
@@ -101,11 +103,11 @@ public class dbon {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<vod> session(String login) {
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> session(String login) {
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			ResultSet rs = this.dataFactory.getConnection().prepareStatement("SELECT *  FROM login WHERE ID = '"+login+"'").executeQuery();
-			vod vo = new vod();
+			login_DTO vo = new login_DTO();
 			rs.next();
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
@@ -123,14 +125,14 @@ public class dbon {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<vod>listID(){
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO>listID(){
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			con=this.dataFactory.getConnection();
 			this.pstmt = con.prepareStatement("SELECT * FROM login");
 			ResultSet rs=this.pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setId(rs.getString("id"));
 				vo.setPw(rs.getString("pwd"));
 				vo.setNic(rs.getString("nic"));
@@ -150,7 +152,7 @@ public class dbon {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void addId(vod vo) {
+	public void addId(login_DTO vo) {
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("insert into login values('"+vo.getId()+"','"+vo.getPw()+"','"+vo.getNic()+"','"+vo.getPn()+"','"+vo.getPhone()+"','"+vo.getEmail()+"',null,null)");
@@ -162,14 +164,14 @@ public class dbon {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<vod> list () {
-		List<vod> list = new ArrayList<vod>();
+	public List<login_DTO> list () {
+		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT * FROM  song");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
@@ -189,20 +191,20 @@ public class dbon {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public String link1(vod list) {
+	public String link1(login_DTO list) {
 		String st= (String)list.getLink().split("=")[1];
 		return st ;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<vod> Search(String option, String text) {
-		List<vod> list = new ArrayList<>();
+	public List<login_DTO> Search(String option, String text) {
+		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
 			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
@@ -227,7 +229,7 @@ public class dbon {
 			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
-			vod vo = new vod();
+			login_DTO vo = new login_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
@@ -241,8 +243,8 @@ public class dbon {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<vod> getGenre (String a) {
-		List<vod> list = new ArrayList<>();
+	public List<login_DTO> getGenre (String a) {
+		List<login_DTO> list = new ArrayList<>();
 		
 		
 		try {
@@ -253,7 +255,7 @@ public class dbon {
 			this.pstmt.setString(1, a);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vod vo = new vod();
+				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
