@@ -82,7 +82,8 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		if("/artisionfo.do".equals(action)) {
 			List<AlbumVO> listAlbum = new ArrayList<AlbumVO>();
-			listAlbum = service.Albumlist();
+			List<AlbumVO> listAlbum = service.Albumlist();
+//			listAlbum = service.Albumlist();
 			request.setAttribute("listAlbum", listAlbum);
 			nextPage = "/artistinfo.jsp";
 		}
