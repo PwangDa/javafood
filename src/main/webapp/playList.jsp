@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"
     import = "SecondProject.JavaFood_DAO"
     import = "java.util.ArrayList"
-    import = "java.util.List"%>
+    import = "java.util.List"
+    import = "javafood_DTO.PlayListDTO" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -35,7 +37,7 @@
 		String res_PL_ID = request.getParameter("res.PL_ID");
 		
 		//DAO에서 플레이 리스트를 삭제하는 메서드 실행하기.
-		jfDAO.deleteList(res.PL_ID, id);
+		jfDAO.deleteList(res_PL_ID, id);
 	}
 %>
 <!DOCTYPE html>
@@ -65,7 +67,7 @@
     
 	<%
 		//플레이 리스트를 담은 리스트를 DAO 메서드를 통해 불러오기.
-		List playList = jfDAO.loadPL(id);
+		List<PlayListDTO> playList = jfDAO.loadPL(id);
 
    		//만약 해당 유저의 플레이 리스트가 아무것도 없다면
 		if(playList.isEmpty() )
@@ -75,7 +77,16 @@
 	<%
 		} else
 		{
+	%>
+	<% for(int i=0; i < playList.size(); i++)
+		{
+			System.out.println(playList.get(i) );
+		}
+	%>
+<%-- 			<a href="playListContent?PL_ID=<%= %>> --%>
 			
+<!-- 			</a> -->
+	<%
 		}
 	%>
     
@@ -218,7 +229,7 @@
         div.noList
         {
         	color:white;
-        	padding:37%
+        	padding:25%;
         	text-align:center;
         }
     </style>
