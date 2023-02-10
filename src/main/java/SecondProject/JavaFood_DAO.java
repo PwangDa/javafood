@@ -20,8 +20,6 @@ import javafood_DTO.CommentDTO;
 import javafood_DTO.PlayListDTO;
 import javafood_DTO.login_DTO;
 
-public class JavaFood_DAO {
-///////////////////////////////////////////////////////////////////////////////////
 	//필드
 	private Connection con;
 	private PreparedStatement pstmt;

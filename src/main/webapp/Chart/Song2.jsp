@@ -15,40 +15,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-String songnumber = request.getParameter("songnumber");
-String rank2 = request.getParameter("rank2");
-String ranking = request.getParameter("ranking");
-String songname = request.getParameter("songname");
-String artistname = request.getParameter("artistname");
-String bygenre = request.getParameter("bygenre");
-String hits = request.getParameter("hits");
-String likes = request.getParameter("likes");
-String playtime = request.getParameter("playtime");
-System.out.println("songnumber : " + songnumber);
-System.out.println("rank2 : " + rank2);
-System.out.println("ranking : " + ranking);
-
-%>
 
 <%
 dbon db = new dbon();
 %>
-<%
-if (request.getParameter("songnumber") != null) {
-	db.list();
-}
-%>
-<%
-List<javafood_DTO.login_DTO> dto = null;
-%>
 
 <%
-if (songnumber == null) {
-	dto = db.list();
-} else {
-	dto = db.list();
-}
+List<javafood_DTO.login_DTO> dto = null;
 %>
 
 <meta charset="UTF-8">
@@ -151,7 +124,9 @@ td {
 	</div>
 		<table class="table">
 			<tr class="table2">
-				<td>번호</td>
+				<td>번호
+					<a href="/javafood/viewlist.do?articleNO=${vo.articleNO }">${vo.title }</a>
+				</td>
 				<td>조회수+좋아요 합산</td>
 				<td>순위</td>
 				<td>노래제목</td>
@@ -165,16 +140,8 @@ td {
 		<%
 		for (int i = 0; i < dto.size(); i++) {
 		%>
-			<%=dto.get(i).getSongnumber() %></a>
-			<%=dto.get(i).getRank2() %></a>
-			<%=dto.get(i).getRanking() %></a>
-			<%=dto.get(i).getSongname() %></a>
-			<%=dto.get(i).getArtistname() %></a>
-			<%=dto.get(i).getBygenre() %></a>
-			<%=dto.get(i).getHits() %></a>
-			<%=dto.get(i).getLikes() %></a>
-			<%=dto.get(i).getPlaytime() %></a>
 			
+			dssw
 			
 		<%
 		}
