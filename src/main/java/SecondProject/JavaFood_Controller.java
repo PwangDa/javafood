@@ -81,18 +81,20 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
+		System.out.println("java1로 들어왔습니다");
+		
 		String nextPage = "";
 		String action = request.getPathInfo();
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
-		if("/artisionfo.do".equals(action)) {
+		if("/artistinfo.do".equals(action)) {
 //			List<AlbumDTO> listAlbum = service.Albumlist();
 			listAlbum = service.Albumlist();
 			commentList = service.listComment();
 			request.setAttribute("listAlbum", listAlbum);
 			request.setAttribute("commentList", commentList);
-			nextPage = "/javafood/artistinfo.jsp";
+			nextPage = "/artistinfo.jsp";
 			
 		}else if("/addcommnet.do".equals(action)) {
 			String id_1 = request.getParameter("id");
@@ -103,17 +105,17 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont_1);
 			
 			service.addcomment(dto);
-			nextPage = "/javafood/artisionfo.do";
+			nextPage = "/javafood/artistinfo.do";
 			
 		}else if("/delcommnet.do".equals(action)) {
 			String id = request.getParameter("id");
 			System.out.println("delete id : "+id);
 			service.delcomment(id);
-			nextPage = "/javafood/artisionfo.do";
+			nextPage = "/javafood/artistinfo.do";
 		}else {
 			listAlbum = service.Albumlist();
 			request.setAttribute("listAlbum", listAlbum);
-			nextPage = "/javafood/artistinfo.jsp";
+			nextPage = "/artistinfo.jsp";
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
@@ -127,8 +129,22 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String songchart = request.getParameter("songchart");
-		request.setAttribute("songchart", songchart);
+		String nextPage = "/javafood/listsong.do";
+		String action = request.getPathInfo();
+		
+		try {
+			
+			if("/listsong.do".equals(action)) {
+				
+				
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("list불러오기 실패");
+			e.printStackTrace();
+		}
+		
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
 		dispatch.forward(request, response);
