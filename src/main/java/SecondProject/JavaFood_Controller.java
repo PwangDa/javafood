@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
@@ -147,14 +148,20 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
-		//요청된 id값 받아오기
-		String id = request.getParameter("id");
-		request.setAttribute("id", id);
+		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인 중.
 		
-		//id값을 playList에 넘겨주기
-		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
+//		HttpSession session = request.getSession();
+//		String c_id = (String)session.getAttribute("id");
+		
+		//Service에서 플레이 리스트 불러오는 메서드 실행하기
+		List playList = service.s_loadPL(c_id);
+		
+		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
+		request.setAttribute("playList", playList);
+		request.setAttribute("id", c_id);
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
 		dispatch.forward(request, response);
-		doGet(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
@@ -189,12 +196,12 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String song = request.getParameter("genre");
 		
-		list = service.javafood6(song);
-		request.setAttribute("genre", list);
-		request.setAttribute("song", song);
-		RequestDispatcher dispatch = request.getRequestDispatcher("NewGenre.jsp");
+//		list = service.javafood6(song);
+		request.setAttribute("genre", "한글1");
+//		request.setAttribute("genre", list);
+//		request.setAttribute("song", song);
+		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
-		doGet(request, response);
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
