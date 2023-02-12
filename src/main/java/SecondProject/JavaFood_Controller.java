@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
@@ -86,7 +85,6 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		String action = request.getPathInfo();
-		System.out.println("action : "+action);
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
@@ -99,7 +97,6 @@ public class JavaFood_Controller extends HttpServlet {
 			nextPage = "/artistinfo.jsp";
 			
 		}else if("/addcommnet.do".equals(action)) {
-			System.out.println("addcomment 입장");
 			String id_1 = request.getParameter("id");
 			String cont_1 = request.getParameter("cont");
 			
@@ -116,15 +113,11 @@ public class JavaFood_Controller extends HttpServlet {
 			service.delcomment(id);
 			nextPage = "/javafood/artistinfo.do";
 		}else {
-			System.out.println("action : "+action);
 			listAlbum = service.Albumlist();
-			commentList = service.listComment();
 			request.setAttribute("listAlbum", listAlbum);
-			request.setAttribute("commentList", commentList);
 			nextPage = "/artistinfo.jsp";
 		}
 		
-		System.out.println("nextPage : "+nextPage);
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 		
@@ -136,11 +129,24 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String nextPage = "";
+		String nextPage = "/javafood/listsong.do";
 		String action = request.getPathInfo();
-		List<javafood_DTO.login_DTO> chart = new ArrayList<javafood_DTO.login_DTO>();
+		
+		try {
+			
+			if("/listsong.do".equals(action)) {
+				
+				
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("list불러오기 실패");
+			e.printStackTrace();
+		}
+		
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("Chart/Song2.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
 		dispatch.forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,15 +155,10 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
 		//요청된 id값 받아오기
-		
-		HttpSession session = request.getSession();
-		String c_id = (String)session.getAttribute("id");
-		
-		//DAO에서 플레이 리스트 불러오는 메서드 실행하기
-		List playList = service.s_loadPL(c_id);
+		String id = request.getParameter("id");
+		request.setAttribute("id", id);
 		
 		//id값을 playList에 넘겨주기
-		request.setAttribute("playList", playList);
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
 		dispatch.forward(request, response);
 		doGet(request, response);
@@ -166,7 +167,7 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-		map=service.javafood4(request.getParameter("membership"));
+		service.javafood4(request.getParameter("membership"));
 		if(map!=null) {
 			System.out.println("map1"+map);
 			System.out.println("map2"+map.get("membership"));
@@ -189,10 +190,10 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String song = request.getParameter("genre");
 		
-//		list = service.javafood6(song);
-		request.setAttribute("genre", "한글1");
-//		request.setAttribute("genre", list);
-//		request.setAttribute("song", song);
+		list = service.javafood6(song);
+//		request.setAttribute("genre", "한글1");
+		request.setAttribute("genre", list);
+		request.setAttribute("song", song);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
 		
