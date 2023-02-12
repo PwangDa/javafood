@@ -3,18 +3,20 @@
     import = "SecondProject.JavaFood_DAO"
     import = "java.util.ArrayList"
     import = "java.util.List"
-    import = "javafood_DTO.PlayListDTO" %>
+    import = "javafood_DTO.PlayListDTO"
+    import = "SecondProject.JavaFood_Controller" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <% 
+	//주소로 넘어 온 id값 받기.
+	String id = (String)request.getAttribute("id");
+
 	//DAO 불러오기
 	JavaFood_DAO jfDAO = new JavaFood_DAO();
 	
-	//주소로 넘어 온 id값 받기.
-	String id = request.getParameter("id");
 	
 	//주소로 넘어온 값을 받기.
 	String doAddList = request.getParameter("doAddList");
@@ -73,17 +75,38 @@
 		
 		<%-- 해당 유저의 플레이 리스트가 하나라도 존재한다면 --%>
 		<c:when test="${!empty playList }">
-			<c:forEach items="${playList }">
-			<a href="plc?PL_ID="${PL_ID }"&ID="${ID2 }">
+			<c:forEach var="list" items="${playList }">
+			<a href="plc?PL_ID=${list.pl_id }&ID=${list.id }">
 				<div class="playList">
 					<!-- 앨범 표지가 추가되면 해당 부분의 scr를 수정할 것. -->
 					<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
-					<div class="plText">${PL_Title }</div>
+					<div class="plText">${list.listTitle }</div>
 				</div>
 			</a>
 			</c:forEach>
 		</c:when>
    	</c:choose>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 	<script>
         document.querySelector("img.addList").addEventListener('click', ()=>
@@ -102,12 +125,12 @@
 
             if(title.length == 0 || title == "")
             {
-                alert("플레이리스트 제목을 입력해주세요.")
+				alert("플레이리스트 제목을 입력해주세요.")
             }
             else
             {
                 PL_addList.method='post';
-                PL_addList.action='pl';
+                PL_addList.action='javafood?javafood=3';
                 PL_addList.submit();
             }
         }

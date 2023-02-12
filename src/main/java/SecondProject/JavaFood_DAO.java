@@ -405,7 +405,7 @@ public class JavaFood_DAO {
 	public void addcomment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
-			
+			System.out.println("댓글등록DAO 접속");
 			String id = commentDTO.getComment_id();
 			String cont = commentDTO.getComment_cont();
 			
@@ -432,7 +432,7 @@ public class JavaFood_DAO {
 	//댓글 리스트 읽기 구현
 	public List<CommentDTO> listComment(){
 		List<CommentDTO> list = new ArrayList<CommentDTO>();
-		
+		System.out.println("댓글리스트DAO 접속");
 		try {
 			this.con = dataFactory.getConnection();
 			
@@ -468,7 +468,7 @@ public class JavaFood_DAO {
 	public void delcomment(String id) {
 		try {
 			this.con = dataFactory.getConnection();
-			
+			System.out.println("댓글삭제DAO 접속");
 			String query = " delete from comment_c";
 			query +=       " where comment_id = ?";
 			
@@ -485,10 +485,10 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
-	public List<login_DTO> listsong(){
-		List<login_DTO> list = listsong();
-		return list;
-	}
+	/*
+	 * public List<login_DTO> listsong(){ List<login_DTO> list = null; return list;
+	 * }
+	 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
 	public List<login_DTO> listSong(){
@@ -498,7 +498,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
+			String query = " SELECT RANK() OVER (ORDER BY RANK2 desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS RANK2, s.* FROM song s ) a ";
 			   		 
 			   		  
 			   		
@@ -510,8 +510,8 @@ public class JavaFood_DAO {
 			   
 			   while(rs.next()) {
 				   String songnumber = rs.getString("songnumber");
-				   String rank2 = rs.getString("rank2");
 				   String ranking = rs.getString("ranking");
+				   String rank2 = rs.getString("rank2");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -523,8 +523,8 @@ public class JavaFood_DAO {
 				   
 				   login_DTO vo = new login_DTO();
 				   vo.setSongnumber(songnumber);
-				   vo.setRank2(rank2);
 				   vo.setRanking(ranking);
+				   vo.setRank2(rank2);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
 				   vo.setBygenre(bygenre);
@@ -548,50 +548,50 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//좋아요 + 조회수 합산하여 출력하는 메소드(setString 값들을 받아서 출력하는 메소드)
-	public void songlist(login_DTO vo) {
-		try {
-			this.con = dataFactory.getConnection();
-			
-			String songnumber = vo.getSongnumber();
-			String rank2 = vo.getRank2();
-			String ranking = vo.getRanking();
-			String songname = vo.getSongname();
-			String artistname = vo.getArtistname();
-			String bygenre = vo.getBygenre();
-			String hits = vo.getHits();
-			String likes = vo.getLikes();
-			String playtime = vo.getPlaytime();
-			
-			
-			
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
-			
-			System.out.println("query" + query);
-			
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, songnumber);
-			pstmt.setString(2, rank2);
-			pstmt.setString(3, ranking);
-			pstmt.setString(4, songname);
-			pstmt.setString(5, artistname);
-			pstmt.setString(6, bygenre);
-			pstmt.setString(7, hits);
-			pstmt.setString(8, likes);
-			pstmt.setString(9, playtime);
-			
-			
-			
-			pstmt.executeUpdate();
-			
-			pstmt.close();
-			con.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	public void songlist(login_DTO vo) {
+//		try {
+//			this.con = dataFactory.getConnection();
+//			
+//			String songnumber = vo.getSongnumber();
+//			String rank2 = vo.getRank2();
+//			String ranking = vo.getRanking();
+//			String songname = vo.getSongname();
+//			String artistname = vo.getArtistname();
+//			String bygenre = vo.getBygenre();
+//			String hits = vo.getHits();
+//			String likes = vo.getLikes();
+//			String playtime = vo.getPlaytime();
+//			
+//			
+//			
+//			String query = " SELECT RANK() OVER (ORDER BY RANK2 desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS RANK2, s.* FROM song s ) a ";
+//			
+//			System.out.println("query" + query);
+//			
+//			pstmt = con.prepareStatement(query);
+//			
+//			pstmt.setString(1, songnumber);
+//			pstmt.setString(2, ranking);
+//			pstmt.setString(3, rank2);
+//			pstmt.setString(4, songname);
+//			pstmt.setString(5, artistname);
+//			pstmt.setString(6, bygenre);
+//			pstmt.setString(7, hits);
+//			pstmt.setString(8, likes);
+//			pstmt.setString(9, playtime);
+//			
+//			
+//			
+//			pstmt.executeUpdate();
+//			
+//			pstmt.close();
+//			con.close();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
@@ -697,7 +697,7 @@ public class JavaFood_DAO {
 	public List<PlayListDTO> loadPL(String id)
 	{
 		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
-		
+		System.out.println("받은 id값 : " + id); //확인용
 		
 		
 		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
@@ -721,8 +721,9 @@ public class JavaFood_DAO {
 			{
 				String temp_title = rs.getString("PL_TITLE");
 				String temp_id = rs.getString("ID2");
+				int temp_pl_id = rs.getInt("PL_ID");
 				
-				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id);
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id, temp_pl_id);
 				
 				playList.add(plDTO);
 			}
@@ -738,6 +739,96 @@ public class JavaFood_DAO {
 		
 		return playList;
 	}
+
+
+	public List<PlayListDTO> loadPL(String id, int start, int end)
+	{
+		System.out.println("JavaFood_DAO의 loadPL 메서드 실행됨."); //확인용
+		System.out.println("받은 id값 : " + id); //확인용
+		
+		
+		List<PlayListDTO> playList = new ArrayList<PlayListDTO>();
+		
+		//쿼리문 작성
+		String load_query = "SELECT rownum as rnum, * FROM playList"
+				+ " WHERE ID2 = ?"
+				+ "	AND rnum >= ? AND rnum <= ?"
+				+ " ORDER BY PL_ID DESC";
+		
+		//플레이 리스트 불러오기 쿼리 실행
+		try
+		{
+			this.con = dataFactory.getConnection();
+			
+			pstmt = con.prepareStatement(load_query);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next() )
+			{
+				String temp_title = rs.getString("PL_TITLE");
+				String temp_id = rs.getString("ID2");
+				int temp_pl_id = rs.getInt("PL_ID");
+				
+				PlayListDTO plDTO = new PlayListDTO(temp_title, temp_id, temp_pl_id);
+				
+				playList.add(plDTO);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return playList;
+	}
+	
+	/**
+	 * 플레이 리스트 페이지의 페이징 시스템을 만들기 위해 퀄럼 갯수를 세는 메서드 입니다.
+	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
+	 * @return : playList의 퀄럼 갯수를 int로 return 합니다.
+	 */
+	public int pl_totalCount(String id)
+	{
+		int totalCount = 0;
+		
+		String countQuery = 
+				"SELECT count(*) cnt FROM playList"
+				+ "WHERE id = ?";
+		
+		try
+		{
+			con = dataFactory.getConnection();
+			pstmt = con.prepareStatement(countQuery);
+			pstmt.setString(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next() )
+			{
+				totalCount = rs.getInt("cnt");
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
