@@ -37,6 +37,22 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void addsong1(String a,String b,String c,String d) {
+		System.out.println("a : "+a);
+		System.out.println("b : "+b);
+		System.out.println("c : "+c);
+		System.out.println("d : "+d);
+		try {
+			System.out.println(this.dataFactory.getConnection());
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("insert into song1 values('"+a+"','"+b+"','"+c+"','"+d+"')").executeUpdate();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
 	public void addhit(String id, String songnumber) {
 		int s = (Integer.parseInt(songnumber))+1;
@@ -742,8 +758,8 @@ public class JavaFood_DAO {
 		
 		//플레이 리스트 추가 쿼리문 작성
 		String add_query =
-				"INSTER INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
-				+ "VALUES(seq_PL_ID.next, ?, ?, ?)";
+				"INSERT INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
+				+ "VALUES(seq_PL_ID.nextval, ?, ?, ?)";
 		
 		//플레이 리스트 추가 쿼리 실행
 		try

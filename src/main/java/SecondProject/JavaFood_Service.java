@@ -26,7 +26,7 @@ public class JavaFood_Service {
 	//세션에 있는 아이디 값을 가져오면 회원정보 출력
 	public List<login_DTO> session_user(String id){
 	List<login_DTO> list = dao.session(id);
-	return list;	
+	return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -35,7 +35,10 @@ public class JavaFood_Service {
 //	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
 //    public List<AlbumVO> Albumlist(){
 //    	List<AlbumVO> Albumlist = dao.listAlbum(); 
-//    	return Albumlist; 
+//    	return Albumlist; JavaFood_Service(){
+	System.out.println("service 실행");
+	dao = new JavaFood_DAO();
+}
 //    }
 
 //	다영의 메소드(앨범목록리스트 불러오기) 
@@ -187,7 +190,7 @@ public class JavaFood_Service {
 	public List<login_DTO> javafood6(String song){
 		System.out.println("6번 장르 실행");
 		List<login_DTO> list = null;
-		
+		// 장르별
 		if (song == null) {
 			list = dao.list();
 		} else {
@@ -200,6 +203,9 @@ public class JavaFood_Service {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연 메인 
 	public void javafoodm(){
+		System.out.println("main 실행");
+		
+		
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
