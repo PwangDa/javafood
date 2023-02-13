@@ -218,8 +218,8 @@ public class JavaFood_Controller extends HttpServlet {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//범주
-	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//범주 playList.jsp 접속+리스트 불러오기
+	private void java3_1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
 
@@ -262,6 +262,18 @@ public class JavaFood_Controller extends HttpServlet {
 		dispatch = request.getRequestDispatcher("playList.jsp");
 
 		dispatch.forward(request, response);
+	}
+	
+	//범주 playList.jsp 접속+리스트 추가하기
+	public void java3_2(String title, String explain, String id)
+	{
+		service.s_doAddList(title, explain, id);
+	}
+	
+	//범주 playList.jsp 접속+리스트 추가하기
+	public void java3_3(String PL_ID, String id)
+	{
+		service.s_doDeleteList(PL_ID, id);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인

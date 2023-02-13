@@ -689,6 +689,7 @@ public class JavaFood_DAO {
 		}
 		
 	}
+	
 	/**
 	 * 플레이 리스트를 불러옵니다.
 	 * @param id : 플레이 리스트의 주인 id를 입력하세요.
