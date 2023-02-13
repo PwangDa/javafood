@@ -134,14 +134,11 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		String action = request.getPathInfo();
-<<<<<<< HEAD
-=======
 		String uri = request.getRequestURI();
 		StringBuffer url = request.getRequestURL();
 		System.out.println("action : "+action);
 		System.out.println("uri : "+uri);
 		System.out.println("url : "+url);
->>>>>>> ffc99473093c40f7461e700506732b89124b7135
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		
@@ -188,7 +185,6 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-<<<<<<< HEAD
 		String nextPage = "/javafood/listsong.do";
 		String action = request.getPathInfo();
 		
@@ -207,7 +203,6 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
-=======
 		List<login_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
@@ -217,7 +212,6 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
->>>>>>> ffc99473093c40f7461e700506732b89124b7135
 		dispatch.forward(request, response);
 //		doGet(request, response);
 		
@@ -228,14 +222,12 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
-<<<<<<< HEAD
 		//요청된 id값 받아오기
 		String id = request.getParameter("id");
 		request.setAttribute("id", id);
 		
 		//id값을 playList에 넘겨주기
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
-=======
 		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인 중.
 		
 //		HttpSession session = request.getSession();
@@ -266,23 +258,19 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setAttribute("id", c_id);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
->>>>>>> ffc99473093c40f7461e700506732b89124b7135
 		dispatch.forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-<<<<<<< HEAD
 		service.javafood4(request.getParameter("membership"));
 		if(map!=null) {
 			System.out.println("map1"+map);
 			System.out.println("map2"+map.get("membership"));
-=======
 		if(request.getParameter("membership") !=null) {
 			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
->>>>>>> ffc99473093c40f7461e700506732b89124b7135
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
@@ -320,7 +308,6 @@ public class JavaFood_Controller extends HttpServlet {
 		String song = request.getParameter("genre");
 		
 		list = service.javafood6(song);
-//		request.setAttribute("genre", "한글1");
 		request.setAttribute("genre", list);
 		request.setAttribute("song", song);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
