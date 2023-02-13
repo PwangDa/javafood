@@ -232,21 +232,17 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 playList.jsp 접속+리스트 불러오기
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("java3 메소드 실행됨."); //확인용
+		System.out.println("JavaFood_Controller의 java3 메소드 실행됨."); //확인용
 		
 
 		//주소에 요청된 id값 받아오기
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
 //		String c_id = (String)session.getAttribute("id");
+		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
 		
 //		//주소에 요청된 명령어 받아오기
 //		String doAddList = request.getParameter("doAddList");
 //		String doDeleteList = request.getParameter("doDeleteList");
-		
-		//id값을 playList에 넘겨주기
-		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
-		
-		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인 중.
 		
 		
 		//Service에서 플레이 리스트 불러오는 메서드 실행하기
@@ -270,6 +266,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		request.setAttribute("countPerPage", countPerPage);
 //		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
+		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
 //		request.setAttribute("doAddList", doAddList);
@@ -280,16 +277,42 @@ public class JavaFood_Controller extends HttpServlet {
 		dispatch.forward(request, response);
 	}
 	
-	//범주 playList.jsp 접속+리스트 추가하기
-	public void java3_2(String title, String explain, String id)
+	//범주 리스트 추가하기
+	private void java3_2(String title, String explain, String id)
 	{
 		service.s_doAddList(title, explain, id);
 	}
 	
-	//범주 playList.jsp 접속+리스트 추가하기
-	public void java3_3(String PL_ID, String id)
+	//범주 리스트 제거하기
+	private void java3_3(String PL_ID, String id)
 	{
 		service.s_doDeleteList(PL_ID, id);
+	}
+	
+	//범주 플레이 리스트 내용 보기
+	private void java3_3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		System.out.println("JavaFood_Controller의 java3_3 메서드 실행됨.");
+		
+		//요청된 값 받아오기
+//		HttpSession session = request.getSession();
+//		String c_id = (String)session.getAttribute("id");
+		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
+		int c_pl_id = Integer.parseInt(request.getParameter("pl_id") );
+		
+		//Service에서 플레이 리스트 내용을 가져올 메서드 실행하기.
+		List list = service.s_loadPLC(c_pl_id, c_id);
+		
+		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
+		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
+		request.setAttribute("playList", playList);
+		request.setAttribute("id", c_id);
+	}
+	
+	//범주 플레이 리스트 안의 곡 제거하기
+	private void java3_4(int PL_ID, int listNumber)
+	{
+		service.s_doDeleteSong(PL_ID, listNumber);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인

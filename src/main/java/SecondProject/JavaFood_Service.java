@@ -110,6 +110,20 @@ public class JavaFood_Service {
 	{
 		dao.deleteList(PL_ID, id);
 	}
+	
+	//범주 플레이 리스트 안의 내용 가져오기
+	public List s_loadPLC(int PL_ID, String id)
+	{
+		List list = dao.loadPLC(PL_ID, id);
+		
+		return list;
+	}
+	
+	//범주 플레이 리스트 안의 곡 제거하기
+	public void s_doDeleteSong(int PL_ID, int listNumber)
+	{
+		dao.doDeleteSong(PL_ID, listNumber);
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
 	
