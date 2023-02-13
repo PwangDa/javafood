@@ -364,9 +364,13 @@ public class JavaFood_Controller extends HttpServlet {
 		List list = service.s_loadPLC(c_pl_id, c_id);
 		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
-		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
-		request.setAttribute("playList", playList);
-		request.setAttribute("id", c_id);
+		
+		
+		
+		//여기부터 내일하기
+//		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
+//		request.setAttribute("playList", playList);
+//		request.setAttribute("id", c_id);
 	}
 	
 	//범주 플레이 리스트 안의 곡 제거하기
