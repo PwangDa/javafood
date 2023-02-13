@@ -38,7 +38,12 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void addsong1(String a,String b,String c,String d) {
+		System.out.println("a : "+a);
+		System.out.println("b : "+b);
+		System.out.println("c : "+c);
+		System.out.println("d : "+d);
 		try {
+			System.out.println(this.dataFactory.getConnection());
 			this.con = this.dataFactory.getConnection();
 			this.con.prepareStatement("insert into song1 values('"+a+"','"+b+"','"+c+"','"+d+"')").executeUpdate();
 			this.con.close();
