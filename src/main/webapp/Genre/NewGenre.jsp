@@ -4,6 +4,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@page import="javafood_DTO.*"
+		import="SecondProject.*"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +18,10 @@
 		db.like(request.getParameter("number"));
 		}
 	%> --%>
+	<% 
+	JavaFood_DAO dao;
+	dao = new JavaFood_DAO();
+	%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
@@ -289,7 +296,6 @@
     <div id="home">
         <h1><a href='http://127.0.0.1:8080/javafood_team/Genre/NewGenre.jsp'>장르</a></h1>
         
-       ${song };
        <c:choose>
 		<c:when test="${song eq '발라드'}"> 
 	
@@ -376,30 +382,25 @@
             <div class="right_top_item_1">담기</div>
         </div>
 		
-		
-		<%
-			for (int i = 0; i < vo.size(); i++) {
-			%>
+		<c:forEach var="genre_list" items="${genre}" varStatus="status">
         <div class= "musiclist">
              <div class="cont2">
              	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
-                <div class="left_item"><%=(i+1) %></div>
-                <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"target='_blank'><%=vo.get(i).getSongname() %></a></div>
-                <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div>
-                <div class="right_item"><%= vo.get(i).getPlayTime() %></div>
+                <div class="left_item">${ status.count} </div>  <!-- 곡 순서 -->
+                <div class="left_item left_name"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
+                <div class="left_artist" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
+                <div class="right_item">${ genre_list.playTime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/Genre/NewGenre.jsp">
-                <div class="right_item" id="like"><%= vo.get(i).getLikes() %><input type="submit" value="" class="sub"><input type="hidden" name="good" value="<%= i+1%>">
-                <input type="hidden" name="number" value="<%= vo.get(i).getSongnumber()%>">
+                <div class="right_item" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
+                <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
-                <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div>
-                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div>
+                <div> <button type="button" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div><!-- 노래재생 유튜브 -->
+                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 좋아요 버튼 -->
              </div>
+		</c:forEach>
             
         </div>
-        <%
-			}
-			%>
     </div>
 </body>
 

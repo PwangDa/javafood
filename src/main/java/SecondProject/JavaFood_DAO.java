@@ -622,6 +622,9 @@ public class JavaFood_DAO {
 		String temp_title = plDTO.getListTitle();
 		String temp_explain = plDTO.getListExplain();
 		String temp_id = plDTO.getId();
+		System.out.println("temp_title : " + temp_title); //확인용
+		System.out.println("temp_explain : " + temp_explain); //확인용
+		System.out.println("temp_id : " + temp_id); //확인용
 		
 		//플레이 리스트 추가 쿼리문 작성
 		String add_query =
@@ -700,6 +703,7 @@ public class JavaFood_DAO {
 		}
 		
 	}
+	
 	/**
 	 * 플레이 리스트를 불러옵니다.
 	 * @param id : 플레이 리스트의 주인 id를 입력하세요.
