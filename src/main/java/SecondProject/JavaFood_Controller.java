@@ -272,7 +272,7 @@ public class JavaFood_Controller extends HttpServlet {
 		if(map!=null) {
 			System.out.println("map1"+map);
 			System.out.println("map2"+map.get("membership"));
-
+		}
 		if(request.getParameter("membership") !=null) {
 			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
@@ -326,5 +326,5 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("메인 실행");
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 }
