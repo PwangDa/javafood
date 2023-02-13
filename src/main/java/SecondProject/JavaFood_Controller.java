@@ -107,8 +107,19 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("2")) {
 			java2(request,response);
 		}
-		if(request.getParameter("javafood").equals("3_1")) {
+		if(request.getParameter("javafood").equals("3")) {
 			java3(request,response);
+		}
+		if(request.getParameter("javafood").equals("3_2") )
+		{
+			String addList_title = request.getParameter("addList_title");
+			String addList_explain = request.getParameter("addList_explain");
+			String id = request.getParameter("id");
+			
+			java3_2(addList_title, addList_explain, id);
+			
+			//페이지 새로고침
+			response.sendRedirect("javafood?javafood=3");
 		}
 		if(request.getParameter("javafood").equals("4")) {
 			System.out.println("4번진입");
@@ -228,9 +239,9 @@ public class JavaFood_Controller extends HttpServlet {
 		HttpSession session = request.getSession();
 //		String c_id = (String)session.getAttribute("id");
 		
-		//주소에 요청된 명령어 받아오기
-		String doAddList = request.getParameter("doAdd");
-		String doDeleteList = request.getParameter("doDeleteList");
+//		//주소에 요청된 명령어 받아오기
+//		String doAddList = request.getParameter("doAddList");
+//		String doDeleteList = request.getParameter("doDeleteList");
 		
 		//id값을 playList에 넘겨주기
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
@@ -261,8 +272,8 @@ public class JavaFood_Controller extends HttpServlet {
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
-		request.setAttribute("doAddList", doAddList);
-		request.setAttribute("doDeleteList", doDeleteList);
+//		request.setAttribute("doAddList", doAddList);
+//		request.setAttribute("doDeleteList", doDeleteList);
 		
 		dispatch = request.getRequestDispatcher("playList.jsp");
 
