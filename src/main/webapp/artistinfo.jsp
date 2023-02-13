@@ -202,7 +202,7 @@
             border: none;
             height: 19px;
         }
-
+        
         .image1{
             width: 90px;
             display: block;
@@ -210,7 +210,6 @@
             margin : 5px 0px 5px 40px;
             
         }
-
         .btn{
             color:white;
             background-color:rgb(70, 70, 70);
@@ -227,6 +226,79 @@
         .btn:hover{
             background-color:rgba(173, 173, 173, 0.545);
         }
+
+        /* 답글용  아이디text*/
+        .input2{
+            background-color: transparent;
+            color: white;
+            /* border-radius: 15px; */
+            border: none;
+            border-bottom: 2px solid rgb(70, 70, 70);
+            height: 19px;
+            width: 90px;
+            margin: 10px 3px;
+        }
+         /* 답글용  내용text*/
+        .input3{
+            background-color: transparent;
+            color: white;
+            /* border-radius: 15px; */
+            border: none;
+            border-bottom: 2px solid rgb(70, 70, 70);
+            height: 19px;
+            width: 250px;
+            margin: 10px 3px;
+        }
+        /* 답글용  이미지*/
+        .image3{
+            margin: 10px 3px;
+        	width: 35px;
+        	height: 35px;
+        	border-radius: 70%;
+        }
+
+        /* 답글용  버튼*/
+        .btn1{
+            color:white;
+            background-color:rgb(70, 70, 70);
+            /* padding: 15px 30px; */
+            width: 50px;
+            height: 30px;
+            margin: 10px;
+            border-radius: 15px;
+            border: none;
+        }
+
+        .btn1:active{
+            transform: scale(1.1);
+        }
+        .btn1:hover{
+            background-color:rgba(173, 173, 173, 0.545);
+        }
+
+        .comment_1{
+            
+            height: 40px;
+            /* vertical-align: top; */
+        }
+
+        .comment_1_1{
+            display: inline-block;
+          
+            height: 20px;
+            vertical-align: top;
+        }
+        .comment_1_2{
+            height: 24px;
+            vertical-align: top;
+
+        }
+        
+        .comment_1_3{
+           
+            width: 530px;
+        }
+
 
         .command{
             text-align: center;
@@ -257,12 +329,19 @@
         
         /*댓글 입력한 날짜출력 스타일*/
         .date1{
+           
             border-radius: 15px;
             margin: 11px;
             padding: 1px;
             text-align: right;
             color :rgb(113, 113, 113);
             font-size: 13px;
+        }
+        
+        #detail{
+        	text-align: left;
+        	font-size: 14px;
+            cursor: pointer;
         }
         
         /* 앨범  < > 용 스타일*/
@@ -469,6 +548,27 @@
 	                        <div class="text2">
 	                            <div class="cont2">${comment.comment_cont }</div>
 	                            <div class="date1">${comment.comment_Date }</div>
+	                            <details id="detail">
+		                   		 	<summary style="color: rgb(150, 150, 150);">답글달기</summary>
+		                    		<div class="comment">
+					                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+					                        <input class="input2" type="text" name="id" placeholder=" ID">
+					                        <input class="input3" type="text" name="cont" placeholder="답글 추가...">
+					                        <button class="btn1" type="button" onclick="fn_sendComment()"> 답글 </button>
+					                    	<input type ="hidden" name="command" value="addcomment">
+		                			</div>
+		                			<div class="comment_1">
+					                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+					                        <p class="comment_1_1">아이디</p>
+					                        <p class="comment_1_1" style="color: rgb(113, 113, 113);">등록날짜</p>
+					                        <button class="btn1 comment_1_2" type="button" onclick="fn_sendComment()"> 삭제</button>
+					  
+		                			</div>
+		                			<div class="comment_1_3">
+		                                <span class="comment_1_4" style="margin-right :40px;"></span>
+		                                아이유는 대한민국의 가수이자 배우이다. 배우 활동 할 땐 본명을 쓴다.
+		                            </div>
+                				</details>
 	                        </div>
 	                        <!-- 삭제하기 기능도 
 	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
