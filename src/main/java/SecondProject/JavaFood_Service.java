@@ -48,14 +48,22 @@ public class JavaFood_Service {
     public void delcomment(String id) {
     	dao.delcomment(id);
     }
+    //댓글 전부 삭제
+	public List<Integer> removeComment(int articleNO){
+		List<Integer> articleNOList = dao.selectRemoveComment(articleNO);
+		dao.deleteComment(articleNO);
+		return articleNOList;
+	}
     //댓글 등록 메소드
     public void addcomment(CommentDTO commentDTO) {
-    	dao.addcomment(commentDTO);
+//    	dao.addcomment(commentDTO);
+    	dao.insertComment(commentDTO);
     }
     
     //댓글 리스트 불러오는 메소드
     public List<CommentDTO> listComment() {
-    	List<CommentDTO> commentList = dao.listComment();
+//    	List<CommentDTO> commentList = dao.listComment();
+    	List<CommentDTO> commentList = dao.allComment();
     	return commentList;
     }
     
