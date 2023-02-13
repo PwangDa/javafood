@@ -196,18 +196,20 @@ public class JavaFood_DAO {
 		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM  song");
+			this.pstmt = this.con.prepareStatement("SELECT * FROM  song1");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
+				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setRanking(rs.getString("ranking"));
+				vo.setFamous(rs.getString("famous"));
+				vo.setImglink(rs.getString("imglink"));
+				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
-				vo.setSongname(rs.getString("songname"));
-				vo.setSongnumber(rs.getString("songnumber"));
-				vo.setLink(rs.getString("link"));
-				vo.setPlayTime(rs.getString("playtime"));
+				vo.setPlaytime(rs.getString("playtime"));
 				list.add(vo);
 			}
 			rs.close();
@@ -514,7 +516,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT RANK() OVER (ORDER BY RANK2 desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS RANK2, s.* FROM song s ) a ";
+			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
 			   		 
 			   		  
 			   		
@@ -527,7 +529,8 @@ public class JavaFood_DAO {
 			   while(rs.next()) {
 				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
-				   String rank2 = rs.getString("rank2");
+				   String famous = rs.getString("famous");
+				   String imglink = rs.getString("imglink");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -540,7 +543,8 @@ public class JavaFood_DAO {
 				   login_DTO vo = new login_DTO();
 				   vo.setSongnumber(songnumber);
 				   vo.setRanking(ranking);
-				   vo.setRank2(rank2);
+				   vo.setFamous(famous);
+				   vo.setImglink(imglink);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
 				   vo.setBygenre(bygenre);
