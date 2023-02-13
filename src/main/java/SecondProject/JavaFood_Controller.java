@@ -341,10 +341,11 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String song = request.getParameter("genre");
-		
+		System.out.println("song  전: " + song);
 		List genre_list = service.javafood6(song);
 		request.setAttribute("genre", genre_list);
-//		request.setAttribute("song", song);
+		request.setAttribute("song", song);
+		System.out.println("song 후: " + song);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
 		
