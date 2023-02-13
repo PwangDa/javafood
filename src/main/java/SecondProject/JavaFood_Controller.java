@@ -259,7 +259,7 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
+		dispatch = request.getRequestDispatcher("playList.jsp");
 
 		dispatch.forward(request, response);
 	}
