@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
@@ -106,7 +107,7 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("2")) {
 			java2(request,response);
 		}
-		if(request.getParameter("javafood").equals("3")) {
+		if(request.getParameter("javafood").equals("3_1")) {
 			java3(request,response);
 		}
 		if(request.getParameter("javafood").equals("4")) {
@@ -202,7 +203,7 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
 		List<login_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
@@ -219,45 +220,49 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 playList.jsp 접속+리스트 불러오기
-	private void java3_1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
 
-		//요청된 id값 받아오기
-		String id = request.getParameter("id");
-		request.setAttribute("id", id);
+		//주소에 요청된 id값 받아오기
+		HttpSession session = request.getSession();
+//		String c_id = (String)session.getAttribute("id");
+		
+		//주소에 요청된 명령어 받아오기
+		String doAddList = request.getParameter("doAdd");
+		String doDeleteList = request.getParameter("doDeleteList");
 		
 		//id값을 playList에 넘겨주기
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
 		
 		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인 중.
 		
-//		HttpSession session = request.getSession();
-//		String c_id = (String)session.getAttribute("id");
 		
 		//Service에서 플레이 리스트 불러오는 메서드 실행하기
 		List playList = service.s_loadPL(c_id);
 		
 		//페이징 테스트
-		int pageNum = 1;
-		int countPerPage = 8;
-		
-		String temp_pageNum = request.getParameter("pageNum");
-		if(temp_pageNum != null)
-		{
-			pageNum = Integer.parseInt(temp_pageNum);
-		}
-		
-		Map map = service.pl_getPagingList(pageNum, countPerPage, c_id);
-		
-		request.setAttribute("articleList", map.get("list") );
-		request.setAttribute("totalCount", map.get("totalCount") );
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("countPerPage", countPerPage);
-		
+//		int pageNum = 1;
+//		int countPerPage = 8;
+//		
+//		String temp_pageNum = request.getParameter("pageNum");
+//		if(temp_pageNum != null)
+//		{
+//			pageNum = Integer.parseInt(temp_pageNum);
+//		}
+//		
+//		Map map = service.pl_getPagingList(pageNum, countPerPage, c_id);
+//		
+//		request.setAttribute("articleList", map.get("list") );
+//		request.setAttribute("totalCount", map.get("totalCount") );
+//		request.setAttribute("pageNum", pageNum);
+//		request.setAttribute("countPerPage", countPerPage);
+//		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
+		request.setAttribute("doAddList", doAddList);
+		request.setAttribute("doDeleteList", doDeleteList);
 		
 		dispatch = request.getRequestDispatcher("playList.jsp");
 
