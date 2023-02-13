@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
+import java.util.*;
 
 import SecondProject.JavaFood_DAO;
 
@@ -23,7 +24,9 @@ public class test {
 		Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
 		Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 		Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+		System.out.println("da1");
 		JavaFood_DAO dao = new JavaFood_DAO();
+		System.out.println("da2");
 		for(int i=0; i<e4.size(); i++) {
 			System.out.println("가수 : "+(String)e1.get(i).text());
 			System.out.println("제목 : "+(String)e2.get(i).text());
@@ -39,7 +42,6 @@ public class test {
 			System.out.println("제목 : "+b);
 			System.out.println("앨범 : "+c);
 			System.out.println("이미지 주소 : "+d);
-			dao.addsong1(a, b, c, d);
 		}
 		
 		
