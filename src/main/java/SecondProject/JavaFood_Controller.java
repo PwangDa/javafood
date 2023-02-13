@@ -202,7 +202,7 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
 		List<login_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
