@@ -389,7 +389,7 @@
                 <div class="left_item">${ status.count} </div>  <!-- 곡 순서 -->
                 <div class="left_item left_name"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
-                <div class="right_item">"${ genre_list.playTime}>"</div> <!-- 재생시간 -->
+                <div class="right_item">${ genre_list.playTime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/Genre/NewGenre.jsp">
                 <div class="right_item" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
