@@ -20,6 +20,10 @@
             location.href='javafood?javafood=4';
 		</script>
 	</c:if>
+	
+	<c:forEach items="${session_user }" var="i">
+		<c:out value="${i }"/>
+	</c:forEach>
 <%-- 		<%
 // 		}else{
 // 				List<login_DTO> a = db.session((String)session.getAttribute("login"));
@@ -34,6 +38,7 @@
 // 			db.addhit(a.get(0).getId(), request.getParameter("id"));
 // 				}
  		%> --%>
+ <%--
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
@@ -152,4 +157,4 @@
     </script>
 </body>
 </html>
-<%}}%>
+<%}}--%>
