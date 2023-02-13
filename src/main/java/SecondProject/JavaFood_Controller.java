@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+
 import Chart.SongDAO;
+import My_Page.test;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
@@ -134,6 +138,34 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
+		}
+		if(request.getParameter("javafood").equals("add")) {
+			String url = "https://www.melon.com/chart/index.htm";
+			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+			Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("a");
+			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
+			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+			System.out.println("da1");
+			JavaFood_DAO dao = new JavaFood_DAO();
+			System.out.println("da2");
+			for(int i=0; i<e4.size(); i++) {
+				System.out.println("가수 : "+(String)e1.get(i).text());
+				System.out.println("제목 : "+(String)e2.get(i).text());
+				System.out.println("앨범 : "+(String)e3.get(i).text());
+				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
+				
+				String a = (String)e1.get(i).text().replace("'", "");
+				String b = (String)e2.get(i).text().replace("'", "");
+				String c = (String)e3.get(i).text().replace("'", "");
+				String d = (String)e4.get(i).attr("src");
+				
+				System.out.println("가수 : "+a);
+				System.out.println("제목 : "+b);
+				System.out.println("앨범 : "+c);
+				System.out.println("이미지 주소 : "+d);
+				dao.addsong1(b,c,a,d);
+			}
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
