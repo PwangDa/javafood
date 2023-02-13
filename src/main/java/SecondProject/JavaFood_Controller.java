@@ -161,6 +161,7 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
 		}
+		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
 //			String url = "https://www.melon.com/chart/index.htm";
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
@@ -401,6 +402,17 @@ public class JavaFood_Controller extends HttpServlet {
 			System.out.println("session 아이디 : "+session_user.get(0).getId());
 			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
+		}
+		if(request.getParameter("option")!=null) {
+			System.out.println("option : "+request.getParameter("option"));
+			if(request.getParameter("text")!=null) {
+				System.out.println("text : "+request.getParameter("text"));
+				List<login_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
+				if(list!=null) {
+					request.setAttribute("song", list);
+					System.out.println("!=null lsit : "+list);
+				}
+			}
 		}
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		

@@ -37,6 +37,7 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		노래추가
 //	public void addsong1(String b,String c,String a,String d) {
 //		System.out.println("a : "+a);
 //		try {
@@ -220,7 +221,7 @@ public class JavaFood_DAO {
 		return st ;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//서치
+	//특정값 넣어주면 특정값관련된 것만 불러오기
 	public List<login_DTO> Search(String option, String text) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
@@ -243,6 +244,7 @@ public class JavaFood_DAO {
 			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
+			list=null;
 			e.printStackTrace();
 		}
 		return list;
