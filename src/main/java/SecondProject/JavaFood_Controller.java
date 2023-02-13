@@ -161,34 +161,34 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
 		}
-		if(request.getParameter("javafood").equals("add")) {
-			String url = "https://www.melon.com/chart/index.htm";
-			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-			Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("a");
-			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
-			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
-			System.out.println("da1");
-			JavaFood_DAO dao = new JavaFood_DAO();
-			System.out.println("da2");
-			for(int i=0; i<e4.size(); i++) {
-				System.out.println("가수 : "+(String)e1.get(i).text());
-				System.out.println("제목 : "+(String)e2.get(i).text());
-				System.out.println("앨범 : "+(String)e3.get(i).text());
-				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
-				
-				String a = (String)e1.get(i).text().replace("'", "");
-				String b = (String)e2.get(i).text().replace("'", "");
-				String c = (String)e3.get(i).text().replace("'", "");
-				String d = (String)e4.get(i).attr("src");
-				
-				System.out.println("가수 : "+a);
-				System.out.println("제목 : "+b);
-				System.out.println("앨범 : "+c);
-				System.out.println("이미지 주소 : "+d);
-				dao.addsong1(b,c,a,d);
-			}
-		}
+//		if(request.getParameter("javafood").equals("add")) {
+//			String url = "https://www.melon.com/chart/index.htm";
+//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+//			Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("a");
+//			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
+//			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+//			System.out.println("da1");
+//			JavaFood_DAO dao = new JavaFood_DAO();
+//			System.out.println("da2");
+//			for(int i=0; i<e4.size(); i++) {
+//				System.out.println("가수 : "+(String)e1.get(i).text());
+//				System.out.println("제목 : "+(String)e2.get(i).text());
+//				System.out.println("앨범 : "+(String)e3.get(i).text());
+//				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
+//				
+//				String a = (String)e1.get(i).text().replace("'", "");
+//				String b = (String)e2.get(i).text().replace("'", "");
+//				String c = (String)e3.get(i).text().replace("'", "");
+//				String d = (String)e4.get(i).attr("src");
+//				
+//				System.out.println("가수 : "+a);
+//				System.out.println("제목 : "+b);
+//				System.out.println("앨범 : "+c);
+//				System.out.println("이미지 주소 : "+d);
+//				dao.addsong1(b,c,a,d);
+//			}
+//		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
