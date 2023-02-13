@@ -185,7 +185,7 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String nextPage = "/javafood/listsong.do";
+		nextPage = "/javafood/listsong.do";
 		String action = request.getPathInfo();
 		
 		try {
@@ -211,7 +211,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		list_login = service.javafood2();
 		
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+		dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 //		doGet(request, response);
 		
