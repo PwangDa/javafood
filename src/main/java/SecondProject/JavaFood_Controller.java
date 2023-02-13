@@ -308,12 +308,14 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
-		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-		System.out.println(session_user.get(0).getId());
-		System.out.println(session_user.get(0).getEmail());
-		System.out.println(session_user.get(0).getPn());
-		System.out.println(session_user.get(0).getPw());
-		request.setAttribute("session_user", session_user);
+		if(request.getSession().getAttribute("login")!=null) {
+			System.out.println("login : !=null");
+			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+			System.out.println("session 이메일 : "+session_user.get(0).getEmail());
+			System.out.println("session 아이디 : "+session_user.get(0).getId());
+			System.out.println("session 닉네임: "+session_user.get(0).getNic());
+			request.setAttribute("session_user", session_user.get(0));
+		}
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		
 	}
