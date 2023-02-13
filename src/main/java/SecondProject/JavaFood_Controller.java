@@ -311,7 +311,6 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getSession().getAttribute("login")!=null) {
 			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-			System.out.println("session 이메일 : "+session_user.get(0).getEmail());
 			System.out.println("session 아이디 : "+session_user.get(0).getId());
 			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));

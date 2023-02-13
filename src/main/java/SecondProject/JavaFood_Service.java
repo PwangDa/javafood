@@ -26,7 +26,7 @@ public class JavaFood_Service {
 	//세션에 있는 아이디 값을 가져오면 회원정보 출력
 	public List<login_DTO> session_user(String id){
 	List<login_DTO> list = dao.session(id);
-	return list;	
+	return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
