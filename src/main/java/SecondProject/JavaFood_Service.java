@@ -26,7 +26,7 @@ public class JavaFood_Service {
 	//세션에 있는 아이디 값을 가져오면 회원정보 출력
 	public List<login_DTO> session_user(String id){
 	List<login_DTO> list = dao.session(id);
-	return list;	
+	return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -179,7 +179,7 @@ public class JavaFood_Service {
 	public List<login_DTO> javafood6(String song){
 		System.out.println("6번 장르 실행");
 		List<login_DTO> list = null;
-		
+		// 장르별
 		if (song == null) {
 			list = dao.list();
 		} else {
