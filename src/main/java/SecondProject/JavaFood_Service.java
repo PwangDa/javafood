@@ -23,6 +23,13 @@ public class JavaFood_Service {
 		dao = new JavaFood_DAO();
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//세션에 있는 아이디 값을 가져오면 회원정보 출력
+	public List<login_DTO> session_user(String id){
+	List<login_DTO> list = dao.session(id);
+	return list;	
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	//다영
 
 //	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
@@ -65,14 +72,14 @@ public class JavaFood_Service {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//범주 
+	//범주 플레이 리스트 불러오기
 	public List s_loadPL(String id)
 	{
 		System.out.println("JavaFood_Service의 s_loadPL 메서드 실행됨."); //확인용
 		List s_playList = dao.loadPL(id);
 		return s_playList;
 	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	//범주 페이지 서비스
 	public Map pl_getPagingList(int pageNum, int countPerPage, String id)
 	{
@@ -90,6 +97,18 @@ public class JavaFood_Service {
 		map.put("totalCount", totalCount);
 		
 		return map;
+	}
+	
+	//범주 플레이 리스트 추가하기
+	public void s_doAddList(String title, String explain, String id)
+	{
+		dao.addList(title, explain, id);
+	}
+	
+	//범주 플레이 리스트 제거하기
+	public void s_doDeleteList(String PL_ID, String id)
+	{
+		dao.deleteList(PL_ID, id);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 

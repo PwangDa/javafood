@@ -12,11 +12,8 @@
 
 <% 
 	//주소로 넘어 온 id값 받기.
-	String id = (String)request.getAttribute("id");
+	String id = (String)session.getAttribute("id");
 
-	//DAO 불러오기
-	JavaFood_DAO jfDAO = new JavaFood_DAO();
-	
 	
 	//주소로 넘어온 값을 받기.
 	String doAddList = request.getParameter("doAddList");
@@ -29,8 +26,9 @@
 		String addList_title = request.getParameter("addList_title");
 		String addList_explain = request.getParameter("addList_explain");
 		
-		//DAO에서 플레이 리스트를 추가하는 메서드 실행하기.
-		jfDAO.addList(addList_title, addList_explain, id);
+		//Controller에서 리스트를 추가하도록 명령하는 메서드 실행하기
+		JavaFood_Controller jfc = new JavaFood_Controller();
+		jfc.java3_2(addList_title, addList_explain, id);
 	}
 	//플레이 리스트 삭제하기
 	else if("doDelete".equals(doDeleteList) )
@@ -38,8 +36,9 @@
 		//주소로 넘어온 값들을 받기
 		String res_PL_ID = request.getParameter("res.PL_ID");
 		
-		//DAO에서 플레이 리스트를 삭제하는 메서드 실행하기.
-		jfDAO.deleteList(res_PL_ID, id);
+		//Controller에서 리스트를 제거하도록 명령하는 메서드 실행하기
+		JavaFood_Controller jfc = new JavaFood_Controller();
+		jfc.java3_3(res_PL_ID, id);
 	}
 %>
 <!DOCTYPE html>

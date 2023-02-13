@@ -20,6 +20,11 @@
             location.href='javafood?javafood=4';
 		</script>
 	</c:if>
+	<c:out value="list 값 : ${session_user }"/><br>
+	<c:out value="아이디 : ${session_user.id }"/><br>
+	<c:out value="닉네임 : ${session_user.nic }"/><br>
+	<c:out value="페스워드 : ${session_user.pw }"/><br>
+	<c:out value="이메일 : ${session_user.email }"/><br>
 <%-- 		<%
 // 		}else{
 // 				List<login_DTO> a = db.session((String)session.getAttribute("login"));
@@ -34,6 +39,7 @@
 // 			db.addhit(a.get(0).getId(), request.getParameter("id"));
 // 				}
  		%> --%>
+ <%--
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
@@ -152,4 +158,4 @@
     </script>
 </body>
 </html>
-<%}}%>
+<%}}--%>
