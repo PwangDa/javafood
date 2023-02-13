@@ -37,20 +37,17 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void addsong1(String b,String c,String a,String d) {
-		System.out.println("a : "+a);
-//		System.out.println("b : "+b);
-//		System.out.println("c : "+c);
-//		System.out.println("d : "+d);
-		try {
-			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("insert into song1 values(son.nextval,'"+a+"','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','bygenre')").executeUpdate();
-			this.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	public void addsong1(String b,String c,String a,String d) {
+//		System.out.println("a : "+a);
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("insert into song1 values(son.nextval,'"+a+"','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','bygenre')").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
 	public void addhit(String id, String songnumber) {
