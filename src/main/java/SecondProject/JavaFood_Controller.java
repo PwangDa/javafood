@@ -345,6 +345,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//태연
 	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("메인 실행");
 	}
