@@ -185,11 +185,7 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-<<<<<<< HEAD
-		String nextPage = "/javafood/listsong.do";
-=======
 		nextPage = "/javafood/listsong.do";
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
 		String action = request.getPathInfo();
 		
 		try {
@@ -215,11 +211,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		list_login = service.javafood2();
 		
 		
-<<<<<<< HEAD
-		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-=======
 		dispatch = request.getRequestDispatcher(nextPage);
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
 		dispatch.forward(request, response);
 //		doGet(request, response);
 		
@@ -230,20 +222,14 @@ public class JavaFood_Controller extends HttpServlet {
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("java3 메소드 실행됨."); //확인용
 		
-<<<<<<< HEAD
-=======
 
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
 		//요청된 id값 받아오기
 		String id = request.getParameter("id");
 		request.setAttribute("id", id);
 		
 		//id값을 playList에 넘겨주기
 		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
-<<<<<<< HEAD
-=======
-
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
+		
 		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인 중.
 		
 //		HttpSession session = request.getSession();
@@ -273,37 +259,28 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
 		
-<<<<<<< HEAD
-		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
-=======
 		dispatch = request.getRequestDispatcher("playList.jsp");
 
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
 		dispatch.forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-<<<<<<< HEAD
-=======
 
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
 		service.javafood4(request.getParameter("membership"));
 		if(map!=null) {
 			System.out.println("map1"+map);
 			System.out.println("map2"+map.get("membership"));
-<<<<<<< HEAD
+		}
 		if(request.getParameter("membership") !=null) {
 			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
-=======
 		}
 		if(request.getParameter("membership") !=null) {
 			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
 
->>>>>>> 97b4a59a5875dc731fdec139f140796d94cf785e
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
