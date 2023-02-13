@@ -37,6 +37,7 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		노래추가
 //	public void addsong1(String b,String c,String a,String d) {
 //		System.out.println("a : "+a);
 //		try {
@@ -220,7 +221,7 @@ public class JavaFood_DAO {
 		return st ;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//서치
+	//특정값 넣어주면 특정값관련된 것만 불러오기
 	public List<login_DTO> Search(String option, String text) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
@@ -243,6 +244,7 @@ public class JavaFood_DAO {
 			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
+			list=null;
 			e.printStackTrace();
 		}
 		return list;
@@ -968,6 +970,92 @@ public class JavaFood_DAO {
 		}
 		
 		return totalCount;
+	}
+	
+	/**
+	 * 플레이 리스트 내의 곡을 삭제하는 메서드 입니다.
+	 * @param PL_ID : 플레이 리스트의 아이디를 입력하세요.
+	 * @param listNumber : 삭제할 곡의 플레이 리스트 번호를 입력하세요.
+	 */
+	public void doDeleteSong(int PL_ID, int listNumber)
+	{
+		//DTO에 접속하여 값 세팅하기
+		PlayListDTO dto = new PlayListDTO();
+		dto.setPl_id(PL_ID);
+		dto.setListNumber(listNumber);
+		
+		int temp_PL_ID = dto.getPl_id();
+		int deleteNumber = dto.getListNumber();
+		
+		//쿼리문 작성
+		String delSong_query = "DELETE FROM playList_Content"
+				+ " WHERE ListNumber = ?"
+				+ "	AND PL_ID = ?";
+		
+		//쿼리 실행
+		try 
+		{
+			pstmt = con.prepareStatement(delSong_query);
+			pstmt.setInt(1, deleteNumber);
+			pstmt.setInt(2, temp_PL_ID);
+			ResultSet rs = pstmt.executeQuery();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public List<PlayListDTO> loadPLC(int PL_ID, String id)
+	{
+		List<PlayListDTO> playListContent = new ArrayList<PlayListDTO>();
+		
+		//쿼리문 작성
+		String loadList_query =
+				"SELECT * FROM playList_Content plc"
+				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID"
+				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
+				+ " ORDER BY listNumber";
+		
+		//쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(loadList_query);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next() )
+			{
+				int temp_pl_id = rs.getInt("PL_ID");
+				int temp_listNumber = rs.getInt("listNumber");
+				String temp_songName = rs.getString("songName");
+				String temp_plTitle = rs.getString("pl_title");
+				String temp_plExplain = rs.getString("pl_explain");
+				String temp_artistName = rs.getString("artistName");
+				
+				PlayListDTO playListDTO = 
+						new PlayListDTO
+						(
+							temp_pl_id, 
+							temp_listNumber, 
+							temp_songName, 
+							temp_plTitle, 
+							temp_plExplain, 
+							temp_artistName
+						);
+				
+				playListContent.add(playListDTO);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return playListContent;
 	}
 }
 

@@ -40,33 +40,47 @@
 <body>
 	<div style="width: 100%;height: 100%;">
         <div class="head">
-            <div class="left"><a href="javafood?javafood=5" class="at"><strong>My pages</strong></a></div>
-            <div class="right"><strong0>[${session_user.nic }]</strong></div>
+            <div class="left"><a href="javafood?javafood=5" class="at"><strong><c:out value="My pages"/></strong></a></div>
+            <div class="right"><strong0> <c:out value="${session_user.nic }"/></strong></div>
         </div>
         <div class="tbody">
-       	<form method="get" action="My_page.jsp">
+       	<form method="get" action="javafood">
+           <input type="hidden" name="javafood" value="5">
             <td>
                 <select name="option" style="height: 30px;">
-                    <option  value="sing">노래검색</option>
-                    <option  value="man">가수검색</option>
+                    <option  value="sing"><c:out value="노래검색"/></option>
+                    <option  value="man"><c:out value="가수검색"/></option>
                 </select>
             </td>
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
         </form>
-        <div style="color: white;"><a href="?p=1" class="at">${session_user.id } 의 재생기록 확인</a> </div>
+        <div style="color: white;"><a href="?p=1" class="at"><c:out value="${session_user.id } 의 재생기록 확인"/></a> </div>
         </div>
         <div class="body">
-            <h2>최근재생목록</h2>
+            <h2><c:out value="최근재생목록"/></h2>
             <table border="1">
                 <tr>
-                    <th> 재생 순서 </th>
-                    <th> 아티스트 이름 </th>
-                    <th> 노래 제목</th>
-                    <th> 조회수</th>
-                    <th> 재생 </th>
-                    <th> 좋아요 </th>
+                    <th><c:out value="아티스트 이름"/></th>
+                    <th><c:out value="노래 제목"/></th>
+                    <th><c:out value="조회수"/></th>
+                    <th><c:out value="재생"/></th>
+                    <th><c:out value="좋아요"/></th>
                 </tr>
+				<c:if test="${song!=null }">
+					<c:forEach items="${song }" var="i">
+					<tr class="low">
+						<td><c:out value="${i.artistname}"/></td>
+						<td><c:out value="${i.songname}"/></td>
+						<td><c:out value="${i.hits}"/></td>
+						<td><c:out value="${i.likes}"/></td>
+						<td><c:out value="${i.likes}"/></td>
+					</tr>
+					</c:forEach>
+				</c:if>                
+                
+                
+                
                 <%--
                 if(request.getParameter("p")!=null){
                 				List<login_DTO> vvo = db.uresong(a.get(0).getId());
@@ -127,6 +141,7 @@
     <script>
 			
     </script>
+    --%>
 </body>
 </html>
-<%}}--%>
+<%--}}--%>
