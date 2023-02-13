@@ -633,8 +633,8 @@ public class JavaFood_DAO {
 		
 		//플레이 리스트 추가 쿼리문 작성
 		String add_query =
-				"INSTER INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
-				+ "VALUES(seq_PL_ID.next, ?, ?, ?)";
+				"INSERT INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
+				+ "VALUES(seq_PL_ID.nextval, ?, ?, ?)";
 		
 		//플레이 리스트 추가 쿼리 실행
 		try
