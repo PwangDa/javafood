@@ -37,6 +37,17 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void addsong1(String a,String b,String c,String d) {
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("insert into song1 values('"+a+"','"+b+"','"+c+"','"+d+"')").executeUpdate();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
 	public void addhit(String id, String songnumber) {
 		int s = (Integer.parseInt(songnumber))+1;

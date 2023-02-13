@@ -2,11 +2,7 @@
 <%@page import="My_Page.dbon"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
-    import = "My_Page.*"
-    import="javafood_DTO.*"
-    import="SecondProject.*"
     %>
-    
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -20,26 +16,6 @@
             location.href='javafood?javafood=4';
 		</script>
 	</c:if>
-	<c:out value="list 값 : ${session_user }"/><br>
-	<c:out value="아이디 : ${session_user.id }"/><br>
-	<c:out value="닉네임 : ${session_user.nic }"/><br>
-	<c:out value="페스워드 : ${session_user.pw }"/><br>
-	<c:out value="이메일 : ${session_user.email }"/><br>
-<%-- 		<%
-// 		}else{
-// 				List<login_DTO> a = db.session((String)session.getAttribute("login"));
-// 				System.out.println("id : "+a.get(0).getId());
-// 				System.out.println("Nic : "+a.get(0).getNic());
-// 		// 		System.out.println("Pw : "+a.get(0).getPw());
-// 		// 		System.out.println("Pn : "+a.get(0).getPn());
-// 		// 		System.out.println("Phone : "+a.get(0).getPhone());
-// 		// 		System.out.println("Email : "+a.get(0).getEmail());
-// 		// 		System.out.println("Home : "+a.get(0).getHome());
-// 				if(request.getParameter("id")!=null){
-// 			db.addhit(a.get(0).getId(), request.getParameter("id"));
-// 				}
- 		%> --%>
- <%--
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
@@ -48,7 +24,7 @@
         .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;}
         .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
-        .right{line-height: 80px; width: 11%;float: right; background-image:url(<%=a.get(0).getMyimg()%>); background-repeat: no-repeat; background-size: cover;background-position: center; }
+        .right{line-height: 80px; width: 11%;float: right; background-image:url(${session_user.myimg}); background-repeat: no-repeat; background-size: cover;background-position: center; }
         .tbody{ position: sticky;top: 100px; height: 40px; background: white;}
         input{vertical-align: middle;}
         .butt{font-size: 0px; background: url(https://zrr.kr/Ovva)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
@@ -62,15 +38,10 @@
    </style>
 </head>
 <body>
-	<%
-	if(request.getParameter("good")!=null){
-		db.like(request.getParameter("good"));
-			}
-	%>
 	<div style="width: 100%;height: 100%;">
         <div class="head">
             <div class="left"><a href="javafood?javafood=5" class="at"><strong>My pages</strong></a></div>
-            <div class="right"><strong><%=a.get(0).getNic()%></strong></div>
+            <div class="right"><strong0>[${session_user.nic }]</strong></div>
         </div>
         <div class="tbody">
        	<form method="get" action="My_page.jsp">
@@ -83,7 +54,7 @@
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
         </form>
-        <div style="color: white;"><a href="?p=1" class="at"><%=a.get(0).getId()%> 의 재생기록 확인</a> </div>
+        <div style="color: white;"><a href="?p=1" class="at">${session_user.id } 의 재생기록 확인</a> </div>
         </div>
         <div class="body">
             <h2>최근재생목록</h2>
@@ -96,7 +67,7 @@
                     <th> 재생 </th>
                     <th> 좋아요 </th>
                 </tr>
-                <%
+                <%--
                 if(request.getParameter("p")!=null){
                 				List<login_DTO> vvo = db.uresong(a.get(0).getId());
                 		                	for(int i=0; i<vvo.size(); i++) {

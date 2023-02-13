@@ -203,7 +203,7 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("Song.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
 		List<login_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
@@ -328,7 +328,6 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getSession().getAttribute("login")!=null) {
 			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-			System.out.println("session 이메일 : "+session_user.get(0).getEmail());
 			System.out.println("session 아이디 : "+session_user.get(0).getId());
 			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
@@ -351,6 +350,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//태연
 	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("메인 실행");
 	}
