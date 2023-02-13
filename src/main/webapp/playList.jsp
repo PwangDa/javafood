@@ -12,12 +12,13 @@
 
 <% 
 	//주소로 넘어 온 id값 받기.
-	String id = (String)session.getAttribute("id");
+// 	String id = (String)session.getAttribute("id"); //로그인 세션이 완성될 때 사용할 것.
+	String id = (String)request.getAttribute("id");
 
 	
 	//주소로 넘어온 값을 받기.
-	String doAddList = request.getParameter("doAddList");
-	String doDeleteList = request.getParameter("doDeleteList");
+	String doAddList = (String) request.getAttribute("doAddList");
+	String doDeleteList = (String) request.getAttribute("doDeleteList");
 	
 	//플레이 리스트 추가하기
 	if("doAdd".equals(doAddList) )
@@ -29,7 +30,11 @@
 		//Controller에서 리스트를 추가하도록 명령하는 메서드 실행하기
 		JavaFood_Controller jfc = new JavaFood_Controller();
 		jfc.java3_2(addList_title, addList_explain, id);
+		
+		//페이지 새로고침
+		response.sendRedirect("javafood?javafood=3_1");
 	}
+	
 	//플레이 리스트 삭제하기
 	else if("doDelete".equals(doDeleteList) )
 	{
@@ -39,6 +44,9 @@
 		//Controller에서 리스트를 제거하도록 명령하는 메서드 실행하기
 		JavaFood_Controller jfc = new JavaFood_Controller();
 		jfc.java3_3(res_PL_ID, id);
+		
+		//페이지 새로고침
+		response.sendRedirect("javafood?javafood=3_1");
 	}
 %>
 <!DOCTYPE html>
@@ -60,7 +68,7 @@
             <input type="text" name="addList_title" class="addList_textbar" placeholder="플레이리스트 제목을 입력해주세요."> <br>
             <input type="text" name="addList_explain" class="addList_ex_textbar" placeholder="플레이리스트 설명을 입력해주세요."> <br>
             <input type="button" name="addList_btn" class="addList_btn" value="추가">
-            <input type="hidden" name="doAddList" value="do"> 
+            <input type="hidden" name="doAddList" value="doAdd">
         </form>
     </div>
     
@@ -128,8 +136,8 @@
             }
             else
             {
-                PL_addList.method='post';
-                PL_addList.action='javafood?javafood=3';
+                PL_addList.method='get';
+                PL_addList.action='javafood?javafood=3_1';
                 PL_addList.submit();
             }
         }
