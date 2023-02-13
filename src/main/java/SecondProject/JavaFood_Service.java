@@ -32,11 +32,7 @@ public class JavaFood_Service {
 	
 	//다영
 
-//	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
-//    public List<AlbumVO> Albumlist(){
-//    	List<AlbumVO> Albumlist = dao.listAlbum(); 
-//    	return Albumlist; 
-//    }
+
 
 //	다영의 메소드(앨범목록리스트 불러오기) 
     public List<AlbumDTO> Albumlist(){
@@ -48,14 +44,22 @@ public class JavaFood_Service {
     public void delcomment(String id) {
     	dao.delcomment(id);
     }
+    //댓글 전부 삭제
+	public List<Integer> removeComment(int articleNO){
+		List<Integer> articleNOList = dao.selectRemoveComment(articleNO);
+		dao.deleteComment(articleNO);
+		return articleNOList;
+	}
     //댓글 등록 메소드
     public void addcomment(CommentDTO commentDTO) {
-    	dao.addcomment(commentDTO);
+//    	dao.addcomment(commentDTO);
+    	dao.insertComment(commentDTO);
     }
     
     //댓글 리스트 불러오는 메소드
     public List<CommentDTO> listComment() {
-    	List<CommentDTO> commentList = dao.listComment();
+//    	List<CommentDTO> commentList = dao.listComment();
+    	List<CommentDTO> commentList = dao.allComment();
     	return commentList;
     }
     
@@ -188,6 +192,13 @@ public class JavaFood_Service {
 		dao.list();
 		return map;
 	}
+	public List<login_DTO> javafood5_1(String option, String text){
+		return dao.Search(option, text);
+	}
+//	//음악추가
+//	public void javafood51(String a,String b,String c,String d){
+//		dao.addsong1(a, b, c, d);
+//	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 
 	public List<login_DTO> javafood6(String song){
@@ -206,6 +217,9 @@ public class JavaFood_Service {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연 메인 
 	public void javafoodm(){
+		System.out.println("main 실행");
+		
+		
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

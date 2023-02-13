@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+
 import Chart.SongDAO;
+import My_Page.test;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
@@ -86,10 +90,32 @@ public class JavaFood_Controller extends HttpServlet {
 				service.addcomment(dto);
 				nextPage = "/javafood?javafood=1&command=artistinfo.do";
 				
+			}else if("addReply.do".equals(command)) {
+				String id = request.getParameter("id_2");
+				String cont = request.getParameter("cont_2");
+				String parentNO = request.getParameter("parentNO");
+				
+				System.out.println("id : "+ id);
+				System.out.println("cont : "+ cont);
+				System.out.println("parentNO : "+ parentNO);
+				
+				CommentDTO dto = new CommentDTO();
+				dto.setComment_id(id);
+				dto.setComment_cont(cont);
+				dto.setParentNO(Integer.parseInt(parentNO));
+				
+				service.addcomment(dto);
+				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+				
 			}else if("delcommnet.do".equals(command)) {
-				String id = request.getParameter("id");
-				System.out.println("delete id : "+id);
-				service.delcomment(id);
+				/*
+				 * String id = request.getParameter("id");
+				 * System.out.println("delete id : "+id); service.delcomment(id);
+				 */
+				int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+				System.out.println("articleNO : "+articleNO);
+				List<Integer> articleNOList = service.removeComment(articleNO);
+				
 				nextPage = "/javafood?javafood=1&command=artistinfo.do";
 			}else {
 //				System.out.println("else action : "+action);
@@ -135,10 +161,39 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
 		}
+		//음악추가
+//		if(request.getParameter("javafood").equals("add")) {
+//			String url = "https://www.melon.com/chart/index.htm";
+//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+//			Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("a");
+//			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
+//			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+//			System.out.println("da1");
+//			JavaFood_DAO dao = new JavaFood_DAO();
+//			System.out.println("da2");
+//			for(int i=0; i<e4.size(); i++) {
+//				System.out.println("가수 : "+(String)e1.get(i).text());
+//				System.out.println("제목 : "+(String)e2.get(i).text());
+//				System.out.println("앨범 : "+(String)e3.get(i).text());
+//				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
+//				
+//				String a = (String)e1.get(i).text().replace("'", "");
+//				String b = (String)e2.get(i).text().replace("'", "");
+//				String c = (String)e3.get(i).text().replace("'", "");
+//				String d = (String)e4.get(i).attr("src");
+//				
+//				System.out.println("가수 : "+a);
+//				System.out.println("제목 : "+b);
+//				System.out.println("앨범 : "+c);
+//				System.out.println("이미지 주소 : "+d);
+//				dao.addsong1(b,c,a,d);
+//			}
+//		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
-	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
@@ -177,6 +232,11 @@ public class JavaFood_Controller extends HttpServlet {
 			String id = request.getParameter("id");
 			System.out.println("delete id : "+id);
 			service.delcomment(id);
+			
+			int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+			System.out.println("articleNO : "+articleNO);
+			List<Integer> articleNOList = service.removeComment(articleNO);
+			
 			nextPage = "/javafood/artistinfo.do";
 		}else {
 			listAlbum = service.Albumlist();
@@ -187,7 +247,7 @@ public class JavaFood_Controller extends HttpServlet {
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 		
-	}
+	}*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범
 	private void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -366,6 +426,17 @@ public class JavaFood_Controller extends HttpServlet {
 			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
+		if(request.getParameter("option")!=null) {
+			System.out.println("option : "+request.getParameter("option"));
+			if(request.getParameter("text")!=null) {
+				System.out.println("text : "+request.getParameter("text"));
+				List<login_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
+				if(list!=null) {
+					request.setAttribute("song", list);
+					System.out.println("!=null lsit : "+list);
+				}
+			}
+		}
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		
 	}
@@ -386,7 +457,17 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연
 	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
 		System.out.println("메인 실행");
+		
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
+		dispatch.forward(request, response);
+		
+			
+		
+		
+		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

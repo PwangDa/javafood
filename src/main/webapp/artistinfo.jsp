@@ -39,7 +39,7 @@
 		List<CommentVO> list = dao.listComment();--%>
  <script>
  		/*댓글 입력창 if문*/
-        function fn_sendComment(){
+         function fn_sendComment(){
         	
         	var frmCommand = document.frmComment;
         	var id = frmCommand.id.value;
@@ -52,6 +52,23 @@
         	}else{
             frmComment.method = "post";
             frmComment.action = "/javafood_team/javafood?javafood=1&command=addcommnet.do";
+            frmComment.submit();
+        	}
+        } 
+ 		
+        function fn_sendComment_2(){
+        	
+        	var frmCommand = document.frmComment_2;
+        	var id = frmCommand.id_2.value;
+        	var cont = frmCommand.cont_2.value;
+        	
+        	if(id.length == 0 || id == ""){
+        		alert("아이디를 입력해주세요")
+        	}else if(cont.length == 0 || cont == ""){
+        		alert("내용을 입력해주세요")
+        	}else{
+            frmComment.method = "post";
+            frmComment.action = "/javafood_team/javafood?javafood=1&command=addReply.do";
             frmComment.submit();
         	}
         }
@@ -550,31 +567,36 @@
 	                            <div class="date1">${comment.comment_Date }</div>
 	                            <details id="detail">
 		                   		 	<summary style="color: rgb(150, 150, 150);">답글달기</summary>
-		                    		<div class="comment">
-					                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-					                        <input class="input2" type="text" name="id" placeholder=" ID">
-					                        <input class="input3" type="text" name="cont" placeholder="답글 추가...">
-					                        <button class="btn1" type="button" onclick="fn_sendComment()"> 답글 </button>
-					                    	<input type ="hidden" name="command" value="addcomment">
-		                			</div>
-		                			<div class="comment_1">
-					                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-					                        <p class="comment_1_1">아이디</p>
-					                        <p class="comment_1_1" style="color: rgb(113, 113, 113);">등록날짜</p>
-					                        <button class="btn1 comment_1_2" type="button" onclick="fn_sendComment()"> 삭제</button>
-					  
-		                			</div>
-		                			<div class="comment_1_3">
-		                                <span class="comment_1_4" style="margin-right :40px;"></span>
-		                                아이유는 대한민국의 가수이자 배우이다. 배우 활동 할 땐 본명을 쓴다.
-		                            </div>
+		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=addReply.do">
+			                    		<div class="comment" >
+						                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+						                        <input class="input2" type="text" name="id_2" placeholder=" ID">
+						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
+						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
+						                        <input class="btn1" type="submit" value="답글"> 
+						                    	<input type ="hidden" name="command_2" value="${param.parentNO }">
+			                			</div>
+		                            </form>
+			                			<c:if test="${comment.level > 1}">
+				                			<div class="comment_1">
+							                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+							                        <p class="comment_1_1">${comment.comment_id }</p>
+							                        <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
+							                        <button class="btn1 comment_1_2" type="button" onclick="fn_sendComment()"> 삭제</button>
+							  
+				                			</div>
+				                			<div class="comment_1_3">
+				                                <span class="comment_1_4" style="margin-right :40px;"></span>
+				                                ${comment.comment_cont }
+				                            </div>
+			                			</c:if>
                 				</details>
 	                        </div>
 	                        <!-- 삭제하기 기능도 
 	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
 	                        -->
 	                        <div class="text2">
-	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&id=${comment.comment_id }"><button class='btn' type='button'> 삭제 </button></a>
+	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
 	                </div> 
 	            </c:forEach>
