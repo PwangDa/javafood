@@ -4,9 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@page import="javafood_DTO.*"
-		import="SecondProject.*"
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +15,6 @@
 		db.like(request.getParameter("number"));
 		}
 	%> --%>
-	<% 
-	JavaFood_DAO dao;
-	dao = new JavaFood_DAO();
-	%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
@@ -391,7 +384,7 @@
                 <div class="left_item left_name"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
                 <div class="right_item">${ genre_list.playTime}</div> <!-- 재생시간 -->
-                <form method="post" action="/javafood_team/Genre/NewGenre.jsp">
+                <form method="post" action="/javafood_team/javafood?javafood=6">
                 <div class="right_item" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>

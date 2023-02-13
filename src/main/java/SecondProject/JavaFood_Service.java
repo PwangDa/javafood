@@ -179,7 +179,7 @@ public class JavaFood_Service {
 	public List<login_DTO> javafood6(String song){
 		System.out.println("6번 장르 실행");
 		List<login_DTO> list = null;
-		
+		// 장르별
 		if (song == null) {
 			list = dao.list();
 		} else {
