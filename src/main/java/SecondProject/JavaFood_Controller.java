@@ -90,10 +90,32 @@ public class JavaFood_Controller extends HttpServlet {
 				service.addcomment(dto);
 				nextPage = "/javafood?javafood=1&command=artistinfo.do";
 				
+			}else if("addReply.do".equals(command)) {
+				String id = request.getParameter("id_2");
+				String cont = request.getParameter("cont_2");
+				String parentNO = request.getParameter("parentNO");
+				
+				System.out.println("id : "+ id);
+				System.out.println("cont : "+ cont);
+				System.out.println("parentNO : "+ parentNO);
+				
+				CommentDTO dto = new CommentDTO();
+				dto.setComment_id(id);
+				dto.setComment_cont(cont);
+				dto.setParentNO(Integer.parseInt(parentNO));
+				
+				service.addcomment(dto);
+				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+				
 			}else if("delcommnet.do".equals(command)) {
-				String id = request.getParameter("id");
-				System.out.println("delete id : "+id);
-				service.delcomment(id);
+				/*
+				 * String id = request.getParameter("id");
+				 * System.out.println("delete id : "+id); service.delcomment(id);
+				 */
+				int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+				System.out.println("articleNO : "+articleNO);
+				List<Integer> articleNOList = service.removeComment(articleNO);
+				
 				nextPage = "/javafood?javafood=1&command=artistinfo.do";
 			}else {
 //				System.out.println("else action : "+action);
@@ -170,7 +192,7 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
-	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
@@ -209,6 +231,11 @@ public class JavaFood_Controller extends HttpServlet {
 			String id = request.getParameter("id");
 			System.out.println("delete id : "+id);
 			service.delcomment(id);
+			
+			int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+			System.out.println("articleNO : "+articleNO);
+			List<Integer> articleNOList = service.removeComment(articleNO);
+			
 			nextPage = "/javafood/artistinfo.do";
 		}else {
 			listAlbum = service.Albumlist();
@@ -219,7 +246,7 @@ public class JavaFood_Controller extends HttpServlet {
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 		
-	}
+	}*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범
 	private void java2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -395,7 +422,17 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연
 	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
 		System.out.println("메인 실행");
+		
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
+		dispatch.forward(request, response);
+		
+			
+		
+		
+		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
