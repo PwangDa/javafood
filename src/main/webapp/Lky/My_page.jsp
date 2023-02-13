@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<c:if test="${link!=null }">	<script>location.href='${link }'</script>	</c:if> 
 	<c:if test="${login==null }">
 		<script>
 			alert('로그인을 하셔야합니다.')
@@ -36,6 +37,7 @@
         tr.low:hover {background-color: rgb(148, 100, 237); border: 1px solid black;}
         .at{color: white; text-decoration: none;}
    </style>
+   <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
 	<div style="width: 100%;height: 100%;">
@@ -61,26 +63,38 @@
             <h2><c:out value="최근재생목록"/></h2>
             <table border="1">
                 <tr>
+                    <th><c:out value="순위"/></th>
                     <th><c:out value="아티스트 이름"/></th>
                     <th><c:out value="노래 제목"/></th>
                     <th><c:out value="조회수"/></th>
-                    <th><c:out value="재생"/></th>
+                    <th><c:out value="유튜브 검색"/></th>
                     <th><c:out value="좋아요"/></th>
                 </tr>
 				<c:if test="${song!=null }">
 					<c:forEach items="${song }" var="i">
 					<tr class="low">
+						<td><c:out value="${i.songnumber}"/></td>
 						<td><c:out value="${i.artistname}"/></td>
 						<td><c:out value="${i.songname}"/></td>
 						<td><c:out value="${i.hits}"/></td>
-						<td><c:out value="${i.likes}"/></td>
+						<td><a href="${i.link }" target="_blank"><c:out value="검색"/></a></td>
 						<td><c:out value="${i.likes}"/></td>
 					</tr>
 					</c:forEach>
-				</c:if>                
-                
-                
-                
+				</c:if>
+				<c:if test="${song==null }">
+					<c:forEach items="${list }" var="i">
+					<tr class="low">
+						<td><c:out value="${i.songnumber}"/></td>
+						<td><c:out value="${i.artistname}"/></td>
+						<td><c:out value="${i.songname}"/></td>
+						<td><c:out value="${i.hits}"/></td>
+						<td><a class="athe" href="javafood?javafood=5&like=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+						<td><c:out value="${i.likes}"/></td>
+					</tr>
+					</c:forEach>
+				</c:if>
+
                 <%--
                 if(request.getParameter("p")!=null){
                 				List<login_DTO> vvo = db.uresong(a.get(0).getId());

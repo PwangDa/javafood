@@ -195,6 +195,9 @@ public class JavaFood_Service {
 	public List<login_DTO> javafood5_1(String option, String text){
 		return dao.Search(option, text);
 	}
+	public void javafood5_2(String id, String songnumber){
+		dao.addhit(id, songnumber);
+	}
 //	//음악추가
 //	public void javafood51(String a,String b,String c,String d){
 //		dao.addsong1(a, b, c, d);

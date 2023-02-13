@@ -52,7 +52,7 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
 	public void addhit(String id, String songnumber) {
-		int s = (Integer.parseInt(songnumber))+1;
+		int s = (Integer.parseInt(songnumber));
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
@@ -198,8 +198,9 @@ public class JavaFood_DAO {
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
 				vo.setSongnumber(rs.getString("songnumber"));
-				vo.setRanking(rs.getString("ranking"));
-				vo.setFamous(rs.getString("famous"));
+//				vo.setRanking(rs.getString("ranking"));
+//				vo.setFamous(rs.getString("famous"));
+				vo.setLink(rs.getString("link"));
 				vo.setImglink(rs.getString("imglink"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
@@ -217,19 +218,13 @@ public class JavaFood_DAO {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//리스트 나누기
-	public String link1(login_DTO list) {
-		String st= (String)list.getLink().split("=")[1];
-		return st ;
-	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//특정값 넣어주면 특정값관련된 것만 불러오기
 	public List<login_DTO> Search(String option, String text) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
+			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
@@ -256,14 +251,14 @@ public class JavaFood_DAO {
 	public void like(String i) {
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG1 WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			login_DTO vo = new login_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
-			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt = con.prepareStatement("UPDATE SONG1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();
