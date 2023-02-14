@@ -182,6 +182,13 @@ public class JavaFood_Service {
 		}
 		return i;
 	}
+	//회원 정보 수정
+	public int javafood4_3(login_DTO DTO) {
+		int a =1;
+		if(DTO!=null) dao.removeId(DTO);
+		else a=0;
+		return a;
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
 	public Map<String, List<login_DTO>> javafood5(){
@@ -197,9 +204,13 @@ public class JavaFood_Service {
 	}
 	public void javafood5_2(String id, String songnumber){
 		dao.addhit(id, songnumber);
+		dao.song1addhit(songnumber);
 	}
 	public List<login_DTO>javafood5_3(String id){
 		return dao.uresong(id);
+	}
+	public void javafood5_4(String songnumber) {
+		dao.like(songnumber);
 	}
 //	//음악추가
 //	public void javafood51(String a,String b,String c,String d){

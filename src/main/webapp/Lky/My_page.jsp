@@ -81,7 +81,7 @@
 							<td><c:out value="${i.songname}"/></td>
 							<td><c:out value="${i.hits}"/></td>
 							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-							<td><c:out value="${i.likes}"/></td>
+							<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -94,7 +94,7 @@
 							<td><c:out value="${i.songname}"/></td>
 							<td><c:out value="${i.hits}"/></td>
 							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-							<td><c:out value="${i.likes}"/></td>
+							<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -107,7 +107,7 @@
 							<td><c:out value="${i.songname}"/></td>
 							<td><c:out value="${i.hits}"/></td>
 							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-							<td><c:out value="${i.likes}"/></td>
+							<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -123,9 +123,8 @@
 		              <table>
 		        <tr class="low"  style="text-align: left;">
 		            <th style="text-align: right;"><c:out value=" 아이디 : "/></th>
-		            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
-		            <td><input type="button" id="idbutt" value="중복 확인"></td>
-		            <td><input type="checkbox" id="ch1" class="ch"></td>
+		            <td colspan="2"><c:out value="${login }"/> </td>
+		            <td></td>
 		        </tr>
 		        <tr class="low" style="text-align: left;">
 		            <th style="text-align: right;"><c:out value="비밀번호 1 :  "/></th>
@@ -176,7 +175,8 @@
 		            <td><input type="checkbox" id="ch7" class="ch"></td>
 		        </tr>
 		        <tr class="low">
-		            <th><a href="javafood?javafood=4" class="at"><c:out value=" 취 소 "/></a></th>
+		            <th><input type="hidden" name="remove" value="id"></th>
+		            <th><a href="javafood?javafood=m" class="at"><c:out value=" 취 소 "/></a></th>
 		            <th><input class="sub" type="submit" value="수정하기" id="end"disabled></th>
 		            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
 		        </tr>
@@ -215,7 +215,7 @@
 		                        for(let i =0; i<$('.ch').length; i++){
 		                            if($('.ch')[i].checked==true)j++;
 		                        }
-		                        j==6?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
+		                        j==5?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
 		                    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 						$('#idbutt').on('click',function(){

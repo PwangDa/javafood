@@ -37,17 +37,26 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//		노래추가
-//	public void addsong1(String b,String c,String a,String d) {
-//		System.out.println("a : "+a);
+////		노래추가 제목 엘범 이미지
+//	public void addsong1(int i,String b,String c,String d) {
 //		try {
 //			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("insert into song1 values(son.nextval,'"+a+"','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','bygenre')").executeUpdate();
+//			this.con.prepareStatement("insert into Ballad values('"+i+"','a','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','POP')").executeUpdate();
 //			this.con.close();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-//		
+//	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////		노래추가 가수
+//	public void addsong2(String a,int i) {
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("UPDATE Ballad SET artistname='"+a+"' WHERE SONGNUMBER = '"+i+"'").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
@@ -88,6 +97,26 @@ public class JavaFood_DAO {
 			this.pstmt.executeUpdate();
 			rs1.close();
 			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//song1목록에 조회수 증가
+	public void song1addhit(String songnumber) {
+		int s = (Integer.parseInt(songnumber));
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE songnumber="+songnumber+"");
+			ResultSet rs = this.pstmt.executeQuery();
+			rs.next();
+			int a = (Integer.parseInt(rs.getString("songnumber"))+1);
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE songhit SET HITS = '"+a+"' WHERE SONGNUMBER = '"+songnumber+"'").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -189,6 +218,19 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//회원정보 수정
+	public void removeId(login_DTO vo) {
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='https://zrr.kr/NuiP' WHERE id = '"+vo.getId()+"'");
+			this.pstmt.executeUpdate();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	song리스트
 	public List<login_DTO> list () {
 		List<login_DTO> list = new ArrayList<login_DTO>();
@@ -199,8 +241,6 @@ public class JavaFood_DAO {
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
 				vo.setSongnumber(rs.getString("songnumber"));
-//				vo.setRanking(rs.getString("ranking"));
-//				vo.setFamous(rs.getString("famous"));
 				vo.setLink(rs.getString("link"));
 				vo.setImglink(rs.getString("imglink"));
 				vo.setSongname(rs.getString("songname"));
