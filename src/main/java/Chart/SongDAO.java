@@ -46,8 +46,8 @@ public class SongDAO {
 		try {
 			this.con = dataFactory.getConnection();
 			
-			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
+			   //song1 table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(famous 변수)
+			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
 			   		 
 			   		  
 			   		
@@ -206,7 +206,7 @@ public class SongDAO {
 			
 			
 			
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
+			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
 			
 			System.out.println("query" + query);
 			
