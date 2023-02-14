@@ -194,7 +194,8 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
 		}
-		//음악추가
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
 //			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();

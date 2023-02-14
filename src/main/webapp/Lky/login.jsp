@@ -22,6 +22,11 @@
 	<c:if test="${good==0 }">
 		<script>alert("회원가입 실패")</script>
 	</c:if>
+	<c:if test="${remove!=null }">
+		<script>
+			alert('회원정보 수정이 완료되었습니다. 다시 로그인 해주세요.')
+		</script>
+	</c:if>
 </c:if>
 <c:if test="${membership!=null }">
 	<title>javafood 회원가입</title>
