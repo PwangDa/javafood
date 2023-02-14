@@ -324,10 +324,14 @@ public class JavaFood_DAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				String alNum = rs.getString("album_num");
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-				String artist = rs.getString("artist");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
 				
 				String music_num = rs.getString("music_num");
 				String music_name = rs.getString("music_name");
@@ -336,10 +340,13 @@ public class JavaFood_DAO {
 				
 				AlbumDTO albumDTO = new AlbumDTO();
 				
+				albumDTO.setAlbum_num(alNum);
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
-				albumDTO.setArtist(artist);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
 				
 				albumDTO.setMusic_num(music_num);
 				albumDTO.setMusic_name(music_name);
@@ -384,7 +391,10 @@ public class JavaFood_DAO {
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-				String artist = rs.getString("artist");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
 				
 				String music_num = rs.getString("music_num");
 				String music_name = rs.getString("music_name");
@@ -397,7 +407,9 @@ public class JavaFood_DAO {
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
-				albumDTO.setArtist(artist);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
 				
 				albumDTO.setMusic_num(music_num);
 				albumDTO.setMusic_name(music_name);
