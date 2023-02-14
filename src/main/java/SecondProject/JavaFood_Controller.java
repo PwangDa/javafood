@@ -417,25 +417,11 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("4번 로그인 실행");
-
-		service.javafood4(request.getParameter("membership"));
-		if(map!=null) {
-			System.out.println("map1"+map);
-			System.out.println("map2"+map.get("membership"));
-		}
 		if(request.getParameter("membership") !=null) {
-			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
-		}
-		if(request.getParameter("membership") !=null) {
-			System.out.println("membership");
-			map = service.javafood4(request.getParameter("membership"));
-
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
-			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
 			request.setAttribute("log", (int) map.get("log"));
@@ -466,29 +452,20 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
-		System.out.println("map : "+map.get("list"));
 		if(request.getSession().getAttribute("login")!=null) {
-			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-			System.out.println("session 아이디 : "+session_user.get(0).getId());
-			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
-			System.out.println("option : "+request.getParameter("option"));
 			if(request.getParameter("text")!=null) {
-				System.out.println("text : "+request.getParameter("text"));
 				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
 				if(list!=null) {
 					request.setAttribute("song", list);
-					System.out.println("!=null lsit : "+list);
 				}
 			}
 		}
-		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
