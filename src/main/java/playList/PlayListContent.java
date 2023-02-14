@@ -41,7 +41,7 @@ public class PlayListContent extends HttpServlet
 		
 		PrintWriter out = response.getWriter();
 		
-		//리스트 추가하기
+		//리스트 제거하기
 		if("do".equals(doDeleteSong) )
 		{
 			//주소로 넘어온 값을 받기

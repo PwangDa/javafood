@@ -8,6 +8,29 @@ public class CommentDTO {
 	private String comment_id;
 	private String comment_cont;
 	private Date comment_Date;
+	private int level;
+	private int articleNO;
+	private int parentNO = 0;
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public int getArticleNO() {
+		return articleNO;
+	}
+	public void setArticleNO(int articleNO) {
+		this.articleNO = articleNO;
+	}
+	public int getParentNO() {
+		return parentNO;
+	}
+	public void setParentNO(int parentNO) {
+		this.parentNO = parentNO;
+	}
+	
 	
 	public String getComment_num() {
 		return comment_num;

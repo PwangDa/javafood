@@ -115,6 +115,7 @@ td {
 
 .list {
 	margin : -51px;
+	width : 100%;
 }
 </style>
 </head>
@@ -128,9 +129,10 @@ td {
 			<tr class="table2">
 				<td>번호</td>
 				<td>순위</td>
-				<td>조회수+좋아요</td>
+				<td>인기점수</td>
+				<td>앨범</td>
 				<td>제목</td>
-				<td>가수명</td>
+				<td>가수</td>
 				<td>장르</td>
 				<td>조회수</td>
 				<td>좋아요</td>
@@ -140,7 +142,8 @@ td {
 				<tr class="table3">
 					<td>${dao.songnumber }</td>
 					<td>${dao.ranking }</td>
-					<td>${dao.rank2 }</td>
+					<td>${dao.famous }</td>
+					<td><img src="${dao.imglink }"></td>
 					<td>${dao.songname }</td>
 					<td>${dao.artistname }</td>
 					<td>${dao.bygenre }</td>

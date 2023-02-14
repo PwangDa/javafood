@@ -11,13 +11,14 @@ public class login_DTO {
 	private String hits;
 	private String likes;
 	private String link;
-	private String rank2;
+	private String famous;
 	private String record;
 	private String playtime;
 	private String ranking;
+	private String album;
+	private String imglink;
 
 ///////---------login-----------//////////
-	
 	private String id;
 	private String pw;
 	private String nic;
@@ -28,28 +29,12 @@ public class login_DTO {
 	private String myimg;
 	
 	
-	public String getRank2() {
-		return rank2;
-	}
+	
 	
 	public String getMyimg() {
 		return myimg;
 	}
-	public void setMyimg(String myimg) {
-		this.myimg = myimg;
-	}
-	public String getRecord() {
-		return record;
-	}
-	public String getPlaytime() {
-		return playtime;
-	}
-	public void setRecord(String record) {
-		this.record = record;
-	}
-	public void setPlaytime(String playtime) {
-		this.playtime = playtime;
-	}
+	
 	public String getId() {
 		return id;
 	}
@@ -71,6 +56,10 @@ public class login_DTO {
 	public String getHome() {
 		return home;
 	}
+	public void setMyimg(String myimg) {
+		this.myimg = myimg;
+	}
+	
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -92,12 +81,9 @@ public class login_DTO {
 	public void setHome(String home) {
 		this.home = home;
 	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
-	}
+	
+	
+	
 	public String getSongnumber() {
 		return songnumber;
 	}
@@ -110,6 +96,9 @@ public class login_DTO {
 	public String getBygenre() {
 		return bygenre;
 	}
+	public String getLink() {
+		return link;
+	}
 	public String getHits() {
 		return hits;
 	}
@@ -120,11 +109,27 @@ public class login_DTO {
 	public String getRanking() {
 		return ranking;
 	}
+	public String getAlbum() {
+		return album;
+	}
 	
+	public String getFamous() {
+		return famous;
+	}
+	public String getRecord() {
+		return record;
+	}
+	public String getPlaytime() {
+		return playtime;
+	}
 	
 	public String getPlayTime() {
 		return playtime;
 	}
+	public String getImglink() {
+		return imglink;
+	}
+	
 	public void setSongnumber(String songnumber) {
 		this.songnumber = songnumber;
 	}
@@ -143,11 +148,13 @@ public class login_DTO {
 	public void setLikes(String likes) {
 		this.likes = likes;
 	}
-	
-	public void setRank2(String rank2) {
-		this.rank2 = rank2;
+	public void setRecord(String record) {
+		this.record = record;
 	}
-
+	
+	public void setFamous(String famous) {
+		this.famous = famous;
+	}
 
 	public void setRanking(String ranking) {
 		this.ranking = ranking;
@@ -157,4 +164,18 @@ public class login_DTO {
 		this.playtime = playtime;
 		
 	}
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+	public void setPlaytime(String playtime) {
+		this.playtime = playtime;
+	}
+	
+	public void setLink(String link) {
+		this.link = link;
+	}
+	public void setImglink(String imglink) {
+		this.imglink = imglink;
+	}
+
 }

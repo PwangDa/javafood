@@ -37,20 +37,22 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void addsong1(String a,String b,String c,String d) {
-		try {
-			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("insert into song1 values('"+a+"','"+b+"','"+c+"','"+d+"')").executeUpdate();
-			this.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
+//		노래추가
+//	public void addsong1(String b,String c,String a,String d) {
+//		System.out.println("a : "+a);
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("insert into song1 values(son.nextval,'"+a+"','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','bygenre')").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
 	public void addhit(String id, String songnumber) {
-		int s = (Integer.parseInt(songnumber))+1;
+		int s = (Integer.parseInt(songnumber));
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
@@ -97,13 +99,14 @@ public class JavaFood_DAO {
 		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song s2 \n"
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song1 s2 \n"
 					+ "ON s.SONGNUMBER =s2.SONGNUMBER \n"
 					+ "WHERE s.ID = '"+id+"' ORDER BY s.HIT DESC");
 			ResultSet rs = this.pstmt.executeQuery();
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
 				vo.setHits(rs.getString("hit"));
+				vo.setImglink(rs.getString("imglink"));
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setLikes(rs.getString("likes"));
@@ -191,18 +194,21 @@ public class JavaFood_DAO {
 		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM  song");
+			this.pstmt = this.con.prepareStatement("SELECT * FROM  song1");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
+				vo.setSongnumber(rs.getString("songnumber"));
+//				vo.setRanking(rs.getString("ranking"));
+//				vo.setFamous(rs.getString("famous"));
+				vo.setLink(rs.getString("link"));
+				vo.setImglink(rs.getString("imglink"));
+				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
-				vo.setSongname(rs.getString("songname"));
-				vo.setSongnumber(rs.getString("songnumber"));
-				vo.setLink(rs.getString("link"));
-				vo.setPlayTime(rs.getString("playtime"));
+				vo.setPlaytime(rs.getString("playtime"));
 				list.add(vo);
 			}
 			rs.close();
@@ -213,25 +219,20 @@ public class JavaFood_DAO {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//리스트 나누기
-	public String link1(login_DTO list) {
-		String st= (String)list.getLink().split("=")[1];
-		return st ;
-	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//서치
+	//검색해서 특정값 넣어주면 특정값관련된 것만 불러오기
 	public List<login_DTO> Search(String option, String text) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG WHERE SONGNAME  LIKE '%"+text+"%'");
+			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
+				vo.setImglink(rs.getString("imglink"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
@@ -242,6 +243,7 @@ public class JavaFood_DAO {
 			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
+			list=null;
 			e.printStackTrace();
 		}
 		return list;
@@ -251,14 +253,14 @@ public class JavaFood_DAO {
 	public void like(String i) {
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG WHERE SONGNUMBER ="+i);
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG1 WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			login_DTO vo = new login_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
-			this.pstmt = con.prepareStatement("UPDATE SONG SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt = con.prepareStatement("UPDATE SONG1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();
@@ -268,12 +270,12 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//genre 가져오기
+	//장르별로 노래 가져오기
 	public List<login_DTO> getGenre (String a) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String genre = " SELECT * FROM  song";
+			String genre = " SELECT * FROM  song1";
 			genre += " where bygenre = ?";
 			this.pstmt = con.prepareStatement (genre);
 			this.pstmt.setString(1, a);
@@ -439,6 +441,38 @@ public class JavaFood_DAO {
 			e.printStackTrace();
 		}
 	}
+	
+	//답글 달 용으로 만든 메소드
+	public void insertComment(CommentDTO commentDTO) {
+		try {
+			this.con = dataFactory.getConnection();
+			System.out.println("댓글등록DAO 접속");
+			int parentNO = commentDTO.getParentNO();
+			String id = commentDTO.getComment_id();
+			String cont = commentDTO.getComment_cont();
+			
+			String query = "insert into comment_com";
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?)"; //띄어쓰기 필수!
+			
+			System.out.println("query check" + query);
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, parentNO);
+			pstmt.setString(2, id);
+			pstmt.setString(3, cont);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글 리스트 읽기 구현
 	public List<CommentDTO> listComment(){
@@ -474,6 +508,48 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
+	//댓글의 대댓글까지 모든 리스트 읽기 구현
+		public List<CommentDTO> allComment(){
+			List<CommentDTO> list = new ArrayList<CommentDTO>();
+			System.out.println("모든댓글리스트DAO 접속");
+			try {
+				this.con = dataFactory.getConnection();
+				
+				   //가져올 테이블 선택(불러오기)
+				String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date \n";
+				query += " from comment_com \n";    
+				query += " START WITH parentNO=0 \n";    
+				query += " CONNECT BY PRIOR articleNO=parentNO \n";    
+				query += " ORDER SIBLINGS BY articleNO DESC"; 
+				   
+				   pstmt = this.con.prepareStatement(query);
+				   ResultSet rs = pstmt.executeQuery();
+				   
+				   while(rs.next()) {
+						int level = rs.getInt("level");
+						int articleNO = rs.getInt("articleno");
+						int parentNO = rs.getInt("parentno");
+					   String id = rs.getString("comment_id");
+					   String cont = rs.getString("comment_cont");
+					   Date date = rs.getDate("comment_date");
+					   
+					   CommentDTO vo = new CommentDTO();
+					   vo.setLevel(level);
+					   vo.setArticleNO(articleNO);
+					   vo.setParentNO(parentNO);
+					   vo.setComment_id(id);
+					   vo.setComment_cont(cont);
+					   vo.setComment_Date(date);
+					   list.add(vo);
+				   }
+				   rs.close();
+				   pstmt.close();
+				   con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글삭제버튼 구현
 	public void delcomment(String id) {
@@ -494,6 +570,59 @@ public class JavaFood_DAO {
 			e.printStackTrace();
 		}
 	}
+	
+	//댓글삭제 할 articleNO 조회
+	public List<Integer> selectRemoveComment(int articleNO) {
+		List<Integer> articleNOList = new ArrayList<Integer>();
+		try {
+			this.con = dataFactory.getConnection();
+			System.out.println("댓글삭제 할 no조회 접속");
+			String query = "SELECT articleno FROM comment_com \n";
+			query += " START WITH articleno = ? \n";
+			query += " CONNECT BY PRIOR articleno = parentno";
+			
+			System.out.println("query : \n"+query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, articleNO);
+			System.out.println("댓글번호 확인"+articleNO);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				articleNO = rs.getInt("articleNO");
+				articleNOList.add(articleNO);		
+			}
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return articleNOList;
+	}
+	
+	//삭제 댓글과 그 밑에 달린 댓글도 모두 삭제하게
+	public void deleteComment(int articleNO) {
+		try {
+			this.con= dataFactory.getConnection();
+			System.out.println("댓글삭제 밑의 댓글도 삭제하게");
+			String query = "DELETE FROM comment_com \n";
+			query += " WHERE articleno IN (";
+			query += " SELECT articleno FROM comment_com \n";
+			query += " START WITH articleno = ? \n";
+			query += " CONNECT BY PRIOR articleno = parentno )";
+			
+			System.out.println("query : \n"+query);
+			pstmt = this.con.prepareStatement(query);
+			pstmt.setInt(1, articleNO);	 
+			pstmt.executeUpdate();
+			pstmt.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
 	/*
@@ -509,7 +638,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT RANK() OVER (ORDER BY RANK2 desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS RANK2, s.* FROM song s ) a ";
+			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
 			   		 
 			   		  
 			   		
@@ -522,7 +651,8 @@ public class JavaFood_DAO {
 			   while(rs.next()) {
 				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
-				   String rank2 = rs.getString("rank2");
+				   String famous = rs.getString("famous");
+				   String imglink = rs.getString("imglink");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -535,7 +665,8 @@ public class JavaFood_DAO {
 				   login_DTO vo = new login_DTO();
 				   vo.setSongnumber(songnumber);
 				   vo.setRanking(ranking);
-				   vo.setRank2(rank2);
+				   vo.setFamous(famous);
+				   vo.setImglink(imglink);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
 				   vo.setBygenre(bygenre);
@@ -628,8 +759,8 @@ public class JavaFood_DAO {
 		
 		//플레이 리스트 추가 쿼리문 작성
 		String add_query =
-				"INSTER INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
-				+ "VALUES(seq_PL_ID.next, ?, ?, ?)";
+				"INSERT INTO playList(PL_ID, ID2, PL_Title, PL_Explain)"
+				+ "VALUES(seq_PL_ID.nextval, ?, ?, ?)";
 		
 		//플레이 리스트 추가 쿼리 실행
 		try
@@ -840,6 +971,92 @@ public class JavaFood_DAO {
 		}
 		
 		return totalCount;
+	}
+	
+	/**
+	 * 플레이 리스트 내의 곡을 삭제하는 메서드 입니다.
+	 * @param PL_ID : 플레이 리스트의 아이디를 입력하세요.
+	 * @param listNumber : 삭제할 곡의 플레이 리스트 번호를 입력하세요.
+	 */
+	public void doDeleteSong(int PL_ID, int listNumber)
+	{
+		//DTO에 접속하여 값 세팅하기
+		PlayListDTO dto = new PlayListDTO();
+		dto.setPl_id(PL_ID);
+		dto.setListNumber(listNumber);
+		
+		int temp_PL_ID = dto.getPl_id();
+		int deleteNumber = dto.getListNumber();
+		
+		//쿼리문 작성
+		String delSong_query = "DELETE FROM playList_Content"
+				+ " WHERE ListNumber = ?"
+				+ "	AND PL_ID = ?";
+		
+		//쿼리 실행
+		try 
+		{
+			pstmt = con.prepareStatement(delSong_query);
+			pstmt.setInt(1, deleteNumber);
+			pstmt.setInt(2, temp_PL_ID);
+			ResultSet rs = pstmt.executeQuery();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public List<PlayListDTO> loadPLC(int PL_ID, String id)
+	{
+		List<PlayListDTO> playListContent = new ArrayList<PlayListDTO>();
+		
+		//쿼리문 작성
+		String loadList_query =
+				"SELECT * FROM playList_Content plc"
+				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID"
+				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
+				+ " ORDER BY listNumber";
+		
+		//쿼리 실행
+		try
+		{
+			pstmt = con.prepareStatement(loadList_query);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next() )
+			{
+				int temp_pl_id = rs.getInt("PL_ID");
+				int temp_listNumber = rs.getInt("listNumber");
+				String temp_songName = rs.getString("songName");
+				String temp_plTitle = rs.getString("pl_title");
+				String temp_plExplain = rs.getString("pl_explain");
+				String temp_artistName = rs.getString("artistName");
+				
+				PlayListDTO playListDTO = 
+						new PlayListDTO
+						(
+							temp_pl_id, 
+							temp_listNumber, 
+							temp_songName, 
+							temp_plTitle, 
+							temp_plExplain, 
+							temp_artistName
+						);
+				
+				playListContent.add(playListDTO);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return playListContent;
 	}
 }
 
