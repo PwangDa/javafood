@@ -156,6 +156,18 @@ public class JavaFood_Controller extends HttpServlet {
 			
 			java3_3(request, response, pl_id);
 		}
+		if(request.getParameter("javafood").equals("3_4") )
+		{
+			//주소로 요청한 값들 받기.
+			int pl_id = Integer.parseInt(request.getParameter("PL_ID") );
+			int listNumber = Integer.parseInt(request.getParameter("listNumber") );
+			
+			//삭제 실행
+			java3_4(pl_id, listNumber);
+			
+			//페이지 새로고침
+			response.sendRedirect("javafood?javafood=3_3&PL_ID=" + pl_id);
+		}
 		if(request.getParameter("javafood").equals("4")) {
 			System.out.println("4번진입");
 			java4(request,response);
@@ -383,6 +395,7 @@ public class JavaFood_Controller extends HttpServlet {
 	{
 		service.s_doDeleteSong(PL_ID, listNumber);
 	}
+	
 	//범주 리스트 제거하기
 	private void java3_5(String PL_ID, String id)
 	{

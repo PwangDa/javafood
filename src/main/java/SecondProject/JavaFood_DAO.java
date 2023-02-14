@@ -987,7 +987,7 @@ public class JavaFood_DAO {
 		dto.setListNumber(listNumber);
 		
 		int temp_PL_ID = dto.getPl_id();
-		int deleteNumber = dto.getListNumber();
+		int temp_listNumber = dto.getListNumber();
 		
 		//쿼리문 작성
 		String delSong_query = "DELETE FROM playList_Content"
@@ -997,10 +997,11 @@ public class JavaFood_DAO {
 		//쿼리 실행
 		try 
 		{
+			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(delSong_query);
-			pstmt.setInt(1, deleteNumber);
+			pstmt.setInt(1, temp_listNumber);
 			pstmt.setInt(2, temp_PL_ID);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt.executeQuery();
 		}
 		catch (SQLException e)
 		{
