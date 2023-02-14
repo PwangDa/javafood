@@ -1017,6 +1017,7 @@ public class JavaFood_DAO {
 				"SELECT * FROM playList_Content plc"
 				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
 				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
+				+ "	WHERE plc.PL_ID = ?"
 				+ " ORDER BY listNumber";
 		
 		//쿼리 실행
@@ -1024,6 +1025,7 @@ public class JavaFood_DAO {
 		{
 			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(loadList_query);
+			pstmt.setInt(1, PL_ID);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next() )
