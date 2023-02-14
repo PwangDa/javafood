@@ -317,8 +317,8 @@
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
-            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>록/메탈</a></div>
-            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>랩/힙합</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:when>
         <c:when test="${song eq '댄스'}">
@@ -329,6 +329,8 @@
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:when>
         <c:when test="${song eq 'POP'}">
@@ -339,6 +341,8 @@
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:when>
         <c:when test="${song eq 'R&B'}">
@@ -349,6 +353,8 @@
             <div class="tab1 tab1_4 btline"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:when>
         <c:when test="${song eq '인디'}">
@@ -359,6 +365,8 @@
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5 btline"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:when>
         <c:when test="${song eq '트로트'}">
@@ -369,6 +377,32 @@
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6 btline"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
+        </div>
+        </c:when>
+         <c:when test="${song eq '록'}">
+		<div class="tab">
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=POP'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7 btline"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
+        </div>
+        </c:when>
+         <c:when test="${song eq '랩'}">
+		<div class="tab">
+            <div class="tab1 tab1_1"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=발라드'>발라드</a></div>
+            <div class="tab1 tab1_2"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=댄스'>댄스</a></div>
+            <div class="tab1 tab1_3"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=POP'>POP</a></div>
+            <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
+            <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
+            <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8 btline"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:when>
 		<c:otherwise>
@@ -379,6 +413,8 @@
             <div class="tab1 tab1_4"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=R%26B'>R&B</a></div>
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
+            <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=록'>록/메탈</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=랩'>랩/힙합</a></div>
         </div>
         </c:otherwise>
         </c:choose>
@@ -401,6 +437,7 @@
              <div class="cont2">
              	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
                 <div class="left_item">${ status.count} </div>  <!-- 곡 순서 -->
+                <div><img src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
                 <div class="left_item left_name"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
                 <div class="left_album" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 --> 

@@ -574,7 +574,7 @@
 						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
 						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
 						                        <input class="btn1" type="submit" value="답글"> 
-						                    	<input type ="hidden" name="command_2" value="${param.parentNO }">
+						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
 			                			<c:if test="${comment.level > 1}">

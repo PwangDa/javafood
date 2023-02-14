@@ -140,7 +140,7 @@ header{
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">JV Music</span>
         <div class="menu-box">
             <span class="main main_1" >홈</span>
-            <span class="main main_2" >인기차트</span>
+            <span class="main main_2" >둘러보기</span>
             <span class="main main_3" >보관함</span>
             <div class = "main-box main_4">
                 <input class="search-txt" type="text" placeholder="검색">
