@@ -252,68 +252,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		        </script>
 			</table>
-				
-                <%--
-                if(request.getParameter("p")!=null){
-                				List<login_DTO> vvo = db.uresong(a.get(0).getId());
-                		                	for(int i=0; i<vvo.size(); i++) {
-                %>
-		                <tr class="low">
-		                    <td><%=i+1%></td>
-		                    <td><%=vvo.get(i).getArtistname()%></td>
-		                    <td><a href="<%=vvo.get(i).getLink()%>" target="_blank" class="at"><%=vvo.get(i).getSongname()%></a></td>
-		                    <td><%=vvo.get(i).getHits()%></td>
-		                    <td>
-		                    	<button type="button" onclick="javafood?javafood=5&id=<%=i%>'">재생</button>
-		                    </td>
-		                    <form>
-		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vvo.get(i).getSongnumber()%>"> </td>
-		                	</form>
-		                </tr> <%
- } 
-                 }else{
-                 	if(request.getParameter("option")!=null){
- 				List<login_DTO> vo1 = db.Search(request.getParameter("option"),request.getParameter("text"));
- 		                	for(int i=0; i<vo1.size(); i++) {
- %>
-		                <tr class="low">
-		                    <td><%=i+1%></td>
-		                    <td><%=vo1.get(i).getArtistname()%></td>
-		                    <td><a href="<%=vo1.get(i).getLink()%>" target="_blank" class="at"><%=vo1.get(i).getSongname()%></a></td>
-		                    <td><%=vo1.get(i).getHits()%></td>
-		                    <td>
-		                    	<button type="button" onclick="javafood?javafood=5&id=<%=i%>'">재생</button>
-		                    </td>
-		                    <form>
-		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=vo1.get(i).getSongnumber()%>"> </td>
-		                	</form>
-		                </tr> <%
- } 
-                 	}else if(request.getParameter("option")==null){
-                 		List<login_DTO> vo = db.list();
- 		                for(int i=0; i<vo.size(); i++) {
- %>
-		                <tr class="low">
-		                    <td><%= i+1%></td>
-		                    <td><%= vo.get(i).getArtistname() %></td>
-		                    <td><a href="<%= vo.get(i).getLink() %>" target="_blank" class="at"><%= vo.get(i).getSongname() %></a></td>
-		                    <td><%=	vo.get(i).getHits() %></td>
-		                    <td>
-		                    	<button type="button" onclick="javafood_team/javafood?javafood=5&id=<%=i%>'">재생</button>
-		                    </td>
-		                    <form>
-		                    <td><input type="submit" value="좋아요"><input type="hidden" name="good" value="<%=i+1%>"> </td>
-		                	</form>
-		                </tr> <% }
-		                } %>
-    				<%if(request.getParameter("id")!=null){%><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=db.link1(db.list().get(Integer.parseInt(request.getParameter("id"))))%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen><%} %>
-            </table>
-        </div>
-    </div>
-    <script>
-			
-    </script>
-    --%>
+
 </body>
 </html>
-<%--}}--%>

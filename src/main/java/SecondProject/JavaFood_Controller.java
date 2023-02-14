@@ -12,16 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.jsoup.Jsoup;
-import org.jsoup.select.Elements;
 
 import Chart.SongDAO;
-import My_Page.test;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 @WebServlet("/javafood/*")
 public class JavaFood_Controller extends HttpServlet {
@@ -313,7 +309,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
-		List<login_DTO> list_login = service.javafood2();
+		List<song_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
 		System.out.println("list_login size : " + list_login.size());
@@ -485,7 +481,7 @@ public class JavaFood_Controller extends HttpServlet {
 			System.out.println("option : "+request.getParameter("option"));
 			if(request.getParameter("text")!=null) {
 				System.out.println("text : "+request.getParameter("text"));
-				List<login_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
+				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
 				if(list!=null) {
 					request.setAttribute("song", list);
 					System.out.println("!=null lsit : "+list);

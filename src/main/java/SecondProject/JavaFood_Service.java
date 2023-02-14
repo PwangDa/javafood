@@ -8,6 +8,7 @@ import java.util.Map;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 
 
@@ -68,9 +69,9 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범 (차트 불러오기)
-	public List<login_DTO> javafood2(){
+	public List<song_DTO> javafood2(){
 		
-		List<login_DTO> list = dao.listSong();
+		List<song_DTO> list = dao.listSong();
 		
 		return list;
 		
@@ -191,22 +192,22 @@ public class JavaFood_Service {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지 
-	public Map<String, List<login_DTO>> javafood5(){
+	public Map<String, List<song_DTO>> javafood5(){
 		System.out.println("5번 my페이지 실행");
-		List<login_DTO> list = dao.list();
-		Map<String, List<login_DTO>> map = new HashMap<String, List<login_DTO>>();
+		List<song_DTO> list = dao.list();
+		Map<String, List<song_DTO>> map = new HashMap<String, List<song_DTO>>();
 		map.put("list", list);
 		dao.list();
 		return map;
 	}
-	public List<login_DTO> javafood5_1(String option, String text){
+	public List<song_DTO> javafood5_1(String option, String text){
 		return dao.Search(option, text);
 	}
 	public void javafood5_2(String id, String songnumber){
 		dao.addhit(id, songnumber);
 		dao.song1addhit(songnumber);
 	}
-	public List<login_DTO>javafood5_3(String id){
+	public List<song_DTO>javafood5_3(String id){
 		return dao.uresong(id);
 	}
 	public void javafood5_4(String songnumber) {
@@ -218,9 +219,9 @@ public class JavaFood_Service {
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 
-	public List<login_DTO> javafood6(String song){
+	public List<song_DTO> javafood6(String song){
 		System.out.println("6번 장르 실행");
-		List<login_DTO> list = null;
+		List<song_DTO> list = null;
 		// 장르별
 		if (song == null) {
 			list = dao.list();
