@@ -195,6 +195,15 @@
             text-align: left; 
         }
         .left_artist{
+            width: 150px;
+            height: 40px;
+            text-align: left;
+            text-overflow : ellipsis;
+            white-space : nowrap;
+            overflow : hidden;
+           
+        }
+        .left_album{
             width: 100px;
             height: 40px;
             text-align: left;
@@ -231,14 +240,14 @@
         }
         
         .left_name{
-         	width: 400px;
+         	width: 360px;
             text-align: left;
         }
         .right_item{
             width: 100px;
             height: 40px;
             text-align: center;
-         	margin-left: 140px;
+         	/* margin-left: 140px */;
              /*margin-left: 95px;*/
         }
         /*.right_top_item{
@@ -379,7 +388,7 @@
             <div class="left_num">NO</div>
             <div class="left_song">곡이름</div>
             <div class="left_artist">아티스트</div>
-            <div class="left_artist">앨범</div>
+            <div class="left_album">앨범</div>
             <div class="right_item">재생시간</div>
             <div><img class="heart" src="https://han.gl/CJMPm"></div>
             <div class="right_top_item_1">듣기</div>
@@ -393,7 +402,7 @@
                 <div class="left_item">${ status.count} </div>  <!-- 곡 순서 -->
                 <div class="left_item left_name"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
-                <div class="left_artist" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 -->
+                <div class="left_album" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 --> 
                 <div class="right_item">${ genre_list.playTime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
                 <div class="right_item" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
