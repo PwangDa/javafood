@@ -124,7 +124,7 @@ public class JavaFood_Service {
 	}
 	
 	//범주 플레이 리스트 제거하기
-	public void s_doDeleteList(String PL_ID, String id)
+	public void s_doDeleteList(int PL_ID, String id)
 	{
 		dao.deleteList(PL_ID, id);
 	}

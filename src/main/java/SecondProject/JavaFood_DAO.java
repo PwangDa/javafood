@@ -843,12 +843,12 @@ public class JavaFood_DAO {
 	 * @param PL_ID : 플레이 리스트의 id를 입력하세요.
 	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
 	 */
-	public void deleteList(String PL_ID, String id)
+	public void deleteList(int pl_id, String id)
 	{
 		//플레이 리스트 내용 삭제 쿼리문 작성
 		String del_query = 
 				"DELETE FROM playList_content"
-				+ "WHERE PL_ID = ?";
+				+ " WHERE PL_ID = ?";
 		
 		//플레이 리스트 내용 삭제 쿼리 실행
 		try
@@ -856,7 +856,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			pstmt = con.prepareStatement(del_query);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, pl_id);
 			pstmt.executeQuery();
 		}
 		catch (SQLException e)
@@ -876,7 +876,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			pstmt = con.prepareStatement(del_query);
-			pstmt.setString(1, PL_ID);
+			pstmt.setInt(1, pl_id);
 			pstmt.setString(2, id);
 			pstmt.executeQuery();
 			

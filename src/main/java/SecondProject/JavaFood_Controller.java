@@ -168,6 +168,18 @@ public class JavaFood_Controller extends HttpServlet {
 			//페이지 새로고침
 			response.sendRedirect("javafood?javafood=3_3&PL_ID=" + pl_id);
 		}
+		if(request.getParameter("javafood").equals("3_5") )
+		{
+			//주소창에서 요청된 pl_id값을 받아오기
+			int pl_id = Integer.parseInt(request.getParameter("pl_id") );
+			String id = request.getParameter("id");
+			
+			//제거 실행
+			java3_5(pl_id, id);
+			
+			//페이지 새로고침
+			response.sendRedirect("javafood?javafood=3");
+		}
 		if(request.getParameter("javafood").equals("4")) {
 			System.out.println("4번진입");
 			java4(request,response);
@@ -321,9 +333,9 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		//세션에 저장된 id값 받아오기
-//		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-//		String c_id = (String)session_user.get(0).getId();
-		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
+		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+		String c_id = (String)session_user.get(0).getId();
+//		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
 		
 //		//주소에 요청된 명령어 받아오기
 //		String doAddList = request.getParameter("doAddList");
@@ -376,9 +388,9 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		//요청된 값 받아오기
 //		HttpSession session = request.getSession();
-//		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-//		String c_id = (String)session_user.get(0).getId();
-		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
+		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+		String c_id = (String)session_user.get(0).getId();
+//		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
 		int c_pl_id = pl_id;
 		
 		//Service에서 플레이 리스트 내용을 가져올 메서드 실행하기.
@@ -401,7 +413,7 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 	
 	//범주 리스트 제거하기
-	private void java3_5(String PL_ID, String id)
+	private void java3_5(int PL_ID, String id)
 	{
 		service.s_doDeleteList(PL_ID, id);
 	}

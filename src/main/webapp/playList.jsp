@@ -71,7 +71,6 @@
             <input type="text" name="addList_title" class="addList_textbar" placeholder="플레이리스트 제목을 입력해주세요."> <br>
             <input type="text" name="addList_explain" class="addList_ex_textbar" placeholder="플레이리스트 설명을 입력해주세요."> <br>
             <input type="button" name="addList_btn" class="addList_btn" value="추가">
-<!--             <input type="hidden" name="doAddList" value="doAdd"> -->
         </form>
     </div>
     
