@@ -99,13 +99,14 @@ public class JavaFood_DAO {
 		List<login_DTO> list = new ArrayList<login_DTO>();
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song s2 \n"
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song1 s2 \n"
 					+ "ON s.SONGNUMBER =s2.SONGNUMBER \n"
 					+ "WHERE s.ID = '"+id+"' ORDER BY s.HIT DESC");
 			ResultSet rs = this.pstmt.executeQuery();
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
 				vo.setHits(rs.getString("hit"));
+				vo.setImglink(rs.getString("imglink"));
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setLikes(rs.getString("likes"));
@@ -208,6 +209,8 @@ public class JavaFood_DAO {
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("Imglink"));
 				list.add(vo);
 			}
 			rs.close();
@@ -218,7 +221,7 @@ public class JavaFood_DAO {
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//특정값 넣어주면 특정값관련된 것만 불러오기
+	//검색해서 특정값 넣어주면 특정값관련된 것만 불러오기
 	public List<login_DTO> Search(String option, String text) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
@@ -231,6 +234,7 @@ public class JavaFood_DAO {
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
+				vo.setImglink(rs.getString("imglink"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setSongnumber(rs.getString("songnumber"));
@@ -268,12 +272,12 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//genre 가져오기
+	//장르별로 노래 가져오기
 	public List<login_DTO> getGenre (String a) {
 		List<login_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String genre = " SELECT * FROM  song";
+			String genre = " SELECT * FROM  song1";
 			genre += " where bygenre = ?";
 			this.pstmt = con.prepareStatement (genre);
 			this.pstmt.setString(1, a);
@@ -288,6 +292,8 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlayTime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("imglink"));
 				list.add(vo);
 			}
 			rs.close();
@@ -617,7 +623,6 @@ public class JavaFood_DAO {
 			con.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1012,14 +1017,17 @@ public class JavaFood_DAO {
 		//쿼리문 작성
 		String loadList_query =
 				"SELECT * FROM playList_Content plc"
-				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID"
+				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
 				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
+				+ "	WHERE plc.PL_ID = ?"
 				+ " ORDER BY listNumber";
 		
 		//쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(loadList_query);
+			pstmt.setInt(1, PL_ID);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next() )
@@ -1030,6 +1038,8 @@ public class JavaFood_DAO {
 				String temp_plTitle = rs.getString("pl_title");
 				String temp_plExplain = rs.getString("pl_explain");
 				String temp_artistName = rs.getString("artistName");
+				String temp_imgLink = rs.getString("imgLink");
+				String temp_album = rs.getString("album");
 				
 				PlayListDTO playListDTO = 
 						new PlayListDTO
@@ -1039,7 +1049,9 @@ public class JavaFood_DAO {
 							temp_songName, 
 							temp_plTitle, 
 							temp_plExplain, 
-							temp_artistName
+							temp_artistName,
+							temp_imgLink,
+							temp_album
 						);
 				
 				playListContent.add(playListDTO);

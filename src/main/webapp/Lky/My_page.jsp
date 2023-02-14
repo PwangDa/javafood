@@ -36,6 +36,7 @@
         .low{background-color: darkkhaki;}
         tr.low:hover {background-color: rgb(148, 100, 237); border: 1px solid black;}
         .at{color: white; text-decoration: none;}
+		input[type="checkbox"]{display: none;}
    </style>
    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
@@ -57,13 +58,14 @@
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
         </form>
-        <div style="color: white;"><a href="?p=1" class="at"><c:out value="${session_user.id } 의 재생기록 확인"/></a> </div>
+        <div style="color: white;"><a href="javafood?javafood=5&usre=${session_user.id }" class="at"><c:out value="${session_user.id } 의 재생기록 확인"/></a> </div>
         </div>
         <div class="body">
             <h2><c:out value="최근재생목록"/></h2>
             <table border="1">
                 <tr>
                     <th><c:out value="순위"/></th>
+                    <th><c:out value="이미지"/></th>
                     <th><c:out value="아티스트 이름"/></th>
                     <th><c:out value="노래 제목"/></th>
                     <th><c:out value="조회수"/></th>
@@ -72,29 +74,185 @@
                 </tr>
 				<c:if test="${song!=null }">
 					<c:forEach items="${song }" var="i">
-					<tr class="low">
-						<td><c:out value="${i.songnumber}"/></td>
-						<td><c:out value="${i.artistname}"/></td>
-						<td><c:out value="${i.songname}"/></td>
-						<td><c:out value="${i.hits}"/></td>
-						<td><a href="${i.link }" target="_blank"><c:out value="검색"/></a></td>
-						<td><c:out value="${i.likes}"/></td>
-					</tr>
+						<tr class="low">
+							<td><c:out value="${i.songnumber}"/></td>
+							<td> <img src="${i.imglink}"></td>
+							<td><c:out value="${i.artistname}"/></td>
+							<td><c:out value="${i.songname}"/></td>
+							<td><c:out value="${i.hits}"/></td>
+							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+							<td><c:out value="${i.likes}"/></td>
+						</tr>
 					</c:forEach>
 				</c:if>
-				<c:if test="${song==null }">
+				<c:if test="${usre!=null }">
+					<c:forEach items="${usre }" var="i">
+						<tr class="low">
+							<td><c:out value="${i.songnumber}"/></td>
+							<td> <img src="${i.imglink}"></td>
+							<td><c:out value="${i.artistname}"/></td>
+							<td><c:out value="${i.songname}"/></td>
+							<td><c:out value="${i.hits}"/></td>
+							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+							<td><c:out value="${i.likes}"/></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${song==null&&usre==null }">
 					<c:forEach items="${list }" var="i">
-					<tr class="low">
-						<td><c:out value="${i.songnumber}"/></td>
-						<td><c:out value="${i.artistname}"/></td>
-						<td><c:out value="${i.songname}"/></td>
-						<td><c:out value="${i.hits}"/></td>
-						<td><a class="athe" href="javafood?javafood=5&like=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-						<td><c:out value="${i.likes}"/></td>
-					</tr>
+						<tr class="low">
+							<td><c:out value="${i.songnumber}"/></td>
+							<td> <img src="${i.imglink}"></td>
+							<td><c:out value="${i.artistname}"/></td>
+							<td><c:out value="${i.songname}"/></td>
+							<td><c:out value="${i.hits}"/></td>
+							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+							<td><c:out value="${i.likes}"/></td>
+						</tr>
 					</c:forEach>
 				</c:if>
-
+			</table>
+			
+			
+			
+			<table>
+				<h1 style="text-align: center; color: white;">회원정보 수정</h1>
+				
+		        <form method="post" action="javafood?javafood=4">
+		            <div class="head">
+		              <table>
+		        <tr class="low"  style="text-align: left;">
+		            <th style="text-align: right;"><c:out value=" 아이디 : "/></th>
+		            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
+		            <td><input type="button" id="idbutt" value="중복 확인"></td>
+		            <td><input type="checkbox" id="ch1" class="ch"></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th style="text-align: right;"><c:out value="비밀번호 1 :  "/></th>
+		            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
+		            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
+		            <td><input type="checkbox" id="ch2" class="ch"></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th style="text-align: right;"><c:out value="비밀번호 2 :  "/></th>
+		            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
+		            <td></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th style="text-align: right;"><c:out value="닉네임 : "/></th>
+		            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
+		            <td><input type="button" id="nicbutt" value="중복확인"></td>
+		            <td><input type="checkbox" id="ch3" class="ch"></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th style="text-align: right;"><c:out value="이메일 : "/></th>
+		            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
+		            <td><input type="button" id="mailbutt" value="인증하기"></td>
+		            <td><input type="checkbox" id="ch4" class="ch"></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th style="text-align: right;"><c:out value="인증번호 : "/></th>
+		            <td><input type="text" placeholder="메일 인증번호"></td>
+		            <td><input type="button" id="mailchbutt" value="인증확인"></td>
+		            <td><input type="checkbox" id="ch5" class="ch"></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th id="pn" class="tr" style="text-align: right;"><c:out value="주민등록 번호 : "/></th>
+		            <td>
+		                <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
+		                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
+		            </td>
+		            <td style="text-align: right;"><input type="button" id="pnbutt" value="중복확인"></td>
+		            <td><input type="checkbox" id="ch6" class="ch"></td>
+		        </tr>
+		        <tr class="low" style="text-align: left;">
+		            <th class="tr" style="text-align: right;"><c:out value=" 휴대폰 번호 : "/></th>
+		            <td>
+		                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+		                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+		                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
+		            </td>
+		            <td style="text-align: right;"><input type="button" id="phonebutt" value="연락처 확인"></td>
+		            <td><input type="checkbox" id="ch7" class="ch"></td>
+		        </tr>
+		        <tr class="low">
+		            <th><a href="javafood?javafood=4" class="at"><c:out value=" 취 소 "/></a></th>
+		            <th><input class="sub" type="submit" value="수정하기" id="end"disabled></th>
+		            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
+		        </tr>
+		    </table>
+		            </div>
+		        </form>
+		        <div class="body"></div>
+		        <script>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						$('#re').on('click',function(){
+		                    $('#end').attr('disabled',true);
+		                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                    let c= false;
+		                    function aj(key, callback, chak){
+		                        let xml = new XMLHttpRequest();
+		                        xml.open('get','http://localhost:8080/javafood_team/aj?'+key);
+		                        xml.send();
+		                        xml.onload=function(){
+		                        	let z = 0;
+		                        	c=xml.responseText;
+		                        	if(c!=1){
+		                                z=1;
+		                        		alert('사용가능.');
+		                        	}else{
+		                                z=0;
+		                        		alert('사용중입니다.');
+		                        	}
+		                           callback(z,chak);
+		                        }
+		                    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                    function fn(call,chak){
+		                        call!=1?$(chak).prop('checked',false):$(chak).prop('checked',true);
+		                        let j=0;
+		                        for(let i =0; i<$('.ch').length; i++){
+		                            if($('.ch')[i].checked==true)j++;
+		                        }
+		                        j==6?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
+		                    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						$('#idbutt').on('click',function(){
+							aj("id="+$('#Id1').val(), fn, '#ch1');
+		                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                $("#pwbutt").on("click",function(){
+		                    if($("#pw1").val() == $("#pw2").val()){
+		                        alert("비밀번호가 일치합니다.");
+		                        fn(1,'#ch2');
+		                    }else {
+		                        alert("잘못입력 하셨습니다.");
+		                        fn(0,'#ch2');
+		                    }
+		                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                $("#nicbutt").on("click",function(){
+		                    aj("nic="+$('#nic').val(), fn, '#ch3');
+		                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                $("#mailbutt").on("click",function(){
+		                    aj('email='+$('#email').val(), fn, '#ch4')
+		                })
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                $("#pnbutt").on("click",function(){
+		                    let pn = 'pn='+$('#pn1').val() +"-"+ $('#pn2').val();
+		                    aj(pn,fn,'#ch6');
+		                })
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		                $("#phonebutt").on("click",function(){
+		                    let phone = 'phone='+$('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
+		                    aj(phone,fn,'#ch7');
+		                })
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		        </script>
+			</table>
+				
                 <%--
                 if(request.getParameter("p")!=null){
                 				List<login_DTO> vvo = db.uresong(a.get(0).getId());
