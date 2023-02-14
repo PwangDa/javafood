@@ -94,7 +94,7 @@ public class JavaFood_Controller extends HttpServlet {
 				String id = request.getParameter("id_2");
 				String cont = request.getParameter("cont_2");
 				String parentNO = request.getParameter("parentNO");
-				String articleNO = request.getParameter("articleNO");
+				String articleNO = request.getParameter("command_articleNO");
 				
 				System.out.println("id : "+ id);
 				System.out.println("cont : "+ cont);
@@ -104,7 +104,7 @@ public class JavaFood_Controller extends HttpServlet {
 				CommentDTO dto = new CommentDTO();
 				dto.setComment_id(id);
 				dto.setComment_cont(cont);
-				dto.setParentNO(Integer.parseInt(parentNO));
+				dto.setParentNO(Integer.parseInt(articleNO));
 				
 				service.addcomment(dto);
 				nextPage = "/javafood?javafood=1&command=artistinfo.do";
