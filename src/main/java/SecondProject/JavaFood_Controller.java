@@ -94,10 +94,12 @@ public class JavaFood_Controller extends HttpServlet {
 				String id = request.getParameter("id_2");
 				String cont = request.getParameter("cont_2");
 				String parentNO = request.getParameter("parentNO");
+				String articleNO = request.getParameter("articleNO");
 				
 				System.out.println("id : "+ id);
 				System.out.println("cont : "+ cont);
 				System.out.println("parentNO : "+ parentNO);
+				System.out.println("articleNO : "+ articleNO);
 				
 				CommentDTO dto = new CommentDTO();
 				dto.setComment_id(id);
