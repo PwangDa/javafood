@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import SecondProject.JavaFood_DAO;
 import javafood_DTO.login_DTO;
 
 @WebServlet("/aj")
@@ -22,7 +22,7 @@ public class ajax extends HttpServlet {
 		String email = request.getParameter("email");
 		String pn = request.getParameter("pn");
 		String phone = request.getParameter("phone");
-		dbon db = new dbon();
+		JavaFood_DAO db = new JavaFood_DAO();
 		int a = 0;
 		
 		List<login_DTO> vo = db.listID();
