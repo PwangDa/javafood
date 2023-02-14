@@ -434,12 +434,13 @@
 	<jsp:include page="menu.jsp"></jsp:include>
     <div id = "home">
         <div id = "cont" class = "contain">
+        <c:forEach var="al" items="${listAlbum }" begin="1" end="1">
             <div class = "text1">
-                <h1>아이유(IU)</h1>
-                <p>아이유는 대한민국의 가수이자 배우이다. 배우로 활동할 때는 본명을 사용한다. 
-                <br>'아이유'라는 예명은 'I'와 'You'를 합친 합성어로 '너와 내가 음악으로 하나가 된다.'라는 의미이다.</p>
+                <h1>${al.artistname }</h1>
+                <p style="width: 690px;">${al.artist_info }</p>
                 <div> <a target="_blank" href="https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0">출처:namuwiki</a></div>
             </div>
+        </c:forEach>   
         </div>
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
@@ -496,8 +497,8 @@
 	                <div class = "box1">
 	                    <img class="img1" src="${album.album_cover }">
 	                </div>
-	                <div class = "box1 text2"><a href="${album.music_link}"><strong>${album.album_name }</strong></a></div>
-	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artist }</div>
+	                <div class = "box1 text2"><a href="${album.music_link}"><strong>${album.music_name }</strong></a></div>
+	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artistname }</div>
 	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_num}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
@@ -574,7 +575,7 @@
 						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
 						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
 						                        <input class="btn1" type="submit" value="답글"> 
-						                    	<input type ="hidden" name="command_2" value="${param.parentNO }">
+						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
 			                			<c:if test="${comment.level > 1}">

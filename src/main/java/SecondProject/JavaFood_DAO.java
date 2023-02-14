@@ -249,6 +249,8 @@ public class JavaFood_DAO {
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("Imglink"));
 				list.add(vo);
 			}
 			rs.close();
@@ -330,6 +332,8 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlayTime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("imglink"));
 				list.add(vo);
 			}
 			rs.close();
@@ -360,10 +364,14 @@ public class JavaFood_DAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				String alNum = rs.getString("album_num");
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-				String artist = rs.getString("artist");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
 				
 				String music_num = rs.getString("music_num");
 				String music_name = rs.getString("music_name");
@@ -372,10 +380,13 @@ public class JavaFood_DAO {
 				
 				AlbumDTO albumDTO = new AlbumDTO();
 				
+				albumDTO.setAlbum_num(alNum);
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
-				albumDTO.setArtist(artist);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
 				
 				albumDTO.setMusic_num(music_num);
 				albumDTO.setMusic_name(music_name);
@@ -420,7 +431,10 @@ public class JavaFood_DAO {
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-				String artist = rs.getString("artist");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
 				
 				String music_num = rs.getString("music_num");
 				String music_name = rs.getString("music_name");
@@ -433,7 +447,9 @@ public class JavaFood_DAO {
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
-				albumDTO.setArtist(artist);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
 				
 				albumDTO.setMusic_num(music_num);
 				albumDTO.setMusic_name(music_name);
@@ -1025,7 +1041,7 @@ public class JavaFood_DAO {
 		dto.setListNumber(listNumber);
 		
 		int temp_PL_ID = dto.getPl_id();
-		int deleteNumber = dto.getListNumber();
+		int temp_listNumber = dto.getListNumber();
 		
 		//쿼리문 작성
 		String delSong_query = "DELETE FROM playList_Content"
@@ -1035,10 +1051,11 @@ public class JavaFood_DAO {
 		//쿼리 실행
 		try 
 		{
+			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(delSong_query);
-			pstmt.setInt(1, deleteNumber);
+			pstmt.setInt(1, temp_listNumber);
 			pstmt.setInt(2, temp_PL_ID);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt.executeQuery();
 		}
 		catch (SQLException e)
 		{
@@ -1053,14 +1070,17 @@ public class JavaFood_DAO {
 		//쿼리문 작성
 		String loadList_query =
 				"SELECT * FROM playList_Content plc"
-				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID"
+				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
 				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
+				+ "	WHERE plc.PL_ID = ?"
 				+ " ORDER BY listNumber";
 		
 		//쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(loadList_query);
+			pstmt.setInt(1, PL_ID);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next() )
@@ -1071,6 +1091,8 @@ public class JavaFood_DAO {
 				String temp_plTitle = rs.getString("pl_title");
 				String temp_plExplain = rs.getString("pl_explain");
 				String temp_artistName = rs.getString("artistName");
+				String temp_imgLink = rs.getString("imgLink");
+				String temp_album = rs.getString("album");
 				
 				PlayListDTO playListDTO = 
 						new PlayListDTO
@@ -1080,7 +1102,9 @@ public class JavaFood_DAO {
 							temp_songName, 
 							temp_plTitle, 
 							temp_plExplain, 
-							temp_artistName
+							temp_artistName,
+							temp_imgLink,
+							temp_album
 						);
 				
 				playListContent.add(playListDTO);

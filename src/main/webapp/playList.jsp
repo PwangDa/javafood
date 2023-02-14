@@ -71,7 +71,7 @@
             <input type="text" name="addList_title" class="addList_textbar" placeholder="플레이리스트 제목을 입력해주세요."> <br>
             <input type="text" name="addList_explain" class="addList_ex_textbar" placeholder="플레이리스트 설명을 입력해주세요."> <br>
             <input type="button" name="addList_btn" class="addList_btn" value="추가">
-            <input type="hidden" name="doAddList" value="doAdd">
+<!--             <input type="hidden" name="doAddList" value="doAdd"> -->
         </form>
     </div>
     
@@ -86,7 +86,7 @@
 		<%-- 해당 유저의 플레이 리스트가 하나라도 존재한다면 --%>
 		<c:when test="${!empty playList }">
 			<c:forEach var="list" items="${playList }">
-			<a href="javafood?javafood=3_4&PL_ID=${list.pl_id }&ID=${list.id }">
+			<a href="javafood?javafood=3_3&PL_ID=${list.pl_id }">
 				<div class="playList">
 					<!-- 앨범 표지가 추가되면 해당 부분의 scr를 수정할 것. -->
 					<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">

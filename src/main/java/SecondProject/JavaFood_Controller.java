@@ -94,7 +94,7 @@ public class JavaFood_Controller extends HttpServlet {
 				String id = request.getParameter("id_2");
 				String cont = request.getParameter("cont_2");
 				String parentNO = request.getParameter("parentNO");
-				String articleNO = request.getParameter("articleNO");
+				String articleNO = request.getParameter("command_articleNO");
 				
 				System.out.println("id : "+ id);
 				System.out.println("cont : "+ cont);
@@ -104,7 +104,7 @@ public class JavaFood_Controller extends HttpServlet {
 				CommentDTO dto = new CommentDTO();
 				dto.setComment_id(id);
 				dto.setComment_cont(cont);
-				dto.setParentNO(Integer.parseInt(parentNO));
+				dto.setParentNO(Integer.parseInt(articleNO));
 				
 				service.addcomment(dto);
 				nextPage = "/javafood?javafood=1&command=artistinfo.do";
@@ -149,13 +149,24 @@ public class JavaFood_Controller extends HttpServlet {
 			//페이지 새로고침
 			response.sendRedirect("javafood?javafood=3");
 		}
+		if(request.getParameter("javafood").equals("3_3") )
+		{
+			//주소에서 요청된 pl_id값을 받아오기
+			int pl_id = Integer.parseInt(request.getParameter("PL_ID") );
+			
+			java3_3(request, response, pl_id);
+		}
 		if(request.getParameter("javafood").equals("3_4") )
 		{
-			//주소에서 값 받아오기
-//			String PL_id = request.getParameter("PL_ID");
-//			String id = request.getParameter("ID");
+			//주소로 요청한 값들 받기.
+			int pl_id = Integer.parseInt(request.getParameter("PL_ID") );
+			int listNumber = Integer.parseInt(request.getParameter("listNumber") );
 			
-			java3_4(request, response);
+			//삭제 실행
+			java3_4(pl_id, listNumber);
+			
+			//페이지 새로고침
+			response.sendRedirect("javafood?javafood=3_3&PL_ID=" + pl_id);
 		}
 		if(request.getParameter("javafood").equals("4")) {
 			System.out.println("4번진입");
@@ -309,9 +320,9 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("JavaFood_Controller의 java3 메소드 실행됨."); //확인용
 		
 
-		//주소에 요청된 id값 받아오기
-//		HttpSession session = request.getSession();
-//		String c_id = (String)session.getAttribute("id");
+		//세션에 저장된 id값 받아오기
+//		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+//		String c_id = (String)session_user.get(0).getId();
 		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
 		
 //		//주소에 요청된 명령어 받아오기
@@ -340,13 +351,13 @@ public class JavaFood_Controller extends HttpServlet {
 //		request.setAttribute("countPerPage", countPerPage);
 //		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
-		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
+//		RequestDispatcher dispatch = request.getRequestDispatcher("PlayList");
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
 //		request.setAttribute("doAddList", doAddList);
 //		request.setAttribute("doDeleteList", doDeleteList);
 		
-		dispatch = request.getRequestDispatcher("playList.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
 
 		dispatch.forward(request, response);
 	}
@@ -357,37 +368,42 @@ public class JavaFood_Controller extends HttpServlet {
 		service.s_doAddList(title, explain, id);
 	}
 	
-	//범주 리스트 제거하기
-	private void java3_3(String PL_ID, String id)
-	{
-		service.s_doDeleteList(PL_ID, id);
-	}
 	
 	//범주 플레이 리스트 내용 보기
-	private void java3_4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	private void java3_3(HttpServletRequest request, HttpServletResponse response, int pl_id) throws ServletException, IOException
 	{
 		System.out.println("JavaFood_Controller의 java3_3 메서드 실행됨.");
 		
 		//요청된 값 받아오기
 //		HttpSession session = request.getSession();
-		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-		String c_id = (String)session_user.get(0).getId();
-//		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
-		int c_pl_id = Integer.parseInt(request.getParameter("pl_id") );
+//		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+//		String c_id = (String)session_user.get(0).getId();
+		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
+		int c_pl_id = pl_id;
 		
 		//Service에서 플레이 리스트 내용을 가져올 메서드 실행하기.
-		List list = service.s_loadPLC(c_pl_id, c_id);
+		List c_list = service.s_loadPLC(c_pl_id, c_id);
 		
 		//Service에서 받아온 플레이 리스트 목록을 jsp에 dispatch하기
-		RequestDispatcher dispatch = request.getRequestDispatcher("PlayListContent.jsp");
-		request.setAttribute("playListContent", list);
+//		RequestDispatcher dispatch = request.getRequestDispatcher("PlayListContent");
+		request.setAttribute("playListContent", c_list);
 		request.setAttribute("id", c_id);
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("playListContent.jsp");
+		
+		dispatch.forward(request, response);
 	}
 	
 	//범주 플레이 리스트 안의 곡 제거하기
 	private void java3_4(int PL_ID, int listNumber)
 	{
 		service.s_doDeleteSong(PL_ID, listNumber);
+	}
+	
+	//범주 리스트 제거하기
+	private void java3_5(String PL_ID, String id)
+	{
+		service.s_doDeleteList(PL_ID, id);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인

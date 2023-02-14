@@ -11,6 +11,8 @@ public class PlayListDTO
 	private int listNumber;
 	private int songNumber;
 	private String artistName;
+	private String imgLink;
+	private String album;
 	
 	
 	
@@ -64,12 +66,24 @@ public class PlayListDTO
 	public void setArtistName(String artistName) {
 		this.artistName = artistName;
 	}
+	public String getImgLink() {
+		return imgLink;
+	}
+	public void setImgLink(String imgLink) {
+		this.imgLink = imgLink;
+	}
+	public String getAlbum() {
+		return album;
+	}
 	
 	
 	
 	
 	
 	
+	public void setAlbum(String album) {
+		this.album = album;
+	}
 	//생성자
 	public PlayListDTO(){};
 	
@@ -80,7 +94,17 @@ public class PlayListDTO
 		this.pl_id = pl_id;
 	}
 	
-	public PlayListDTO(int PL_ID, int listNumber, String songName, String plTitle, String plExplain, String artistName)
+	public PlayListDTO
+	(
+		int PL_ID, 
+		int listNumber, 
+		String songName, 
+		String plTitle, 
+		String plExplain, 
+		String artistName, 
+		String imgLink,
+		String album
+	)
 	{
 		this.pl_id = PL_ID;
 		this.listNumber = listNumber;
@@ -88,5 +112,7 @@ public class PlayListDTO
 		this.listTitle = plTitle;
 		this.listExplain = plExplain;
 		this.artistName = artistName;
+		this.imgLink = imgLink;
+		this.album = album;
 	}
 }

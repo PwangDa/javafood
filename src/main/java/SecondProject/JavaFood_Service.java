@@ -84,35 +84,29 @@ public class JavaFood_Service {
 		return s_playList;
 	}
 	
-	//범주 페이지 서비스
-	public Map pl_getPagingList(int pageNum, int countPerPage, String id)
-	{
-		int start = 0;
-		int end = 0;
-		
-		start = (countPerPage*(pageNum-1) ) + 1;
-		end = start + countPerPage - 1;
-		List list = dao.loadPL(id, start, end);
-		
-		int totalCount = dao.pl_totalCount(id);
-		
-		Map map = new HashMap();
-		map.put("list", list);
-		map.put("totalCount", totalCount);
-		
-		return map;
-	}
+	//범주 페이징 서비스 (미완성)
+//	public Map pl_getPagingList(int pageNum, int countPerPage, String id)
+//	{
+//		int start = 0;
+//		int end = 0;
+//		
+//		start = (countPerPage*(pageNum-1) ) + 1;
+//		end = start + countPerPage - 1;
+//		List list = dao.loadPL(id, start, end);
+//		
+//		int totalCount = dao.pl_totalCount(id);
+//		
+//		Map map = new HashMap();
+//		map.put("list", list);
+//		map.put("totalCount", totalCount);
+//		
+//		return map;
+//	}
 	
 	//범주 플레이 리스트 추가하기
 	public void s_doAddList(String title, String explain, String id)
 	{
 		dao.addList(title, explain, id);
-	}
-	
-	//범주 플레이 리스트 제거하기
-	public void s_doDeleteList(String PL_ID, String id)
-	{
-		dao.deleteList(PL_ID, id);
 	}
 	
 	//범주 플레이 리스트 안의 내용 가져오기
@@ -127,6 +121,12 @@ public class JavaFood_Service {
 	public void s_doDeleteSong(int PL_ID, int listNumber)
 	{
 		dao.doDeleteSong(PL_ID, listNumber);
+	}
+	
+	//범주 플레이 리스트 제거하기
+	public void s_doDeleteList(String PL_ID, String id)
+	{
+		dao.deleteList(PL_ID, id);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 

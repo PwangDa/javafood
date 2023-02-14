@@ -33,7 +33,7 @@
 			<textarea name="cover" placeholder="앨범표지링크"></textarea>
 			<input type="text" name="name" placeholder="앨범이름">
 			<textarea name="into" placeholder="앨범소개글"></textarea>
-			<input type="text" name="artist" placeholder="가수이름">
+			<textarea name="info" placeholder="아티스트소개"></textarea>
 			<input type ="button" value="등록" onclick="fn_sendComment()">
 			<input type ="hidden" name="command" value="addAlbum">
 		</div>
