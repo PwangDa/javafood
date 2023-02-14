@@ -11,12 +11,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
-	//주소로 넘어온 값들 받기
-	//String id = (String)session.getAttribute("id"); //로그인 세션이 완성될 때 사용할 것.
-	
 	String id = (String)request.getAttribute("id"); //아이디
-	String listTitle = request.getParameter("listTitle"); //플레이 리스트 제목
-	String doDeleteSong = request.getParameter("deDeleteSong");
+// 	String listTitle = request.getParameter("listTitle"); //플레이 리스트 제목
+// 	String doDeleteSong = request.getParameter("deDeleteSong");
 	
 // 	//곡 삭제하기
 // 	if("doDelete".equals(doDeleteSong) )
@@ -76,8 +73,9 @@
 							<form class="deleteSong">
 								<img class="sDelete_icon" src="https://popcat.click/twitter-card.jpg" width="25">
 								<img class="sDelete_icon2 hidden" src="https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM" width="25">
-								<input type="hidden" name="doDeleteSong" value="doDeleteSong">
-								<input type="hidden" name="res.ListNumber" value="${list.listNumber }">
+								<input type="hidden" name="javafood" value="3_4">
+<!-- 								<input type="hidden" name="doDeleteSong" value="doDeleteSong"> -->
+								<input type="hidden" name="listNumber" value="${list.listNumber }">
 								<input type="hidden" name="PL_ID" value="${list.pl_id }">
 							</form>
 						</span>
