@@ -166,7 +166,6 @@ public class JavaFood_DAO {
 			vo.setPn(rs.getString("pn"));
 			vo.setPhone(rs.getString("phone"));
 			vo.setEmail(rs.getString("email"));
-			vo.setHome(rs.getString("home"));
 			vo.setMyimg(rs.getString("img"));
 			list.add(vo);
 			rs.close();
@@ -192,7 +191,6 @@ public class JavaFood_DAO {
 				vo.setPn(rs.getString("pn"));
 				vo.setPhone(rs.getString("phone"));
 				vo.setEmail(rs.getString("email"));
-				vo.setHome(rs.getString("home"));
 				vo.setMyimg(rs.getString("img"));
 				list.add(vo);
 			}
