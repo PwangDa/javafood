@@ -168,6 +168,18 @@ public class JavaFood_Controller extends HttpServlet {
 			//페이지 새로고침
 			response.sendRedirect("javafood?javafood=3_3&PL_ID=" + pl_id);
 		}
+		if(request.getParameter("javafood").equals("3_5") )
+		{
+			//주소창에서 요청된 pl_id값을 받아오기
+			int pl_id = Integer.parseInt(request.getParameter("pl_id") );
+			String id = request.getParameter("id");
+			
+			//제거 실행
+			java3_5(pl_id, id);
+			
+			//페이지 새로고침
+			response.sendRedirect("javafood?javafood=3");
+		}
 		if(request.getParameter("javafood").equals("4")) {
 			System.out.println("4번진입");
 			java4(request,response);
@@ -182,35 +194,40 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
 		}
-		//음악추가
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
-//			String url = "https://www.melon.com/chart/index.htm";
+//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-//			Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("a");
+//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
 //			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
 //			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 //			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
-//			System.out.println("da1");
 //			JavaFood_DAO dao = new JavaFood_DAO();
-//			System.out.println("da2");
+//			int z = 351;
 //			for(int i=0; i<e4.size(); i++) {
 //				System.out.println("가수 : "+(String)e1.get(i).text());
 //				System.out.println("제목 : "+(String)e2.get(i).text());
 //				System.out.println("앨범 : "+(String)e3.get(i).text());
 //				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
-//				
-//				String a = (String)e1.get(i).text().replace("'", "");
-//				String b = (String)e2.get(i).text().replace("'", "");
-//				String c = (String)e3.get(i).text().replace("'", "");
-//				String d = (String)e4.get(i).attr("src");
-//				
-//				System.out.println("가수 : "+a);
-//				System.out.println("제목 : "+b);
-//				System.out.println("앨범 : "+c);
-//				System.out.println("이미지 주소 : "+d);
-//				dao.addsong1(b,c,a,d);
+//				System.out.println();
+//				String b = (String)e2.get(i).text().replace("'", "").trim();
+//				String c = (String)e3.get(i).text().replace("'", "").trim();
+//				String d = (String)e4.get(i).attr("src").trim();
+//				dao.addsong1(z,b,c,d);
+//				z++;
 //			}
-//		}
+//			////////////////
+//			z=351;
+//			for(int i=2; i<e1.size(); i++) {
+//				System.out.println("가수 : "+(String)e1.get(i).text());
+//				String a = (String)e1.get(i).text().replace("'", "").trim();
+//				System.out.println((i-1)+"  "+a);
+//				dao.addsong2(a,z);
+//				z++;
+//				}
+//			/////////////	
+//			}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
@@ -317,9 +334,9 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		//세션에 저장된 id값 받아오기
-//		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-//		String c_id = (String)session_user.get(0).getId();
-		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
+		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+		String c_id = (String)session_user.get(0).getId();
+//		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
 		
 //		//주소에 요청된 명령어 받아오기
 //		String doAddList = request.getParameter("doAddList");
@@ -372,9 +389,9 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		//요청된 값 받아오기
 //		HttpSession session = request.getSession();
-//		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-//		String c_id = (String)session_user.get(0).getId();
-		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
+		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+		String c_id = (String)session_user.get(0).getId();
+//		String c_id = "testAdmin"; //플레이 리스트 내용을 정상적으로 불러오는 지 확인하는 아이디.
 		int c_pl_id = pl_id;
 		
 		//Service에서 플레이 리스트 내용을 가져올 메서드 실행하기.
@@ -397,7 +414,7 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 	
 	//범주 리스트 제거하기
-	private void java3_5(String PL_ID, String id)
+	private void java3_5(int PL_ID, String id)
 	{
 		service.s_doDeleteList(PL_ID, id);
 	}
@@ -438,6 +455,16 @@ public class JavaFood_Controller extends HttpServlet {
 			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 			request.setAttribute("good",service.javafood4_2(vo));
 		}
+		if(request.getParameter("remove")!=null) {
+			vo = new login_DTO();
+			vo.setId((String)request.getSession().getAttribute("login"));
+			vo.setPw(request.getParameter("PW1"));
+			vo.setNic(request.getParameter("nic"));
+			vo.setEmail(request.getParameter("mail"));
+			vo.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
+			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
+			request.setAttribute("remove", service.javafood4_3(vo));
+		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -468,10 +495,8 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
-		if(request.getParameter("usre")!=null) {
-			System.out.println(request.getParameter("usre"));
-			request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
-		}
+		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
+		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		
 	}
