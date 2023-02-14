@@ -57,13 +57,14 @@
             <td><input type="text" class="text" name="text"></td>
             <td><input type="submit" class="butt"></td>
         </form>
-        <div style="color: white;"><a href="?p=1" class="at"><c:out value="${session_user.id } 의 재생기록 확인"/></a> </div>
+        <div style="color: white;"><a href="javafood?javafood=5&usre=${session_user.id }" class="at"><c:out value="${session_user.id } 의 재생기록 확인"/></a> </div>
         </div>
         <div class="body">
             <h2><c:out value="최근재생목록"/></h2>
             <table border="1">
                 <tr>
                     <th><c:out value="순위"/></th>
+                    <th><c:out value="이미지"/></th>
                     <th><c:out value="아티스트 이름"/></th>
                     <th><c:out value="노래 제목"/></th>
                     <th><c:out value="조회수"/></th>
@@ -72,29 +73,43 @@
                 </tr>
 				<c:if test="${song!=null }">
 					<c:forEach items="${song }" var="i">
-					<tr class="low">
-						<td><c:out value="${i.songnumber}"/></td>
-						<td><c:out value="${i.artistname}"/></td>
-						<td><c:out value="${i.songname}"/></td>
-						<td><c:out value="${i.hits}"/></td>
-						<td><a href="${i.link }" target="_blank"><c:out value="검색"/></a></td>
-						<td><c:out value="${i.likes}"/></td>
-					</tr>
+						<tr class="low">
+							<td><c:out value="${i.songnumber}"/></td>
+							<td> <img src="${i.imglink}"></td>
+							<td><c:out value="${i.artistname}"/></td>
+							<td><c:out value="${i.songname}"/></td>
+							<td><c:out value="${i.hits}"/></td>
+							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+							<td><c:out value="${i.likes}"/></td>
+						</tr>
 					</c:forEach>
 				</c:if>
-				<c:if test="${song==null }">
+				<c:if test="${usre!=null }">
+					<c:forEach items="${usre }" var="i">
+						<tr class="low">
+							<td><c:out value="${i.songnumber}"/></td>
+							<td> <img src="${i.imglink}"></td>
+							<td><c:out value="${i.artistname}"/></td>
+							<td><c:out value="${i.songname}"/></td>
+							<td><c:out value="${i.hits}"/></td>
+							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+							<td><c:out value="${i.likes}"/></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${song==null&&usre==null }">
 					<c:forEach items="${list }" var="i">
-					<tr class="low">
-						<td><c:out value="${i.songnumber}"/></td>
-						<td><c:out value="${i.artistname}"/></td>
-						<td><c:out value="${i.songname}"/></td>
-						<td><c:out value="${i.hits}"/></td>
-						<td><a class="athe" href="javafood?javafood=5&like=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-						<td><c:out value="${i.likes}"/></td>
-					</tr>
+						<tr class="low">
+							<td><c:out value="${i.songnumber}"/></td>
+							<td> <img src="${i.imglink}"></td>
+							<td><c:out value="${i.artistname}"/></td>
+							<td><c:out value="${i.songname}"/></td>
+							<td><c:out value="${i.hits}"/></td>
+							<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
+							<td><c:out value="${i.likes}"/></td>
+						</tr>
 					</c:forEach>
 				</c:if>
-
                 <%--
                 if(request.getParameter("p")!=null){
                 				List<login_DTO> vvo = db.uresong(a.get(0).getId());

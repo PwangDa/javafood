@@ -115,6 +115,7 @@ td {
 
 .list {
 	margin : -51px;
+	width : 100%;
 }
 </style>
 </head>
@@ -142,7 +143,7 @@ td {
 					<td>${dao.songnumber }</td>
 					<td>${dao.ranking }</td>
 					<td>${dao.famous }</td>
-					<td>${dao.imglink }</td>
+					<td><img src="${dao.imglink }"></td>
 					<td>${dao.songname }</td>
 					<td>${dao.artistname }</td>
 					<td>${dao.bygenre }</td>
