@@ -1015,13 +1015,14 @@ public class JavaFood_DAO {
 		//쿼리문 작성
 		String loadList_query =
 				"SELECT * FROM playList_Content plc"
-				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID"
+				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
 				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
 				+ " ORDER BY listNumber";
 		
 		//쿼리 실행
 		try
 		{
+			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(loadList_query);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -1033,6 +1034,8 @@ public class JavaFood_DAO {
 				String temp_plTitle = rs.getString("pl_title");
 				String temp_plExplain = rs.getString("pl_explain");
 				String temp_artistName = rs.getString("artistName");
+				String temp_imgLink = rs.getString("imgLink");
+				String temp_album = rs.getString("album");
 				
 				PlayListDTO playListDTO = 
 						new PlayListDTO
@@ -1042,7 +1045,9 @@ public class JavaFood_DAO {
 							temp_songName, 
 							temp_plTitle, 
 							temp_plExplain, 
-							temp_artistName
+							temp_artistName,
+							temp_imgLink,
+							temp_album
 						);
 				
 				playListContent.add(playListDTO);

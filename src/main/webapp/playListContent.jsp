@@ -28,10 +28,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><%=id %>님의 <%=listTitle %></title>
+<title><%=id %>님의 ${playListContent[0].listTitle }</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+<%-- 	<jsp:include page="menu.jsp" /> --%>
 	<br>
 	
 	<c:choose>
@@ -44,22 +44,24 @@
 		<c:when test="${!empty playListContent }">
 				<div class="album_info">
 					<!-- 아래 코드는 플레이 리스트의 대표 앨범사진 코드. 좀 더 고민해보기. -->
-					<imb class="list_thumnail src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
+					<img class="list_thumnail" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
 					<br>
 					<br>
-					<h2 style="text-shadow:2px 2px 2px gray; color:whitesmoke;">${list.PL_title }</h2>
+					<h2 style="text-shadow:2px 2px 2px gray; color:whitesmoke;">${playListContent[0].listTitle }</h2>
 					<br>
 					<div class="ablum_explain">
-						${list.PL_explain }
+						${playListContent[0].listExplain }
 					</div>
 				</div>
+				
 				<span class="delete">
 					<img class="delete_icon" src="https://popcat.click/twitter-card.jpg" width="50">
 					<img class="delete_icon2 hidden" src="https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM" width="50">
-					<div stytle="font-size:12px; text-align:center;">삭제하기</div>
+					<div style="font-size:12px; text-align:center;">삭제하기</div>
  				</span>
-			<c:forEach var="list" items="${playListContent }">
+ 				
 				<div class="list_parent">
+			<c:forEach var="list" items="${playListContent }">
 					<div class="list_child">
 						<img class="album" src="${list.imgLink }">
 						<div class="list_info">
@@ -75,17 +77,17 @@
 								<img class="sDelete_icon" src="https://popcat.click/twitter-card.jpg" width="25">
 								<img class="sDelete_icon2 hidden" src="https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM" width="25">
 								<input type="hidden" name="doDeleteSong" value="doDeleteSong">
-								<input type="hidden" name="res.ListNumber" value="${list.PL_listNumber }">
-								<input type="hidden" name="PL_ID" value="${list.req_PL_ID }">
+								<input type="hidden" name="res.ListNumber" value="${list.listNumber }">
+								<input type="hidden" name="PL_ID" value="${list.pl_id }">
 							</form>
 						</span>
 					</div>
 					<form name="PLC_delete_list">
 						<input type="hidden" name="doDeleteList" value="doDelete">
-						<input type="hidden" name="res.PL_ID" value="${list.PL_ID }">
+						<input type="hidden" name="res.PL_ID" value="${list.pl_id }">
 					</form>
-				</div>
 			</c:forEach>
+				</div>
 		</c:when>
 	</c:choose>
 	
