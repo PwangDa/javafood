@@ -191,7 +191,7 @@
         }
         .left_song{
             margin-left: 0px;
-            width: 350px;
+            width: 300px;
             text-align: left; 
         }
         .left_artist{
@@ -210,6 +210,7 @@
             text-overflow : ellipsis;
             white-space : nowrap;
             overflow : hidden;
+            padding-left: 40px;
            
         }
         .heart{
@@ -240,7 +241,7 @@
         }
         
         .left_name{
-         	width: 360px;
+         	width: 300px;
             text-align: left;
         }
         .right_item{
@@ -317,7 +318,7 @@
             <div class="tab1 tab1_5"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=인디'>인디</a></div>
             <div class="tab1 tab1_6"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>트로트</a></div>
             <div class="tab1 tab1_7"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>록/메탈</a></div>
-            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>포크/블루스</a></div>
+            <div class="tab1 tab1_8"><a href='http://localhost:8080/javafood_team/javafood?javafood=6&genre=트로트'>랩/힙합</a></div>
         </div>
         </c:when>
         <c:when test="${song eq '댄스'}">
@@ -384,7 +385,7 @@
         
         <div class="no_chart">        
                 <input type="checkbox" id="cb1" name="selectall" onclick="selectAll(this)" value="selectall">
-                   <label for="cd1"></label>
+                   <!-- <label for="cd1"></label> -->
             <div class="left_num">NO</div>
             <div class="left_song">곡이름</div>
             <div class="left_artist">아티스트</div>
