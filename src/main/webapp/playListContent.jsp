@@ -34,11 +34,61 @@
 	<jsp:include page="menu.jsp" />
 	<br>
 	
+	<c:choose>
+		<%-- 해당 플레이 리스트의 내용이 하나도 없다면 --%>
+		<c:when test="${empty playListContent }">
+			<div class="noList">등록된 곡이 없습니다. 곡을 추가해 주세요.</div>
+		</c:when>
+		
+		<%-- 해당 플레이 리스트의 내용이 하나라도 존재한다면 --%>
+		<c:when test="${!empty playListContent }">
+				<div class="album_info">
+					<!-- 아래 코드는 플레이 리스트의 대표 앨범사진 코드. 좀 더 고민해보기. -->
+					<imb class="list_thumnail src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
+					<br>
+					<br>
+					<h2 style="text-shadow:2px 2px 2px gray; color:whitesmoke;">${list.PL_title }</h2>
+					<br>
+					<div class="ablum_explain">
+						${list.PL_explain }
+					</div>
+				</div>
+				<span class="delete">
+					<img class="delete_icon" src="https://popcat.click/twitter-card.jpg" width="50">
+					<img class="delete_icon2 hidden" src="https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM" width="50">
+					<div stytle="font-size:12px; text-align:center;">삭제하기</div>
+ 				</span>
+			<c:forEach var="list" items="${playListContent }">
+				<div class="list_parent">
+					<div class="list_child">
+						<img class="album" src="${list.imgLink }">
+						<div class="list_info">
+							<span class="song_title">${list.songName }</span>
+							<br>
+							<br>
+							${list.artistName }
+							<br>
+							${list.album }
+						</div>
+						<span class="deleteSong">
+							<form class="deleteSong">
+								<img class="sDelete_icon" src="https://popcat.click/twitter-card.jpg" width="25">
+								<img class="sDelete_icon2 hidden" src="https://play-lh.googleusercontent.com/ID5wHCs0FsgS018pX0e0My5z3u4cBG7dAYAr2owB9gwylWaNZTJ0pWAKl9It7ys5iEM" width="25">
+								<input type="hidden" name="doDeleteSong" value="doDeleteSong">
+								<input type="hidden" name="res.ListNumber" value="${list.PL_listNumber }">
+								<input type="hidden" name="PL_ID" value="${list.req_PL_ID }">
+							</form>
+						</span>
+					</div>
+					<form name="PLC_delete_list">
+						<input type="hidden" name="doDeleteList" value="doDelete">
+						<input type="hidden" name="res.PL_ID" value="${list.PL_ID }">
+					</form>
+				</div>
+			</c:forEach>
+		</c:when>
+	</c:choose>
 	
-
-
-
-
 <style>
 	body
     {
@@ -205,7 +255,7 @@
             if(confirm("정말로 해당 곡을 리스트에서 삭제하겠습니까?") )
             {
                 event.currentTarget.method='get';
-                event.currentTarget.action='plc';
+                event.currentTarget.action='javafood';
                 event.currentTarget.submit();
             }
         });

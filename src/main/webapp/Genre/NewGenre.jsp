@@ -12,9 +12,10 @@
 <%-- 
 	<%
 		if(request.getParameter("number")!=null){
-		db.like(request.getParameter("number"));
+		dao.like(request.getParameter("number"));
 		}
 	%> --%>
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
