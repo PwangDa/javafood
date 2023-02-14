@@ -40,13 +40,13 @@ public class AlbumServlet extends HttpServlet {
 			String cover = request.getParameter("cover");
 			String name = request.getParameter("name");
 			String into = request.getParameter("into");
-			String artist = request.getParameter("artist");
+			String info = request.getParameter("info");
 			
 			AlbumVO vo = new AlbumVO();
 			vo.setAlbum_cover(cover);
 			vo.setAlbum_name(name);
 			vo.setAlbum_into(into);
-			vo.setArtist(artist);
+			vo.setArtist_info(info);
 			
 			dao.addAlbum(vo);
 		}

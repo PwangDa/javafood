@@ -7,6 +7,9 @@ public class AlbumVO {
 	private String album_name;	 //앨범명
 	private String album_into;	 //앨범소개
 	private String artist;		//가수이름
+	private String artist_info;		//가수소개
+	private String artist_img;	//가수이미지
+	private String artistname;	 	
 	
 	private String album_key;	//앨범 1 설정중
 	private String music_num;	//시퀀스로 올라감
@@ -14,6 +17,25 @@ public class AlbumVO {
 	private String music_link;	//음악링크
 	private String music_time;	//음악타임
 	
+	public String getArtist_img() {
+		return artist_img;
+	}
+	public void setArtist_img(String artist_img) {
+		this.artist_img = artist_img;
+	}
+	
+	public String getArtist_info() {
+		return artist_info;
+	}
+	public void setArtist_info(String artist_info) {
+		this.artist_info = artist_info;
+	}
+	public String getArtistname() {
+		return artistname;
+	}
+	public void setArtistname(String artistname) {
+		this.artistname = artistname;
+	}
 	
 	public String getAlbum_num() {
 		return album_num;

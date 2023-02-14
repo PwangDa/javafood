@@ -39,11 +39,12 @@ public class AlbumDAO {
 			String cover = albumVO.getAlbum_cover();
 			String alname = albumVO.getAlbum_name();
 			String into = albumVO.getAlbum_into();
-			String artist = albumVO.getArtist();
+			String artist_info = albumVO.getArtist_info();
+			String artist_img = albumVO.getArtist_img();
 			
-			String query = "insert into Album";
-			query += "(album_num, album_cover, album_name, album_into, artist)";
-			query += " values(Album_ss.nextval, ?, ?, ?, ?)";
+			String query = "insert into NewJeans";
+			query += "(album_num, album_cover, album_name, album_into, artist_info, artistname, artist_img)";
+			query += " values(jeans.nextval, ?, ?, ?, 'NewJeans는 2022년 7월 22일에 데뷔한 대한민국의 5인조 걸 그룹으로, 소속사는 HYBE 산하의 레이블인 ADOR이다. SM 엔터테인먼트 디렉터 출신으로 HYBE에 영입된 민희진이 프로듀서로 나서서 발굴한 걸그룹이다. 2022년 8월 18일 《엠카운트다운》에서 데뷔 3주만에 첫 1위를 차지하였다.', 'NewJeans', 'https://img.gqkorea.co.kr/gq/2022/10/style_634e7c680d723.jpg')";
 			
 			System.out.println("query check" + query);
 			
@@ -52,7 +53,7 @@ public class AlbumDAO {
 			pstmt.setString(1, cover);
 			pstmt.setString(2, alname);
 			pstmt.setString(3, into);
-			pstmt.setString(4, artist);
+//			pstmt.setString(4, artist_info);
 			pstmt.executeUpdate();
 			
 			pstmt.close();
