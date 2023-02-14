@@ -209,6 +209,7 @@ public class JavaFood_DAO {
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
+				vo.setPlaytime(rs.getString("album"));
 				list.add(vo);
 			}
 			rs.close();
@@ -290,6 +291,7 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlayTime(rs.getString("playtime"));
+				vo.setPlayTime(rs.getString("album"));
 				list.add(vo);
 			}
 			rs.close();
