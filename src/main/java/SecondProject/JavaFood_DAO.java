@@ -37,17 +37,26 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//		노래추가
-//	public void addsong1(String b,String c,String a,String d) {
-//		System.out.println("a : "+a);
+////		노래추가 제목 엘범 이미지
+//	public void addsong1(int i,String b,String c,String d) {
 //		try {
 //			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("insert into song1 values(son.nextval,'"+a+"','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','bygenre')").executeUpdate();
+//			this.con.prepareStatement("insert into Ballad values('"+i+"','a','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','POP')").executeUpdate();
 //			this.con.close();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-//		
+//	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////		노래추가 가수
+//	public void addsong2(String a,int i) {
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("UPDATE Ballad SET artistname='"+a+"' WHERE SONGNUMBER = '"+i+"'").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //특정 아이디에 노래 조회수 증가
@@ -88,6 +97,26 @@ public class JavaFood_DAO {
 			this.pstmt.executeUpdate();
 			rs1.close();
 			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//song1목록에 조회수 증가
+	public void song1addhit(String songnumber) {
+		int s = (Integer.parseInt(songnumber));
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE songnumber="+songnumber+"");
+			ResultSet rs = this.pstmt.executeQuery();
+			rs.next();
+			int a = (Integer.parseInt(rs.getString("songnumber"))+1);
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE songhit SET HITS = '"+a+"' WHERE SONGNUMBER = '"+songnumber+"'").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,7 +166,6 @@ public class JavaFood_DAO {
 			vo.setPn(rs.getString("pn"));
 			vo.setPhone(rs.getString("phone"));
 			vo.setEmail(rs.getString("email"));
-			vo.setHome(rs.getString("home"));
 			vo.setMyimg(rs.getString("img"));
 			list.add(vo);
 			rs.close();
@@ -163,7 +191,6 @@ public class JavaFood_DAO {
 				vo.setPn(rs.getString("pn"));
 				vo.setPhone(rs.getString("phone"));
 				vo.setEmail(rs.getString("email"));
-				vo.setHome(rs.getString("home"));
 				vo.setMyimg(rs.getString("img"));
 				list.add(vo);
 			}
@@ -189,6 +216,19 @@ public class JavaFood_DAO {
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//회원정보 수정
+	public void removeId(login_DTO vo) {
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='https://zrr.kr/NuiP' WHERE id = '"+vo.getId()+"'");
+			this.pstmt.executeUpdate();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	song리스트
 	public List<login_DTO> list () {
 		List<login_DTO> list = new ArrayList<login_DTO>();
@@ -199,8 +239,6 @@ public class JavaFood_DAO {
 			while(rs.next()) {
 				login_DTO vo = new login_DTO();
 				vo.setSongnumber(rs.getString("songnumber"));
-//				vo.setRanking(rs.getString("ranking"));
-//				vo.setFamous(rs.getString("famous"));
 				vo.setLink(rs.getString("link"));
 				vo.setImglink(rs.getString("imglink"));
 				vo.setSongname(rs.getString("songname"));
@@ -324,10 +362,14 @@ public class JavaFood_DAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				String alNum = rs.getString("album_num");
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-				String artist = rs.getString("artist");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
 				
 				String music_num = rs.getString("music_num");
 				String music_name = rs.getString("music_name");
@@ -336,10 +378,13 @@ public class JavaFood_DAO {
 				
 				AlbumDTO albumDTO = new AlbumDTO();
 				
+				albumDTO.setAlbum_num(alNum);
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
-				albumDTO.setArtist(artist);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
 				
 				albumDTO.setMusic_num(music_num);
 				albumDTO.setMusic_name(music_name);
@@ -384,7 +429,10 @@ public class JavaFood_DAO {
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-				String artist = rs.getString("artist");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
 				
 				String music_num = rs.getString("music_num");
 				String music_name = rs.getString("music_name");
@@ -397,7 +445,9 @@ public class JavaFood_DAO {
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
-				albumDTO.setArtist(artist);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
 				
 				albumDTO.setMusic_num(music_num);
 				albumDTO.setMusic_name(music_name);
@@ -791,12 +841,12 @@ public class JavaFood_DAO {
 	 * @param PL_ID : 플레이 리스트의 id를 입력하세요.
 	 * @param id : 플레이 리스트 주인의 id를 입력하세요.
 	 */
-	public void deleteList(String PL_ID, String id)
+	public void deleteList(int pl_id, String id)
 	{
 		//플레이 리스트 내용 삭제 쿼리문 작성
 		String del_query = 
 				"DELETE FROM playList_content"
-				+ "WHERE PL_ID = ?";
+				+ " WHERE PL_ID = ?";
 		
 		//플레이 리스트 내용 삭제 쿼리 실행
 		try
@@ -804,7 +854,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			pstmt = con.prepareStatement(del_query);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, pl_id);
 			pstmt.executeQuery();
 		}
 		catch (SQLException e)
@@ -824,7 +874,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			pstmt = con.prepareStatement(del_query);
-			pstmt.setString(1, PL_ID);
+			pstmt.setInt(1, pl_id);
 			pstmt.setString(2, id);
 			pstmt.executeQuery();
 			
@@ -989,7 +1039,7 @@ public class JavaFood_DAO {
 		dto.setListNumber(listNumber);
 		
 		int temp_PL_ID = dto.getPl_id();
-		int deleteNumber = dto.getListNumber();
+		int temp_listNumber = dto.getListNumber();
 		
 		//쿼리문 작성
 		String delSong_query = "DELETE FROM playList_Content"
@@ -999,10 +1049,11 @@ public class JavaFood_DAO {
 		//쿼리 실행
 		try 
 		{
+			this.con = dataFactory.getConnection();
 			pstmt = con.prepareStatement(delSong_query);
-			pstmt.setInt(1, deleteNumber);
+			pstmt.setInt(1, temp_listNumber);
 			pstmt.setInt(2, temp_PL_ID);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt.executeQuery();
 		}
 		catch (SQLException e)
 		{

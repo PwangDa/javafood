@@ -113,5 +113,6 @@ public class PlayListDTO
 		this.listExplain = plExplain;
 		this.artistName = artistName;
 		this.imgLink = imgLink;
+		this.album = album;
 	}
 }
