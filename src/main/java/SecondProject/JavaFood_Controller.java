@@ -442,8 +442,13 @@ public class JavaFood_Controller extends HttpServlet {
 				}
 			}
 		}
+		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
+		if(request.getParameter("usre")!=null) {
+			System.out.println(request.getParameter("usre"));
+			request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
+		}
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		
 	}
