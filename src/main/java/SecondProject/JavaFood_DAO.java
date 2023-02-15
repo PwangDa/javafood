@@ -45,6 +45,7 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
+<<<<<<< HEAD
 	public void addsong1(String b,String c,String d) {
 		try {
 			this.con = this.dataFactory.getConnection();
@@ -54,21 +55,32 @@ public class JavaFood_DAO {
 			e.printStackTrace();
 		}
 	}
+=======
+//	public void addsong1(int i ,String b,String c,String d) {
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("INSERT INTO Genre VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'POP',null , '"+d+"',null)").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+>>>>>>> 33336cd6daa85375f1986647ce892c389e4e85f5
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////		노래추가 가수
 //	/**
 //	 * @param a : song1 에 추가할 가수이름
 //	 * @param i : song1 의 불러올 노래번호
 //	 */
-	public void addsong2(String a,int i) {
-		try {
-			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("UPDATE GENRE SET ARTISTNAME ='"+a+"' WHERE SONGNUMBER ="+i).executeUpdate();
-			this.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void addsong2(String a,int i) {
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("UPDATE GENRE SET ARTISTNAME ='"+a+"' WHERE SONGNUMBER ="+i).executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 특정 아이디에 노래 조회수 증가
@@ -272,7 +284,7 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<song_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM  song1");
+			this.pstmt = this.con.prepareStatement("SELECT * FROM  Genre");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -307,8 +319,8 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE SONGNAME  LIKE '%"+text+"%'");
+			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -339,14 +351,14 @@ public class JavaFood_DAO {
 	public void like(String i) {
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM SONG1 WHERE SONGNUMBER ="+i);
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM Genre WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			song_DTO vo = new song_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
-			this.pstmt = con.prepareStatement("UPDATE SONG1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt = con.prepareStatement("UPDATE Genre SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();
@@ -365,7 +377,7 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String genre = " SELECT * FROM  song1";
+			String genre = " SELECT * FROM  Genre ORDER BY songnumber";
 			genre += " where bygenre = ?";
 			this.pstmt = con.prepareStatement (genre);
 			this.pstmt.setString(1, a);
@@ -741,7 +753,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
+			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s ) a ) ORDER BY songnumber ";
 			   		 
 			   		  
 			   		

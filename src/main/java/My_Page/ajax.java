@@ -22,6 +22,8 @@ public class ajax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+
 		if(request.getParameter("id")!=null) {
 			String id = request.getParameter("id");
 			String nic = request.getParameter("nic");
@@ -61,10 +63,11 @@ public class ajax extends HttpServlet {
 			}
 			response.getWriter().println(a);
 		}
-		if(request.getParameter("img")!=null) {
+		
+		if(request.getParameter("writerEmail")!=null) {
 			System.out.println("이미지를 업로드 합니다.");
 			try {
-				File cur = new File("C:\\Users\\admin\\Documents\\javafood");
+				File cur = new File("C:\\javafood");
 				if(!cur.exists()) {
 					try {
 						cur.mkdir();
@@ -79,16 +82,40 @@ public class ajax extends HttpServlet {
 				DiskFileItemFactory disk = new DiskFileItemFactory();
 				disk.setRepository(cur);
 				disk.setSizeThreshold(1024*1024);
-				ServletFileUpload serf = new ServletFileUpload();
+				ServletFileUpload serf = new ServletFileUpload(disk);
 				serf.setFileSizeMax(1024*1024*100);
+				
+				
+				System.out.println(serf.parseRequest(request));
+				
+				
 				List items = serf.parseRequest(request);				
 				for(int i = 0; i<items.size(); i++) {
-//					FileItem fitem = FileItem
-					items.get(i);
+					FileItem fitem = (FileItem) items.get(i);
+					if(fitem.isFormField()) {
+						System.out.println(fitem.getFieldName()+"="+fitem.getString("utf-8"));
+					}else {
+						System.out.println("param : "+fitem.getFieldName());
+						System.out.println("file name :  "+fitem.getName());
+						System.out.println("file size :  "+fitem.getSize());
+						
+						if(fitem.getSize()>0) {
+							//파일명 추출1
+							int idx = fitem.getName().lastIndexOf("\\");
+							if(idx == -1) {
+								idx = fitem.getName().lastIndexOf("/");
+							}
+							String filname = fitem.getName().substring(idx+1);
+							
+							//파일명 중복방지
+							long timestamp = System.currentTimeMillis();
+							filname = timestamp+"_"+filname;
+							
+							File up = new File(cur+"\\"+filname);
+							fitem.write(up);
+						}
+					}
 				}
-				
-				
-				
 			} catch (Exception e) {
 				System.out.println("이미지 업로드 실패");
 				e.printStackTrace();
