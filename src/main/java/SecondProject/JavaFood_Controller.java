@@ -193,8 +193,9 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
-//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
+//			String url = "https://www.melon.com/album/detail.htm?albumId="+i;
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis"); //가수이름 여러명일 때
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
 //			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
 //			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");

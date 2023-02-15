@@ -558,6 +558,7 @@
 	    	    	  String cont = vo.getComment_cont();
 	    	    	  Date date = vo.getComment_Date(); --%>
 	    	  	<c:forEach var ="comment" items="${commentList}">
+	            <c:if test="${comment.level == 1 }">
 	                <div class="comment">
 	                        <div class="text2 cont2_1">
 	                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
@@ -578,7 +579,7 @@
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
-			                			<c:if test="${comment.level > 1}">
+			                			<c:if test="${comment.level >= 2 && comment.articleNO == comment.parentNO}">
 				                			<div class="comment_1">
 							                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 							                        <p class="comment_1_1">${comment.comment_id }</p>
@@ -600,6 +601,7 @@
 	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
 	                </div> 
+	             </c:if>
 	            </c:forEach>
                 <%-- } --%>
                              
