@@ -476,8 +476,10 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String song = request.getParameter("genre");
+		String song="발라드";
+		if(request.getParameter("genre")!=null) {
+			song = request.getParameter("genre");
+		}
 		System.out.println("song  전: " + song);
 		List genre_list = service.javafood6(song);
 		request.setAttribute("genre", genre_list);
