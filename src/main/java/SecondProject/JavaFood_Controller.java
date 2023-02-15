@@ -202,7 +202,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		//음악추가
 		if(request.getParameter("javafood").equals("add")) {
 
-			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0200&steadyYn=Y";
 			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
 			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
 			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
@@ -248,11 +248,70 @@ public class JavaFood_Controller extends HttpServlet {
 				String b = (String)e2.get(i).text().replace("'", "").trim();
 				String c = (String)e3.get(i).text().replace("'", "").trim();
 				String d = (String)e4.get(i).attr("src").trim();
+				dao.addsong1( b, c, d);
+			}
+			////////////////
+			int z=51;
+			for(int i=0; i<e1.size(); i++) {
+				System.out.println("가수 : "+(String)e1.get(i).text());
+				String a = (String)e1.get(i).text().replace("'", "").trim();
+				System.out.println((z)+"  "+a);
+				dao.addsong2(a,z);
+				z++;
 				dao.addsong1(a, b, c, d);
 			}
 		}
 			////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////다영이것 건들면 큰1납니다. 말아주세요. 젭알. 부탁드립니다. (음악추가)
+	if(request.getParameter("javafood").equals("addd")) {
+		JavaFood_DAO dao = new JavaFood_DAO();
+		List<AlbumDTO> li =  dao.addd1();
+		List<AlbumDTO> alDTO = new ArrayList<AlbumDTO>();
+		for(int i=0; i<li.size(); i++) {
+			if(li.get(i).getAlbum_name().equals(request.getParameter("name")))
+				System.out.println(li.get(0).getName());
+			
+			String url = li.get(1).getName();
+			System.out.println(url);
+			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+			String e1 = doc.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");
+			System.out.println(e1);
+			
+			
+			AlbumDTO dto = new AlbumDTO();
+			dto.setAlbum_cover(e1);
+//			dto.setAlbum_name(e2);
+			
+			alDTO.add(dto);
+		}
+		request.setAttribute("alDTO", alDTO);
+		
 	}
+		
+//		일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
+	//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
+	//url에 db에 넣을 주소 가져오기
+//		String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+//		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//		for(int i=0; i<e1.size(); i++) {
+//			String a = e1.get(i).toString();
+//			String[] b= a.split("'");
+//			String c=("https://www.melon.com/album/detail.htm?albumId="+b[1]);
+//			dao.addd(c, i+1);
+//		}
+		
+	
+	
+//	for(int i=0; i<50; i++) {
+//		String url = c;
+//		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//		
+//	}
+
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
 /*	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

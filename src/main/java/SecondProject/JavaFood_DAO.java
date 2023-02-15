@@ -45,9 +45,10 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
-	public void addsong1(String a,String b,String c,String d) {
+	public void addsong1(String b,String c,String d) {
 		try {
 			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("INSERT INTO GENRE VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, DANCE, NULL, '"+d+"')").executeUpdate();
 			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, '"+a+"', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
@@ -1169,9 +1170,41 @@ public class JavaFood_DAO {
 		
 		return playListContent;
 	}
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+	public void addd(String a, int b) {
+		List li = new ArrayList();
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE GENRE SET album_add='"+a+"' WHERE SONGNUMBER ='"+b+"'").executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		public List<AlbumDTO> addd1() {
+			List<AlbumDTO> li = new ArrayList<AlbumDTO>();
+			try {
+				this.con = this.dataFactory.getConnection();
+				ResultSet rs = this.con.prepareStatement("SELECT album_add FROM GENRE").executeQuery();
+				while(rs.next()) {
+					
+					String n = rs.getString("album_add");
+					AlbumDTO dto = new AlbumDTO();
+					dto.setName(n);
+					li.add(dto);
+				}
+				
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return li;
+		}
+		
+		
+		
+		
+		
+	}
 
