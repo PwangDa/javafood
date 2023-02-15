@@ -330,7 +330,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		//세션에 저장된 id값 받아오기
-		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+		List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
 		String c_id = (String)session_user.get(0).getId();
 //		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
 		
