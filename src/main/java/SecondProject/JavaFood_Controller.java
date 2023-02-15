@@ -248,8 +248,7 @@ public class JavaFood_Controller extends HttpServlet {
 				String b = (String)e2.get(i).text().replace("'", "").trim();
 				String c = (String)e3.get(i).text().replace("'", "").trim();
 				String d = (String)e4.get(i).attr("src").trim();
-<<<<<<< HEAD
-				dao.addsong1(b, c, d);
+				dao.addsong1( b, c, d);
 			}
 			////////////////
 			int z=51;
@@ -259,9 +258,7 @@ public class JavaFood_Controller extends HttpServlet {
 				System.out.println((z)+"  "+a);
 				dao.addsong2(a,z);
 				z++;
-=======
 				dao.addsong1(a, b, c, d);
->>>>>>> 1f9cc5c03fbad3d7afb38f5c6abfa4cc8574b62d
 			}
 		}
 			////////////////
