@@ -48,7 +48,8 @@ public class JavaFood_DAO {
 	public void addsong1(String b,String c,String d) {
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
+			this.con.prepareStatement("INSERT INTO GENRE VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, DANCE, NULL, '"+d+"')").executeUpdate();
+			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, '"+a+"', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

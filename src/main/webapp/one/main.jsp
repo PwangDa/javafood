@@ -147,19 +147,19 @@
                     </tr>
 
             <tr>
-                <td id="log"><a class="lin" href="http://localhost:8080/javafood_team?javafood=4"
+                <td id="log"><a class="lin" href="http://localhost:8080/javafood_team/javafood?javafood=4"
                     style="text-decoration:none">로그인</a>
                 </td>
                 
-                <td id="my"><a class="lin" href="http://localhost:8080/javafood_team?javafood=5"
+                <td id="my"><a class="lin" href="http://localhost:8080/javafood_team/javafood?javafood=5"
                     style="text-decoration:none">마이페이지</a></td>
 
-                <td id="cha"><a class="lin" href="http://localhost:8080/javafood_team?javafood=2"
+                <td id="cha"><a class="lin" href="http://localhost:8080/javafood_team/javafood?javafood=2"
                     style="text-decoration:none">인기차트</a></td>
             </tr>
 
                 <tr>
-                 <td id="list"><a class="lin" href="http://localhost:8080/javafood_team?javafood=3"
+                 <td id="list"><a class="lin" href="http://localhost:8080/javafood_team/javafood?javafood=3"
                     style="text-decoration:none"
                    >재생목록</a>
                 </td>
@@ -167,13 +167,13 @@
                  </tr>
 
                  <tr>
-                    <td id="ac"><a class="lin" href="http://localhost:8080/javafood_team?javafood=6"
+                    <td id="ac"><a class="lin" href="http://localhost:8080/javafood_team/javafood?javafood=6"
                         style="text-decoration:none">장르별목록</a>
                     </td>
                   </tr>
 
                     <tr>
-                        <td id="al"><a class="lin" href="http://localhost:8080/javafood_team?javafood=1"
+                        <td id="al"><a class="lin" href="http://localhost:8080/javafood_team/javafood?javafood=1"
                             style="text-decoration:none">앨범</a></td>
                         </tr>
 
