@@ -180,7 +180,7 @@
             display: flex;
             height: 40px;
             border-bottom: 1px solid rgb(98, 98, 98);
-            margin : 20px;
+            margin : 20px 20px 0px 20px;
             justify-content: space-between;
         }
 
@@ -190,7 +190,7 @@
             text-align: center;
         }
         .left_song{
-            margin-left: 0px;
+            margin-left: 70px;
             width: 300px;
             text-align: left; 
         }
@@ -221,14 +221,14 @@
 
         /* 곡리스트 */
         .musiclist{
-            margin-top: 20px;
+           /*  margin-top: 20px; */
 /*             display : inline-block; */
         }
         .cont2{
             display: flex;
             height: 85px;
             border-bottom: 1px solid rgb(98, 98, 98);
-            margin : 20px;
+            margin : 0px 20px 0px 20px;
             justify-content: space-between;
             align-items : center;
         }
@@ -307,7 +307,7 @@
  			background-size: contain;
         }
         .left_song_bot{
-            margin-left: 0px;
+            margin-left: 10px;
             width: 300px;
             text-align: left; 
             line-height: 40px;
@@ -489,7 +489,7 @@
                 <div class="left_song_bot"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist_bot" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
                 <div class="left_album_bot" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 --> 
-                <div class="right_item_bot">${ genre_list.playTime}</div> <!-- 재생시간 -->
+                <div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
                 <div class="right_item_bot" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->

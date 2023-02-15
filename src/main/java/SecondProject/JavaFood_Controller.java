@@ -12,6 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
@@ -193,6 +198,8 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
+//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
+//			Jsoup.connect(url).get();
 //			String url = "https://www.melon.com/album/detail.htm?albumId="+i;
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis"); //가수이름 여러명일 때
@@ -214,6 +221,7 @@ public class JavaFood_Controller extends HttpServlet {
 //				dao.addsong1(z,b,c,d);
 //				z++;
 //			}
+//		}
 //			////////////////
 //			z=351;
 //			for(int i=2; i<e1.size(); i++) {
@@ -477,8 +485,10 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String song = request.getParameter("genre");
+		String song="발라드";
+		if(request.getParameter("genre")!=null) {
+			song = request.getParameter("genre");
+		}
 		System.out.println("song  전: " + song);
 		List genre_list = service.javafood6(song);
 		request.setAttribute("genre", genre_list);

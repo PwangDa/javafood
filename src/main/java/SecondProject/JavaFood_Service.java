@@ -253,14 +253,7 @@ public class JavaFood_Service {
 	//용준 
 	public List<song_DTO> javafood6(String song){
 		System.out.println("6번 장르 실행");
-		List<song_DTO> list = null;
-		// 장르별
-		if (song == null) {
-			list = dao.list();
-		} else {
-			list = dao.getGenre(song);
-		}
-		return list;
+		return dao.getGenre(song);
 		
 		
 	}
