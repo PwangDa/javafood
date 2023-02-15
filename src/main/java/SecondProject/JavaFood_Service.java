@@ -255,7 +255,9 @@ public class JavaFood_Service {
 		System.out.println("6번 장르 실행");
 		return dao.getGenre(song);
 		
-		
+	}
+	public void javafood6_1(String songnumber) {
+		dao.like(songnumber);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연 메인 

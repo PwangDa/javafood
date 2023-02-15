@@ -486,6 +486,7 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setAttribute("genre", genre_list);
 		request.setAttribute("song", song);
 		System.out.println("song 후: " + song);
+		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
 		
