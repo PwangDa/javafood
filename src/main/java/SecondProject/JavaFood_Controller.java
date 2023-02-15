@@ -12,11 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
@@ -200,67 +195,76 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
-		if(request.getParameter("javafood").equals("add")) {
-
-			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0200&steadyYn=Y";
-			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
-			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
-			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
-			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
-			JavaFood_DAO dao = new JavaFood_DAO();
-			for(int i=0; i<e1.size(); i++) {
+//		if(request.getParameter("javafood").equals("add")) {
+//
+//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900&steadyYn=Y";
+//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
+//			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
+//			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+//			JavaFood_DAO dao = new JavaFood_DAO();
+//			int z=351;
+//			for(int i=0; i<e1.size(); i++) {
 //				System.out.println("제목 : "+(String)e2.get(i).text());
 //				System.out.println("앨범 : "+(String)e3.get(i).text());
 //				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
 //				System.out.println();
-				
-				
-				String a = e1.get(i).toString();
-				System.out.println(a);
-				String result = "";
-				
-				while(true)
-				{
-					if(a.indexOf("<a") != -1)
-					{
-						int startNum = a.indexOf("이동\">") + 4;
-						int endNum = a.indexOf("</a>");
-						
-						if(result.equals("") )
-						{
-							result += a.substring(startNum, endNum);
-						}
-						else
-						{
-							result += ", " + a.substring(startNum, endNum);
-						}
-						a = a.substring(endNum + 4);
-					}
-					else
-					{
-						break;
-					}
-				}
-				
-				System.out.println("가수 : " + result);
-				a=result;
-				String b = (String)e2.get(i).text().replace("'", "").trim();
-				String c = (String)e3.get(i).text().replace("'", "").trim();
-				String d = (String)e4.get(i).attr("src").trim();
-				dao.addsong1( b, c, d);
-			}
+//				
+//				
+//				
+//				
+//				String b = (String)e2.get(i).text().replace("'", "").trim();
+//				String c = (String)e3.get(i).text().replace("'", "").trim();
+//				String d = (String)e4.get(i).attr("src").trim();
+//				dao.addsong1(z,b, c, d);
+//				z++;
+//			}
 			////////////////
-			int z=51;
-			for(int i=0; i<e1.size(); i++) {
-				System.out.println("가수 : "+(String)e1.get(i).text());
-				String a = (String)e1.get(i).text().replace("'", "").trim();
-				System.out.println((z)+"  "+a);
-				dao.addsong2(a,z);
-				z++;
-				dao.addsong1(a, b, c, d);
-			}
-		}
+//			z=51;
+//			List list = new ArrayList();
+//				for(int i=0; i<e1.size(); i++) {
+//				System.out.println("가수 : "+(String)e1.get(i).text());
+//				String a = (String)e1.get(i).text().replace("'", "").trim();
+
+//				String a = e1.get(i).toString();
+//				System.out.println(a);
+//				String result = "";
+//				
+//				while(true)
+//				{
+//					if(a.indexOf("<a") != -1)
+//					{
+//						int startNum = a.indexOf("이동\">") + 4;
+//						int endNum = a.indexOf("</a>");
+//						
+//						if(result.equals("") )
+//						{
+//							result += a.substring(startNum, endNum);
+//						}
+//						else
+//						{
+//							result += ", " + a.substring(startNum, endNum);
+//						}
+//						a = a.substring(endNum + 4);
+//					}
+//					else
+//					{
+//						break;
+//					}
+//				}
+//				System.out.println("가수 : " + result);
+//				a=result;
+//				list.add(a);
+//				System.out.println((z)+"  "+a);
+//			}
+//				System.out.println("sldfhsladfhsakjdhfkjsadf : "+list.size());
+//				for(int i=0; i<list.size(); i++) {
+//					list.get(i)
+//				}
+//				dao.addsong2(a,z);
+//				z++;
+//		}
 			////////////////
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
