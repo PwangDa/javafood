@@ -299,7 +299,7 @@ public class JavaFood_Controller extends HttpServlet {
 //			String a = e1.get(i).toString();
 //			String[] b= a.split("'");
 //			String c=("https://www.melon.com/album/detail.htm?albumId="+b[1]);
-//			dao.addd(c, i+1);
+//			dao.addd(c, i+1); //51번부터 넣을땐 i에 50넣고
 //		}
 		
 	
