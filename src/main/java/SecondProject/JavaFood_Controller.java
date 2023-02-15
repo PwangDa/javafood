@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import Chart.SongDAO;
@@ -198,6 +199,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
 //			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
+//			Jsoup.connect(url).get();
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
 //			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
@@ -217,6 +219,7 @@ public class JavaFood_Controller extends HttpServlet {
 //				dao.addsong1(z,b,c,d);
 //				z++;
 //			}
+//		}
 //			////////////////
 //			z=351;
 //			for(int i=2; i<e1.size(); i++) {
