@@ -310,7 +310,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 //		
 //	}
-////////////////
+
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
