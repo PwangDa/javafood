@@ -151,7 +151,7 @@
                 rgba(0, 0, 0, 0.75) 75%,
                 rgb(0, 0, 0) 100%
             ),
-            url("https://i.pinimg.com/1200x/08/81/34/088134b9c3c6d6a1fa2c037bae1d5b49.jpg") ;
+            url("${listAlbum[0].artist_img}") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -193,7 +193,9 @@
         .comment{
             display: flex;
             justify-content: center;
+            
         }
+
         .text2{
             padding-top: 20px;
         }
@@ -231,7 +233,7 @@
             color:white;
             background-color:rgb(70, 70, 70);
             padding: 15px 30px;
-            height: 110px;
+            height: 90px;
             margin: 10px;
             border-radius: 15px;
             border: none;
@@ -294,26 +296,27 @@
         }
 
         .comment_1{
-            
             height: 40px;
             /* vertical-align: top; */
         }
 
         .comment_1_1{
             display: inline-block;
-          
+            margin-right: 4px;
             height: 20px;
             vertical-align: top;
         }
         .comment_1_2{
             height: 24px;
             vertical-align: top;
-
+            margin: 12px 10px 0px 10px;
         }
         
         .comment_1_3{
-           
-            width: 530px;
+           text-align: left;
+            width: 520px;
+            margin: 3px;
+            padding: 2px;
         }
 
 
@@ -359,6 +362,13 @@
         	text-align: left;
         	font-size: 14px;
             cursor: pointer;
+        }
+
+        .reply{
+            /* border: 1px solid white; */
+            display: inline-block;
+            width: 530px;
+            text-align: left;
         }
         
         /* 앨범  < > 용 스타일*/
@@ -433,14 +443,13 @@
 <body  onscroll="headerbarToggle()">
 	<jsp:include page="menu.jsp"></jsp:include>
     <div id = "home">
-        <div id = "cont" class = "contain">
-        <c:forEach var="al" items="${listAlbum }" begin="1" end="1">
-            <div class = "text1">
-                <h1>${al.artistname }</h1>
-                <p style="width: 690px;">${al.artist_info }</p>
+        <div id = "cont" class = "contain">     
+            <div class = "text1"> 
+            <%--forEach 안하고 하나의 값만 가져오고 싶을때 --%>
+                <h1>${listAlbum[0].artistname }</h1>
+                <p style="width: 690px;">${listAlbum[0].artist_info }</p>
                 <div> <a target="_blank" href="https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0">출처:namuwiki</a></div>
             </div>
-        </c:forEach>   
         </div>
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
@@ -549,7 +558,7 @@
                 </div>
             </form>
             </div>
-            <div class="command">
+        <div class="command">
             <hr>
                 <%-- for(int i= 0; i<list.size(); i++) {
 	    	    	  CommentVO vo = list.get(i);
@@ -557,10 +566,11 @@
 	    	    	  String id = vo.getComment_id();
 	    	    	  String cont = vo.getComment_cont();
 	    	    	  Date date = vo.getComment_Date(); --%>
+	    	<div>
 	    	  	<c:forEach var ="comment" items="${commentList}">
-	            <c:if test="${comment.level == 1 }">
-	                <div class="comment">
-	                        <div class="text2 cont2_1">
+	            	<c:if test="${comment.level == 1 }">
+	                	<div class="comment" >
+                            <div class="text2 cont2_1">
 	                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 	                            <div class="id2">${comment.comment_id }</div>
 	                        </div>
@@ -579,19 +589,6 @@
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
-			                			<c:if test="${comment.level >= 2 && comment.articleNO == comment.parentNO}">
-				                			<div class="comment_1">
-							                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-							                        <p class="comment_1_1">${comment.comment_id }</p>
-							                        <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
-							                        <button class="btn1 comment_1_2" type="button" onclick="fn_sendComment()"> 삭제</button>
-							  
-				                			</div>
-				                			<div class="comment_1_3">
-				                                <span class="comment_1_4" style="margin-right :40px;"></span>
-				                                ${comment.comment_cont }
-				                            </div>
-			                			</c:if>
                 				</details>
 	                        </div>
 	                        <!-- 삭제하기 기능도 
@@ -600,13 +597,32 @@
 	                        <div class="text2">
 	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
-	                </div> 
-	             </c:if>
-	            </c:forEach>
+	                	</div>
+                        
+	             	</c:if>
+                    	<%--대댓글 등록했을 때 form --%>
+	             		<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=delcommnet.do">
+			            	<c:if test="${comment.level >= 2}">
+			            		<div class="reply">
+				        			<div class="comment_1">
+                                            <span class="comment_1_1">└</span>
+						                    <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+						                    <p class="comment_1_1">${comment.comment_id }</p>
+						                    <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
+						                    <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2" type="button"> 삭제</button></a>
+				        			</div>
+				        			<div class="comment_1_3">
+				                        <span class="comment_1_4" style="margin-right :70px;"></span>
+				                        ${comment.comment_cont }
+				                    </div>
+				                </div>
+			            	</c:if>
+			            </form>
+                    </c:forEach>  
                 <%-- } --%>
-                             
-            </div>
+            </div>                 
         </div>
+    </div>
 
 
 </body>
