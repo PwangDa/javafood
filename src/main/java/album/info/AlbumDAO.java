@@ -72,17 +72,20 @@ public class AlbumDAO {
 			String key = albumVO.getAlbum_key();
 			String mnum = albumVO.getMusic_num();
 			String mname = albumVO.getMusic_name();
+			String alname= albumVO.getAlbum_name();
 			String link = albumVO.getMusic_link();
 			String time = albumVO.getMusic_time();
 			
-			String query = "insert into intoAlbum";
-			query += "(album_num, music_num, music_name, music_link, music_time)";
-			query += " values(5, home_m.nextval, ?, ?, ?)";
+			String query = "insert into newjeansAlbum";
+			query += "(album_num, album_name, music_num, music_name, music_link, music_time)";
+			query += " values(3, NewJeans 1st EP 'New Jeans', 1, ?, ?, ?)";
 			
-			System.out.println("query check" + query);
+			System.out.println("query check \n" + query);
 			
 			pstmt = con.prepareStatement(query);
 			
+//			pstmt.setString(1, albumname);
+			System.out.println(mname);
 			pstmt.setString(1, mname);
 			pstmt.setString(2, link);
 			pstmt.setString(3, time);

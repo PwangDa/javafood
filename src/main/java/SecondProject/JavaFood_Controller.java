@@ -12,17 +12,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+=======
+>>>>>>> 84ea601907e1dec993602fc1e250193b903d8b4e
 
 import Chart.SongDAO;
-import My_Page.test;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 @WebServlet("/javafood/*")
 public class JavaFood_Controller extends HttpServlet {
@@ -198,9 +201,14 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
+<<<<<<< HEAD
 //			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
 //			Jsoup.connect(url).get();
+=======
+//			String url = "https://www.melon.com/album/detail.htm?albumId="+i;
+>>>>>>> 84ea601907e1dec993602fc1e250193b903d8b4e
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis"); //가수이름 여러명일 때
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
 //			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
 //			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
@@ -316,7 +324,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
-		List<login_DTO> list_login = service.javafood2();
+		List<song_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
 		System.out.println("list_login size : " + list_login.size());
@@ -424,25 +432,11 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("4번 로그인 실행");
-
-		service.javafood4(request.getParameter("membership"));
-		if(map!=null) {
-			System.out.println("map1"+map);
-			System.out.println("map2"+map.get("membership"));
-		}
 		if(request.getParameter("membership") !=null) {
-			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
-		}
-		if(request.getParameter("membership") !=null) {
-			System.out.println("membership");
-			map = service.javafood4(request.getParameter("membership"));
-
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
-			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
 			request.setAttribute("log", (int) map.get("log"));
@@ -473,29 +467,20 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
-		System.out.println("map : "+map.get("list"));
 		if(request.getSession().getAttribute("login")!=null) {
-			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-			System.out.println("session 아이디 : "+session_user.get(0).getId());
-			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
-			System.out.println("option : "+request.getParameter("option"));
 			if(request.getParameter("text")!=null) {
-				System.out.println("text : "+request.getParameter("text"));
-				List<login_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
+				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
 				if(list!=null) {
 					request.setAttribute("song", list);
-					System.out.println("!=null lsit : "+list);
 				}
 			}
 		}
-		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
@@ -506,8 +491,10 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String song = request.getParameter("genre");
+		String song="발라드";
+		if(request.getParameter("genre")!=null) {
+			song = request.getParameter("genre");
+		}
 		System.out.println("song  전: " + song);
 		List genre_list = service.javafood6(song);
 		request.setAttribute("genre", genre_list);

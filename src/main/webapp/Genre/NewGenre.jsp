@@ -180,7 +180,7 @@
             display: flex;
             height: 40px;
             border-bottom: 1px solid rgb(98, 98, 98);
-            margin : 20px;
+            margin : 20px 20px 0px 20px;
             justify-content: space-between;
         }
 
@@ -190,7 +190,7 @@
             text-align: center;
         }
         .left_song{
-            margin-left: 0px;
+            margin-left: 70px;
             width: 300px;
             text-align: left; 
         }
@@ -221,14 +221,16 @@
 
         /* 곡리스트 */
         .musiclist{
-            margin-top: 20px;
+           /*  margin-top: 20px; */
+/*             display : inline-block; */
         }
         .cont2{
             display: flex;
-            height: 40px;
+            height: 85px;
             border-bottom: 1px solid rgb(98, 98, 98);
-            margin : 20px;
+            margin : 0px 20px 0px 20px;
             justify-content: space-between;
+            align-items : center;
         }
         .cont2:hover{
             cursor: pointer;
@@ -238,6 +240,13 @@
             width: 100px;
             height: 40px;
             text-align: center;
+        }
+        
+        .left_img{
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 40px;
         }
         
         .left_name{
@@ -296,6 +305,45 @@
  			width: 20px;
  			height: 20px;
  			background-size: contain;
+        }
+        .left_song_bot{
+            margin-left: 10px;
+            width: 300px;
+            text-align: left; 
+            line-height: 40px;
+        }
+         .right_item_bot{
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .left_item_bot{
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .left_artist_bot{
+            width: 150px;
+            height: 40px;
+            text-align: left;
+            text-overflow : ellipsis;
+            white-space : nowrap;
+            overflow : hidden;
+            line-height: 40px;
+           
+        }
+        .left_album_bot{
+            width: 100px;
+            height: 40px;
+            text-align: left;
+            text-overflow : ellipsis;
+            white-space : nowrap;
+            overflow : hidden;
+            padding-left: 40px;
+            line-height: 40px;
+           
         }
 </style>
 </head>
@@ -436,14 +484,14 @@
         <div class= "musiclist">
              <div class="cont2">
              	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
-                <div class="left_item">${ status.count} </div>  <!-- 곡 순서 -->
-                <div><img src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
-                <div class="left_item left_name"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
-                <div class="left_artist" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
-                <div class="left_album" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 --> 
-                <div class="right_item">${ genre_list.playTime}</div> <!-- 재생시간 -->
+                <div class="left_item_bot">${ status.count} </div>  <!-- 곡 순서 -->
+                <div><img class="left_img" src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
+                <div class="left_song_bot"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
+                <div class="left_artist_bot" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
+                <div class="left_album_bot" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 --> 
+                <div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
-                <div class="right_item" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
+                <div class="right_item_bot" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${ status.count}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
