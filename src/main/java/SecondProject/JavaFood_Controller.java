@@ -202,7 +202,7 @@ public class JavaFood_Controller extends HttpServlet {
 //		//음악추가
 		if(request.getParameter("javafood").equals("add")) {
 
-			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0200&steadyYn=Y";
 			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
 			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
 			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
@@ -248,7 +248,20 @@ public class JavaFood_Controller extends HttpServlet {
 				String b = (String)e2.get(i).text().replace("'", "").trim();
 				String c = (String)e3.get(i).text().replace("'", "").trim();
 				String d = (String)e4.get(i).attr("src").trim();
+<<<<<<< HEAD
+				dao.addsong1(b, c, d);
+			}
+			////////////////
+			int z=51;
+			for(int i=0; i<e1.size(); i++) {
+				System.out.println("가수 : "+(String)e1.get(i).text());
+				String a = (String)e1.get(i).text().replace("'", "").trim();
+				System.out.println((z)+"  "+a);
+				dao.addsong2(a,z);
+				z++;
+=======
 				dao.addsong1(a, b, c, d);
+>>>>>>> 1f9cc5c03fbad3d7afb38f5c6abfa4cc8574b62d
 			}
 		}
 			////////////////
