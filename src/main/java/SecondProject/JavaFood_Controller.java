@@ -209,14 +209,46 @@ public class JavaFood_Controller extends HttpServlet {
 			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
 			JavaFood_DAO dao = new JavaFood_DAO();
-			for(int i=0; i<e4.size(); i++) {
-				System.out.println("제목 : "+(String)e2.get(i).text());
-				System.out.println("앨범 : "+(String)e3.get(i).text());
-				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
-				System.out.println();
+			for(int i=0; i<e1.size(); i++) {
+//				System.out.println("제목 : "+(String)e2.get(i).text());
+//				System.out.println("앨범 : "+(String)e3.get(i).text());
+//				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
+//				System.out.println();
+				
+				
+				String a = e1.get(i).toString();
+				System.out.println(a);
+				String result = "";
+				
+				while(true)
+				{
+					if(a.indexOf("<a") != -1)
+					{
+						int startNum = a.indexOf("이동\">") + 4;
+						int endNum = a.indexOf("</a>");
+						
+						if(result.equals("") )
+						{
+							result += a.substring(startNum, endNum);
+						}
+						else
+						{
+							result += ", " + a.substring(startNum, endNum);
+						}
+						a = a.substring(endNum + 4);
+					}
+					else
+					{
+						break;
+					}
+				}
+				
+				System.out.println("가수 : " + result);
+				a=result;
 				String b = (String)e2.get(i).text().replace("'", "").trim();
 				String c = (String)e3.get(i).text().replace("'", "").trim();
 				String d = (String)e4.get(i).attr("src").trim();
+<<<<<<< HEAD
 				dao.addsong1(b, c, d);
 			}
 			////////////////
@@ -227,8 +259,12 @@ public class JavaFood_Controller extends HttpServlet {
 				System.out.println((z)+"  "+a);
 				dao.addsong2(a,z);
 				z++;
+=======
+				dao.addsong1(a, b, c, d);
+>>>>>>> 1f9cc5c03fbad3d7afb38f5c6abfa4cc8574b62d
 			}
 		}
+			////////////////
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)

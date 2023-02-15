@@ -45,10 +45,14 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
-	public void addsong1(String b,String c,String d) {
+	public void addsong1(String a,String b,String c,String d) {
 		try {
 			this.con = this.dataFactory.getConnection();
+<<<<<<< HEAD
 			this.con.prepareStatement("INSERT INTO GENRE VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, DANCE, NULL, '"+d+"')").executeUpdate();
+=======
+			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, '"+a+"', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
+>>>>>>> 1f9cc5c03fbad3d7afb38f5c6abfa4cc8574b62d
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
