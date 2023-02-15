@@ -266,7 +266,56 @@ public class JavaFood_Controller extends HttpServlet {
 //				z++;
 //		}
 			////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////다영이것 건들면 큰1납니다. 말아주세요. 젭알. 부탁드립니다. (음악추가)
+	if(request.getParameter("javafood").equals("addd")) {
+		JavaFood_DAO dao = new JavaFood_DAO();
+		List<AlbumDTO> li =  dao.addd1();
+		List<AlbumDTO> alDTO = new ArrayList<AlbumDTO>();
+		for(int i=0; i<li.size(); i++) {
+			if(li.get(i).getAlbum_name().equals(request.getParameter("name")))
+				System.out.println(li.get(0).getName());
+			
+			String url = li.get(1).getName();
+			System.out.println(url);
+			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+			String e1 = doc.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");
+			System.out.println(e1);
+			
+			
+			AlbumDTO dto = new AlbumDTO();
+			dto.setAlbum_cover(e1);
+//			dto.setAlbum_name(e2);
+			
+			alDTO.add(dto);
+		}
+		request.setAttribute("alDTO", alDTO);
+		
 	}
+		
+//		일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
+	//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
+	//url에 db에 넣을 주소 가져오기
+//		String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+//		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//		for(int i=0; i<e1.size(); i++) {
+//			String a = e1.get(i).toString();
+//			String[] b= a.split("'");
+//			String c=("https://www.melon.com/album/detail.htm?albumId="+b[1]);
+//			dao.addd(c, i+1); //51번부터 넣을땐 i에 50넣고
+//		}
+		
+	
+	
+//	for(int i=0; i<50; i++) {
+//		String url = c;
+//		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+//		
+//	}
+
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
 /*	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

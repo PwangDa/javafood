@@ -10,6 +10,8 @@ public class AlbumDTO {
 	private String artist_info;		//가수소개
 	private String artist_img;	//가수이미지
 	private String artistname;	 	
+
+	private String name;	 	
 	
 	
 	private String album_key;	//앨범 1 설정중
@@ -18,6 +20,19 @@ public class AlbumDTO {
 	private String music_link;	//음악링크
 	private String music_time;	//음악타임
 	
+	
+	
+	
+	
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getArtist_info() {
 		return artist_info;
 	}

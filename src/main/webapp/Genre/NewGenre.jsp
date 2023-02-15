@@ -311,6 +311,9 @@
             width: 300px;
             text-align: left; 
             line-height: 40px;
+            text-overflow : ellipsis;
+            white-space : nowrap;
+            overflow : hidden;
         }
          .right_item_bot{
             width: 100px;

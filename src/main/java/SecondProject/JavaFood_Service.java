@@ -33,6 +33,8 @@ public class JavaFood_Service {
 	
 	//다영
 
+<<<<<<< HEAD
+=======
 //	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
 //    public List<AlbumVO> Albumlist(){
 //    	List<AlbumVO> Albumlist = dao.listAlbum(); 
@@ -42,9 +44,10 @@ public class JavaFood_Service {
 //}
 //    }
 
+>>>>>>> a8611dbcf9111a90fa66bdb3ce6bb7b98ce46cdf
 
 //	다영의 메소드(앨범목록리스트 불러오기) 
-    public List<AlbumDTO> Albumlist(){
+    public List<AlbumDTO > Albumlist(){
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
     }
@@ -111,6 +114,7 @@ public class JavaFood_Service {
 //		
 //		return map;
 //	}
+	
 	//범주 플레이 리스트 추가하기
 	public void s_doAddList(String title, String explain, String id)
 	{
