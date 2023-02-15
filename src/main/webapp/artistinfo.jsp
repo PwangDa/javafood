@@ -301,19 +301,20 @@
 
         .comment_1_1{
             display: inline-block;
-          
+            margin-right: 4px;
             height: 20px;
             vertical-align: top;
         }
         .comment_1_2{
             height: 24px;
             vertical-align: top;
-
+            margin: 12px 10px 0px 10px;
         }
         
         .comment_1_3{
-           
-            width: 530px;
+           text-align: left;
+            width: 520px;
+            margin: 3px;
         }
 
 
@@ -359,6 +360,13 @@
         	text-align: left;
         	font-size: 14px;
             cursor: pointer;
+        }
+
+        .reply{
+            /* border: 1px solid white; */
+            display: inline-block;
+            width: 530px;
+            text-align: left;
         }
         
         /* 앨범  < > 용 스타일*/
@@ -579,7 +587,18 @@
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
-			                			<c:if test="${comment.level >= 2 && comment.articleNO == comment.parentNO}">
+                				</details>
+	                        </div>
+	                        <!-- 삭제하기 기능도 
+	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
+	                        -->
+	                        <div class="text2">
+	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
+	                        </div>
+	                </div> 
+	             </c:if>
+			                		<c:if test="${comment.level >= 2}">
+			                			<div class="reply">
 				                			<div class="comment_1">
 							                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 							                        <p class="comment_1_1">${comment.comment_id }</p>
@@ -591,17 +610,8 @@
 				                                <span class="comment_1_4" style="margin-right :40px;"></span>
 				                                ${comment.comment_cont }
 				                            </div>
-			                			</c:if>
-                				</details>
-	                        </div>
-	                        <!-- 삭제하기 기능도 
-	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
-	                        -->
-	                        <div class="text2">
-	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
-	                        </div>
-	                </div> 
-	             </c:if>
+				                        </div>
+			                		</c:if>
 	            </c:forEach>
                 <%-- } --%>
                              
