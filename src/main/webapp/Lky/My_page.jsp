@@ -1,5 +1,4 @@
 <%@page import="java.util.List"%>
-<%@page import="My_Page.dbon"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
     %>
