@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import My_Page.dbon;
 import SecondProject.JavaFood_DAO;
-import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 @WebServlet("/song")
 public class SongServlet extends HttpServlet {
@@ -31,11 +30,10 @@ public class SongServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8;");
 		PrintWriter out = response.getWriter();
 		
-		dbon db = new dbon();
 		JavaFood_DAO dao;
 		dao = new JavaFood_DAO();
 		
-		List<javafood_DTO.login_DTO> list = dao.listSong();
+		List<javafood_DTO.song_DTO> list = dao.listSong();
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<script>");
@@ -90,7 +88,7 @@ public class SongServlet extends HttpServlet {
 		
 		
 	      for(int i= 0; i<list.size(); i++) {
-	    	  login_DTO vo = list.get(i);
+	    	  song_DTO vo = list.get(i);
 	    	  
 	    	  String songnumber = vo.getSongnumber();
 	    	  String ranking = vo.getRanking();
