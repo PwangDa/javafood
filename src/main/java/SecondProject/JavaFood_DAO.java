@@ -45,30 +45,30 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
-//	public void addsong1(int i,String b,String c,String d) {
-//		try {
-//			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("insert into Ballad values('"+i+"','a','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','POP')").executeUpdate();
-//			this.con.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void addsong1(String b,String c,String d) {
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("insert into Genre values('genre_s','a','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','Ballad')").executeUpdate();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////		노래추가 가수
 //	/**
 //	 * @param a : song1 에 추가할 가수이름
 //	 * @param i : song1 의 불러올 노래번호
 //	 */
-//	public void addsong2(String a,int i) {
-//		try {
-//			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("UPDATE Ballad SET artistname='"+a+"' WHERE SONGNUMBER = '"+i+"'").executeUpdate();
-//			this.con.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void addsong2(String a,int i) {
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE Genre SET artistname='"+a+"' WHERE SONGNUMBER = '"+i+"'").executeUpdate();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 특정 아이디에 노래 조회수 증가

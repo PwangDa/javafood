@@ -1,7 +1,6 @@
 package Chart;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import My_Page.dbon;
 import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 public class SongDAO {
 	
@@ -35,13 +34,13 @@ public class SongDAO {
 	}
 	
 	//listsong값이 null인 메소드 생성
-	public List<login_DTO> listsong(){
-		List<login_DTO> list = listsong(null);
+	public List<song_DTO> listsong(){
+		List<song_DTO> list = listsong(null);
 		return list;
 	}
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
-	public List<login_DTO> listsong(String _songname){
-		List<login_DTO> list = new ArrayList<login_DTO>();
+	public List<song_DTO> listsong(String _songname){
+		List<song_DTO> list = new ArrayList<song_DTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
@@ -70,7 +69,7 @@ public class SongDAO {
 				   
 				   
 				   
-				   login_DTO vo = new login_DTO();
+				   song_DTO vo = new song_DTO();
 				   vo.setSongnumber(songnumber);
 				   vo.setRanking(ranking);
 				   vo.setFamous(famous);
@@ -190,7 +189,7 @@ public class SongDAO {
 //	
 	
 	//노래 리스트
-	public void songlist(login_DTO vo) {
+	public void songlist(song_DTO vo) {
 		try {
 			this.con = dataFactory.getConnection();
 			
