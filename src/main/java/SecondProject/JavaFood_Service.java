@@ -44,7 +44,7 @@ public class JavaFood_Service {
 
 
 //	다영의 메소드(앨범목록리스트 불러오기) 
-    public List<AlbumDTO> Albumlist(){
+    public List<AlbumDTO > Albumlist(){
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
     }
