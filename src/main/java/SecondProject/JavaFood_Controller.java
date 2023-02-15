@@ -485,6 +485,8 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 장르별 리스트
 		String song="발라드";
 		if(request.getParameter("genre")!=null) {
 			song = request.getParameter("genre");
@@ -494,7 +496,9 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setAttribute("genre", genre_list);
 		request.setAttribute("song", song);
 		System.out.println("song 후: " + song);
-		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
+		
+		//좋아요
+		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
 		

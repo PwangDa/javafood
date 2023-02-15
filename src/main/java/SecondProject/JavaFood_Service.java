@@ -256,9 +256,6 @@ public class JavaFood_Service {
 		return dao.getGenre(song);
 		
 	}
-	public void javafood6_1(String songnumber) {
-		dao.like(songnumber);
-	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연 메인 
 	public void javafoodm(){
