@@ -200,48 +200,35 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
-//		if(request.getParameter("javafood").equals("add")) {
+		if(request.getParameter("javafood").equals("add")) {
 
-//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
-//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
-
-//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
-//			Jsoup.connect(url).get();
-//			String url = "https://www.melon.com/album/detail.htm?albumId="+i;
-//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis"); //가수이름 여러명일 때
-//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
-
-//			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
-//			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-//			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
-//			JavaFood_DAO dao = new JavaFood_DAO();
-//			int z = 351;
-//			for(int i=0; i<e4.size(); i++) {
-//				System.out.println("가수 : "+(String)e1.get(i).text());
-//				System.out.println("제목 : "+(String)e2.get(i).text());
-//				System.out.println("앨범 : "+(String)e3.get(i).text());
-//				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
-//				System.out.println();
-//				String b = (String)e2.get(i).text().replace("'", "").trim();
-//				String c = (String)e3.get(i).text().replace("'", "").trim();
-//				String d = (String)e4.get(i).attr("src").trim();
-//				dao.addsong1(b, c, d);
-//				z++;
-//			}
-//		}
-//			////////////////
-//			z=351;
-//			for(int i=2; i<e1.size(); i++) {
-//				System.out.println("가수 : "+(String)e1.get(i).text());
-//				String a = (String)e1.get(i).text().replace("'", "").trim();
-//				System.out.println((i-1)+"  "+a);
-//				dao.addsong2(a,z);
-//				z++;
-//				}
-//			
-//			}
+			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
+			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
+			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+			JavaFood_DAO dao = new JavaFood_DAO();
+			for(int i=0; i<e4.size(); i++) {
+				System.out.println("제목 : "+(String)e2.get(i).text());
+				System.out.println("앨범 : "+(String)e3.get(i).text());
+				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
+				System.out.println();
+				String b = (String)e2.get(i).text().replace("'", "").trim();
+				String c = (String)e3.get(i).text().replace("'", "").trim();
+				String d = (String)e4.get(i).attr("src").trim();
+				dao.addsong1(b, c, d);
+			}
+			////////////////
+			int z=1;
+			for(int i=0; i<e1.size(); i++) {
+				System.out.println("가수 : "+(String)e1.get(i).text());
+				String a = (String)e1.get(i).text().replace("'", "").trim();
+				System.out.println((z)+"  "+a);
+				dao.addsong2(a,z);
+				z++;
+			}
+		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)

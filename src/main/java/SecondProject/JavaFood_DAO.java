@@ -48,7 +48,7 @@ public class JavaFood_DAO {
 	public void addsong1(String b,String c,String d) {
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("insert into Genre values('genre_s','a','"+b+"','https://www.youtube.com/results?search_query="+b+"','"+c+"','0','0','???','"+d+"','Ballad')").executeUpdate();
+			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class JavaFood_DAO {
 	public void addsong2(String a,int i) {
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("UPDATE Genre SET artistname='"+a+"' WHERE SONGNUMBER = '"+i+"'").executeUpdate();
+			this.con.prepareStatement("UPDATE GENRE SET ARTISTNAME ='"+a+"' WHERE SONGNUMBER ="+i).executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
