@@ -12,14 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-=======
->>>>>>> 84ea601907e1dec993602fc1e250193b903d8b4e
 
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
@@ -201,12 +198,9 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
-<<<<<<< HEAD
 //			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
 //			Jsoup.connect(url).get();
-=======
 //			String url = "https://www.melon.com/album/detail.htm?albumId="+i;
->>>>>>> 84ea601907e1dec993602fc1e250193b903d8b4e
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis"); //가수이름 여러명일 때
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
