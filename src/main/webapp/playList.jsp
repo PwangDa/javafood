@@ -24,31 +24,31 @@
 	String doDeleteList = request.getParameter("doDeleteList");
 	
 	//플레이 리스트 추가하기
-	if("doAdd".equals(doAddList) )
-	{
-		System.out.println("playList.jsp의 doAddList 실행됨."); //확인용
+// 	if("doAdd".equals(doAddList) )
+// 	{
+// 		System.out.println("playList.jsp의 doAddList 실행됨."); //확인용
 		
-		//주소로 넘어 온 값들을 받기
-		String addList_title = request.getParameter("addList_title");
-		String addList_explain = request.getParameter("addList_explain");
+// // 		//주소로 넘어 온 값들을 받기
+// // 		String addList_title = request.getParameter("addList_title");
+// // 		String addList_explain = request.getParameter("addList_explain");
 		
-		//페이지 새로고침
-		response.sendRedirect("javafood?javafood=3");
-	}
+// 		//페이지 새로고침
+// 		response.sendRedirect("javafood?javafood=3");
+// 	}
 	
 	//플레이 리스트 삭제하기
-	else if("doDelete".equals(doDeleteList) )
-	{
-		//주소로 넘어온 값들을 받기
-		String res_PL_ID = request.getParameter("res.PL_ID");
+// 	else if("doDelete".equals(doDeleteList) )
+// 	{
+// 		//주소로 넘어온 값들을 받기
+// 		String res_PL_ID = request.getParameter("res.PL_ID");
 		
-		//Controller에서 리스트를 제거하도록 명령하는 메서드 실행하기
-		JavaFood_Controller jfc = new JavaFood_Controller();
-		jfc.java3_3(res_PL_ID, id);
+// 		//Controller에서 리스트를 제거하도록 명령하는 메서드 실행하기
+// 		JavaFood_Controller jfc = new JavaFood_Controller();
+// 		jfc.java3_3(res_PL_ID, id);
 		
-		//페이지 새로고침
-		response.sendRedirect("javafood?javafood=3");
-	}
+// 		//페이지 새로고침
+// 		response.sendRedirect("javafood?javafood=3");
+// 	}
 %>
 <!DOCTYPE html>
 <html>
@@ -71,7 +71,6 @@
             <input type="text" name="addList_title" class="addList_textbar" placeholder="플레이리스트 제목을 입력해주세요."> <br>
             <input type="text" name="addList_explain" class="addList_ex_textbar" placeholder="플레이리스트 설명을 입력해주세요."> <br>
             <input type="button" name="addList_btn" class="addList_btn" value="추가">
-            <input type="hidden" name="doAddList" value="doAdd">
         </form>
     </div>
     
@@ -86,7 +85,7 @@
 		<%-- 해당 유저의 플레이 리스트가 하나라도 존재한다면 --%>
 		<c:when test="${!empty playList }">
 			<c:forEach var="list" items="${playList }">
-			<a href="plc?PL_ID=${list.pl_id }&ID=${list.id }">
+			<a href="javafood?javafood=3_3&PL_ID=${list.pl_id }">
 				<div class="playList">
 					<!-- 앨범 표지가 추가되면 해당 부분의 scr를 수정할 것. -->
 					<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">

@@ -1,7 +1,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
-    import="My_Page.*"
     import="javafood_DTO.*"
     import="SecondProject.*"
     %>
@@ -21,6 +20,11 @@
 	</c:if>
 	<c:if test="${good==0 }">
 		<script>alert("회원가입 실패")</script>
+	</c:if>
+	<c:if test="${remove!=null }">
+		<script>
+			alert('회원정보 수정이 완료되었습니다. 다시 로그인 해주세요.')
+		</script>
 	</c:if>
 </c:if>
 <c:if test="${membership!=null }">
@@ -183,16 +187,16 @@
 	<body>
 		<h1><c:out value="javafood 로그인성공"/></h1>
 		<h1>${login[0].nic } <c:out value="님 환영합니다."/></h1>
-		<strong id="time"></strong><c:out value="초후에 이동됩니다. 마음의 준비를 해주세요."/>
+		<strong id="time"></strong><c:out value="초후에 매인 화면으로 이동됩니다. 마음의 준비를 해주세요."/>
 		<script>
-			let time=5;
+			let time=3;
 	    	$("#time").append(time);
 	        setInterval (function(){
 	        	console.log(time);
 	            time--;
 	            $("#time").text(time);
 	            if (time==0){
-	            	location.href='javafood?javafood=5';
+	            	location.href='javafood?javafood=m';
 	            	}
 	         	},1000)
 		</script>

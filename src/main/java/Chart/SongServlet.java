@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import My_Page.dbon;
 import SecondProject.JavaFood_DAO;
-import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 @WebServlet("/song")
 public class SongServlet extends HttpServlet {
@@ -31,11 +30,10 @@ public class SongServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8;");
 		PrintWriter out = response.getWriter();
 		
-		dbon db = new dbon();
 		JavaFood_DAO dao;
 		dao = new JavaFood_DAO();
 		
-		List<javafood_DTO.login_DTO> list = dao.listSong();
+		List<javafood_DTO.song_DTO> list = dao.listSong();
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<script>");
@@ -79,7 +77,7 @@ public class SongServlet extends HttpServlet {
 		out.println("	<tr>");
 		out.println("		<th>번호</th>");
 		out.println("		<th>순위</th>");
-		out.println("		<th>조회수 + 좋아요</th>");
+		out.println("		<th>인기점수</th>");
 		out.println("		<th>노래제목</th>");
 		out.println("		<th>아티스트 명</th>");
 		out.println("		<th>장르</th>");
@@ -90,11 +88,11 @@ public class SongServlet extends HttpServlet {
 		
 		
 	      for(int i= 0; i<list.size(); i++) {
-	    	  login_DTO vo = list.get(i);
+	    	  song_DTO vo = list.get(i);
 	    	  
 	    	  String songnumber = vo.getSongnumber();
 	    	  String ranking = vo.getRanking();
-	    	  String rank2 = vo.getRank2();
+	    	  String famous = vo.getFamous();
 			  String songname = vo.getSongname();
 			  String artistname = vo.getArtistname();
 			  String bygenre = vo.getBygenre();
@@ -105,8 +103,8 @@ public class SongServlet extends HttpServlet {
 	          
 			  out.println("<tr>");
 			  out.println("		<td>"+ songnumber +"</td>");
-			  out.println("		<td>"+ ranking +"</td>");
-			  out.println("		<td>"+ rank2+"</td>");
+			  out.println("		<td>"+ ranking+"</td>");
+			  out.println("		<td>"+ famous +"</td>");
 			  out.println("		<td>"+ songname +"</td>");
 			  out.println("		<td>"+ artistname +"</td>");
 			  out.println("		<td>"+ bygenre +"</td>");
@@ -117,7 +115,7 @@ public class SongServlet extends HttpServlet {
 	      }
 	      out.println("</table>");
 			
-	      out.println("<a href='/javafood_team/Song.jsp'>인기 차트</a>");
+	      out.println("<a href='/javafood_team/song.jsp'>인기 차트</a>");
 	      out.println("<div id='hour'>");
 	      out.println("<input type='text' size='10' id='timebox'> 현재시각 기준");
 	      out.println("</div>");

@@ -2,18 +2,23 @@
     pageEncoding="UTF-8"
     import = "album.info.AlbumDAO"
     import = "album.info.AlbumVO"
+    import = "javafood_DTO.AlbumDTO"
+    import = "SecondProject.JavaFood_DAO"
     import = "java.util.List"
     %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Album Test</title>
 <% 	    
-AlbumDAO dao = new AlbumDAO();
+JavaFood_DAO dao = new JavaFood_DAO();
 String num = request.getParameter("a.ALBUM_NUM");
 System.out.println("num : "+num);
-List<AlbumVO> list = dao.listAlbum(num);  %>
+List<AlbumDTO> list = dao.listAlbum(num);  %>
 <script>
 
     window.onload = function(){
@@ -201,12 +206,12 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
 <body>
    <jsp:include page="menu.jsp"></jsp:include>
     <%	for (int i =0; i < 1; i++) {
-	    	AlbumVO vo = list.get(i);
+	    	AlbumDTO vo = list.get(i);
 	    	
 	    	String cover = vo.getAlbum_cover();
 			String alname = vo.getAlbum_name();
 			String into =  vo.getAlbum_into();
-			String artist = vo.getArtist();
+			String artist = vo.getArtistname();
 	    
     %>
     <div id = "home">
@@ -228,7 +233,7 @@ List<AlbumVO> list = dao.listAlbum(num);  %>
         </div>
         <% } %>
         <% for (int i =0; i < list.size(); i++) {
-        	AlbumVO vo = list.get(i);
+        	AlbumDTO vo = list.get(i);
         	
 			String music_num = vo.getMusic_num();
 			String music_name = vo.getMusic_name();

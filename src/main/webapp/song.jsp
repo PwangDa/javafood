@@ -17,13 +17,12 @@
 <html>
 <head>
 	<%
-	dbon db = new dbon();
 	JavaFood_DAO dao;
 	dao = new JavaFood_DAO();
 	%>
 
 	<%
-	List<javafood_DTO.login_DTO> list = dao.listSong();
+	List<javafood_DTO.song_DTO> list = dao.listSong();
 	%>
 
 	<meta charset="UTF-8">
@@ -81,7 +80,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	
 }
 
 .table {
@@ -100,7 +99,7 @@ body {
 	font-size: 15px;
 }
 
-td {
+ td {
 	text-align: center;
 	background-color: black;
 	color: white;
@@ -115,6 +114,7 @@ td {
 
 .list {
 	margin : -51px;
+	width : 100%;
 }
 </style>
 </head>
@@ -126,21 +126,23 @@ td {
 	<div class="list">
 		<table class="table">
 			<tr class="table2">
-				<td>번호</td>
-				<td>순위</td>
-				<td>조회수+좋아요</td>
-				<td>제목</td>
-				<td>가수명</td>
-				<td>장르</td>
-				<td>조회수</td>
-				<td>좋아요</td>
-				<td>재생 시간</td>
+				<td style="width:50px;">번호</td>
+				<td style="width:50px;">순위</td>
+				<td style="width:120px;">인기점수</td>
+				<td>앨범</td>
+				<td style="width:350px;">제목</td>
+				<td style="width:400px;">가수</td>
+				<td style="width:60px;">장르</td>
+				<td style="width:90px;">조회수</td>
+				<td style="width:80px;">좋아요</td>
+				<td style="width:120px;">재생 시간</td>
 			</tr>
 			<c:forEach var="dao" items="${ list_login}">
 				<tr class="table3">
 					<td>${dao.songnumber }</td>
 					<td>${dao.ranking }</td>
-					<td>${dao.rank2 }</td>
+					<td>${dao.famous }</td>
+					<td><img src="${dao.imglink }" style="width:80px;"></td>
 					<td>${dao.songname }</td>
 					<td>${dao.artistname }</td>
 					<td>${dao.bygenre }</td>

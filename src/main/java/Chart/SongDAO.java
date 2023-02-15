@@ -1,7 +1,6 @@
 package Chart;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import My_Page.dbon;
 import javafood_DTO.login_DTO;
+import javafood_DTO.song_DTO;
 
 public class SongDAO {
 	
@@ -35,19 +34,19 @@ public class SongDAO {
 	}
 	
 	//listsong값이 null인 메소드 생성
-	public List<login_DTO> listsong(){
-		List<login_DTO> list = listsong(null);
+	public List<song_DTO> listsong(){
+		List<song_DTO> list = listsong(null);
 		return list;
 	}
 	//listsong 초기화 후 query문으로 값들 불러와서 출력
-	public List<login_DTO> listsong(String _songname){
-		List<login_DTO> list = new ArrayList<login_DTO>();
+	public List<song_DTO> listsong(String _songname){
+		List<song_DTO> list = new ArrayList<song_DTO>();
 		
 		try {
 			this.con = dataFactory.getConnection();
 			
-			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
+			   //song1 table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(famous 변수)
+			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
 			   		 
 			   		  
 			   		
@@ -59,8 +58,8 @@ public class SongDAO {
 			   
 			   while(rs.next()) {
 				   String songnumber = rs.getString("songnumber");
-				   String rank2 = rs.getString("rank2");
 				   String ranking = rs.getString("ranking");
+				   String famous = rs.getString("famous");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -70,10 +69,10 @@ public class SongDAO {
 				   
 				   
 				   
-				   login_DTO vo = new login_DTO();
+				   song_DTO vo = new song_DTO();
 				   vo.setSongnumber(songnumber);
-				   vo.setRank2(rank2);
 				   vo.setRanking(ranking);
+				   vo.setFamous(famous);
 				   vo.setSongname(songname);
 				   vo.setArtistname(artistname);
 				   vo.setBygenre(bygenre);
@@ -190,13 +189,13 @@ public class SongDAO {
 //	
 	
 	//노래 리스트
-	public void songlist(login_DTO vo) {
+	public void songlist(song_DTO vo) {
 		try {
 			this.con = dataFactory.getConnection();
 			
 			String songnumber = vo.getSongnumber();
-			String rank2 = vo.getRank2();
 			String ranking = vo.getRanking();
+			String famous = vo.getFamous();
 			String songname = vo.getSongname();
 			String artistname = vo.getArtistname();
 			String bygenre = vo.getBygenre();
@@ -206,15 +205,15 @@ public class SongDAO {
 			
 			
 			
-			String query = " SELECT s.*,songname, (HITS *1) + (LIKES * 1.5) AS RANK2 FROM song s  ORDER BY RANK2 DESC";
+			String query = " SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM song1 s ) a ";
 			
 			System.out.println("query" + query);
 			
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setString(1, songnumber);
-			pstmt.setString(2, rank2);
-			pstmt.setString(3, ranking);
+			pstmt.setString(2, ranking);
+			pstmt.setString(3, famous);
 			pstmt.setString(4, songname);
 			pstmt.setString(5, artistname);
 			pstmt.setString(6, bygenre);
