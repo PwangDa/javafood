@@ -597,13 +597,14 @@
 	                        </div>
 	                </div> 
 	             </c:if>
+	             				<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=delcommnet.do">
 			                		<c:if test="${comment.level >= 2}">
 			                			<div class="reply">
 				                			<div class="comment_1">
 							                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 							                        <p class="comment_1_1">${comment.comment_id }</p>
 							                        <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
-							                        <button class="btn1 comment_1_2" type="button" onclick="fn_sendComment()"> 삭제</button>
+							                        <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2" type="button"> 삭제</button></a>
 							  
 				                			</div>
 				                			<div class="comment_1_3">
@@ -612,6 +613,7 @@
 				                            </div>
 				                        </div>
 			                		</c:if>
+			                	</form>
 	            </c:forEach>
                 <%-- } --%>
                              
