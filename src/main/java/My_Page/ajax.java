@@ -83,7 +83,7 @@ public class ajax extends HttpServlet {
 				serf.setFileSizeMax(1024*1024*100);
 				List items = serf.parseRequest(request);				
 				for(int i = 0; i<items.size(); i++) {
-					FileItem fitem = FileItem
+//					FileItem fitem = FileItem
 					items.get(i);
 				}
 				
