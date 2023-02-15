@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
@@ -193,9 +196,9 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
-//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
+//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
+//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
 //			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
 //			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 //			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
@@ -210,7 +213,7 @@ public class JavaFood_Controller extends HttpServlet {
 //				String b = (String)e2.get(i).text().replace("'", "").trim();
 //				String c = (String)e3.get(i).text().replace("'", "").trim();
 //				String d = (String)e4.get(i).attr("src").trim();
-//				dao.addsong1(z,b,c,d);
+//				dao.addsong1(b, c, d);
 //				z++;
 //			}
 //			////////////////
@@ -222,7 +225,7 @@ public class JavaFood_Controller extends HttpServlet {
 //				dao.addsong2(a,z);
 //				z++;
 //				}
-//			/////////////	
+//			
 //			}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -417,11 +420,25 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("4번 로그인 실행");
+
+		service.javafood4(request.getParameter("membership"));
+		if(map!=null) {
+			System.out.println("map1"+map);
+			System.out.println("map2"+map.get("membership"));
+		}
 		if(request.getParameter("membership") !=null) {
+			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
+		}
+		if(request.getParameter("membership") !=null) {
+			System.out.println("membership");
+			map = service.javafood4(request.getParameter("membership"));
+
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
+			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
 			request.setAttribute("log", (int) map.get("log"));
@@ -452,20 +469,29 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
+		System.out.println("map : "+map.get("list"));
 		if(request.getSession().getAttribute("login")!=null) {
+			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+			System.out.println("session 아이디 : "+session_user.get(0).getId());
+			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
+			System.out.println("option : "+request.getParameter("option"));
 			if(request.getParameter("text")!=null) {
+				System.out.println("text : "+request.getParameter("text"));
 				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
 				if(list!=null) {
 					request.setAttribute("song", list);
+					System.out.println("!=null lsit : "+list);
 				}
 			}
 		}
+		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));

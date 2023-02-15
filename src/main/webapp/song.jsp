@@ -17,13 +17,12 @@
 <html>
 <head>
 	<%
-	dbon db = new dbon();
 	JavaFood_DAO dao;
 	dao = new JavaFood_DAO();
 	%>
 
 	<%
-	List<javafood_DTO.login_DTO> list = dao.listSong();
+	List<javafood_DTO.song_DTO> list = dao.listSong();
 	%>
 
 	<meta charset="UTF-8">
