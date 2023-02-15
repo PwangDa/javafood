@@ -18,6 +18,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+
 import Chart.SongDAO;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
@@ -197,42 +200,35 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
-//		if(request.getParameter("javafood").equals("add")) {
-//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900";
-//			Jsoup.connect(url).get();
-//			String url = "https://www.melon.com/album/detail.htm?albumId="+i;
-//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis"); //가수이름 여러명일 때
-//			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis").select("a");
-//			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
-//			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-//			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
-//			JavaFood_DAO dao = new JavaFood_DAO();
-//			int z = 351;
-//			for(int i=0; i<e4.size(); i++) {
-//				System.out.println("가수 : "+(String)e1.get(i).text());
-//				System.out.println("제목 : "+(String)e2.get(i).text());
-//				System.out.println("앨범 : "+(String)e3.get(i).text());
-//				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
-//				System.out.println();
-//				String b = (String)e2.get(i).text().replace("'", "").trim();
-//				String c = (String)e3.get(i).text().replace("'", "").trim();
-//				String d = (String)e4.get(i).attr("src").trim();
-//				dao.addsong1(z,b,c,d);
-//				z++;
-//			}
-//		}
-//			////////////////
-//			z=351;
-//			for(int i=2; i<e1.size(); i++) {
-//				System.out.println("가수 : "+(String)e1.get(i).text());
-//				String a = (String)e1.get(i).text().replace("'", "").trim();
-//				System.out.println((i-1)+"  "+a);
-//				dao.addsong2(a,z);
-//				z++;
-//				}
-//			/////////////	
-//			}
+		if(request.getParameter("javafood").equals("add")) {
+
+			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
+			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
+			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
+			JavaFood_DAO dao = new JavaFood_DAO();
+			for(int i=0; i<e4.size(); i++) {
+				System.out.println("제목 : "+(String)e2.get(i).text());
+				System.out.println("앨범 : "+(String)e3.get(i).text());
+				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
+				System.out.println();
+				String b = (String)e2.get(i).text().replace("'", "").trim();
+				String c = (String)e3.get(i).text().replace("'", "").trim();
+				String d = (String)e4.get(i).attr("src").trim();
+				dao.addsong1(b, c, d);
+			}
+			////////////////
+			int z=1;
+			for(int i=0; i<e1.size(); i++) {
+				System.out.println("가수 : "+(String)e1.get(i).text());
+				String a = (String)e1.get(i).text().replace("'", "").trim();
+				System.out.println((z)+"  "+a);
+				dao.addsong2(a,z);
+				z++;
+			}
+		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
@@ -339,7 +335,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 
 		//세션에 저장된 id값 받아오기
-		List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+		List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
 		String c_id = (String)session_user.get(0).getId();
 //		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 아이디.
 		
@@ -426,11 +422,25 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("4번 로그인 실행");
+
+		service.javafood4(request.getParameter("membership"));
+		if(map!=null) {
+			System.out.println("map1"+map);
+			System.out.println("map2"+map.get("membership"));
+		}
 		if(request.getParameter("membership") !=null) {
+			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
+		}
+		if(request.getParameter("membership") !=null) {
+			System.out.println("membership");
+			map = service.javafood4(request.getParameter("membership"));
+
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
+			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
 			request.setAttribute("log", (int) map.get("log"));
@@ -461,20 +471,29 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
+		System.out.println("map : "+map.get("list"));
 		if(request.getSession().getAttribute("login")!=null) {
+			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
+			System.out.println("session 아이디 : "+session_user.get(0).getId());
+			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
+			System.out.println("option : "+request.getParameter("option"));
 			if(request.getParameter("text")!=null) {
+				System.out.println("text : "+request.getParameter("text"));
 				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
 				if(list!=null) {
 					request.setAttribute("song", list);
+					System.out.println("!=null lsit : "+list);
 				}
 			}
 		}
+		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
@@ -485,6 +504,8 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 장르별 리스트
 		String song="발라드";
 		if(request.getParameter("genre")!=null) {
 			song = request.getParameter("genre");
@@ -494,6 +515,9 @@ public class JavaFood_Controller extends HttpServlet {
 		request.setAttribute("genre", genre_list);
 		request.setAttribute("song", song);
 		System.out.println("song 후: " + song);
+		
+		//좋아요
+		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
 		
