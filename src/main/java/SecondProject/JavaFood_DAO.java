@@ -390,8 +390,8 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlaytime(rs.getString("playtime"));
-				vo.setAlbum(rs.getString("album"));
-				vo.setImglink(rs.getString("imglink"));
+				vo.setAlbum(rs.getString("album_name"));
+				vo.setImglink(rs.getString("imagelink"));
 				list.add(vo);
 			}
 			rs.close();
