@@ -90,6 +90,10 @@ header{
 .main-box:hover{
     border: 1px solid rgb(176, 176, 176);
 }
+.logo-img{
+	width:40px;
+	height: 42px;
+}
 /*검색 입력창*/
 .search-txt::placeholder{
     font-size: 18px;
@@ -137,7 +141,9 @@ header{
 </head>
 <body onscroll="headerbarToggle()">
     <header id ="menu" >
-        <span style="font-size: 34px; font-weight: 600; cursor: pointer;">JV Music</span>
+        <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
+        <img src="https://c11.kr/1asbb" class="logo-img"> Music
+        </span>
         <div class="menu-box">
             <span class="main main_1" >홈</span>
             <span class="main main_2" >둘러보기</span>
