@@ -273,6 +273,7 @@ public class JavaFood_Controller extends HttpServlet {
 			////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////다영이것 건들면 큰1납니다. 말아주세요. 젭알. 부탁드립니다. (음악추가)
+//http://localhost:8080/javafood_team/javafood?javafood=Albumadd
 	if(request.getParameter("javafood").equals("Albumadd")) {
 		JavaFood_DAO dao = new JavaFood_DAO();
 		List<AlbumDTO> album_addlist =  dao.album_add();
@@ -281,16 +282,34 @@ public class JavaFood_Controller extends HttpServlet {
 //		1단계 : 일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
 		//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
 		//url에 db에 넣을 주소 가져오기
-		String album_add;
+		String album_add, artist_add;
 		String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
-		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
-		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-		for(int i=0; i<e1.size(); i++) {
-			String a = e1.get(i).toString();
-			String[] b= a.split("'");
-			album_add=("https://www.melon.com/album/detail.htm?albumId="+b[1]);
-			dao.url_add(album_add, i+1); //51번부터 넣을땐 i에 50넣고
+		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+		//아티스트용
+		Elements artistURL = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span").select("a");
+		//앨범용
+		Elements albumURL = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+		System.out.println(artistURL);
+		
+		for(int j=0; j<artistURL.size(); j++) {
+//			System.out.println("artistURL : "+artistURL);
+			String artisturl = artistURL.get(j).toString();
+			String[] artistNUM= artisturl.split("'");
+			System.out.println(j + "번 인덱스 : "+ artistNUM[1]);
+			
 		}
+		
+		
+		
+		
+//		for(int i=0; i<albumURL.size(); i++) {
+//			String albumurl = albumURL.get(i).toString();
+//			String[] albumNUM= albumurl.split("'");
+//			album_add=("https://www.melon.com/album/detail.htm?albumId="+albumNUM[1]);
+//			System.out.println(i + " : "+ album_add);
+//			
+//			dao.url_add(album_add, i+1); //51번부터 넣을땐 i에 50넣고
+//		}
 		
 	}//if ("addd") 종료
 		
