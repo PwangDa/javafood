@@ -28,7 +28,7 @@
 <title><%=id %>님의 ${playListContent[0].listTitle }</title>
 </head>
 <body>
-<%-- 	<jsp:include page="menu.jsp" /> --%>
+	<jsp:include page="menu.jsp" />
 	<br>
 	
 	<c:choose>
