@@ -287,15 +287,19 @@ public class JavaFood_Controller extends HttpServlet {
 		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
 		//아티스트용
 		Elements artistURL = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span").select("a");
+		Elements artistURL_1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span");
 		//앨범용
 		Elements albumURL = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-		System.out.println(artistURL);
+//		System.out.println(artistURL_1);
 		
-		for(int j=0; j<artistURL.size(); j++) {
+		for(int j=0; j<artistURL_1.size(); j++) {
 //			System.out.println("artistURL : "+artistURL);
-			String artisturl = artistURL.get(j).toString();
+			String artisturl = artistURL_1.get(j).toString();
+			int tempNum = artisturl.indexOf(";");
+			artisturl = artisturl.substring(0, tempNum);
+			System.out.println(j+1 +": "+artisturl);
 			String[] artistNUM= artisturl.split("'");
-			System.out.println(j + "번 인덱스 : "+ artistNUM[1]);
+			System.out.println(j+1 + "번 인덱스 : "+ artistNUM[1]);
 			
 		}
 		
