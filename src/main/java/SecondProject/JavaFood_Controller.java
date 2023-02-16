@@ -317,6 +317,7 @@ public class JavaFood_Controller extends HttpServlet {
 	}//if ("addd") 종료
 	if(request.getParameter("javafood").equals("AlbumList")) {		
 		//이제 for문돌면서 그 주소의 해당하는 값을 가져와서 dto에 저장해서 리스트로 가져옴
+		//앨범 수록록 나오게 전달인자 값 받아서 forward
 		JavaFood_DAO dao = new JavaFood_DAO();
 		String num = request.getParameter("num"); //1
 		List<AlbumDTO> album_list =  dao.album_add(num);//1
@@ -324,8 +325,13 @@ public class JavaFood_Controller extends HttpServlet {
 		List list = new ArrayList();	
 		String[] album_title = null;
 		String url = album_list.get(0).getAlbum_add();
+		String artist_num = album_list.get(0).getArtist_add();
+		String detail="https://www.melon.com/artist/detail.htm?artistId="+artist_num;
+		String song= "https://www.melon.com/artist/song.htm?artistId="+artist_num;
 		System.out.println(url);
 		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();	
+		org.jsoup.nodes.Document doc_1 = Jsoup.connect(detail).get();	
+		org.jsoup.nodes.Document doc_2 = Jsoup.connect(song).get();	
 				
 		Elements music_name = doc.getElementsByAttributeValue("class", "ellipsis").select("span").select("a");
 		Elements album_info = doc.getElementsByAttributeValue("id", "d_video_summary").select("div");
@@ -676,7 +682,6 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
 		dispatch.forward(request, response);
-		
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

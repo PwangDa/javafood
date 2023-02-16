@@ -28,13 +28,14 @@
          body{background-color :black;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
         .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;}
-        .body{height: 100%; text-align: center;margin: 30px;}
         .left{width: 88%;float: left; font-size: 60px;}
         .right{line-height: 80px; width: 11%;float: right; background-image:url(${session_user.myimg}); background-repeat: no-repeat; background-size: cover;background-position: center; }
         .tbody{ position: sticky;top: 100px; height: 40px; background: white;}
         input{vertical-align: middle;}
         .butt{font-size: 0px; background: url(https://zrr.kr/Ovva)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
         .text{ height: 30px;width: 350px; margin: 0;}
+        
+        .body{height: 100%; text-align: center;margin: 30px;}
         table{margin: auto; border: 1px solid black; border-collapse: collapse;}
         th,td{border-top: 1px solid black;}
         th{background-color: cornflowerblue;}
@@ -65,6 +66,9 @@
         </form>
         <div style="color: white;"><a href="javafood?javafood=5&usre=${session_user.id }" class="at"><c:out value="${session_user.id } 의 재생기록 확인"/></a> </div>
         </div>
+        
+        <%--
+        
         <div class="body">
             <h2><c:out value="최근재생목록"/></h2>
             <table border="1">
@@ -117,76 +121,131 @@
 					</c:forEach>
 				</c:if>
 			</table>
-			
-			<table>
-				<h1 style="text-align: center; color: white;">회원정보 수정</h1>
-				
+		</div>
+		
+		--%>
+	
+	<c:if test="">
+		<style>
+			body{background-size: contain; color: white; background-color: black; text-align: center;;}
+		    div{display: inline-block; width: 100%; height: 100%;}
+		    .sub{margin-top: 10px;width: 100px; height: 30px;}
+		    .at{color: white; text-decoration: none;}
+		    .head{text-align: left;}
+		    .pn{width: 43%;}
+		    .phone{width: 26%;}
+		    td{width: 100px;}
+		    table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
+		   .tr{height: 80px; }
+		   input[type="checkbox"]{display: none;}
+		</style>
+		</head>
+		<body>
+			<h1><c:out value="javafood 회원가입"/></h1>
+		        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
+			   		   enctype="multipart/form-data" 
+			  		   accept-charset="utf-8">
+			  		<div>
+						<div style="width: 200px; height: 250px">
+							<div>
+								<input type="file" name="file1">
+								<p><strong> 프로필 사진 </strong></p>
+								<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+							</div>
+							<div>
+								<input type="button" onclick="but()" value="업로드">
+							</div>
+						</div>
+					</div>
+				</form>
+			 <script>
+				function but(){
+					var url = $("#form").attr("action");
+					var form = $('#form')[0];
+					var formData = new FormData(form);
+					$.ajax({
+						url: url,
+						type: 'POST',
+						data: formData,
+						contentType: false,
+						processData: false,
+						cache: false,
+						success: function () {
+							alert("이미지 저장 성공")
+							location.href='javafood?javafood=4&membership=O';
+						},
+						error: function () {
+							alert("이미지 저장 실패")
+						}
+					})
+				}
+				</script> 
+		        
 		        <form method="post" action="javafood?javafood=4">
 		            <div class="head">
 		              <table>
-		        <tr class="low"  style="text-align: left;">
-		            <th style="text-align: right;"><c:out value=" 아이디 : "/></th>
-		            <td colspan="2"><c:out value="${login }"/> </td>
-		            <td></td>
+		        <tr class="tr">
+		            <th><c:out value=" 아이디 : "/></th>
+		            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
+		            <td><input type="button" id="idbutt" value="중복 확인"></td>
+		            <td><input type="checkbox" id="ch1" class="ch"></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th style="text-align: right;"><c:out value="비밀번호 1 :  "/></th>
+		        <tr>
+		            <th><c:out value="비밀번호 1 :  "/></th>
 		            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
 		            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
 		            <td><input type="checkbox" id="ch2" class="ch"></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th style="text-align: right;"><c:out value="비밀번호 2 :  "/></th>
+		        <tr>
+		            <th><c:out value="비밀번호 2 :  "/></th>
 		            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
 		            <td></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th style="text-align: right;"><c:out value="닉네임 : "/></th>
+		        <tr class="tr">
+		            <th><c:out value="닉네임 : "/></th>
 		            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
 		            <td><input type="button" id="nicbutt" value="중복확인"></td>
 		            <td><input type="checkbox" id="ch3" class="ch"></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th style="text-align: right;"><c:out value="이메일 : "/></th>
+		        <tr>
+		            <th><c:out value="이메일 : "/></th>
 		            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
 		            <td><input type="button" id="mailbutt" value="인증하기"></td>
 		            <td><input type="checkbox" id="ch4" class="ch"></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th style="text-align: right;"><c:out value="인증번호 : "/></th>
+		        <tr id="mail">
+		            <th><c:out value="인증번호 : "/></th>
 		            <td><input type="text" placeholder="메일 인증번호"></td>
 		            <td><input type="button" id="mailchbutt" value="인증확인"></td>
 		            <td><input type="checkbox" id="ch5" class="ch"></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th id="pn" class="tr" style="text-align: right;"><c:out value="주민등록 번호 : "/></th>
+		        <tr>
+		            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
 		            <td>
 		                <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
 		                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
 		            </td>
-		            <td style="text-align: right;"><input type="button" id="pnbutt" value="중복확인"></td>
+		            <td><input type="button" id="pnbutt" value="중복확인"></td>
 		            <td><input type="checkbox" id="ch6" class="ch"></td>
 		        </tr>
-		        <tr class="low" style="text-align: left;">
-		            <th class="tr" style="text-align: right;"><c:out value=" 휴대폰 번호 : "/></th>
+		        <tr>
+		            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
 		            <td>
 		                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
 		                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
 		                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
 		            </td>
-		            <td style="text-align: right;"><input type="button" id="phonebutt" value="연락처 확인"></td>
+		            <td><input type="button" id="phonebutt" value="연락처 확인"></td>
 		            <td><input type="checkbox" id="ch7" class="ch"></td>
 		        </tr>
-		        <tr class="low">
-		            <th><input type="hidden" name="remove" value="id"></th>
-		            <th><a href="javafood?javafood=m" class="at"><c:out value=" 취 소 "/></a></th>
-		            <th><input class="sub" type="submit" value="수정하기" id="end"disabled></th>
+		        <tr>
+		            <th><a href="javafood?javafood=4" class="at"><c:out value=" 취 소 "/></a></th>
+		            <th><input class="sub" type="submit" value="회원가입" id="end"disabled></th>
 		            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
 		        </tr>
 		    </table>
 		            </div>
 		        </form>
-		        <div class="body"></div>
 		        <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 						$('#re').on('click',function(){
@@ -218,7 +277,7 @@
 		                        for(let i =0; i<$('.ch').length; i++){
 		                            if($('.ch')[i].checked==true)j++;
 		                        }
-		                        j==5?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
+		                        j==6?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
 		                    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 						$('#idbutt').on('click',function(){
@@ -253,7 +312,8 @@
 		                    aj(phone,fn,'#ch7');
 		                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		        </script>
-			</table>
+		   </script>
+		</table>
+	</c:if>	
 </body>
 </html>
