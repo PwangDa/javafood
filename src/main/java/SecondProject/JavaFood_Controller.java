@@ -268,30 +268,30 @@ public class JavaFood_Controller extends HttpServlet {
 			////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////다영이것 건들면 큰1납니다. 말아주세요. 젭알. 부탁드립니다. (음악추가)
-	if(request.getParameter("javafood").equals("addd")) {
-		JavaFood_DAO dao = new JavaFood_DAO();
-		List<AlbumDTO> li =  dao.addd1();
-		List<AlbumDTO> alDTO = new ArrayList<AlbumDTO>();
-		for(int i=0; i<li.size(); i++) {
-			if(li.get(i).getAlbum_name().equals(request.getParameter("name")))
-				System.out.println(li.get(0).getName());
-			
-			String url = li.get(1).getName();
-			System.out.println(url);
-			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
-			String e1 = doc.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");
-			System.out.println(e1);
-			
-			
-			AlbumDTO dto = new AlbumDTO();
-			dto.setAlbum_cover(e1);
-//			dto.setAlbum_name(e2);
-			
-			alDTO.add(dto);
-		}
-		request.setAttribute("alDTO", alDTO);
-		
-	}
+//	if(request.getParameter("javafood").equals("addd")) {
+//		JavaFood_DAO dao = new JavaFood_DAO();
+//		List<AlbumDTO> li =  dao.addd1();
+//		List<AlbumDTO> alDTO = new ArrayList<AlbumDTO>();
+//		for(int i=0; i<li.size(); i++) {
+//			if(li.get(i).getAlbum_name().equals(request.getParameter("name")))
+//				System.out.println(li.get(0).getName());
+//			
+//			String url = li.get(1).getName();
+//			System.out.println(url);
+//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//			String e1 = doc.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");
+//			System.out.println(e1);
+//			
+//			
+//			AlbumDTO dto = new AlbumDTO();
+//			dto.setAlbum_cover(e1);
+////			dto.setAlbum_name(e2);
+//			
+//			alDTO.add(dto);
+//		}
+//		request.setAttribute("alDTO", alDTO);
+//		
+//	}
 		
 //		일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
 	//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
