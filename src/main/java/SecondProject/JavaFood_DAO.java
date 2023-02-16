@@ -1328,15 +1328,14 @@ public class JavaFood_DAO {
 				song_DTO vo = new song_DTO();
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
-				vo.setImglink(rs.getString("imglink"));
+				vo.setImglink(rs.getString("imageLink"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
-				vo.setAlbum(rs.getString("album"));
-				vo.setImglink(rs.getString("Imglink"));
+				vo.setAlbum(rs.getString("album_name"));
 				list.add(vo);
 			}
 			rs.close();
