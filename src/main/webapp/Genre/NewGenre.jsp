@@ -292,7 +292,15 @@
         	width: 40px;
         	border:none;
         	padding: 0px;
-        	margin-left: 5px;
+        	margin-left: 7px;
+        	border-radius: 30%;
+        }
+        .put{
+        	width: 40px;
+        	border:none;
+        	padding: 0px;
+        	margin-left: 10px;
+        	margin-right: 10px;
         	border-radius: 30%;
         }
         
@@ -303,7 +311,7 @@
         	
         }
         .sub{
-        	background-image: url('https://han.gl/CJMPm');
+        	background-image: url('https://c11.kr/1asbx');
    			background-position:  0px 0px;
     		background-repeat: no-repeat;
  			cursor:pointer;
@@ -484,7 +492,7 @@
             <div class="left_artist">아티스트</div>
             <div class="left_album">앨범</div>
             <div class="right_item">재생시간</div>
-            <div><img class="heart" src="https://han.gl/CJMPm"></div>
+            <div><img class="heart" src="https://c11.kr/1asbx"></div>
             <div class="right_top_item_1">듣기</div>
             <div class="right_top_item_1">담기</div>
         </div>
@@ -505,10 +513,10 @@
                 </div>
                 </form>
                 <form method="post" action="/javafood_team/javafood?javafood=3">
-                <div> <button type="button" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div><!-- 노래재생 유튜브 -->
+                <div> <input type="hidden" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1"></a></div><!-- 노래재생 유튜브 -->
                 </form>
                 <form method="post" action="/javafood_team/javafood?javafood=3">
-                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 담기 버튼 -->
+                <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
              	</form>
              </div>
 		</c:forEach>
