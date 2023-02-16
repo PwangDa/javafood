@@ -32,18 +32,11 @@ public class JavaFood_Service {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	//다영
-
-//	다영의 메소드(앨범목록) : 아직 vo 패키지에 안넣었음
-//    public List<AlbumVO> Albumlist(){
-//    	List<AlbumVO> Albumlist = dao.listAlbum(); 
-//    	return Albumlist; JavaFood_Service(){
-//	System.out.println("service 실행");
-//	dao = new JavaFood_DAO();
-//}
-//    }
-
-
-//	다영의 메소드(앨범목록리스트 불러오기) 
+//	다영의 메소드(앨범목록리스트 불러오기)
+	/**
+	 * 다영 : 앨범곡 리스트 출력
+	 * @return Albumlist : 앨범곡 리스트 출력
+	 */
     public List<AlbumDTO > Albumlist(){
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
@@ -54,18 +47,31 @@ public class JavaFood_Service {
     	dao.delcomment(id);
     }
     //댓글 전부 삭제
+	/**
+	 * 다영 : 댓글 삭제 메소드 (부모댓글을 삭제하면 자식댓글도 다 사라지게)
+	 * @param articleNO : 부모댓글의 articleNO를  전달인자로 받음
+	 * @return articleNOList : 부모댓글의 articleNO가 set된 리스트를 받아옴
+	 */
 	public List<Integer> removeComment(int articleNO){
 		List<Integer> articleNOList = dao.selectRemoveComment(articleNO);
 		dao.deleteComment(articleNO);
 		return articleNOList;
 	}
     //댓글 등록 메소드
+	/**
+	 * 다영 : 댓글 등록 메소드 insert into
+	 * @param commentDTO : commentDTO를 전달인자로 받음
+	 */
     public void addcomment(CommentDTO commentDTO) {
 //    	dao.addcomment(commentDTO);
     	dao.insertComment(commentDTO);
     }
     
     //댓글 리스트 불러오는 메소드
+	/**
+	 * 다영 : 댓글과 거기에 달린 대댓글을 불러오는 메소드
+	 * @return commentList :  댓글과 대댓글을 리스트에 넣어서 가져옴
+	 */
     public List<CommentDTO> listComment() {
 //    	List<CommentDTO> commentList = dao.listComment();
     	List<CommentDTO> commentList = dao.allComment();
