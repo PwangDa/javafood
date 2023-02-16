@@ -118,10 +118,10 @@
 
 
 
-    <div class="topArea">
-        <a href="javafood?javafood=7"><span class="topButton">최신 음악</span></a>
-        <a href="javafood?javafood=2"><span class="topButton">차트</span></a>
-        <a href="javafood?javafood=6"><span class="topButton">장르</span></a>
+	<div class="topArea">
+        <a class="topButton" href="javascript:void(0)"><span>최신 음악</span></a>
+        <a class="topButton" href="javascript:void(0)"><span>차트</span></a>
+        <a class="topButton" href="javascript:void(0)"><span>장르</span></a>
     </div>
     
     

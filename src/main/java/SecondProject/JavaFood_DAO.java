@@ -884,8 +884,8 @@ public class JavaFood_DAO {
 		try {
 			this.con = dataFactory.getConnection();
 			
-			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM (SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s) a) ORDER BY songnumber";
+			   //기존 Genre table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(famous 변수)
+			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM (SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s) a) ORDER BY famous desc";
 			   		 
 			   		  
 			   		
@@ -906,6 +906,7 @@ public class JavaFood_DAO {
 				   String hits = rs.getString("hits");
 				   String likes = rs.getString("likes");
 				   String playtime = rs.getString("playtime");
+				   String link = rs.getString("link");
 				   
 				   
 				   
@@ -920,7 +921,7 @@ public class JavaFood_DAO {
 				   vo.setHits(hits);
 				   vo.setLikes(likes);
 				   vo.setPlaytime(playtime);
-				   
+				   vo.setLink(link);
 				   list.add(vo);
 			   }
 			   
@@ -1328,15 +1329,14 @@ public class JavaFood_DAO {
 				song_DTO vo = new song_DTO();
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
-				vo.setImglink(rs.getString("imglink"));
+				vo.setImglink(rs.getString("imageLink"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
-				vo.setAlbum(rs.getString("album"));
-				vo.setImglink(rs.getString("Imglink"));
+				vo.setAlbum(rs.getString("album_name"));
 				list.add(vo);
 			}
 			rs.close();
