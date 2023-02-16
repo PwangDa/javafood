@@ -91,8 +91,8 @@ header{
     border: 1px solid rgb(176, 176, 176);
 }
 .logo-img{
-	width:40px;
-	height: 42px;
+	width:50px;
+	height:50px;
 }
 /*검색 입력창*/
 .search-txt::placeholder{
