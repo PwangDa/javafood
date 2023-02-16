@@ -192,14 +192,12 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
-<<<<<<< HEAD
+
 		}//if문 ("m")종료
-=======
-		}
 		if(request.getParameter("javafood").equals("7")) {
 			java7(request,response);
 		}
->>>>>>> 5c9dc1e84ff90c6bf9464ec6e65957ae97557d25
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
