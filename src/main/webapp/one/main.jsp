@@ -51,10 +51,46 @@
     }
 </style>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="topArea">
-        <a href="javascript:void(0)"><span class="topButton">최신 음악</span></a>
+        <a href="javafood?javafood=7"><span class="topButton">최신 음악</span></a>
         <a href="javafood?javafood=2"><span class="topButton">차트</span></a>
         <a href="javafood?javafood=6"><span class="topButton">장르</span></a>
     </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+	(function (){  
+	    document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
+	    document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+	 }());
+</script>
 </body>
 </html>
