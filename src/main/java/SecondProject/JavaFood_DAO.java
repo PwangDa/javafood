@@ -833,7 +833,7 @@ public class JavaFood_DAO {
 	 */
 	public void url_add(String artist_add, String album_add, int songnumber) {
 //		List li = new ArrayList();
-		System.out.println("album_add컬럼에 넣었습니다.");
+		System.out.println("artist_add컬럼에 넣었습니다.");
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.con.prepareStatement("UPDATE GENRE SET album_add='"+album_add+"' WHERE SONGNUMBER ='"+songnumber+"'").executeUpdate();
@@ -869,11 +869,13 @@ public class JavaFood_DAO {
 				String album_cover = rs.getString("imagelink");
 				String album_name = rs.getString("album_name");
 				String album_url = rs.getString("album_add");
+				String artist_url = rs.getString("artist_add");
 				AlbumDTO dto = new AlbumDTO();
 				dto.setArtistname(artistname);
 				dto.setAlbum_cover(album_cover);
 				dto.setAlbum_name(album_name);
 				dto.setAlbum_add(album_url);
+				dto.setArtist_add(artist_url);
 				li.add(dto);
 			}
 			
