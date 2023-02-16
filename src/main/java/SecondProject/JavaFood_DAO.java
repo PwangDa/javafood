@@ -374,8 +374,9 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String genre = " SELECT * FROM  Genre ORDER BY songnumber";
+			String genre = " SELECT * FROM  Genre";
 			genre += " where bygenre = ?";
+			genre += " ORDER BY songnumber";
 			this.pstmt = con.prepareStatement (genre);
 			this.pstmt.setString(1, a);
 			ResultSet rs = pstmt.executeQuery();
@@ -1178,9 +1179,38 @@ public class JavaFood_DAO {
 		
 		return playListContent;
 	}
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+public void addd(String a, int b) {
+	List li = new ArrayList();
+	try {
+		this.con = this.dataFactory.getConnection();
+		this.con.prepareStatement("UPDATE GENRE SET album_add='"+a+"' WHERE SONGNUMBER ='"+b+"'").executeUpdate();
+		con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<AlbumDTO> addd1() {
+		List<AlbumDTO> li = new ArrayList<AlbumDTO>();
+		try {
+			this.con = this.dataFactory.getConnection();
+			ResultSet rs = this.con.prepareStatement("SELECT album_add FROM GENRE").executeQuery();
+			while(rs.next()) {
+				
+				String n = rs.getString("album_add");
+				AlbumDTO dto = new AlbumDTO();
+				dto.setName(n);
+				li.add(dto);
+			}
+			
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return li;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
 
 
