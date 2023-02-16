@@ -103,7 +103,7 @@ header {
 }
 
 body {
-	margin: 0 auto;
+	margin: 0 63px;
 	background-color: black;
 	display: flex;
 	flex-direction: column;
