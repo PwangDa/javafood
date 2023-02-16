@@ -7,7 +7,7 @@
 <%-- <%@ page import="java.sql.DriverManager"%> --%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="My_Page.*" import="javafood_DTO.*"
+	pageEncoding="UTF-8" import="javafood_ajax.*" import="javafood_DTO.*"
 	import="SecondProject.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>

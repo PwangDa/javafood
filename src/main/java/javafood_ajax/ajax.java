@@ -1,7 +1,9 @@
-package My_Page;
+package javafood_ajax;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,12 +43,14 @@ public class ajax extends HttpServlet {
 			}else {
 				System.out.println("이미 지정된 폴더가 있습니다.");
 			}
+			
 			DiskFileItemFactory disk = new DiskFileItemFactory();
 			disk.setRepository(cur);
 			disk.setSizeThreshold(1024*1024);
 			ServletFileUpload serf = new ServletFileUpload(disk);
 			serf.setFileSizeMax(1024*1024*100);
-			List items = serf.parseRequest(request);				
+			List items = serf.parseRequest(request);
+			System.out.println("items.size : "+items.size());
 			for(int i = 0; i<items.size(); i++) {
 				FileItem fitem = (FileItem) items.get(i);
 				if(fitem.isFormField()) {
@@ -63,8 +67,9 @@ public class ajax extends HttpServlet {
 						}
 						String filname = fitem.getName().substring(idx+1);
 						//파일명 중복방지
-						long timestamp = System.currentTimeMillis();
-						filname = timestamp+"_"+filname;
+//						long timestamp = System.currentTimeMillis();
+						String finame = "new";
+						filname = finame+"_javafood.JPG";
 						
 						File up = new File(cur+"\\"+filname);
 						fitem.write(up);
@@ -78,16 +83,9 @@ public class ajax extends HttpServlet {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	protected void doHand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("di hand 실행");
+		System.out.println("do hand 실행");
 		if(request.getParameter("id")!=null) {
 			String id = request.getParameter("id");
 			String nic = request.getParameter("nic");
@@ -127,5 +125,12 @@ public class ajax extends HttpServlet {
 			}
 			response.getWriter().println(a);
 		}
-	}		
+		
+		
+	}
+	
+	
+	
+	
+	
 }

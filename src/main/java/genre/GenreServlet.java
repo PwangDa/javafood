@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import My_Page.dbon;
 import javafood_DTO.login_DTO;
+import javafood_ajax.dbon;
 
 @WebServlet("/genre")
 public class GenreServlet extends HttpServlet {
