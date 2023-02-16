@@ -15,7 +15,7 @@
     <script>
 			(function (){  
 				document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
-				document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+				document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in; z-index: 1;'>");
 			}());
 	</script>
 <meta charset="UTF-8">
@@ -51,23 +51,22 @@
 	</head>
 	<body>
 		<h1><c:out value="javafood 회원가입"/></h1>
-		<table>
 	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 		   		   enctype="multipart/form-data" 
 		  		   accept-charset="utf-8">
-		  		<tr>	
-					<th>이미지 파일 </th>
-					<td><input type="file" name="file1"></td>
-				</tr>
-				<tr>
-					<th>파일 이름</th>
-					<td><input type="text" name="param1"></td>
-				</tr>
-				<tr>
-					<th><input type="button" onclick="but()" value="업로드"></th>
-				</tr>
+		  		<div>
+					<div style="width: 200px; height: 250px">
+						<div>
+							<input type="file" name="file1">
+							<p><strong> 프로필 사진 </strong></p>
+							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px">
+						</div>
+						<div>
+							<input type="button" onclick="but()" value="업로드">
+						</div>
+					</div>
+				</div>
 			</form>
-		</table>
 		 <script>
 			function but(){
 				var url = $("#form").attr("action");
@@ -82,6 +81,7 @@
 					cache: false,
 					success: function () {
 						alert("이미지 저장 성공")
+						location.href='javafood?javafood=4&membership=O';
 					},
 					error: function () {
 						alert("이미지 저장 실패")
