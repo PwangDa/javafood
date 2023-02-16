@@ -54,15 +54,7 @@ public class JavaFood_DAO {
 			e.printStackTrace();
 		}
 	}
-//	public void addsong1(int i ,String b,String c,String d) {
-//		try {
-//			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("INSERT INTO Genre VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'POP',null , '"+d+"',null)").executeUpdate();
-//			this.con.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////		노래추가 가수
 //	/**
@@ -751,7 +743,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s ) a ) ORDER BY songnumber ";
+			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM (SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s) a) ORDER BY songnumber ";
 			   		 
 			   		  
 			   		
@@ -1182,6 +1174,35 @@ public class JavaFood_DAO {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+public void addd(String a, int b) {
+	List li = new ArrayList();
+	try {
+		this.con = this.dataFactory.getConnection();
+		this.con.prepareStatement("UPDATE GENRE SET album_add='"+a+"' WHERE SONGNUMBER ='"+b+"'").executeUpdate();
+		con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<AlbumDTO> addd1() {
+		List<AlbumDTO> li = new ArrayList<AlbumDTO>();
+		try {
+			this.con = this.dataFactory.getConnection();
+			ResultSet rs = this.con.prepareStatement("SELECT album_add FROM GENRE").executeQuery();
+			while(rs.next()) {
+				
+				String n = rs.getString("album_add");
+				AlbumDTO dto = new AlbumDTO();
+				dto.setName(n);
+				li.add(dto);
+			}
+			
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return li;
+	}
 
 
