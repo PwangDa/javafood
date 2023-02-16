@@ -441,6 +441,11 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
 	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
+	/**
+	 * 앨범 클릭 후 그 앨범의 수록곡을 출려하는 메소드
+	 * @param num : 앨범이름 클릭하면 해당하는 숫자 넘어옴 
+	 * @return list :  해당 앨범의 음악list를 가져옵니다.
+	 */
 	public List<AlbumDTO> listAlbum(String num){
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		
@@ -771,6 +776,26 @@ public class JavaFood_DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<AlbumDTO> addd1() {
+		List<AlbumDTO> li = new ArrayList<AlbumDTO>();
+		try {
+			this.con = this.dataFactory.getConnection();
+			ResultSet rs = this.con.prepareStatement("SELECT album_add FROM GENRE").executeQuery();
+			while(rs.next()) {
+				
+				String n = rs.getString("album_add");
+				AlbumDTO dto = new AlbumDTO();
+				dto.setName(n);
+				li.add(dto);
+			}
+			
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return li;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//listsong값이 null인 메소드 생성(기본값)
@@ -1227,25 +1252,7 @@ public void addd(String a, int b) {
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<AlbumDTO> addd1() {
-		List<AlbumDTO> li = new ArrayList<AlbumDTO>();
-		try {
-			this.con = this.dataFactory.getConnection();
-			ResultSet rs = this.con.prepareStatement("SELECT album_add FROM GENRE").executeQuery();
-			while(rs.next()) {
-				
-				String n = rs.getString("album_add");
-				AlbumDTO dto = new AlbumDTO();
-				dto.setName(n);
-				li.add(dto);
-			}
-			
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return li;
-	}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
