@@ -402,6 +402,40 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	/**
+	 * 최신음악 노래 가져오기
+	 * @param a : song1음악의 가져오기
+	 * @return list : song1의 음악list를 가져옵니다.
+	 */
+	public List<song_DTO> popular_music () {
+		List<song_DTO> list = new ArrayList<>();
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement (" SELECT * FROM  song1");
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				song_DTO vo = new song_DTO();
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setBygenre(rs.getString("bygenre"));
+				vo.setHits(rs.getString("hits"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
+				vo.setPlaytime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("imglink"));
+				list.add(vo);
+			}
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
 	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용

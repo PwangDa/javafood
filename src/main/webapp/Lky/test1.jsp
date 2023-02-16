@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form id="form" class="form-horizontal" enctype="multipart/form-data" 
+<form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" 
 		action="http://localhost:8080/javafood_team/aj"  
 		accept-charset="utf-8">
 	<input type="text" class="form-control needs-validation" name="writerEmail">

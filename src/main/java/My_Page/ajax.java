@@ -22,6 +22,12 @@ public class ajax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doHand(request, response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doHand(request, response);
+	}
+	protected void doHand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
 		if(request.getParameter("id")!=null) {
@@ -120,20 +126,6 @@ public class ajax extends HttpServlet {
 				System.out.println("이미지 업로드 실패");
 				e.printStackTrace();
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			

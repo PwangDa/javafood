@@ -192,7 +192,14 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
+<<<<<<< HEAD
 		}//if문 ("m")종료
+=======
+		}
+		if(request.getParameter("javafood").equals("7")) {
+			java7(request,response);
+		}
+>>>>>>> 5c9dc1e84ff90c6bf9464ec6e65957ae97557d25
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
@@ -592,7 +599,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//용준
+	//용준 장르
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 장르별 리스트
@@ -609,6 +616,21 @@ public class JavaFood_Controller extends HttpServlet {
 		//좋아요
 		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
+		dispatch.forward(request, response);
+		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//용준 top100
+	private void java7(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 장르별 리스트
+		List music = service.javafood7();
+		request.setAttribute("music", music);
+		System.out.println("music : " + music.size());
+		
+		//좋아요
+		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
+		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/Popular_Music.jsp");
 		dispatch.forward(request, response);
 		
 	}
