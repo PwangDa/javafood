@@ -36,6 +36,12 @@
 		}
 
 </script>
+ <script>
+         (function (){  
+            document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
+            document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+         }());
+   </script>
 <style>
         body{
         
@@ -71,7 +77,7 @@
             text-decoration: none;
             color: white;
         }
-        .tab{
+      /*   .tab{
             display: flex;
             justify-content: space-between;
             text-align: center;
@@ -114,7 +120,7 @@
         .tab1_8{
             border-left: 6px solid rgb(179, 255, 217);
         }
-
+ */
         /*담기*/
 
         <%--.push{
@@ -349,7 +355,7 @@
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header> -->
     <div id="home">
-        <h1><a href='http://localhost:8080/javafood_team/javafood?javafood=7'>TOP 100</a></h1>
+        <h1><a href='http://localhost:8080/javafood_team/javafood?javafood=7'>최신음악</a></h1>
         
         
         <div class="no_chart">        
@@ -376,12 +382,12 @@
                 <div class="left_album_bot" title="${ popular_music.album}">${ popular_music.album}</div> <!-- 앨범 --> 
                 <div class="right_item_bot">${ popular_music.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=7">
-                <div class="right_item_bot" id="like">${ popular_music.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${popular_music.songnumber}"><!-- 좋아요 -->
+                <div class="right_item_bot" id="like">${ popular_music.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good1" value="${popular_music.songnumber}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ popular_music.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
                 <div> <button type="button" class="btn"><a href="${ popular_music.link}"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div><!-- 노래재생 유튜브 -->
-                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 좋아요 버튼 -->
+                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 담기 버튼 -->
              </div>
 		</c:forEach>
             
