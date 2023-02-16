@@ -741,7 +741,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 			
 			   //기존 song table과 좋아요+조회수 합산 나타내주는 table 합쳐서 출력(rank2 변수)
-			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s ) a ) ORDER BY songnumber ";
+			String query = "SELECT * FROM (SELECT RANK() OVER (ORDER BY FAMOUS desc) AS RANKING, a.* FROM (SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.* FROM Genre s) a) ORDER BY songnumber ";
 			   		 
 			   		  
 			   		
