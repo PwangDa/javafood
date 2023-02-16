@@ -831,12 +831,16 @@ public class JavaFood_DAO {
 	 * 다영 : (삭제금지!)album_add와 artist_add 컬럼에 주소값 데이터 넣는 메소드
 	 * @param articleNO : 댓글의 articleNO를 값을 가져옴
 	 */
-	public void url_add(String album_add, int songnumber) {
+	public void url_add(String album_add, String artist_add, int songnumber) {
 //		List li = new ArrayList();
 		System.out.println("album_add컬럼에 넣었습니다.");
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.con.prepareStatement("UPDATE GENRE SET album_add='"+album_add+"' WHERE SONGNUMBER ='"+songnumber+"'").executeUpdate();
+			con.close();
+			
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE GENRE SET artist_add='"+artist_add+"' WHERE SONGNUMBER ='"+songnumber+"'").executeUpdate();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
