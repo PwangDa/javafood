@@ -50,7 +50,46 @@
 	</style>
 	</head>
 	<body>
-	        <h1><c:out value="javafood 회원가입"/></h1>
+		<h1><c:out value="javafood 회원가입"/></h1>
+		<table>
+	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
+		   		   enctype="multipart/form-data" 
+		  		   accept-charset="utf-8">
+		  		<tr>	
+					<th>이미지 파일 </th>
+					<td><input type="file" name="file1"></td>
+				</tr>
+				<tr>
+					<th>파일 이름</th>
+					<td><input type="text" name="param1"></td>
+				</tr>
+				<tr>
+					<th><input type="button" onclick="but()" value="업로드"></th>
+				</tr>
+			</form>
+		</table>
+		 <script>
+			function but(){
+				var url = $("#form").attr("action");
+				var form = $('#form')[0];
+				var formData = new FormData(form);
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					cache: false,
+					success: function () {
+						alert("이미지 저장 성공")
+					},
+					error: function () {
+						alert("이미지 저장 실패")
+					}
+				})
+			}
+			</script> 
+	        
 	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
 	              <table>
@@ -116,7 +155,6 @@
 	    </table>
 	            </div>
 	        </form>
-	        <div class="body"></div>
 	        <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					$('#re').on('click',function(){
