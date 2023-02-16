@@ -765,7 +765,7 @@ public class JavaFood_DAO {
 				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
 				   String famous = rs.getString("famous");
-				   String imglink = rs.getString("imglink");
+				   String imglink = rs.getString("imagelink");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
