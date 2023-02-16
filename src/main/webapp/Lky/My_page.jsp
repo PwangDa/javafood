@@ -35,14 +35,14 @@
         .butt{font-size: 0px; background: url(https://zrr.kr/Ovva)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
         .text{ height: 30px;width: 350px; margin: 0;}
         
-        .body{height: 100%; text-align: center;margin: 30px;}
-        table{margin: auto; border: 1px solid black; border-collapse: collapse;}
-        th,td{border-top: 1px solid black;}
-        th{background-color: cornflowerblue;}
-        .low{background-color: darkkhaki;}
-        tr.low:hover {background-color: rgb(148, 100, 237); border: 1px solid black;}
-        .at{color: white; text-decoration: none;}
-		input[type="checkbox"]{display: none;}
+/*         .body{height: 100%; text-align: center;margin: 30px;} */
+/*         table{margin: auto; border: 1px solid black; border-collapse: collapse;} */
+/*         th,td{border-top: 1px solid black;} */
+/*         th{background-color: cornflowerblue;} */
+/*         .low{background-color: darkkhaki;} */
+/*         tr.low:hover {background-color: rgb(148, 100, 237); border: 1px solid black;} */
+/*         .at{color: white; text-decoration: none;} */
+/* 		input[type="checkbox"]{display: none;} */
    </style>
    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
@@ -125,7 +125,7 @@
 		
 		--%>
 	
-	<c:if test="">
+<%-- 	<c:if test="${a!=null }"> --%>
 		<style>
 			body{background-size: contain; color: white; background-color: black; text-align: center;;}
 		    div{display: inline-block; width: 100%; height: 100%;}
@@ -141,7 +141,7 @@
 		</style>
 		</head>
 		<body>
-			<h1><c:out value="javafood 회원가입"/></h1>
+			<h1><c:out value="회원정보 수정"/></h1>
 		        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 			   		   enctype="multipart/form-data" 
 			  		   accept-charset="utf-8">
@@ -314,6 +314,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		   </script>
 		</table>
-	</c:if>	
+<%-- 	</c:if>	 --%>
 </body>
 </html>
