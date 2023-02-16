@@ -831,12 +831,16 @@ public class JavaFood_DAO {
 	 * 다영 : (삭제금지!)album_add와 artist_add 컬럼에 주소값 데이터 넣는 메소드
 	 * @param articleNO : 댓글의 articleNO를 값을 가져옴
 	 */
-	public void url_add(String album_add, int songnumber) {
+	public void url_add(String album_add, String artist_add, int songnumber) {
 //		List li = new ArrayList();
 		System.out.println("album_add컬럼에 넣었습니다.");
 		try {
 			this.con = this.dataFactory.getConnection();
 			this.con.prepareStatement("UPDATE GENRE SET album_add='"+album_add+"' WHERE SONGNUMBER ='"+songnumber+"'").executeUpdate();
+			con.close();
+			
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE GENRE SET artist_add='"+artist_add+"' WHERE SONGNUMBER ='"+songnumber+"'").executeUpdate();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1309,6 +1313,38 @@ public class JavaFood_DAO {
 		}
 		
 		return playListContent;
+	}
+	
+	/**
+	 * 메인 페이지에서 쓰일 인기곡 리스트를 불러옵니다.
+	 * @return : song1 테이블의 songNumber가 40이하인 곡인 곡들 40곡을 리스트로 리턴합니다.
+	 */
+	public List<song_DTO> mainList1 () {
+		List<song_DTO> list = new ArrayList<song_DTO>();
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT * FROM  Genre WHERE songNumber <= 40");
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				song_DTO vo = new song_DTO();
+				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
+				vo.setImglink(rs.getString("imageLink"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setBygenre(rs.getString("bygenre"));
+				vo.setHits(rs.getString("hits"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setPlaytime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album_name"));
+				list.add(vo);
+			}
+			rs.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

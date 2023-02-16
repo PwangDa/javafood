@@ -19,13 +19,12 @@
 	<script>
 		(function (){  
 			document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
-			document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+			document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in; z-index: 1;'>");
 		}());
 	</script>
 <meta charset="UTF-8">
 <title>My Page</title>
  <style>      
-/*          body{background-color :black; cursor: url("https://zrr.kr/Wlm3"), auto;} */
          body{background-color :black;}
  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
         .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;}
@@ -118,8 +117,6 @@
 					</c:forEach>
 				</c:if>
 			</table>
-			
-			
 			
 			<table>
 				<h1 style="text-align: center; color: white;">회원정보 수정</h1>
@@ -258,6 +255,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		        </script>
 			</table>
-
 </body>
 </html>

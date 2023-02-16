@@ -286,34 +286,38 @@ public class JavaFood_Controller extends HttpServlet {
 		String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
 		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
 		//아티스트용
-		Elements artistURL = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span").select("a");
-		Elements artistURL_1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span");
+		Elements artistURL_1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span").select("a");
+		Elements artistURL = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span");
 		//앨범용
 		Elements albumURL = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 //		System.out.println(artistURL_1);
 		
-		for(int j=0; j<artistURL_1.size(); j++) {
+//		for(int j=0; j<artistURL.size(); j++) {
 //			System.out.println("artistURL : "+artistURL);
-			String artisturl = artistURL_1.get(j).toString();
+//			String artisturl = artistURL.get(j).toString();
+//			int tempNum = artisturl.indexOf(";");
+//			artisturl = artisturl.substring(0, tempNum);
+//			System.out.println(j+1 +": "+artisturl);
+//			String[] artistNUM= artisturl.split("'");
+//			System.out.println(j+1 + "번 인덱스 : "+ artistNUM[1]);	
+//		}
+			
+		for(int i=0; i<albumURL.size(); i++) {
+			String artisturl = artistURL.get(i).toString();
 			int tempNum = artisturl.indexOf(";");
 			artisturl = artisturl.substring(0, tempNum);
-			System.out.println(j+1 +": "+artisturl);
 			String[] artistNUM= artisturl.split("'");
-			System.out.println(j+1 + "번 인덱스 : "+ artistNUM[1]);
+			System.out.println(i+1 + "번 인덱스 : "+ artistNUM[1]);
+			artist_add="https://www.melon.com/artist/timeline.htm?artistId="+artistNUM[1];
 			
+			String albumurl = albumURL.get(i).toString();
+			String[] albumNUM= albumurl.split("'");
+			album_add="https://www.melon.com/album/detail.htm?albumId="+albumNUM[1];
+			System.out.println(i + " : "+ album_add);
+			
+			dao.url_add(album_add, artist_add, i+1); //51번부터 넣을땐 i에 50넣고
+
 		}
-		
-		
-		
-		
-//		for(int i=0; i<albumURL.size(); i++) {
-//			String albumurl = albumURL.get(i).toString();
-//			String[] albumNUM= albumurl.split("'");
-//			album_add=("https://www.melon.com/album/detail.htm?albumId="+albumNUM[1]);
-//			System.out.println(i + " : "+ album_add);
-//			
-//			dao.url_add(album_add, i+1); //51번부터 넣을땐 i에 50넣고
-//		}
 		
 	}//if ("addd") 종료
 		
@@ -657,16 +661,15 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연
-	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		System.out.println("메인 실행");
 		
+		List hitList = service.javafoodm();
+		request.setAttribute("hitList", hitList);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
 		dispatch.forward(request, response);
-		
-			
-		
 		
 		
 	}

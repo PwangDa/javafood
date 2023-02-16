@@ -15,7 +15,7 @@
     <script>
 			(function (){  
 				document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
-				document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+				document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in; z-index: 1;'>");
 			}());
 	</script>
 <meta charset="UTF-8">
@@ -50,7 +50,46 @@
 	</style>
 	</head>
 	<body>
-	        <h1><c:out value="javafood 회원가입"/></h1>
+		<h1><c:out value="javafood 회원가입"/></h1>
+	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
+		   		   enctype="multipart/form-data" 
+		  		   accept-charset="utf-8">
+		  		<div>
+					<div style="width: 200px; height: 250px">
+						<div>
+							<input type="file" name="file1">
+							<p><strong> 프로필 사진 </strong></p>
+							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+						</div>
+						<div>
+							<input type="button" onclick="but()" value="업로드">
+						</div>
+					</div>
+				</div>
+			</form>
+		 <script>
+			function but(){
+				var url = $("#form").attr("action");
+				var form = $('#form')[0];
+				var formData = new FormData(form);
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					cache: false,
+					success: function () {
+						alert("이미지 저장 성공")
+						location.href='javafood?javafood=4&membership=O';
+					},
+					error: function () {
+						alert("이미지 저장 실패")
+					}
+				})
+			}
+			</script> 
+	        
 	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
 	              <table>
@@ -116,7 +155,6 @@
 	    </table>
 	            </div>
 	        </form>
-	        <div class="body"></div>
 	        <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					$('#re').on('click',function(){

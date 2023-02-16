@@ -30,24 +30,76 @@
         
         
     }
-    span.topButton
+    a.topButton
     {
-        
-    }
-    a
-    {
+        /* border:1px solid red; */
+        border-radius: 5px;
+
         text-align: center;
         text-decoration: none; /* 링크의 밑줄 제거 */
         color: inherit; /* 링크의 색상 제거 */
-        /* border:1px solid red; */
+
         background-color: rgb(46, 46, 46);
+
         padding:1% 8%;
         width:10%;
         margin:1%;
+        
         font-size:25px;
         font-weight:bolder;
-        border-radius: 5px;
         
+    }
+
+    .subtitle
+    {
+        font-size:25px;
+        font-weight:bolder;
+
+        padding-left: 8%;
+        padding-top: 5%;
+    }
+
+    .hitListParent
+    {
+        border:1px solid red;
+        
+        margin-left: 8%;
+        
+        display:flex;
+        align-content:flex-start;
+    }
+
+    img.album
+    {
+        border: 1px solid red;
+
+        width:60px;
+        height:60px;
+
+        border-radius: 5px;
+
+        margin-right:1%;
+    }
+
+    .songInfo
+    {
+        border:1px solid red;
+
+        /* vertical-align: middle; */
+    }
+
+    .songTitle
+    {
+        border:1px solid red;
+    }
+
+    tr
+    {
+        border:1px solid red;
+    }
+    td
+    {
+        border:1px solid red;
     }
 </style>
 
@@ -66,10 +118,10 @@
 
 
 
-    <div class="topArea">
-        <a href="javafood?javafood=7"><span class="topButton">최신 음악</span></a>
-        <a href="javafood?javafood=2"><span class="topButton">차트</span></a>
-        <a href="javafood?javafood=6"><span class="topButton">장르</span></a>
+	<div class="topArea">
+        <a class="topButton" href="javascript:void(0)"><span>최신 음악</span></a>
+        <a class="topButton" href="javascript:void(0)"><span>차트</span></a>
+        <a class="topButton" href="javascript:void(0)"><span>장르</span></a>
     </div>
     
     
