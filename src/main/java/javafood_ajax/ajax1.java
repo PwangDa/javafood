@@ -32,7 +32,6 @@ public class ajax1 extends HttpServlet {
 			String file_repo = "C:\\javafood";
 			String fileName = (String) request.getParameter("fileName");
 			
-			// file full path 파일 경로
 			String downFile = file_repo + System.getProperty("file.separator") + fileName;
 			System.out.println("폴더 구분자 1 : "+ System.getProperty("file.separator"));
 			System.out.println("폴더 구분자 2 : "+ File.separator);
