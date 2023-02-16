@@ -43,10 +43,10 @@
 		}
 
 </script>
- <script>
+  <script>
          (function (){  
             document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
-            document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+            document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in; z-index: 1;'>");
          }());
    </script>
 <style>
@@ -504,8 +504,12 @@
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
+                <form method="post" action="/javafood_team/javafood?javafood=3">
                 <div> <button type="button" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div><!-- 노래재생 유튜브 -->
+                </form>
+                <form method="post" action="/javafood_team/javafood?javafood=3">
                 <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 담기 버튼 -->
+             	</form>
              </div>
 		</c:forEach>
             
