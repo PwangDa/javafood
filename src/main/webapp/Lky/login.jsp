@@ -59,7 +59,7 @@
 						<div>
 							<input type="file" name="file1">
 							<p><strong> 프로필 사진 </strong></p>
-							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px">
+							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
 						</div>
 						<div>
 							<input type="button" onclick="but()" value="업로드">

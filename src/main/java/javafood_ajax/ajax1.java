@@ -1,4 +1,4 @@
-package My_Page;
+package javafood_ajax;
 
 import java.io.File;
 import java.io.FileInputStream;
