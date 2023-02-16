@@ -130,7 +130,7 @@ public class JavaFood_Controller extends HttpServlet {
 			System.out.println("nextPage : "+nextPage);
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);
-		}
+		}//if문 ("1")종료
 		if(request.getParameter("javafood").equals("2")) {
 			java2(request,response);
 		}
@@ -147,14 +147,14 @@ public class JavaFood_Controller extends HttpServlet {
 			
 			//페이지 새로고침
 			response.sendRedirect("javafood?javafood=3");
-		}
+		}//if문 ("3_2")종료
 		if(request.getParameter("javafood").equals("3_3") )
 		{
 			//주소에서 요청된 pl_id값을 받아오기
 			int pl_id = Integer.parseInt(request.getParameter("PL_ID") );
 			
 			java3_3(request, response, pl_id);
-		}
+		}//if문 ("3_3")종료
 		if(request.getParameter("javafood").equals("3_4") )
 		{
 			//주소로 요청한 값들 받기.
@@ -166,7 +166,7 @@ public class JavaFood_Controller extends HttpServlet {
 			
 			//페이지 새로고침
 			response.sendRedirect("javafood?javafood=3_3&PL_ID=" + pl_id);
-		}
+		}//if문 ("3_4")종료
 		if(request.getParameter("javafood").equals("3_5") )
 		{
 			//주소창에서 요청된 pl_id값을 받아오기
@@ -178,7 +178,7 @@ public class JavaFood_Controller extends HttpServlet {
 			
 			//페이지 새로고침
 			response.sendRedirect("javafood?javafood=3");
-		}
+		}//if문 ("3_5")종료
 		if(request.getParameter("javafood").equals("4")) {
 			System.out.println("4번진입");
 			java4(request,response);
@@ -192,7 +192,12 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("m")) {
 			javam(request,response);
+
+		}//if문 ("m")종료
+		if(request.getParameter("javafood").equals("7")) {
+			java7(request,response);
 		}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
@@ -264,58 +269,81 @@ public class JavaFood_Controller extends HttpServlet {
 //				}
 //				dao.addsong2(a,z);
 //				z++;
-//		}
+//		}//if문 ("add")종료
 			////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////다영이것 건들면 큰1납니다. 말아주세요. 젭알. 부탁드립니다. (음악추가)
-//	if(request.getParameter("javafood").equals("addd")) {
-//		JavaFood_DAO dao = new JavaFood_DAO();
-//		List<AlbumDTO> li =  dao.addd1();
-//		List<AlbumDTO> alDTO = new ArrayList<AlbumDTO>();
-//		for(int i=0; i<li.size(); i++) {
-//			if(li.get(i).getAlbum_name().equals(request.getParameter("name")))
-//				System.out.println(li.get(0).getName());
-//			
-//			String url = li.get(1).getName();
-//			System.out.println(url);
-//			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
-//			String e1 = doc.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");
-//			System.out.println(e1);
-//			
-//			
-//			AlbumDTO dto = new AlbumDTO();
-//			dto.setAlbum_cover(e1);
-////			dto.setAlbum_name(e2);
-//			
-//			alDTO.add(dto);
-//		}
-//		request.setAttribute("alDTO", alDTO);
-//		
-//	}
+//http://localhost:8080/javafood_team/javafood?javafood=Albumadd
+	if(request.getParameter("javafood").equals("Albumadd")) {
+		JavaFood_DAO dao = new JavaFood_DAO();
+		List<AlbumDTO> album_addlist =  dao.album_add();
+		List<AlbumDTO> albumDTO = new ArrayList<AlbumDTO>();
 		
-//		일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
-	//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
-	//url에 db에 넣을 주소 가져오기
-//		String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
-//		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
-//		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
-//		for(int i=0; i<e1.size(); i++) {
-//			String a = e1.get(i).toString();
-//			String[] b= a.split("'");
-//			String c=("https://www.melon.com/album/detail.htm?albumId="+b[1]);
-//			dao.addd(c, i+1); //51번부터 넣을땐 i에 50넣고
+//		1단계 : 일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
+		//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
+		//url에 db에 넣을 주소 가져오기
+		String album_add, artist_add;
+		String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100&steadyYn=Y";
+		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+		//아티스트용
+		Elements artistURL = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span").select("a");
+		//앨범용
+		Elements albumURL = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
+		System.out.println(artistURL);
+		
+		for(int j=0; j<artistURL.size(); j++) {
+//			System.out.println("artistURL : "+artistURL);
+			String artisturl = artistURL.get(j).toString();
+			String[] artistNUM= artisturl.split("'");
+			System.out.println(j + "번 인덱스 : "+ artistNUM[1]);
+			
+		}
+		
+		
+		
+		
+//		for(int i=0; i<albumURL.size(); i++) {
+//			String albumurl = albumURL.get(i).toString();
+//			String[] albumNUM= albumurl.split("'");
+//			album_add=("https://www.melon.com/album/detail.htm?albumId="+albumNUM[1]);
+//			System.out.println(i + " : "+ album_add);
+//			
+//			dao.url_add(album_add, i+1); //51번부터 넣을땐 i에 50넣고
 //		}
 		
-	
-	
+	}//if ("addd") 종료
+		
 //	for(int i=0; i<50; i++) {
 //		String url = c;
 //		org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
 //		Elements e1 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 //		
-//	}
+//	} //for문 종료
+		
+		//이제 for문돌면서 그 주소의 해당하는 값을 가져와서 dto에 저장해서 리스트로 가져옴
+//		for(int i=0; i<album_addlist.size(); i++) {
+//			if(album_addlist.get(i).getAlbum_name().equals(request.getParameter("name"))){
+//				System.out.println(album_addlist.get(0).getName());
+//			
+//				String url = album_addlist.get(1).getName();
+//				System.out.println(url);
+//				org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
+//				String e1 = doc.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");
+//				System.out.println(e1);
+//			
+//			
+//				AlbumDTO dto = new AlbumDTO();
+//				dto.setAlbum_cover(e1);
+////			dto.setAlbum_name(e2);
+//			
+//				albumDTO.add(dto);
+//			}//if문 종료
+//		}//for문 종료
+//		request.setAttribute("albumDTO", albumDTO);
 
+//protected void doHand 종료 }
 }
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//다영 (빨간줄 뜨는거 아직 vo랑 메소드 안만들어서 에러뜨는거임! 정상임!)
 /*	private void java1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -588,7 +616,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//용준
+	//용준 장르
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 장르별 리스트
@@ -605,6 +633,21 @@ public class JavaFood_Controller extends HttpServlet {
 		//좋아요
 		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
+		dispatch.forward(request, response);
+		
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//용준 최신음악
+	private void java7(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 장르별 리스트
+		List music = service.javafood7();
+		request.setAttribute("music", music);
+		System.out.println("music : " + music.size());
+		
+		//좋아요
+		if(request.getParameter("good1")!=null) service.javafood7(request.getParameter("good1"));
+		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/Popular_Music.jsp");
 		dispatch.forward(request, response);
 		
 	}

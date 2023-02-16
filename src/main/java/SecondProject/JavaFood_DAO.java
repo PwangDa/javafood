@@ -408,13 +408,11 @@ public class JavaFood_DAO {
 	 * @param a : song1음악의 가져오기
 	 * @return list : song1의 음악list를 가져옵니다.
 	 */
-	public List<song_DTO> popular_music (String a) {
+	public List<song_DTO> popular_music () {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String music = " SELECT * FROM  song1";
-			this.pstmt = con.prepareStatement (music);
-			this.pstmt.setString(1, a);
+			this.pstmt = this.con.prepareStatement (" SELECT * FROM  song1");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -426,8 +424,8 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlaytime(rs.getString("playtime"));
-				vo.setAlbum(rs.getString("album_name"));
-				vo.setImglink(rs.getString("imagelink"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("imglink"));
 				list.add(vo);
 			}
 			rs.close();
@@ -438,11 +436,36 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+* 특정한 번호의 음악의 좋아요 증가
+* @param i : song1의 음악 번호를 넣어줍니다.
+*/
+	public void like_music(String i) {
+		try {
+			this.con=this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM song1 WHERE SONGNUMBER ="+i);
+			ResultSet rs = this.pstmt.executeQuery();
+			rs.next();
+			song_DTO vo = new song_DTO();
+			vo.setLikes(rs.getString("likes"));
+			int a = Integer.parseInt(vo.getLikes())+1;
+			System.out.println(a);
+			this.pstmt = con.prepareStatement("UPDATE song1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt.executeUpdate();
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
 	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
 	/**
-	 * 앨범 클릭 후 그 앨범의 수록곡을 출려하는 메소드
+	 * 다영:앨범 클릭 후 그 앨범의 수록곡을 출려하는 메소드
 	 * @param num : 앨범이름 클릭하면 해당하는 숫자 넘어옴 
 	 * @return list :  해당 앨범의 음악list를 가져옵니다.
 	 */
@@ -509,6 +532,10 @@ public class JavaFood_DAO {
 	//앨범수록곡 리스트 출력하는 메소드
 // 아티스트 페이지에서
 //앨범수록곡 리스트 출력하는 메소드 >artistinfo.jsp에서 쓰이는 메소드
+	/**
+	 * 다영:아티스트페이지 들어가면 각 앨범의 대표곡만 나오게 하는 메소드
+	 * @return list :  각 앨범의 1번음악만 list를 가져옵니다.
+	 */
 	public List<AlbumDTO> listAlbum(){
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 		
@@ -570,6 +597,10 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//댓글 등록 구현
+	/**
+	 * 다영: 댓글 등록 메소드 insert into
+	 * @param commentDTO : commentDTO를 전달인자로 받음
+	 */
 	public void addcomment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
@@ -598,6 +629,10 @@ public class JavaFood_DAO {
 	}
 	
 	//답글 달 용으로 만든 메소드
+	/**
+	 * 다영:(이걸로 쓸 것!)댓글 등록 메소드 insert into~
+	 * @param commentDTO : commentDTO를 전달인자로 받음
+	 */
 	public void insertComment(CommentDTO commentDTO) {
 		try {
 			this.con = dataFactory.getConnection();
@@ -664,6 +699,12 @@ public class JavaFood_DAO {
 		return list;
 	}
 	//댓글의 대댓글까지 모든 리스트 읽기 구현
+	/**
+	 * 다영:(이걸로 쓸 것!)부모댓글과 자식대댓글 달리면 이것도 리스트에 넣어 읽는 메소드
+	 * @param commentDTO : commentDTO를 전달인자로 받음
+	 * @return list :  댓글과 그 대댓글이 있으면 그것도 리스트에서 가져옴
+	 */
+
 		public List<CommentDTO> allComment(){
 			List<CommentDTO> list = new ArrayList<CommentDTO>();
 			System.out.println("모든댓글리스트DAO 접속");
@@ -727,6 +768,10 @@ public class JavaFood_DAO {
 	}
 	
 	//댓글삭제 할 articleNO 조회
+	/**
+	 * 다영:(이걸로 쓸 것!)삭제할 댓글의 articleNO값을 알아내는 메소드[대댓글이 있으면 그것도 같이 불러옴]
+	 * @param articleNO : 댓글의 articleNO를 값을 가져옴
+	 */
 	public List<Integer> selectRemoveComment(int articleNO) {
 		List<Integer> articleNOList = new ArrayList<Integer>();
 		try {
@@ -756,6 +801,10 @@ public class JavaFood_DAO {
 	}
 	
 	//삭제 댓글과 그 밑에 달린 댓글도 모두 삭제하게
+	/**
+	 * 다영 : (이걸로 쓸 것!)댓글 삭제 메소드(부모댓글을 삭제하면 그 아래 대댓글도 같이 삭제되게)
+	 * @param articleNO : 댓글의 articleNO를 값을 가져옴
+	 */
 	public void deleteComment(int articleNO) {
 		try {
 			this.con= dataFactory.getConnection();
@@ -778,7 +827,27 @@ public class JavaFood_DAO {
 		}
 	}
 	
-	public List<AlbumDTO> addd1() {
+	/**
+	 * 다영 : (삭제금지!)album_add와 artist_add 컬럼에 주소값 데이터 넣는 메소드
+	 * @param articleNO : 댓글의 articleNO를 값을 가져옴
+	 */
+	public void url_add(String album_add, int songnumber) {
+//		List li = new ArrayList();
+		System.out.println("album_add컬럼에 넣었습니다.");
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.con.prepareStatement("UPDATE GENRE SET album_add='"+album_add+"' WHERE SONGNUMBER ='"+songnumber+"'").executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 다영 : (삭제금지!)jsoup용: album_add와 artist_add 컬럼의 값을 가져오는 메소드
+	 * @return list :  album_add와 artist_add 데이터가 들어있음
+	 */
+	public List<AlbumDTO> album_add() {
 		List<AlbumDTO> li = new ArrayList<AlbumDTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
@@ -826,7 +895,7 @@ public class JavaFood_DAO {
 				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
 				   String famous = rs.getString("famous");
-				   String imglink = rs.getString("imglink");
+				   String imglink = rs.getString("imagelink");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
@@ -1241,16 +1310,7 @@ public class JavaFood_DAO {
 		return playListContent;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public void addd(String a, int b) {
-	List li = new ArrayList();
-	try {
-		this.con = this.dataFactory.getConnection();
-		this.con.prepareStatement("UPDATE GENRE SET album_add='"+a+"' WHERE SONGNUMBER ='"+b+"'").executeUpdate();
-		con.close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
