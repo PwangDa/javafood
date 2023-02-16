@@ -45,7 +45,6 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
-<<<<<<< HEAD
 	public void addsong1(String b,String c,String d) {
 		try {
 			this.con = this.dataFactory.getConnection();
@@ -55,17 +54,6 @@ public class JavaFood_DAO {
 			e.printStackTrace();
 		}
 	}
-=======
-//	public void addsong1(int i ,String b,String c,String d) {
-//		try {
-//			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("INSERT INTO Genre VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'POP',null , '"+d+"',null)").executeUpdate();
-//			this.con.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
->>>>>>> 33336cd6daa85375f1986647ce892c389e4e85f5
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////		노래추가 가수
 //	/**
