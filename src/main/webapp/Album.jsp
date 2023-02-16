@@ -14,11 +14,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Album Test</title>
-<% 	    
+<%-- 	    
 JavaFood_DAO dao = new JavaFood_DAO();
 String num = request.getParameter("a.ALBUM_NUM");
 System.out.println("num : "+num);
-List<AlbumDTO> list = dao.listAlbum(num);  %>
+List<AlbumDTO> list = dao.listAlbum(num);  --%>
 <script>
 
     window.onload = function(){
@@ -138,24 +138,26 @@ List<AlbumDTO> list = dao.listAlbum(num);  %>
             margin-left: auto;
         }
         /*해당 div에 커서올리면 체크박스 나오게*/
-        <% for(int i=0; i<list.size(); i++) {%>
-        .cont2_<%= i+1%>:hover span{
-        	display : none;
-        }
+        <%-- for(int i=0; i<list.size(); i++) {--%>
+        <c:forEach var="album" items="${album_title}" varStatus="loop"> 
+        	.cont2_${loop.count}:hover span{
+        		display : none;
+        	}
   
-        .cont2_<%= i+1%>:hover .but{
-        	display : block;
-        }
-        <%}%>
+        	.cont2_${loop.count}:hover .but{
+        		display : block;
+        	}
+        <%--}--%>
+        </c:forEach>
         
         /*체크박스*/
-        /*.but{
+        <%--/*.but{
             display : none;
             width: 20px;
             height: 20px;
             text-align: center;
             margin-left: 40px;
-        }  */
+        }  */--%>
         
        /*체크박스가 체크되면 유지되게. */  
        /* > 는 자식요소 / ~는 모두다 /+형제에서 다음형제?*/
@@ -205,7 +207,7 @@ List<AlbumDTO> list = dao.listAlbum(num);  %>
 </head>
 <body>
    <jsp:include page="menu.jsp"></jsp:include>
-    <%	for (int i =0; i < 1; i++) {
+    <%--	for (int i =0; i < 1; i++) {
 	    	AlbumDTO vo = list.get(i);
 	    	
 	    	String cover = vo.getAlbum_cover();
@@ -213,16 +215,16 @@ List<AlbumDTO> list = dao.listAlbum(num);  %>
 			String into =  vo.getAlbum_into();
 			String artist = vo.getArtistname();
 	    
-    %>
+    --%>
     <div id = "home">
         <div class="cont1">
             <div class="cont1_1">
-                <img class="img1" src="<%= cover %>">
+                <img class="img1" src="${album_list[0].album_cover }">
             </div>
             <div class="cont1_1">
-                <h1><%= alname %></h1>
-                <p><%= artist %></p>
-                <p><%= into %></p>
+                <h1>${album_list[0].album_name }</h1>
+                <p>${album_list[0].artistname }</p>
+                <p>아직내용 못가져옴</p>
                 <details>
                     <summary style="color: rgb(150, 150, 150);">출처</summary>
                     <p>Wikipedia(https://ko.wikipedia.org/wiki)</p>
@@ -231,26 +233,28 @@ List<AlbumDTO> list = dao.listAlbum(num);  %>
                 <button class="btn" type="button" style="font-size: 16px;">+ 보관함에 추가</button>
             </div>
         </div>
-        <% } %>
-        <% for (int i =0; i < list.size(); i++) {
+        <%-- } --%>
+        <%-- for (int i =0; i < list.size(); i++) {
         	AlbumDTO vo = list.get(i);
         	
 			String music_num = vo.getMusic_num();
 			String music_name = vo.getMusic_name();
 			String music_link = vo.getMusic_link();
 			String music_time = vo.getMusic_time();
-        %>
-        <div class= "musiclist ">
-            <div class="cont2 cont2_<%=i+1 %>">
-                <div class="left_item" style="color: rgb(187, 187, 187);"><%= music_num%></div>
-                <div class="left_item left_name"><a href="<%= music_link %>"><strong><%= music_name %></strong></a></div>
-                <div class="right_item">
-                <input type="checkbox" class="but btn<%=i+1%>">
-                <span class="chek1" style="color: rgb(187, 187, 187);"><%= music_time %></span>
-                </div>
-            </div>		
-        </div>
-        <% } %>
+        --%>
+        <c:forEach var="album" items="${album_title}" varStatus="loop">
+        	<div class= "musiclist ">
+            	<div class="cont2 cont2_${loop.count}">
+                	<div class="left_item" style="color: rgb(187, 187, 187);">${loop.count}</div>
+                	<div class="left_item left_name"><a href="naver.com"><strong>${album}</strong></a></div>
+                	<div class="right_item">
+                	<input type="checkbox" class="but btn${loop.count}">
+                	<span class="chek1" style="color: rgb(187, 187, 187);">3:15</span>
+                	</div>
+            	</div>		
+        	</div>
+        </c:forEach>
+        <%-- } --%>
     </div>
 </body>
 </html>

@@ -10,15 +10,15 @@ public class AlbumDTO {
 	private String artist_info;		//가수소개
 	private String artist_img;	//가수이미지
 	private String artistname;	 	
-
-	private String name;	 	
-	
 	
 	private String album_key;	//앨범 1 설정중
 	private String music_num;	//시퀀스로 올라감
 	private String music_name;	//음악이름
 	private String music_link;	//음악링크
 	private String music_time;	//음악타임
+
+	private String album_add;	 	
+	private String artist_add;	 	
 	
 	
 	
@@ -27,11 +27,18 @@ public class AlbumDTO {
 	
 	
 	
-	public String getName() {
-		return name;
+	public String getArtist_add() {
+		return artist_add;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setArtist_add(String artist_add) {
+		this.artist_add = artist_add;
+	}
+
+	public String getAlbum_add() {
+		return album_add;
+	}
+	public void setAlbum_add(String album_add) {
+		this.album_add = album_add;
 	}
 	public String getArtist_info() {
 		return artist_info;
