@@ -408,13 +408,11 @@ public class JavaFood_DAO {
 	 * @param a : song1음악의 가져오기
 	 * @return list : song1의 음악list를 가져옵니다.
 	 */
-	public List<song_DTO> popular_music (String a) {
+	public List<song_DTO> popular_music () {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String music = " SELECT * FROM  song1";
-			this.pstmt = con.prepareStatement (music);
-			this.pstmt.setString(1, a);
+			this.pstmt = this.con.prepareStatement (" SELECT * FROM  song1");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -426,8 +424,8 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlaytime(rs.getString("playtime"));
-				vo.setAlbum(rs.getString("album_name"));
-				vo.setImglink(rs.getString("imagelink"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setImglink(rs.getString("imglink"));
 				list.add(vo);
 			}
 			rs.close();
