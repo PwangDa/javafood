@@ -667,16 +667,15 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//태연
-	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		System.out.println("메인 실행");
 		
+		List hitList = service.javafoodm();
+		request.setAttribute("hitList", hitList);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
 		dispatch.forward(request, response);
-		
-			
-		
 		
 		
 	}

@@ -28,7 +28,7 @@ img{
     border-radius: 12px;
 }
 
-a{
+.a1{
     text-decoration: none;
     color: white;
 }
@@ -145,9 +145,9 @@ header{
         <img src="https://c11.kr/1asbb" class="logo-img"> Music
         </span>
         <div class="menu-box">
-            <span class="main main_1" >홈</span>
-            <span class="main main_2" >둘러보기</span>
-            <span class="main main_3" >보관함</span>
+            <a href="javafood?javafood=m" class="a1"><span class="main main_1" >홈</span></a>
+            <a href="javafood?javafood=6" class="a1"><span class="main main_2" >장르별</span>
+            <a href="javafood?javafood=3" class="a1"><span class="main main_3" >보관함</span>
             <div class = "main-box main_4">
                 <input class="search-txt" type="text" placeholder="검색">
                 <button class="search-btn" type="submit">검색</button>

@@ -43,10 +43,10 @@
 		}
 
 </script>
- <script>
+  <script>
          (function (){  
             document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
-            document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in'>");
+            document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in; z-index: 1;'>");
          }());
    </script>
 <style>
@@ -497,15 +497,19 @@
                 <div><img class="left_img" src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
                 <div class="left_song_bot"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist_bot" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
-                <div class="left_album_bot" title="${ genre_list.album}">${ genre_list.album}</div> <!-- 앨범 --> 
+                <div class="left_album_bot" title="${ genre_list.album}"><a href = "/javafood_team/javafood?javafood=AlbumList&num=${genre_list.songnumber}">${ genre_list.album}</a></div> <!-- 앨범 --> 
                 <div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
                 <div class="right_item_bot" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${genre_list.songnumber}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
+                <form method="post" action="/javafood_team/javafood?javafood=3">
                 <div> <button type="button" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div><!-- 노래재생 유튜브 -->
+                </form>
+                <form method="post" action="/javafood_team/javafood?javafood=3">
                 <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 담기 버튼 -->
+             	</form>
              </div>
 		</c:forEach>
             
