@@ -677,7 +677,6 @@ public class JavaFood_Controller extends HttpServlet {
 		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
 		dispatch.forward(request, response);
 		
-		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

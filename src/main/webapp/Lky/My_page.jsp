@@ -68,6 +68,7 @@
         </div>
         
         <%--
+        
         <div class="body">
             <h2><c:out value="최근재생목록"/></h2>
             <table border="1">
@@ -121,7 +122,8 @@
 				</c:if>
 			</table>
 		</div>
-	--%>
+		
+		--%>
 	
 	<c:if test="">
 		<style>
