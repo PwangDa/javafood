@@ -366,8 +366,9 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String genre = " SELECT * FROM  Genre ORDER BY songnumber";
+			String genre = " SELECT * FROM  Genre";
 			genre += " where bygenre = ?";
+			genre += " ORDER BY songnumber";
 			this.pstmt = con.prepareStatement (genre);
 			this.pstmt.setString(1, a);
 			ResultSet rs = pstmt.executeQuery();
