@@ -436,6 +436,31 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+* 특정한 번호의 음악의 좋아요 증가
+* @param i : song1의 음악 번호를 넣어줍니다.
+*/
+	public void like_music(String i) {
+		try {
+			this.con=this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM song1 WHERE SONGNUMBER ="+i);
+			ResultSet rs = this.pstmt.executeQuery();
+			rs.next();
+			song_DTO vo = new song_DTO();
+			vo.setLikes(rs.getString("likes"));
+			int a = Integer.parseInt(vo.getLikes())+1;
+			System.out.println(a);
+			this.pstmt = con.prepareStatement("UPDATE song1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt.executeUpdate();
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//앨범수록곡 리스트 출력하는 메소드
 	//앨범명 클릭 후 그 앨범의 수록곡을 출력하는 메소드용
@@ -870,7 +895,7 @@ public class JavaFood_DAO {
 				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
 				   String famous = rs.getString("famous");
-				   String imglink = rs.getString("imglink");
+				   String imglink = rs.getString("imagelink");
 				   String songname = rs.getString("songname");
 				   String artistname = rs.getString("artistname");
 				   String bygenre = rs.getString("bygenre");
