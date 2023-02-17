@@ -18,8 +18,7 @@
 <title>Artist.jsp Test전용</title>
  <script></script>
  <script link src ="javafoodScript/artistScript.js"></script>
-  <style>
-  
+ <style>
   	    #cont{
             background-image:
             linear-gradient(
@@ -37,7 +36,6 @@
             height: 550px;     
             position: relative;
         }
-
    </style>
    <link rel="stylesheet" href="javafoodCSS/artistCSS.css">
 </head>
@@ -125,16 +123,12 @@
 						                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 						                        <input class="input2" type="text" name="id_2" placeholder=" ID">
 						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
-						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
 						                        <input class="btn1" type="submit" value="답글"> 
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
                 				</details>
 	                        </div>
-	                        <!-- 삭제하기 기능도 
-	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
-	                        -->
 	                        <div class="text2">
 	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
@@ -160,7 +154,6 @@
 			            	</c:if>
 			            </form>
                     </c:forEach>  
-                <%-- } --%>
             </div>                 
         </div>
     </div>

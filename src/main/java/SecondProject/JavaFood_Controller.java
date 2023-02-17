@@ -133,6 +133,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dispatch.forward(request, response);
 		}//if문 ("1")종료
 		if(request.getParameter("javafood").equals("2")) {
+			System.out.println("2번 진입");
 			java2(request,response);
 		}
 		if(request.getParameter("javafood").equals("3")) {
@@ -532,7 +533,12 @@ public class JavaFood_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-
+		// 좋아요
+		if(request.getParameter("good")!=null) {
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa : "+request.getParameter("good"));
+			service.javafood5_4(request.getParameter("good"));
+		}
+		
 		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
 		List<song_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
@@ -546,6 +552,8 @@ public class JavaFood_Controller extends HttpServlet {
 		dispatch.forward(request, response);
 //		doGet(request, response);
 		
+		
+				
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -645,22 +653,14 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("4번 로그인 실행");
 
 		service.javafood4(request.getParameter("membership"));
-		if(map!=null) {
-			System.out.println("map1"+map);
-			System.out.println("map2"+map.get("membership"));
-		}
 		if(request.getParameter("membership") !=null) {
-			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
 		}
 		if(request.getParameter("membership") !=null) {
-			System.out.println("membership");
 			map = service.javafood4(request.getParameter("membership"));
-
 			request.setAttribute("membership", map.get("membership"));
 		}
 		if(request.getParameter("ID")!=null) {
-			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
 			request.getSession().setAttribute("lo", (List<login_DTO>) map.get("login"));
@@ -678,7 +678,7 @@ public class JavaFood_Controller extends HttpServlet {
 			request.setAttribute("good",service.javafood4_2(vo));
 		}
 		if(request.getParameter("remove")!=null) {
-			if("remove".equals(request.getParameter("remove"))) {
+			if("1".equals(request.getParameter("remove"))) {
 				vo = new login_DTO();
 				vo.setId((String)request.getSession().getAttribute("login"));
 				vo.setPw(request.getParameter("PW1"));
@@ -688,7 +688,10 @@ public class JavaFood_Controller extends HttpServlet {
 				vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 				service.javafood4_3(vo);
 			}
-			if(request.getParameter("remove").equals("2")) {
+			if("2".equals(request.getParameter("remove"))) {
+				
+			}
+			if("3".equals(request.getParameter("remove"))) {
 				
 			}
 			request.setAttribute("re", "re");
@@ -698,35 +701,31 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("5번 my페이지 실행");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
-		System.out.println("map : "+map.get("list"));
 		if(request.getSession().getAttribute("login")!=null) {
-			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
-			System.out.println("option : "+request.getParameter("option"));
 			if(request.getParameter("text")!=null) {
-				System.out.println("text : "+request.getParameter("text"));
 				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
 				if(list!=null) {
 					request.setAttribute("song", list);
-					System.out.println("!=null lsit : "+list);
 				}
 			}
 		}
-		System.out.println("useradsfsadfasdfasdf "+request.getParameter("usre"));
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
-		
+		if(request.getParameter("iid")!=null) request.getSession().invalidate();
+		if(request.getParameter("idd")!=null) {
+			request.setAttribute("out", service.javafood5_6(request.getParameter("idd")));
+			request.getSession().invalidate();
+		}
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
-		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //용준 장르
