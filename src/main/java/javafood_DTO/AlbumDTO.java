@@ -18,7 +18,8 @@ public class AlbumDTO {
 	private String music_time;	//음악타임
 
 	private String album_add;	 	
-	private String artist_add;	 	
+	private String artist_add;	 
+	private String songnumber;	 
 	
 	
 	
@@ -27,6 +28,13 @@ public class AlbumDTO {
 	
 	
 	
+	
+	public String getSongnumber() {
+		return songnumber;
+	}
+	public void setSongnumber(String songnumber) {
+		this.songnumber = songnumber;
+	}
 	public String getArtist_add() {
 		return artist_add;
 	}

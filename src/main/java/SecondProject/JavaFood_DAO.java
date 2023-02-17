@@ -426,8 +426,8 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 장르별로 노래 가져오기 -페이징
-	 * @param a : song1음악의 장르를 입력해 주세요.
-	 * @return list : song1의 장르별로 음악list를 가져옵니다.
+	 * @param a : Genre음악의 장르를 입력해 주세요.
+	 * @return list : Genre의 장르별로 음악list를 가져옵니다.
 	 */
 	public List<song_DTO> getGenre (String a, int start, int end) {
 		List<song_DTO> list = new ArrayList<>();
@@ -471,8 +471,8 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 * 장르별로 노래 가져오기 -페이징
-* @param a : song1음악의 장르를 입력해 주세요.
-* @return list : song1의 장르별로 음악list를 가져옵니다.
+* @param a : db에 가지고있는 노래 수량 확인.
+* @return list : db에 가지고있는 노래 수량을 가져옴.
 */
 	public int pagetotal () {
 		List<song_DTO> list = new ArrayList<>();
@@ -497,7 +497,7 @@ public class JavaFood_DAO {
 	/**
 	 * 최신음악 노래 가져오기
 	 * @param a : song1음악의 가져오기
-	 * @return list : song1의 음악list를 가져옵니다.
+	 * @return list : song1의 음악list를 가져옵니다.최신음악.
 	 */
 	public List<song_DTO> popular_music () {
 		List<song_DTO> list = new ArrayList<>();
@@ -731,10 +731,11 @@ public class JavaFood_DAO {
 			int parentNO = commentDTO.getParentNO();
 			String id = commentDTO.getComment_id();
 			String cont = commentDTO.getComment_cont();
+			int artist_num = commentDTO.getArtistlist_num();
 			
 			String query = "insert into comment_com";
-			query += "(articleno, parentno, comment_num, comment_id, comment_cont)";
-			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?)"; //띄어쓰기 필수!
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?)"; //띄어쓰기 필수!
 			
 			System.out.println("query check" + query);
 			
@@ -743,6 +744,7 @@ public class JavaFood_DAO {
 			pstmt.setInt(1, parentNO);
 			pstmt.setString(2, id);
 			pstmt.setString(3, cont);
+			pstmt.setInt(4, artist_num);
 			pstmt.executeUpdate();
 			
 			pstmt.close();
@@ -805,6 +807,7 @@ public class JavaFood_DAO {
 				   //가져올 테이블 선택(불러오기)
 				String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date \n";
 				query += " from comment_com \n";    
+//				query += " WHERE artistlist_num= '1' \n"; //전달인자로 num받아서 그것만 보이게?
 				query += " START WITH parentNO=0 \n";    
 				query += " CONNECT BY PRIOR articleNO=parentNO \n";    
 				query += " ORDER SIBLINGS BY articleNO DESC"; 
