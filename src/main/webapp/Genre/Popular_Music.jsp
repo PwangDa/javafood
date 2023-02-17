@@ -270,14 +270,14 @@
 			text-decoration-color: white;
 		}
 	
-		.right_top_item_1{
+		/* .right_top_item_1{
             width: 45px;
             height: 40px;
             text-align: center;
             margin-left: 0;
             margin-bottom:20px;
             text-overflow : ellipsis;
-        }
+        } */
         #like{
         	margin-left: 10px;
         }
@@ -367,8 +367,12 @@
             <div class="left_album">앨범</div>
             <div class="right_item">재생시간</div>
             <div><img class="heart" src="https://han.gl/CJMPm"></div>
-            <div class="right_top_item_1">듣기</div>
-            <div class="right_top_item_1">담기</div>
+            <form method="post" action="/javafood_team/javafood?javafood=3">
+            <div> <input type="hidden" class="btn"><a href="${ popular_music.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1"></a></div><!-- 노래재생 유튜브 -->
+            </form>
+            <form method="post" action="/javafood_team/javafood?javafood=3">
+            <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
+            </form>
         </div>
 		
 		<c:forEach var="popular_music" items="${music}" varStatus="status">
@@ -379,15 +383,19 @@
                 <div><img class="left_img" src="${ popular_music.imglink}" ></div>  <!-- 앨범 이미지 -->
                 <div class="left_song_bot"><a href="${ popular_music.link}"target='_blank'>${ popular_music.songname}</a></div> <!-- 곡 제목 -->
                 <div class="left_artist_bot" title="${ popular_music.artistname}">${ popular_music.artistname}</div> <!-- 가수명 -->
-                <div class="left_album_bot" title="${ popular_music.album}">${ popular_music.album}</div> <!-- 앨범 --> 
+                <div class="left_album_bot" title="${ popular_music.album}"><a href = "/javafood_team/javafood?javafood=AlbumList&num=${popular_music.songnumber}">${ popular_music.album}</a></div> <!-- 앨범 --> 
                 <div class="right_item_bot">${ popular_music.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=7">
                 <div class="right_item_bot" id="like">${ popular_music.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good1" value="${popular_music.songnumber}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ popular_music.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
-                <div> <button type="button" class="btn"><a href="${ popular_music.link}"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div><!-- 노래재생 유튜브 -->
-                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div><!-- 담기 버튼 -->
+                <form method="post" action="/javafood_team/javafood?javafood=3">
+                <div> <input type="hidden" class="btn"><a href="${ popular_music.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1"></a></div><!-- 노래재생 유튜브 -->
+                </form>
+                <form method="post" action="/javafood_team/javafood?javafood=3">
+                <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
+             	</form>
              </div>
 		</c:forEach>
             
