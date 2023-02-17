@@ -140,17 +140,10 @@
 		   input[type="checkbox"]{display: none;}
 		</style>
 		</head>
-		<a href="javafood?javafood=5&remove=1">회원정보 수정</a>
+		<p><a href="javafood?javafood=5&remove=1">회원정보 수정</a></p>
 		<c:if test="${remove==1}">
 			<body>
 				<h1><c:out value="회원정보 수정"/></h1>
-				${session_user.id }<br>
-				${session_user.pw }<br>
-				${session_user.nic }<br>
-				${session_user.email }<br>
-				${session_user.phone }<br>
-				${session_user.pn1 }<br>
-				${session_user.pn }<br>
 			        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 				   		   enctype="multipart/form-data" 
 				  		   accept-charset="utf-8">
@@ -194,9 +187,13 @@
 			            <div class="head">
 			              <table>
 			        <tr class="tr">
+			            <th><c:out value="이미지url : "/></th>
+			            <td><input type="text" id="img" name="img" placeholder="${lo[0].myimg }"></td>
+			            <td><input type="hidden" value="remove" name="remove"></td>
+			        </tr>
+			        <tr class="tr">
 			            <th><c:out value=" 아이디 : "/></th>
 			            <td><c:out value="${session_user.id }"/> </td>
-			            <td><input type="hidden" value="remove" name="remove"></td>
 			        </tr>
 			        <tr>
 			            <th><c:out value="비밀번호 1 :  "/></th>
@@ -231,10 +228,7 @@
 			            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
 			            <td>
 			                <c:out value="${session_user.pn }"/>
-			                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
 			            </td>
-			            <td><input type="button" id="pnbutt" value="본인확인"></td>
-			            <td><input type="checkbox" id="ch6" class="ch"></td>
 			        </tr>
 			        <tr>
 			            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
@@ -285,7 +279,7 @@
 			                        for(let i =0; i<$('.ch').length; i++){
 			                            if($('.ch')[i].checked==true)j++;
 			                        }
-			                        j==5?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
+			                        j==4?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
 			                    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 							$('#idbutt').on('click',function(){

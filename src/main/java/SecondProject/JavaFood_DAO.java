@@ -267,7 +267,7 @@ public class JavaFood_DAO {
 	public void removeId(login_DTO vo) {
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='https://zrr.kr/NuiP' WHERE id = '"+vo.getId()+"'");
+			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='"+vo.getMyimg()+"' WHERE id = '"+vo.getId()+"'");
 			this.pstmt.executeUpdate();
 			this.pstmt.close();
 			this.con.close();

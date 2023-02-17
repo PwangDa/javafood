@@ -686,9 +686,10 @@ public class JavaFood_Controller extends HttpServlet {
 			vo.setPw(request.getParameter("PW1"));
 			vo.setNic(request.getParameter("nic"));
 			vo.setEmail(request.getParameter("mail"));
-			vo.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
+			vo.setMyimg(request.getParameter("img"));
 			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
-			request.setAttribute("remove", service.javafood4_3(vo));
+			service.javafood4_3(vo);
+			request.setAttribute("re", "re");
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
