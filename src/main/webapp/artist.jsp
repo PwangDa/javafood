@@ -15,9 +15,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Artist.jsp Test전용</title>
+<title>Artist.jsp TTTTest전용</title>
  <script>
- function fn_sendComment(){
+<%-- function fn_sendComment(){
  	
  	var frmCommand = document.frmComment;
  	var id = frmCommand.id.value;
@@ -31,7 +31,7 @@
      frmComment.action = "/javafood?javafood=ArtistList&num="${album_list[0].songnumber}"&command=addcommnet.do";
      frmComment.submit();
  	}
- } 
+ } --%>
  
  </script>
  <script link src ="javafoodScript/artistScript.js"></script>
@@ -135,7 +135,7 @@
 	                            <div class="date1">${comment.comment_Date }</div>
 	                            <details id="detail">
 		                   		 	<summary style="color: rgb(150, 150, 150);">답글달기</summary>
-		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=addReply.do">
+		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=addReply.do">
 			                    		<div class="comment" >
 						                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 						                        <input class="input2" type="text" name="id_2" placeholder=" ID">

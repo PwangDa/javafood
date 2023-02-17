@@ -20,14 +20,14 @@ public class AlbumDAO {
 	
 	//sql 불러오는 설정
 	public AlbumDAO(){
-		Context ctx;
-		try {
-			ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:/comp/env");
-			dataFactory = (DataSource)envContext.lookup("jdbc/javafood"); 
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
+//		Context ctx;
+//		try {
+//			ctx = new InitialContext();
+//			Context envContext = (Context) ctx.lookup("java:/comp/env");
+//			dataFactory = (DataSource)envContext.lookup("jdbc/javafood"); 
+//		} catch (NamingException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	//앨범 넣는 메소드

@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Album Test</title>
+<title>Album TTTest</title>
 <script link src ="javafoodScript/albumScript.js"></script>
 <style>       
         <c:forEach var="album" items="${album_title}" varStatus="loop"> 
