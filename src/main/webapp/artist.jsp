@@ -16,111 +16,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Artist.jsp Test전용</title>
- <script>
- 		/*댓글 입력창 if문*/
-         function fn_sendComment(){
-        	
-        	var frmCommand = document.frmComment;
-        	var id = frmCommand.id.value;
-        	var cont = frmCommand.cont.value;
-        	
-        	if(id.length == 0 || id == ""){
-        		alert("아이디를 입력해주세요")
-        	}else if(cont.length == 0 || cont == ""){
-        		alert("내용을 입력해주세요")
-        	}else{
-            frmComment.method = "post";
-            frmComment.action = "/javafood_team/javafood?javafood=1&command=addcommnet.do";
-            frmComment.submit();
-        	}
-        } 
- 		
-        function fn_sendComment_2(){
-        	
-        	var frmCommand = document.frmComment_2;
-        	var id = frmCommand.id_2.value;
-        	var cont = frmCommand.cont_2.value;
-        	
-        	if(id.length == 0 || id == ""){
-        		alert("아이디를 입력해주세요")
-        	}else if(cont.length == 0 || cont == ""){
-        		alert("내용을 입력해주세요")
-        	}else{
-            frmComment.method = "post";
-            frmComment.action = "/javafood_team/javafood?javafood=1&command=addReply.do";
-            frmComment.submit();
-        	}
-        }
-        
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = headerbarToggle
-        window.onload = headerbarToggle
-        function headerbarToggle(){
-            console.log(1234);
-        /*메뉴상단 스크롤 함수*/
-            var headerbar = document.getElementById("menu");
-            var currentScrollPos = window.pageYOffset;
-            if(prevScrollpos < currentScrollPos){
-                headerbar.style.opacity = 1;
-            }else{
-                headerbar.style.opacity = 0.6;
-            }
-            
-            /*앨범 < > 함수*/
-            let prev = document.querySelector(".prev");
-            let next = document.querySelector(".next");
-            let slides = document.querySelector(".clides");
-            let slds = document.querySelector("#slds");
-            let slidelmg = document.querySelectorAll(".clides li");
-            let current = 0;
-            let slideCount = slidelmg.length;
-
-    	       next.addEventListener('click', function() {
-    	           console.log(slideCount); /*5*/
-    	           if(current !== slideCount){
-    	           		console.log('안녕 친구들');
-    	        	    current = slideCount;
-    	        	    console.log(current);
-    	           		slds.classList.add("marLeft");
-    	           }
-    	       });
-    	        
-    	       prev.addEventListener('click', function() {
-    	    	   if(current !== 0){
-    	           	console.log('hello');
-    	           	console.log(slideCount);
-    	           	slds.classList.remove("marLeft");
-    	           	current = 0;
-    	    	   }
-    	       });
-    	       
-        }
-
-  </script>
-  <style>
-  
-  		/*공통으로 적용 될거*/
-        body{
-            background-color: black;
-            margin: 0;
-        }
-
-        div{
-            /* border: 1px solid white; */
-            color : white;
-            /* vertical-align: middle; */
-        }
-        
-        img{
-        	border-radius: 12px;
-        }
-        
-        a{
-            text-decoration: none;
-            color: white;
-        }
-        
-        #cont{
+ <script></script>
+ <script link src ="javafoodScript/artistScript.js"></script>
+ <style>
+  	    #cont{
             background-image:
             linear-gradient(
                 to bottom,
@@ -130,303 +29,15 @@
                 rgba(0, 0, 0, 0.75) 75%,
                 rgb(0, 0, 0) 100%
             ),
-            url("${album_list[1].artist_img}") ;
+            url("${album_list[1].artist_img}") ; 
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
             height: 550px;     
             position: relative;
         }
-        
-        .text1{
-            color : white;
-            padding: 0px 10px;
-            position : absolute;
-            bottom : 0;
-        }
-        
-        /* 노래목록 style */
-        #cont1{
-            display : flex;
-            justify-content: center;
-            height: 80px;
-        }
-        .box1{
-            width: 170px;
-            height: 60px;
-            margin: 0 15px;
-            text-align: left;     
-
-        }
-        
-        hr{
-            width: 62%;
-            border: 0;
-            border-top: 1px solid rgb(98, 98, 98);
-        }
-        .img1{
-            width: 60px;
-        }
-		
-		/* 댓글 style*/
-        .comment{
-            display: flex;
-            justify-content: center;
-            
-        }
-
-        .text2{
-            padding-top: 20px;
-        }
-        
-		/*textarea input 스타일*/
-        textarea{
-            width: 500px;
-            height: 110px;
-            padding: 10px;
-            margin: 11px;
-            box-sizing: border-box;
-            border-radius: 15px;
-            color: white;
-            border: none;
-            resize: none;
-            background-color: rgb(70, 70, 70);
-        }
-
-        .input1{
-            background-color: rgb(70, 70, 70);
-            color: white;
-            border-radius: 15px;
-            border: none;
-            height: 19px;
-        }
-        
-        .image1{
-            width: 90px;
-            display: block;
-            border-radius: 70%;
-            margin : 5px 0px 5px 40px;
-            
-        }
-        .btn{
-            color:white;
-            background-color:rgb(70, 70, 70);
-            padding: 15px 30px;
-            height: 90px;
-            margin: 10px;
-            border-radius: 15px;
-            border: none;
-        }
-
-        .btn:active{
-            transform: scale(1.1);
-        }
-        .btn:hover{
-            background-color:rgba(173, 173, 173, 0.545);
-        }
-
-        /* 답글용  아이디text*/
-        .input2{
-            background-color: transparent;
-            color: white;
-            /* border-radius: 15px; */
-            border: none;
-            border-bottom: 2px solid rgb(70, 70, 70);
-            height: 19px;
-            width: 90px;
-            margin: 10px 3px;
-        }
-         /* 답글용  내용text*/
-        .input3{
-            background-color: transparent;
-            color: white;
-            /* border-radius: 15px; */
-            border: none;
-            border-bottom: 2px solid rgb(70, 70, 70);
-            height: 19px;
-            width: 250px;
-            margin: 10px 3px;
-        }
-        /* 답글용  이미지*/
-        .image3{
-            margin: 10px 3px;
-        	width: 35px;
-        	height: 35px;
-        	border-radius: 70%;
-        }
-
-        /* 답글용  버튼*/
-        .btn1{
-            color:white;
-            background-color:rgb(70, 70, 70);
-            /* padding: 15px 30px; */
-            width: 50px;
-            height: 30px;
-            margin: 10px;
-            border-radius: 15px;
-            border: none;
-        }
-
-        .btn1:active{
-            transform: scale(1.1);
-        }
-        .btn1:hover{
-            background-color:rgba(173, 173, 173, 0.545);
-        }
-
-        .comment_1{
-            height: 40px;
-            /* vertical-align: top; */
-        }
-
-        .comment_1_1{
-            display: inline-block;
-            margin-right: 4px;
-            height: 20px;
-            vertical-align: top;
-        }
-        .comment_1_2{
-            height: 24px;
-            vertical-align: top;
-            margin: 12px 10px 0px 10px;
-        }
-        
-        .comment_1_3{
-           text-align: left;
-            width: 520px;
-            margin: 3px;
-            padding: 2px;
-        }
-
-
-        .command{
-            text-align: center;
-        }
-        
-        .cont2{
-            /* border: 1px solid rgb(70, 70, 70); */
-            width: 500px;
-            margin: 11px;
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 15px;
-            text-align: left;
-        }
-
-        .id2{
-            /* border: 1px solid rgb(70, 70, 70); */
-            color :rgb(113, 113, 113);
-            border-radius: 15px;
-            width: 130px;
-            font-size: 15px;
-        }
-
-        .image2{
-            width: 75px;
-            border-radius: 70%;          
-        }
-        
-        /*댓글 입력한 날짜출력 스타일*/
-        .date1{
-           
-            border-radius: 15px;
-            margin: 11px;
-            padding: 1px;
-            text-align: right;
-            color :rgb(113, 113, 113);
-            font-size: 13px;
-        }
-        
-        #detail{
-        	text-align: left;
-        	font-size: 14px;
-            cursor: pointer;
-        }
-
-        .reply{
-            /* border: 1px solid white; */
-            display: inline-block;
-            width: 530px;
-            text-align: left;
-        }
-        
-        /* 앨범  < > 용 스타일*/
-        #cont3{
-            margin-top : 20px;
-            text-align: center;
-        }
-        #cont3_1{
-            /*border: 1px solid white;*/
-            width: 900px;
-            height: 250px;
-            position: relative;
-            margin: 15px auto;
-            overflow: hidden;
-        }
-        
-        /*슬라이드 애니메이션*/
-        #slds{
-        	transition: margin 0.8s;
-        }
-        
-        li{
-            list-style-type: none;
-        }
-
-        .clides li:not(:last-child){
-            float: left;
-            margin-right: 25px;
-        }
-
-        .clides{
-            border: 1px solid white;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 5000px; /* 슬라이드할 사진과 마진 총 넓이 */
-         }
-
-         .clides li{
-            float: left;
-            margin-right: 25px;
-
-            }
-            
-        /* < > 화살표 */    
-        .point{
-            border: 1px solid rgb(98, 98, 98);
-            background-color: transparent;
-            border-radius: 70%;
-            width : 30px;
-            height: 31px;
-            margin : 10px;
-            padding: 0px 3px;
-            padding-bottom: 3px;
-            font-size: 20px;
-            display: inline-block;
-            font-weight: 200;
-        }
-
-        .point:hover{
-            background-color: rgba(128, 128, 128, 0.652);
-            cursor: pointer;
-        }
-
-        .image{
-            width: 190px;
-        }
-        
-        .marLeft{
-        	margin-left: -885px;
-        }
-
-        .al_name{
-            /* border: 1px solid white; */
-            display: inline-block;
-            width: 180px;
-            
-        }
-    </style>
+   </style>
+   <link rel="stylesheet" href="javafoodCSS/artistCSS.css">
 </head>
 <body  onscroll="headerbarToggle()">
 	<jsp:include page="menu.jsp"></jsp:include>
@@ -512,16 +123,12 @@
 						                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 						                        <input class="input2" type="text" name="id_2" placeholder=" ID">
 						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
-						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
 						                        <input class="btn1" type="submit" value="답글"> 
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
 			                			</div>
 		                            </form>
                 				</details>
 	                        </div>
-	                        <!-- 삭제하기 기능도 
-	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
-	                        -->
 	                        <div class="text2">
 	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
@@ -547,7 +154,6 @@
 			            	</c:if>
 			            </form>
                     </c:forEach>  
-                <%-- } --%>
             </div>                 
         </div>
     </div>
