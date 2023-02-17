@@ -408,6 +408,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		String command = request.getParameter("command");
+		System.out.println("command를 받다 : "+command);
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.listComment();
 		if("addcommnet.do".equals(command) && command != null) {
@@ -424,11 +425,27 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			
 			service.addcomment(dto);
-			nextPage = "/javafood?javafood=ArtistList&num="+num;
-			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-			dispatch.forward(request, response);
+			commentList = service.listComment();
+		}else if("addReply.do".equals(command) && command != null) {
+			String id = request.getParameter("id_2");
+			String cont = request.getParameter("cont_2");
+//			String parentNO = request.getParameter("parentNO");
+			String articleNO = request.getParameter("command_articleNO");
+			
+			System.out.println("id : "+ id);
+			System.out.println("cont : "+ cont);
+			System.out.println("대댓글 num : "+ num);
+			System.out.println("articleNO : "+ articleNO);
+			
+			CommentDTO dto = new CommentDTO();
+			dto.setComment_id(id);
+			dto.setComment_cont(cont);
+			dto.setParentNO(Integer.parseInt(articleNO));
+			dto.setArtistlist_num(Integer.parseInt(num));
+			
+			service.addcomment(dto);
+			commentList = service.listComment();
 		}
-		
 		System.out.println("무한반복 살려줘");
 		request.setAttribute("album_list", album_list); //아티스트 정보
 		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
