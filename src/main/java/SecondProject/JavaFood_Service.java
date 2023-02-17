@@ -260,6 +260,7 @@ public class JavaFood_Service {
 	 */
 	public void javafood5_4(String songnumber) {
 		dao.like(songnumber);
+		System.out.println("sdfasdfasdfasfdasdfasdf : "+songnumber);
 	}
 	/**
 	 * my_page 이동값 전달

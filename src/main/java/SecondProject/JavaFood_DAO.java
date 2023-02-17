@@ -989,7 +989,11 @@ public class JavaFood_DAO {
 				   String hits = rs.getString("hits");
 				   String likes = rs.getString("likes");
 				   String playtime = rs.getString("playtime");
+				   // 재생 버튼 클릭 시 유튜브 검색
 				   String link = rs.getString("link");
+				   // 담기 변수는 아직 설정 x
+				   String country = rs.getString("country");
+				   
 				   
 				   
 				   
@@ -1004,6 +1008,7 @@ public class JavaFood_DAO {
 				   vo.setLikes(likes);
 				   vo.setPlaytime(playtime);
 				   vo.setLink(link);
+				   vo.setCountry(country);
 				   list.add(vo);
 			   }
 			   
