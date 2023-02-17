@@ -280,6 +280,13 @@ public class JavaFood_Service {
 		}
 		return a;
 	}
+	/**
+	 * my_page 이동값 전달
+	 * @param String : 마이페이지 이동값을 넣어주세요
+	 */
+	public String javafood5_6(String id) {
+		return dao.outId(id);
+	}
 //	//음악추가
 //	public void javafood51(String a,String b,String c,String d){
 //		dao.addsong1(a, b, c, d);

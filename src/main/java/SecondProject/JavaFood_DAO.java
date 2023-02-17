@@ -277,6 +277,24 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
+	 * 회원탈퇴
+	 * @param vo : 수정할 회원정보 DTO를 넣어줍니다.
+	 */
+	public String outId(String id) {
+		String ab="1";
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("DELETE FROM LOGIN  WHERE id = '"+id+"'");
+			this.pstmt.executeUpdate();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			ab="0";
+		}return ab;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
 	 * song리스트
 	 * @return list : song1의 목록을 list로 가져옵니다.
 	 */
