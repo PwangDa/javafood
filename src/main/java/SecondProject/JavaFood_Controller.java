@@ -726,25 +726,66 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 장르
+//	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		// 장르별 리스트
+//		String song="발라드";
+//		if(request.getParameter("genre")!=null) {
+//			song = request.getParameter("genre");
+//		}
+//		System.out.println("song  전: " + song);
+//		List genre_list = service.javafood6(song);
+//		request.setAttribute("genre", genre_list);
+//		request.setAttribute("song", song);
+//		System.out.println("song 후: " + song);
+//		
+//		// 페이징
+//		int pegeNum = 1;		// 현재 페이지
+//		int countPerPage = 10;	// 한 페이지당 표시 수 
+//		
+//		//좋아요
+//		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
+//		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
+//		dispatch.forward(request, response);
+//		
+//	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//용준 장르
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
+		// 페이징
+		int pageNum = 1;		// 현재 페이지
+		int countPerPage = 10;	// 한 페이지당 표시 수 
+
 		// 장르별 리스트
 		String song="발라드";
 		if(request.getParameter("genre")!=null) {
 			song = request.getParameter("genre");
 		}
+		String tmp_pageNum = request.getParameter("pageNum");
+		if(tmp_pageNum != null) {
+			pageNum = Integer.parseInt(tmp_pageNum);
+		}
 		System.out.println("song  전: " + song);
-		List genre_list = service.javafood6(song);
-		request.setAttribute("genre", genre_list);
+		System.out.println("pageNum : " + pageNum);
+		System.out.println("countPerPage : " + countPerPage);
+		Map genre_list = service.javafood6(song, pageNum, countPerPage);
+		request.setAttribute("genre", genre_list.get("list"));
+		request.setAttribute("totalCount", genre_list.get("totalCount"));
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("countPerPage", countPerPage);
 		request.setAttribute("song", song);
+//		request.setAttribute("genre", genre_list);
 		System.out.println("song 후: " + song);
-		
-		//좋아요
+
+		// 좋아요
 		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
-		
-	}
+
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 최신음악
 	private void java7(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

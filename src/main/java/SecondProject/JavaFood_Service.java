@@ -265,12 +265,33 @@ public class JavaFood_Service {
 //		dao.addsong1(a, b, c, d);
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//용준  장르별
-	public List<song_DTO> javafood6(String song){
+//	//용준  장르별
+//	public List<song_DTO> javafood6(String song){
+//		System.out.println("6번 장르 실행");
+//		return dao.getGenre(song);
+//		
+//	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//용준  장르별 페이징
+	public Map javafood6(String song, int pageNum, int countPerPage){
 		System.out.println("6번 장르 실행");
-		return dao.getGenre(song);
+//		dao.getGenre(song);
 		
-	}
+		int start = 0;
+		int end = 0;
+		start = (countPerPage*(pageNum-1))+1;
+		end = start + countPerPage - 1;
+		List list = dao.getGenre(song, start, end);
+		int totalCount = dao.pagetotal();
+		
+		Map map = new HashMap();
+		map.put("list", list);
+		map.put("totalCount", totalCount);
+		return map;
+		
+		
+	}	
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 최신음악

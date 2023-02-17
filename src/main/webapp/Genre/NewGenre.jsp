@@ -530,6 +530,11 @@
             
         </div>
     </div>
+ totalCount : ${totalCount }<br>
+ pageNum : ${pageNum }<br>
+ countPerPage : ${countPerPage }<br>
+ 
+    이전 [1] [2] [3] [4] [5] 다음
 </body>
 
 </html>
