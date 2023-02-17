@@ -378,13 +378,13 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		//num으로 db에서 가져온 값이 있어서 다시 새 빈 리스트 선언해서 덮어주기
 		album_list =  new ArrayList();
+		System.out.println("songnumber : "+num);
 		for(int i=0; i<artistSONG.size(); i++) {
 			AlbumDTO dto = new AlbumDTO();
 			dto.setArtistname(artist_n);
 			dto.setArtist_info(artist_i);
 			dto.setArtist_img(artistIMG);
 			dto.setSongnumber(num);
-			System.out.println("songnumber : "+num);
 			String music_name = albumTitle.get(i).text();
 //			System.out.println("music_name"+(i)+" : "+music_name);
 			dto.setMusic_name(music_name);
@@ -404,15 +404,35 @@ public class JavaFood_Controller extends HttpServlet {
 			album_list.add(dto);
 		}
 		
+		
+		
+		String nextPage = "";
 		String command = request.getParameter("command");
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.listComment();
+//		if("addcommnet.do".equals(command) && command != null) {
+//			String id_1 = request.getParameter("id");
+//			String cont_1 = request.getParameter("cont");
+////			String num_1 = request.getParameter("num");
+//			
+//			System.out.println("댓글등록 num"+num);
+//			
+//			
+//			CommentDTO dto = new CommentDTO();
+//			dto.setComment_id(id_1);
+//			dto.setComment_cont(cont_1);
+//			dto.setArtistlist_num(Integer.parseInt(num));
+//			
+//			service.addcomment(dto);
+//			nextPage = "/javafood?javafood=ArtistList&num="+num;
+//		}
 		
+		System.out.println("무한반복 살려줘");
 		request.setAttribute("album_list", album_list); //아티스트 정보
 		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
 		request.setAttribute("src", src); //각 앨범 이름 리스트
 		request.setAttribute("commentList", commentList);
-		String nextPage = "/artist.jsp";
+		nextPage = "artist.jsp";
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 		

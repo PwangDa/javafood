@@ -28,7 +28,7 @@
  		alert("내용을 입력해주세요")
  	}else{
      frmComment.method = "post";
-     frmComment.action = "/javafood_team/javafood?javafood=1&num=1&command=addcommnet.do";
+     frmComment.action = "/javafood?javafood=ArtistList&num="${album_list[0].songnumber}"&command=addcommnet.do";
      frmComment.submit();
  	}
  } 
