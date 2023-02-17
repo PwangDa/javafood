@@ -732,10 +732,11 @@ public class JavaFood_DAO {
 			String id = commentDTO.getComment_id();
 			String cont = commentDTO.getComment_cont();
 			int artist_num = commentDTO.getArtistlist_num();
+			String artist_name = commentDTO.getArtistname();
 			
 			String query = "insert into comment_com";
-			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num)";
-			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?)"; //띄어쓰기 필수!
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?)"; //띄어쓰기 필수!
 			
 			System.out.println("query check" + query);
 			
@@ -745,6 +746,7 @@ public class JavaFood_DAO {
 			pstmt.setString(2, id);
 			pstmt.setString(3, cont);
 			pstmt.setInt(4, artist_num);
+			pstmt.setString(5, artist_name);
 			pstmt.executeUpdate();
 			
 			pstmt.close();
@@ -798,22 +800,26 @@ public class JavaFood_DAO {
 	 * @return list :  댓글과 그 대댓글이 있으면 그것도 리스트에서 가져옴
 	 */
 
-		public List<CommentDTO> allComment(){
+		public List<CommentDTO> allComment(String name){
 			List<CommentDTO> list = new ArrayList<CommentDTO>();
 			System.out.println("모든댓글리스트DAO 접속");
+			System.out.println(name+" 아티스트의 댓글을 조회합니다.");
 			try {
 				this.con = dataFactory.getConnection();
 				
 				   //가져올 테이블 선택(불러오기)
 				String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date \n";
 				query += " from comment_com \n";    
-//				query += " WHERE artistlist_num= '1' \n"; //전달인자로 num받아서 그것만 보이게?
+				query += " WHERE artistname= ? \n"; //전달인자로 num받아서 그것만 보이게?
 				query += " START WITH parentNO=0 \n";    
 				query += " CONNECT BY PRIOR articleNO=parentNO \n";    
 				query += " ORDER SIBLINGS BY articleNO DESC"; 
 				   
 				   pstmt = this.con.prepareStatement(query);
+				   pstmt.setString(1, name);
 				   ResultSet rs = pstmt.executeQuery();
+				   
+				   System.out.println("query :>>> \n"+query);
 				   
 				   while(rs.next()) {
 						int level = rs.getInt("level");

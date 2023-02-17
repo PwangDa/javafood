@@ -72,9 +72,9 @@ public class JavaFood_Service {
 	 * 다영 : 댓글과 거기에 달린 대댓글을 불러오는 메소드
 	 * @return commentList :  댓글과 대댓글을 리스트에 넣어서 가져옴
 	 */
-    public List<CommentDTO> listComment() {
+    public List<CommentDTO> listComment(String name) {
 //    	List<CommentDTO> commentList = dao.listComment();
-    	List<CommentDTO> commentList = dao.allComment();
+    	List<CommentDTO> commentList = dao.allComment(name);
     	return commentList;
     }
     

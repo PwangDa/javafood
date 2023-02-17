@@ -73,7 +73,7 @@ public class JavaFood_Controller extends HttpServlet {
 			if("artistinfo.do".equals(command)) {
 //				List<AlbumDTO> listAlbum = service.Albumlist();
 				listAlbum = service.Albumlist();
-				commentList = service.listComment();
+//				commentList = service.listComment();
 				request.setAttribute("listAlbum", listAlbum);
 				request.setAttribute("commentList", commentList);
 				nextPage = "/artistinfo.jsp";
@@ -127,7 +127,7 @@ public class JavaFood_Controller extends HttpServlet {
 			}else {
 //				System.out.println("else action : "+action);
 				listAlbum = service.Albumlist();
-				commentList = service.listComment();
+//				commentList = service.listComment();
 				request.setAttribute("listAlbum", listAlbum);
 				request.setAttribute("commentList", commentList);
 				nextPage = "/artistinfo.jsp";
@@ -410,7 +410,9 @@ public class JavaFood_Controller extends HttpServlet {
 		String command = request.getParameter("command");
 		System.out.println("command를 받다 : "+command);
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		commentList = service.listComment();
+		List<AlbumDTO> artist =  dao.album_add(num);
+		commentList = service.listComment(artist.get(0).getArtistname());
+		System.out.println("artist : "+artist.get(0).getArtistname());
 		if("addcommnet.do".equals(command) && command != null) {
 			String id_1 = request.getParameter("id");
 			String cont_1 = request.getParameter("cont");
@@ -423,9 +425,10 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_id(id_1);
 			dto.setComment_cont(cont_1);
 			dto.setArtistlist_num(Integer.parseInt(num));
+			dto.setArtistname(artist.get(0).getArtistname());
 			
 			service.addcomment(dto);
-			commentList = service.listComment();
+			commentList = service.listComment(artist.get(0).getArtistname());
 		}else if("addReply.do".equals(command) && command != null) {
 			String id = request.getParameter("id_2");
 			String cont = request.getParameter("cont_2");
@@ -442,9 +445,10 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont);
 			dto.setParentNO(Integer.parseInt(articleNO));
 			dto.setArtistlist_num(Integer.parseInt(num));
+			dto.setArtistname(artist.get(0).getArtistname());
 			
 			service.addcomment(dto);
-			commentList = service.listComment();
+			commentList = service.listComment(artist.get(0).getArtistname());
 		}
 		System.out.println("무한반복 살려줘");
 		request.setAttribute("album_list", album_list); //아티스트 정보

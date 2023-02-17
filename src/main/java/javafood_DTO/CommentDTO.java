@@ -12,7 +12,14 @@ public class CommentDTO {
 	private int articleNO;
 	private int parentNO = 0;
 	private int artistlist_num;
+	private String artistname;
 	
+	public String getArtistname() {
+		return artistname;
+	}
+	public void setArtistname(String artistname) {
+		this.artistname = artistname;
+	}
 	public int getArtistlist_num() {
 		return artistlist_num;
 	}
