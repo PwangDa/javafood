@@ -104,7 +104,7 @@
         <div>
         	<br>
             <h2 style="text-align: center; margin: 0px;">댓글</h2>
-            <form name="frmComment">
+            <form name="frmComment" method="post" action="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=addcommnet.do">
                 <div class="comment">
                     <div class="text2">
                         <img class="image1" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
@@ -114,9 +114,9 @@
                         <textarea name="cont" placeholder="*게시물의 저작권 등 분쟁, 개인정보 노출로 인한 책임은 작성자 또는 게시자에게 있음을 유의해 주세요."></textarea>
                     </div>
                     <div class="text2">
-                        <button class="btn" type="button" onclick="fn_sendComment()"> 등록 </button>
+                        <input class="btn" type="submit" value="등록">
                     </div>
-                    <input type ="hidden" name="command" value="addcomment">
+                    <input type ="hidden" name="songnum" value="${album_list[0].songnumber }">
                 </div>
             </form>
             </div>

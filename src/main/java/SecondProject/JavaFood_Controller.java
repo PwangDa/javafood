@@ -410,30 +410,32 @@ public class JavaFood_Controller extends HttpServlet {
 		String command = request.getParameter("command");
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.listComment();
-//		if("addcommnet.do".equals(command) && command != null) {
-//			String id_1 = request.getParameter("id");
-//			String cont_1 = request.getParameter("cont");
-////			String num_1 = request.getParameter("num");
-//			
-//			System.out.println("댓글등록 num"+num);
-//			
-//			
-//			CommentDTO dto = new CommentDTO();
-//			dto.setComment_id(id_1);
-//			dto.setComment_cont(cont_1);
-//			dto.setArtistlist_num(Integer.parseInt(num));
-//			
-//			service.addcomment(dto);
-//			nextPage = "/javafood?javafood=ArtistList&num="+num;
-//		}
+		if("addcommnet.do".equals(command) && command != null) {
+			String id_1 = request.getParameter("id");
+			String cont_1 = request.getParameter("cont");
+			String num_1 = request.getParameter("songnum");
+			
+			System.out.println("댓글등록 num : "+num_1);
+			
+			
+			CommentDTO dto = new CommentDTO();
+			dto.setComment_id(id_1);
+			dto.setComment_cont(cont_1);
+			dto.setArtistlist_num(Integer.parseInt(num));
+			
+			service.addcomment(dto);
+			nextPage = "/javafood?javafood=ArtistList&num="+num;
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+			dispatch.forward(request, response);
+		}
 		
 		System.out.println("무한반복 살려줘");
 		request.setAttribute("album_list", album_list); //아티스트 정보
 		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
 		request.setAttribute("src", src); //각 앨범 이름 리스트
 		request.setAttribute("commentList", commentList);
-		nextPage = "artist.jsp";
-		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher("artist.jsp");
 		dispatch.forward(request, response);
 		
 		
