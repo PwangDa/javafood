@@ -198,7 +198,10 @@ public class JavaFood_DAO {
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
+
+			vo.setPn1(rs.getString("pn").split("-")[0]);
 			vo.setPn(rs.getString("pn"));
+			
 			vo.setPhone(rs.getString("phone"));
 			vo.setEmail(rs.getString("email"));
 			vo.setMyimg(rs.getString("img"));

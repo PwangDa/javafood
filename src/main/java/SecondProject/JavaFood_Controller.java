@@ -672,8 +672,6 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getSession().getAttribute("login")!=null) {
 			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-			System.out.println("session 아이디 : "+session_user.get(0).getId());
-			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
@@ -692,6 +690,8 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
+		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
+		
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		
 	}

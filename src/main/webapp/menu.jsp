@@ -142,7 +142,7 @@ header{
 <body onscroll="headerbarToggle()">
     <header id ="menu" >
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
-        <img src="https://c11.kr/1asbb" class="logo-img"> Music
+        <a href="javafood?javafood=m" class="a1"><img src="https://c11.kr/1asbb" class="logo-img">Music</a>
         </span>
         <div class="menu-box">
             <a href="javafood?javafood=m" class="a1"><span class="main main_1" >홈</span></a>
@@ -153,7 +153,7 @@ header{
                 <button class="search-btn" type="submit">검색</button>
             </div>
         </div>
-        <img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+        <a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
     </header>
 </body>
 </html>

@@ -260,6 +260,17 @@ public class JavaFood_Service {
 	public void javafood5_4(String songnumber) {
 		dao.like(songnumber);
 	}
+	/**
+	 * my_page 이동값 전달
+	 * @param String : 마이페이지 이동값을 넣어주세요
+	 */
+	public String javafood5_5(String remove) {
+		String a = "0";
+		if(remove!=null) {
+			if("1".equals(remove)) a="1";
+		}
+		return a;
+	}
 //	//음악추가
 //	public void javafood51(String a,String b,String c,String d){
 //		dao.addsong1(a, b, c, d);
