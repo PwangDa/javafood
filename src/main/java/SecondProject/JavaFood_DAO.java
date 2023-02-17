@@ -426,8 +426,8 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 장르별로 노래 가져오기 -페이징
-	 * @param a : song1음악의 장르를 입력해 주세요.
-	 * @return list : song1의 장르별로 음악list를 가져옵니다.
+	 * @param a : Genre음악의 장르를 입력해 주세요.
+	 * @return list : Genre의 장르별로 음악list를 가져옵니다.
 	 */
 	public List<song_DTO> getGenre (String a, int start, int end) {
 		List<song_DTO> list = new ArrayList<>();
@@ -471,8 +471,8 @@ public class JavaFood_DAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 * 장르별로 노래 가져오기 -페이징
-* @param a : song1음악의 장르를 입력해 주세요.
-* @return list : song1의 장르별로 음악list를 가져옵니다.
+* @param a : db에 가지고있는 노래 수량 확인.
+* @return list : db에 가지고있는 노래 수량을 가져옴.
 */
 	public int pagetotal () {
 		List<song_DTO> list = new ArrayList<>();
@@ -497,7 +497,7 @@ public class JavaFood_DAO {
 	/**
 	 * 최신음악 노래 가져오기
 	 * @param a : song1음악의 가져오기
-	 * @return list : song1의 음악list를 가져옵니다.
+	 * @return list : song1의 음악list를 가져옵니다.최신음악.
 	 */
 	public List<song_DTO> popular_music () {
 		List<song_DTO> list = new ArrayList<>();
