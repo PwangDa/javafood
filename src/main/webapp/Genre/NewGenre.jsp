@@ -277,14 +277,14 @@
 			text-decoration-color: white;
 		}
 	
-		.right_top_item_1{
+		/* .right_top_item_1{
             width: 45px;
             height: 40px;
             text-align: center;
             margin-left: 0;
             margin-bottom:20px;
             text-overflow : ellipsis;
-        }
+        } */
         #like{
         	margin-left: 10px;
         }
@@ -365,12 +365,13 @@
 </style>
 </head>
 <body>
+
 <jsp:include page="/menu.jsp"></jsp:include>
     <!-- <header id ="menu">
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header> -->
     <div id="home">
-        <h1><a href='http://localhost:8080/javafood_team/javafood?javafood=6'>장르</a></h1>
+        <h1><a href='http://localhost:8080/javafood_team/javafood?javafood=6'>장르${login }</a></h1>
         
        <c:choose>
 		<c:when test="${song eq '발라드'}"> 
@@ -493,8 +494,14 @@
             <div class="left_album">앨범</div>
             <div class="right_item">재생시간</div>
             <div><img class="heart" src="https://c11.kr/1asbx"></div>
-            <div class="right_top_item_1">듣기</div>
-            <div class="right_top_item_1">담기</div>
+            <!-- <div class="right_top_item_1">듣기</div>
+            <div class="right_top_item_1">담기</div> -->
+            <form method="post" action="/javafood_team/javafood?javafood=3">
+            <div> <input type="hidden" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1"></a></div><!-- 노래재생 유튜브 -->
+            </form>
+            <form method="post" action="/javafood_team/javafood?javafood=3">
+            <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
+            </form>
         </div>
 		
 		<c:forEach var="genre_list" items="${genre}" varStatus="status">
@@ -504,7 +511,7 @@
                 <div class="left_item_bot">${ status.count} </div>  <!-- 곡 순서 -->
                 <div><img class="left_img" src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
                 <div class="left_song_bot"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
-                <div class="left_artist_bot" title="${ genre_list.artistname}">${ genre_list.artistname}</div> <!-- 가수명 -->
+                <div class="left_artist_bot" title="${ genre_list.artistname}"><a href="/javafood_team/javafood?javafood=ArtistList&num=${genre_list.songnumber}">${ genre_list.artistname}</a></div> <!-- 가수명 -->
                 <div class="left_album_bot" title="${ genre_list.album}"><a href = "/javafood_team/javafood?javafood=AlbumList&num=${genre_list.songnumber}">${ genre_list.album}</a></div> <!-- 앨범 --> 
                 <div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
