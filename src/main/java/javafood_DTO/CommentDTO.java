@@ -11,7 +11,14 @@ public class CommentDTO {
 	private int level;
 	private int articleNO;
 	private int parentNO = 0;
+	private int artistlist_num;
 	
+	public int getArtistlist_num() {
+		return artistlist_num;
+	}
+	public void setArtistlist_num(int artistlist_num) {
+		this.artistlist_num = artistlist_num;
+	}
 	public int getLevel() {
 		return level;
 	}

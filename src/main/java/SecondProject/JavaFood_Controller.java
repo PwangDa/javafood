@@ -82,13 +82,18 @@ public class JavaFood_Controller extends HttpServlet {
 				System.out.println("addcomment 입장");
 				String id_1 = request.getParameter("id");
 				String cont_1 = request.getParameter("cont");
+				String num = request.getParameter("num");
+				
+				System.out.println("댓글등록 num"+num);
 				
 				CommentDTO dto = new CommentDTO();
 				dto.setComment_id(id_1);
 				dto.setComment_cont(cont_1);
+				dto.setArtistlist_num(Integer.parseInt(num));
 				
 				service.addcomment(dto);
-				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+//				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+				nextPage = "/javafood?javafood=ArtistList&num="+num;
 				
 			}else if("addReply.do".equals(command)) {
 				String id = request.getParameter("id_2");
