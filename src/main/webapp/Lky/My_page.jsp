@@ -184,70 +184,71 @@
 					</script> 
 			        
 			        <form method="post" action="javafood?javafood=4">
-			            <div class="head">
-			              <table>
-			        <tr class="tr">
-			            <th><c:out value="이미지url : "/></th>
-			            <td><input type="text" id="img" name="img" placeholder="${lo[0].myimg }"></td>
-			            <td><input type="hidden" value="remove" name="remove"></td>
-			        </tr>
-			        <tr class="tr">
-			            <th><c:out value=" 아이디 : "/></th>
-			            <td><c:out value="${session_user.id }"/> </td>
-			        </tr>
-			        <tr>
-			            <th><c:out value="비밀번호 1 :  "/></th>
-			            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
-			            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
-			            <td><input type="checkbox" id="ch2" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th><c:out value="비밀번호 2 :  "/></th>
-			            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
-			            <td></td>
-			        </tr>
-			        <tr class="tr">
-			            <th><c:out value="닉네임 : "/></th>
-			            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
-			            <td><input type="button" id="nicbutt" value="중복확인"></td>
-			            <td><input type="checkbox" id="ch3" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th><c:out value="이메일 : "/></th>
-			            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
-			            <td><input type="button" id="mailbutt" value="인증하기"></td>
-			            <td><input type="checkbox" id="ch4" class="ch"></td>
-			        </tr>
-			        <tr id="mail">
-			            <th><c:out value="인증번호 : "/></th>
-			            <td><input type="text" placeholder="메일 인증번호"></td>
-			            <td><input type="button" id="mailchbutt" value="인증확인"></td>
-			            <td><input type="checkbox" id="ch5" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
-			            <td>
-			                <c:out value="${session_user.pn }"/>
-			            </td>
-			        </tr>
-			        <tr>
-			            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
-			            <td>
-			                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
-			                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
-			                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
-			            </td>
-			            <td><input type="button" id="phonebutt" value="본인 확인"></td>
-			            <td><input type="checkbox" id="ch7" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th><a href="javafood?javafood=5" class="at"><c:out value=" 취 소 "/></a></th>
-			            <th><input class="sub" type="submit" value="수정하기" id="end"disabled></th>
-			            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
-			        </tr>
-			    </table>
-			            </div>
-			        </form>
+						<div class="head">
+							<table>
+						        <tr class="tr">
+						            <th><c:out value="이미지url : "/></th>
+						            <th><c:out value="서버없어서 이미지url만 적용됩니다."/></th>
+						            <td><input type="text" id="img" name="img" placeholder="${lo[0].myimg }"></td>
+						            <td><input type="hidden" value="remove" name="remove"></td>
+						        </tr>
+						        <tr class="tr">
+						            <th><c:out value=" 아이디 : "/></th>
+						            <td><c:out value="${session_user.id }"/> </td>
+						        </tr>
+						        <tr>
+						            <th><c:out value="비밀번호 1 :  "/></th>
+						            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
+						            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
+						            <td><input type="checkbox" id="ch2" class="ch"></td>
+						        </tr>
+						        <tr>
+						            <th><c:out value="비밀번호 2 :  "/></th>
+						            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
+						            <td></td>
+						        </tr>
+						        <tr class="tr">
+						            <th><c:out value="닉네임 : "/></th>
+						            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
+						            <td><input type="button" id="nicbutt" value="중복확인"></td>
+						            <td><input type="checkbox" id="ch3" class="ch"></td>
+						        </tr>
+						        <tr>
+						            <th><c:out value="이메일 : "/></th>
+						            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
+						            <td><input type="button" id="mailbutt" value="인증하기"></td>
+						            <td><input type="checkbox" id="ch4" class="ch"></td>
+						        </tr>
+						        <tr id="mail">
+						            <th><c:out value="인증번호 : "/></th>
+						            <td><input type="text" placeholder="메일 인증번호"></td>
+						            <td><input type="button" id="mailchbutt" value="인증확인"></td>
+						            <td><input type="checkbox" id="ch5" class="ch"></td>
+						        </tr>
+						        <tr>
+						            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
+						            <td>
+						                <c:out value="${session_user.pn }"/>
+						            </td>
+						        </tr>
+						        <tr>
+						            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
+						            <td>
+						                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+						                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+						                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
+						            </td>
+						            <td><input type="button" id="phonebutt" value="본인 확인"></td>
+						            <td><input type="checkbox" id="ch7" class="ch"></td>
+						        </tr>
+						        <tr>
+						            <th><a href="javafood?javafood=5" class="at"><c:out value=" 취 소 "/></a></th>
+						            <th><input class="sub" type="submit" value="수정하기" id="end"disabled></th>
+						            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
+						        </tr>
+							</table>
+						</div>
+					</form>
 			        <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 							$('#re').on('click',function(){
@@ -314,8 +315,12 @@
 			                    aj(phone,fn,'#ch7');
 			                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			   </script>
-			</table>
-		</c:if>
+			   		</script>
+				</c:if>
+		
+		
+		
+		<p><a href="javafood?javafood=5&remove=2">회원정보 탈퇴</a></p>
+		
 </body>
 </html>
