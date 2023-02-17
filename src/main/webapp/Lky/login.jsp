@@ -11,52 +11,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <script>
-			(function (){  
-				document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
-				document.write("<img src='https://tistory1.daumcdn.net/tistory/4694508/skin/images/hai1.gif' id='foo' style='position:absolute; transition:all 0.3s ease-in; z-index: 1;'>");
-			}());
-	</script>
-<meta charset="UTF-8">
+	<link rel="stylesheet" href="javafoodCSS/loginCSS.css?css=css">
+	<script link src ="javafoodScript/loginScript.js"></script>
 
 <c:if test="${good!=null }">
-	<c:if test="${good==1 }">
-		<script>alert("회원가입 성공")</script>
-	</c:if>
-	<c:if test="${good==0 }">
-		<script>alert("회원가입 실패")</script>
-	</c:if>
+	<c:if test="${good==1 }"><script>alert("회원가입 성공")</script></c:if>
+	<c:if test="${good==0 }"><script>alert("회원가입 실패")</script></c:if>
 </c:if>
 
-<c:if test="${re!=null }">
-	<script>
-		alert('회원정보 수정이 완료되었습니다. 다시 로그인 해주세요.')
-	</script>
-</c:if>
-
-   <div><jsp:include page="/menu.jsp"/></div>
+<c:if test="${re!=null }"><script>alert('회원정보 수정이 완료되었습니다. 다시 로그인 해주세요.')</script></c:if>
 
 <c:if test="${membership!=null }">
 	<title>javafood 회원가입</title>
-	<style>
-		.bod{background-size: contain; color: white; background-color: black; text-align: center;;}
-	    div{display: inline-block; width: 100%; height: 100%;}
-	    .sub{margin-top: 10px;width: 100px; height: 30px;}
-	    .at{color: white; text-decoration: none;}
-	    .head{text-align: left;}
-	    .pn{width: 43%;}
-	    .phone{width: 26%;}
-	    td{width: 100px;}
-	    table{background-size: contain; background-color: black;   text-align: right; margin: auto; border: 1px solid black; border-collapse: collapse;}
-	   .tr{height: 80px; }
-	   input[type="checkbox"]{display: none;}
-	</style>
 	</head>
-	<body class="bod">
-	
-   
-		<h1><c:out value="javafood 회원가입"/></h1>
+	<body>
+		<div><h1><c:out value="javafood 회원가입"/></h1></div>
 	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 		   		   enctype="multipart/form-data" 
 		  		   accept-charset="utf-8">
@@ -73,28 +44,6 @@
 					</div>
 				</div>
 			</form>
-		 <script>
-			function but(){
-				var url = $("#form").attr("action");
-				var form = $('#form')[0];
-				var formData = new FormData(form);
-				$.ajax({
-					url: url,
-					type: 'POST',
-					data: formData,
-					contentType: false,
-					processData: false,
-					cache: false,
-					success: function () {
-						alert("이미지 저장 성공")
-						location.href='javafood?javafood=4&membership=O';
-					},
-					error: function () {
-						alert("이미지 저장 실패")
-					}
-				})
-			}
-			</script> 
 	        
 	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
@@ -161,76 +110,10 @@
 	    </table>
 	            </div>
 	        </form>
-	        <script>
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					$('#re').on('click',function(){
-	                    $('#end').attr('disabled',true);
-	                })
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                    let c= false;
-	                    function aj(key, callback, chak){
-	                        let xml = new XMLHttpRequest();
-	                        xml.open('get','http://localhost:8080/javafood_team/aj?'+key);
-	                        xml.send();
-	                        xml.onload=function(){
-	                        	let z = 0;
-	                        	c=xml.responseText;
-	                        	if(c!=1){
-	                                z=1;
-	                        		alert('사용가능.');
-	                        	}else{
-	                                z=0;
-	                        		alert('사용중입니다.');
-	                        	}
-	                           callback(z,chak);
-	                        }
-	                    }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                    function fn(call,chak){
-	                        call!=1?$(chak).prop('checked',false):$(chak).prop('checked',true);
-	                        let j=0;
-	                        for(let i =0; i<$('.ch').length; i++){
-	                            if($('.ch')[i].checked==true)j++;
-	                        }
-	                        j==6?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
-	                    }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					$('#idbutt').on('click',function(){
-						aj("id="+$('#Id1').val(), fn, '#ch1');
-	                })
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                $("#pwbutt").on("click",function(){
-	                    if($("#pw1").val() == $("#pw2").val()){
-	                        alert("비밀번호가 일치합니다.");
-	                        fn(1,'#ch2');
-	                    }else {
-	                        alert("잘못입력 하셨습니다.");
-	                        fn(0,'#ch2');
-	                    }
-	                })
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                $("#nicbutt").on("click",function(){
-	                    aj("nic="+$('#nic').val(), fn, '#ch3');
-	                })
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                $("#mailbutt").on("click",function(){
-	                    aj('email='+$('#email').val(), fn, '#ch4')
-	                })
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                $("#pnbutt").on("click",function(){
-	                    let pn = 'pn='+$('#pn1').val() +"-"+ $('#pn2').val();
-	                    aj(pn,fn,'#ch6');
-	                })
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	                $("#phonebutt").on("click",function(){
-	                    let phone = 'phone='+$('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
-	                    aj(phone,fn,'#ch7');
-	                })
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	        </script>
 	</body>
 	</html>
  </c:if>
+ 
  <c:if test="${log==2 }">
 	<title>javafood</title>
 	</head>
@@ -238,51 +121,29 @@
 		<h1><c:out value="javafood 로그인성공"/></h1>
 		<h1>${login[0].nic } <c:out value="님 환영합니다."/></h1>
 		<strong id="time"></strong><c:out value="초후에 매인 화면으로 이동됩니다. 마음의 준비를 해주세요."/>
-		<script>
-			let time=3;
-	    	$("#time").append(time);
-	        setInterval (function(){
-	        	console.log(time);
-	            time--;
-	            $("#time").text(time);
-	            if (time==0){
-	            	location.href='javafood?javafood=m';
-	            	}
-	         	},1000)
-		</script>
+		<script>loging();</script>
 	</body>
 	</html>
  </c:if>
-<c:if test="${log==0 }">
-	 <script>alert('아이디가 틀렸습니다.');location.href='javafood?javafood=4';</script>
-</c:if>
-<c:if test="${log==1 }">
-	 <script>alert('페스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script>
-</c:if>
+<c:if test="${log==0 }"><script>alert('아이디가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
+<c:if test="${log==1 }"><script>alert('페스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
+
 <c:if test="${membership==null&&log==null }">
 	<title>javafood 로그인</title>
-	<style>
-		body{background-size: contain; color: white; background-position: center; text-align: center;background-color: black;}
-	    div{display: inline-block;  width: 100%; height: 100px;}
-	    .sub{margin-top: 10px;width: 100px; height: 30px;}
-	    .at{color: white; text-decoration: none;}
-	    .head{margin-top: 50px;}
-	</style>
 	</head>
-	<body>
-	
-		<h1><c:out value="javafood 로그인"/></h1>
-	    <form method="post" action="javafood?javafood=4">
-	        <div class="head">
-	             <c:out value="아 이 디 : "/>&nbsp;<input type="text" name="ID"><br><br>
-	            <c:out value=" 비밀번호 : "/><input type="text" name="PW"><br><br>
-	            <a href="javafood?javafood=4&membership=O" class="at"><c:out value="회원가입"/></a>
-	            <input class="sub" type="submit" value="로그인">
-	            <input class="sub" type="reset" value="다시작성">
-	        </div>
-	    </form>
-	    <div class="body"></div>
-	</body>
+		<body>
+			<h1><c:out value="javafood 로그인"/></h1>
+		    <form method="post" action="javafood?javafood=4">
+		        <div class="head1">
+		            <c:out value="아 이 디 : "/>&nbsp;<input type="text" name="ID"><br><br>
+		            <c:out value=" 비밀번호 : "/><input type="text" name="PW"><br><br>
+		            <a href="javafood?javafood=4&membership=O" class="at"><c:out value="회원가입"/></a>
+		            <input class="sub" type="submit" value="로그인">
+		            <input class="sub" type="reset" value="다시작성">
+		        </div>
+		    </form>
+		    <div class="body"></div>
+		</body>
 	</html>
 	<br>
 	<hr>
