@@ -140,180 +140,182 @@
 		   input[type="checkbox"]{display: none;}
 		</style>
 		</head>
-		<body>
-			<h1><c:out value="회원정보 수정"/></h1>
-		        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
-			   		   enctype="multipart/form-data" 
-			  		   accept-charset="utf-8">
-			  		<div>
-						<div style="width: 200px; height: 250px">
-							<div>
-								<input type="file" name="file1">
-								<p><strong> 프로필 사진 </strong></p>
-								<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
-							</div>
-							<div>
-								<input type="button" onclick="but()" value="업로드">
+		<p><a href="javafood?javafood=5&remove=1">회원정보 수정</a></p>
+		<c:if test="${remove==1}">
+			<body>
+				<h1><c:out value="회원정보 수정"/></h1>
+			        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
+				   		   enctype="multipart/form-data" 
+				  		   accept-charset="utf-8">
+				  		<div>
+							<div style="width: 200px; height: 250px">
+								<div>
+									<input type="file" name="file1">
+									<p><strong> 프로필 사진 </strong></p>
+									<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+								</div>
+								<div>
+									<input type="button" onclick="but()" value="업로드">
+								</div>
 							</div>
 						</div>
-					</div>
-				</form>
-			 <script>
-				function but(){
-					var url = $("#form").attr("action");
-					var form = $('#form')[0];
-					var formData = new FormData(form);
-					$.ajax({
-						url: url,
-						type: 'POST',
-						data: formData,
-						contentType: false,
-						processData: false,
-						cache: false,
-						success: function () {
-							alert("이미지 저장 성공")
-							location.href='javafood?javafood=4&membership=O';
-						},
-						error: function () {
-							alert("이미지 저장 실패")
-						}
-					})
-				}
-				</script> 
-		        
-		        <form method="post" action="javafood?javafood=4">
-		            <div class="head">
-		              <table>
-		        <tr class="tr">
-		            <th><c:out value=" 아이디 : "/></th>
-		            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
-		            <td><input type="button" id="idbutt" value="중복 확인"></td>
-		            <td><input type="checkbox" id="ch1" class="ch"></td>
-		        </tr>
-		        <tr>
-		            <th><c:out value="비밀번호 1 :  "/></th>
-		            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
-		            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
-		            <td><input type="checkbox" id="ch2" class="ch"></td>
-		        </tr>
-		        <tr>
-		            <th><c:out value="비밀번호 2 :  "/></th>
-		            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
-		            <td></td>
-		        </tr>
-		        <tr class="tr">
-		            <th><c:out value="닉네임 : "/></th>
-		            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
-		            <td><input type="button" id="nicbutt" value="중복확인"></td>
-		            <td><input type="checkbox" id="ch3" class="ch"></td>
-		        </tr>
-		        <tr>
-		            <th><c:out value="이메일 : "/></th>
-		            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
-		            <td><input type="button" id="mailbutt" value="인증하기"></td>
-		            <td><input type="checkbox" id="ch4" class="ch"></td>
-		        </tr>
-		        <tr id="mail">
-		            <th><c:out value="인증번호 : "/></th>
-		            <td><input type="text" placeholder="메일 인증번호"></td>
-		            <td><input type="button" id="mailchbutt" value="인증확인"></td>
-		            <td><input type="checkbox" id="ch5" class="ch"></td>
-		        </tr>
-		        <tr>
-		            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
-		            <td>
-		                <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
-		                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
-		            </td>
-		            <td><input type="button" id="pnbutt" value="중복확인"></td>
-		            <td><input type="checkbox" id="ch6" class="ch"></td>
-		        </tr>
-		        <tr>
-		            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
-		            <td>
-		                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
-		                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
-		                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
-		            </td>
-		            <td><input type="button" id="phonebutt" value="연락처 확인"></td>
-		            <td><input type="checkbox" id="ch7" class="ch"></td>
-		        </tr>
-		        <tr>
-		            <th><a href="javafood?javafood=4" class="at"><c:out value=" 취 소 "/></a></th>
-		            <th><input class="sub" type="submit" value="회원가입" id="end"disabled></th>
-		            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
-		        </tr>
-		    </table>
-		            </div>
-		        </form>
-		        <script>
+					</form>
+				 <script>
+					function but(){
+						var url = $("#form").attr("action");
+						var form = $('#form')[0];
+						var formData = new FormData(form);
+						$.ajax({
+							url: url,
+							type: 'POST',
+							data: formData,
+							contentType: false,
+							processData: false,
+							cache: false,
+							success: function () {
+								alert("이미지 저장 성공")
+								location.href='javafood?javafood=5';
+							},
+							error: function () {
+								alert("이미지 저장 실패")
+							}
+						})
+					}
+					</script> 
+			        
+			        <form method="post" action="javafood?javafood=4">
+			            <div class="head">
+			              <table>
+			        <tr class="tr">
+			            <th><c:out value="이미지url : "/></th>
+			            <td><input type="text" id="img" name="img" placeholder="${lo[0].myimg }"></td>
+			            <td><input type="hidden" value="remove" name="remove"></td>
+			        </tr>
+			        <tr class="tr">
+			            <th><c:out value=" 아이디 : "/></th>
+			            <td><c:out value="${session_user.id }"/> </td>
+			        </tr>
+			        <tr>
+			            <th><c:out value="비밀번호 1 :  "/></th>
+			            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
+			            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
+			            <td><input type="checkbox" id="ch2" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th><c:out value="비밀번호 2 :  "/></th>
+			            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
+			            <td></td>
+			        </tr>
+			        <tr class="tr">
+			            <th><c:out value="닉네임 : "/></th>
+			            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
+			            <td><input type="button" id="nicbutt" value="중복확인"></td>
+			            <td><input type="checkbox" id="ch3" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th><c:out value="이메일 : "/></th>
+			            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
+			            <td><input type="button" id="mailbutt" value="인증하기"></td>
+			            <td><input type="checkbox" id="ch4" class="ch"></td>
+			        </tr>
+			        <tr id="mail">
+			            <th><c:out value="인증번호 : "/></th>
+			            <td><input type="text" placeholder="메일 인증번호"></td>
+			            <td><input type="button" id="mailchbutt" value="인증확인"></td>
+			            <td><input type="checkbox" id="ch5" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
+			            <td>
+			                <c:out value="${session_user.pn }"/>
+			            </td>
+			        </tr>
+			        <tr>
+			            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
+			            <td>
+			                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+			                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+			                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
+			            </td>
+			            <td><input type="button" id="phonebutt" value="본인 확인"></td>
+			            <td><input type="checkbox" id="ch7" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th><a href="javafood?javafood=5" class="at"><c:out value=" 취 소 "/></a></th>
+			            <th><input class="sub" type="submit" value="수정하기" id="end"disabled></th>
+			            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
+			        </tr>
+			    </table>
+			            </div>
+			        </form>
+			        <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						$('#re').on('click',function(){
-		                    $('#end').attr('disabled',true);
-		                })
+							$('#re').on('click',function(){
+			                    $('#end').attr('disabled',true);
+			                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                    let c= false;
-		                    function aj(key, callback, chak){
-		                        let xml = new XMLHttpRequest();
-		                        xml.open('get','http://localhost:8080/javafood_team/aj?'+key);
-		                        xml.send();
-		                        xml.onload=function(){
-		                        	let z = 0;
-		                        	c=xml.responseText;
-		                        	if(c!=1){
-		                                z=1;
-		                        		alert('사용가능.');
-		                        	}else{
-		                                z=0;
-		                        		alert('사용중입니다.');
-		                        	}
-		                           callback(z,chak);
-		                        }
-		                    }
+			                    let c= false;
+			                    function aj(key, callback, chak){
+			                        let xml = new XMLHttpRequest();
+			                        xml.open('get','http://localhost:8080/javafood_team/aj?'+key);
+			                        xml.send();
+			                        xml.onload=function(){
+			                        	let z = 0;
+			                        	c=xml.responseText;
+			                        	if(c!=1){
+			                                z=1;
+			                        		alert('사용가능.');
+			                        	}else{
+			                                z=0;
+			                        		alert('사용중입니다.');
+			                        	}
+			                           callback(z,chak);
+			                        }
+			                    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                    function fn(call,chak){
-		                        call!=1?$(chak).prop('checked',false):$(chak).prop('checked',true);
-		                        let j=0;
-		                        for(let i =0; i<$('.ch').length; i++){
-		                            if($('.ch')[i].checked==true)j++;
-		                        }
-		                        j==6?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
-		                    }
+			                    function fn(call,chak){
+			                        call!=1?$(chak).prop('checked',false):$(chak).prop('checked',true);
+			                        let j=0;
+			                        for(let i =0; i<$('.ch').length; i++){
+			                            if($('.ch')[i].checked==true)j++;
+			                        }
+			                        j==4?$('#end').attr('disabled',false):$('#end').attr('disabled',true);
+			                    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						$('#idbutt').on('click',function(){
-							aj("id="+$('#Id1').val(), fn, '#ch1');
-		                })
+							$('#idbutt').on('click',function(){
+								aj("id="+$('#Id1').val(), fn, '#ch1');
+			                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                $("#pwbutt").on("click",function(){
-		                    if($("#pw1").val() == $("#pw2").val()){
-		                        alert("비밀번호가 일치합니다.");
-		                        fn(1,'#ch2');
-		                    }else {
-		                        alert("잘못입력 하셨습니다.");
-		                        fn(0,'#ch2');
-		                    }
-		                })
+			                $("#pwbutt").on("click",function(){
+			                    if($("#pw1").val() == $("#pw2").val()){
+			                        alert("비밀번호가 일치합니다.");
+			                        fn(1,'#ch2');
+			                    }else {
+			                        alert("잘못입력 하셨습니다.");
+			                        fn(0,'#ch2');
+			                    }
+			                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                $("#nicbutt").on("click",function(){
-		                    aj("nic="+$('#nic').val(), fn, '#ch3');
-		                })
+			                $("#nicbutt").on("click",function(){
+			                    aj("nic="+$('#nic').val(), fn, '#ch3');
+			                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                $("#mailbutt").on("click",function(){
-		                    aj('email='+$('#email').val(), fn, '#ch4')
-		                })
+			                $("#mailbutt").on("click",function(){
+			                    aj('email='+$('#email').val(), fn, '#ch4')
+			                })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                $("#pnbutt").on("click",function(){
-		                    let pn = 'pn='+$('#pn1').val() +"-"+ $('#pn2').val();
-		                    aj(pn,fn,'#ch6');
-		                })
+			                $("#pnbutt").on("click",function(){
+			                    let pn = 'pn='+$('#pn1').val() +"-"+ $('#pn2').val();
+			                    aj(pn,fn,'#ch6');
+			                })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		                $("#phonebutt").on("click",function(){
-		                    let phone = 'phone='+$('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
-		                    aj(phone,fn,'#ch7');
-		                })
+			                $("#phonebutt").on("click",function(){
+			                    let phone = 'phone='+$('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
+			                    aj(phone,fn,'#ch7');
+			                })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		   </script>
-		</table>
-<%-- 	</c:if>	 --%>
+			   </script>
+			</table>
+		</c:if>
 </body>
 </html>
