@@ -35,10 +35,12 @@
 	</script>
 </c:if>
 
+   <div><jsp:include page="/menu.jsp"/></div>
+
 <c:if test="${membership!=null }">
 	<title>javafood 회원가입</title>
 	<style>
-		body{background-size: contain; color: white; background-color: black; text-align: center;;}
+		.bod{background-size: contain; color: white; background-color: black; text-align: center;;}
 	    div{display: inline-block; width: 100%; height: 100%;}
 	    .sub{margin-top: 10px;width: 100px; height: 30px;}
 	    .at{color: white; text-decoration: none;}
@@ -51,7 +53,9 @@
 	   input[type="checkbox"]{display: none;}
 	</style>
 	</head>
-	<body>
+	<body class="bod">
+	
+   
 		<h1><c:out value="javafood 회원가입"/></h1>
 	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 		   		   enctype="multipart/form-data" 
