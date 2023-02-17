@@ -181,6 +181,7 @@ public class JavaFood_Service {
 						dto.setNic(list.get(q).getNic());
 						dto.setId(list.get(q).getId());
 						dto.setPw(list.get(q).getPw());
+						dto.setMyimg(list.get(q).getMyimg());
 						li.add(dto);
 						ma.put("login", li);
 					}

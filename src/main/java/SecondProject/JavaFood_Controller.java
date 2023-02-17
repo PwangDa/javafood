@@ -666,6 +666,7 @@ public class JavaFood_Controller extends HttpServlet {
 			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
+			request.getSession().setAttribute("lo", (List<login_DTO>) map.get("login"));
 			request.setAttribute("log", (int) map.get("log"));
 			request.getSession().setAttribute("login", request.getParameter("ID"));
 		}
