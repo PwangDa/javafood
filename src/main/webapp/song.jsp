@@ -31,9 +31,11 @@
 	<script type="text/javascript">
 	
 		 function refresh() {
-
-			setTimeout('location.reload()', 300000);
-			window.scrollTo({ left: 0, top: 0, behavior: "smooth"});
+			 
+				setTimeout('location.reload()', 60000);
+			 window.scrollTo({ left: 0, top: 0, behavior: "smooth"});
+		
+			
 		}
 
 		function nowtime() {
@@ -181,7 +183,6 @@ body {
         .but:checked {
         	display : block;
         }--%>
-        
         
         
 		/*체크박스 디자인*/
