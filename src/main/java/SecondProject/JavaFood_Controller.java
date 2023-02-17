@@ -384,7 +384,8 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistname(artist_n);
 			dto.setArtist_info(artist_i);
 			dto.setArtist_img(artistIMG);
-			
+			dto.setSongnumber(num);
+			System.out.println("songnumber : "+num);
 			String music_name = albumTitle.get(i).text();
 //			System.out.println("music_name"+(i)+" : "+music_name);
 			dto.setMusic_name(music_name);
