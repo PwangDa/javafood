@@ -215,6 +215,14 @@ public class JavaFood_Service {
 		else a=0;
 		return a;
 	}
+	public int javafood4_4(String id) {
+		int a =1;
+		if(id!=null) {
+			
+		}
+		else a=0;
+		return a;
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	경용 마이페이지
 	/**

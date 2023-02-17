@@ -686,14 +686,19 @@ public class JavaFood_Controller extends HttpServlet {
 			request.setAttribute("good",service.javafood4_2(vo));
 		}
 		if(request.getParameter("remove")!=null) {
-			vo = new login_DTO();
-			vo.setId((String)request.getSession().getAttribute("login"));
-			vo.setPw(request.getParameter("PW1"));
-			vo.setNic(request.getParameter("nic"));
-			vo.setEmail(request.getParameter("mail"));
-			vo.setMyimg(request.getParameter("img"));
-			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
-			service.javafood4_3(vo);
+			if("remove".equals(request.getParameter("remove"))) {
+				vo = new login_DTO();
+				vo.setId((String)request.getSession().getAttribute("login"));
+				vo.setPw(request.getParameter("PW1"));
+				vo.setNic(request.getParameter("nic"));
+				vo.setEmail(request.getParameter("mail"));
+				vo.setMyimg(request.getParameter("img"));
+				vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
+				service.javafood4_3(vo);
+			}
+			if(request.getParameter("remove").equals("2")) {
+				
+			}
 			request.setAttribute("re", "re");
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);

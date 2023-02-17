@@ -311,7 +311,7 @@
         	
         }
         .sub{
-        	background-image: url('https://c11.kr/1asbx');
+        	/* background-image: url('https://c11.kr/1asbx'); */
    			background-position:  0px 0px;
     		background-repeat: no-repeat;
  			cursor:pointer;
@@ -361,6 +361,19 @@
             padding-left: 40px;
             line-height: 40px;
            
+        }
+
+        .page{
+           
+            display: block;
+            text-align: center;            
+             /* position: absolute;
+             right: 50%;   */
+        }
+
+        .num_p{
+            
+            vertical-align: top;
         }
 </style>
 </head>
@@ -515,7 +528,7 @@
                 <div class="left_album_bot" title="${ genre_list.album}"><a href = "/javafood_team/javafood?javafood=AlbumList&num=${genre_list.songnumber}">${ genre_list.album}</a></div> <!-- 앨범 --> 
                 <div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
-                <div class="right_item_bot" id="like">${ genre_list.likes}<input type="submit" value="" class="sub"><input type="hidden" name="good" value="${genre_list.songnumber}"><!-- 좋아요 -->
+                <div class="right_item_bot" id="like">${ genre_list.likes}<input type="image" src="https://c11.kr/1asbx" value="" class="sub"><input type="hidden" name="good" value="${genre_list.songnumber}"><!-- 좋아요 -->
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
@@ -530,11 +543,48 @@
             
         </div>
     </div>
- totalCount : ${totalCount }<br>
+<%--  totalCount : ${totalCount }<br>
  pageNum : ${pageNum }<br>
- countPerPage : ${countPerPage }<br>
- 
-    이전 [1] [2] [3] [4] [5] 다음
+ countPerPage : ${countPerPage }<br> --%>
+ <%
+	int totalCount = (int)request.getAttribute("totalCount");
+	int pageNum = (int)request.getAttribute("pageNum");
+	int countPerPage = (int)request.getAttribute("countPerPage");
+	int lastPage = (int)Math.ceil( (double)totalCount / countPerPage);
+	int section = 5;
+	
+	int sec_position = ( ((int) Math.ceil( (double)pageNum / section )) -1 );
+	int firstSec = ( sec_position * section ) + 1;
+	int lastSec = firstSec + section - 1;
+	if(lastSec > lastPage){
+		lastSec = lastPage;
+	}
+%>
+	<c:set var="pageNum2" value="<%= pageNum %>" />
+	<div class="page">
+
+	<c:if test="<%= firstSec != 1 %>"> 
+		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= firstSec-1 %>"><img class="img" src="https://c11.kr/1ascb"></a> 
+	</c:if>
+
+	<c:forEach var="i" begin="<%= firstSec %>" end="<%= lastSec %>" >
+		<c:if test="${ i == pageNum2 }">
+			<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=${i }" class="num_p"><strong>[${i}]</strong></a>
+		</c:if>
+		<c:if test="${ i != pageNum2 }">
+			<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=${i }" class="num_p">[${i}]</a>
+		</c:if>
+	</c:forEach>
+
+	<c:if test="<%= lastSec != lastPage %>">
+		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= lastSec+1 %>"><img class="img" src="https://c11.kr/1ascx"></a>
+	</c:if>
+
+	</div>
+<%--  <c:forEach var="page" items="${totalCount+(1-(totalCount%1))%1}" varStatus="status">
+ <div><input type="hidden" class="num">[$[status.count]] </div>
+    </c:forEach>
+     --%>
 </body>
 
 </html>

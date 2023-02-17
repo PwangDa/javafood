@@ -415,10 +415,14 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			String genre = " SELECT * FROM  Genre";
-			genre += " where bygenre = ?";
-			genre += " AND SONGNUMBER >= ? AND SONGNUMBER<= ? ";
-			genre += " ORDER BY songnumber";
+			String genre = " SELECT * FROM (";
+			genre += " SELECT rownum AS rnum, genre.* FROM (";
+			genre += " SELECT * FROM genre ";
+			genre += " WHERE BYGENRE = ?";
+			genre += " ORDER BY SONGNUMBER";
+			genre += " ) genre";
+			genre += " )";
+			genre += " WHERE rnum >= ? AND rnum<= ?";
 			this.pstmt = con.prepareStatement (genre);
 			this.pstmt.setString(1, a); 
 			this.pstmt.setInt(2, start);
@@ -493,8 +497,8 @@ public class JavaFood_DAO {
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
 				vo.setPlaytime(rs.getString("playtime"));
-				vo.setAlbum(rs.getString("album"));
-				vo.setImglink(rs.getString("imglink"));
+				vo.setAlbum(rs.getString("album_name"));
+				vo.setImglink(rs.getString("imagelink"));
 				list.add(vo);
 			}
 			rs.close();
