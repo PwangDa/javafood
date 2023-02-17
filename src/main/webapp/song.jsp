@@ -30,14 +30,15 @@
 
 	<script type="text/javascript">
 	
-		 function refresh() {
+		  function refresh() {
 			 
-				setTimeout('location.reload()', 60000);
-			 window.scrollTo({ left: 0, top: 0, behavior: "smooth"});
+				/* setTimeout('location.reload()', 60000); */
+				window.scrollTo({ left: 0, top: 0, behavior: "smooth"});
 		
 			
-		}
-
+		} 
+		
+		
 		function nowtime() {
 			let now = new Date();
 
@@ -67,7 +68,7 @@
 				nowtime();
 			}, 1000); //1초 단위
 
-			refresh();
+			/* refresh(); */
 			
 			 let checkbox = document.querySelectorAll(".but");
 		     let cont2 = document.getElementsByClassName("table3");
@@ -254,7 +255,7 @@ body {
 			</tr>
 			<c:forEach var="dao" items="${ list_login}" >
 				<tr class="table3 table3_${dao.songnumber }">
-					<td> <input type="checkbox" class="but btn${dao.songnumber }"></td>
+					<td> <input type="checkbox" class="but btn" ${dao.songnumber }></td>
 					<td>${dao.ranking }</td>
 					<td>${dao.famous }</td>
 					<td><img src="${dao.imglink }" style="width:80px;"></td>
@@ -265,8 +266,8 @@ body {
 					
 					<form method="post" action="/javafood_team/javafood?javafood=2">
 						<td>
-							${dao.likes }<input type="image" value=""src="https://c11.kr/1asbx" class="like">
-							<input type="hidden" name="good" value="${dao.songnumber}">
+							${dao.likes }<input type="image" src="https://c11.kr/1asbx" value=" " class="like">
+							<input type="hidden" name="good_like" value= "${dao.songnumber}">
 						</td>
 					</form>
 					

@@ -978,7 +978,7 @@ public class JavaFood_DAO {
 			   		  
 			   		
 			   //query문 확인용	 
-			   System.out.println(query);
+//			   System.out.println(query);
 			   
 			   pstmt = this.con.prepareStatement(query);
 			   ResultSet rs = pstmt.executeQuery();
@@ -993,11 +993,12 @@ public class JavaFood_DAO {
 				   String hits = rs.getString("hits");
 				   String likes = rs.getString("likes");
 				   String playtime = rs.getString("playtime");
+				   String songnumber = rs.getString("songnumber");
 				   // 재생 버튼 클릭 시 유튜브 검색
 				   String link = rs.getString("link");
 				   // 담기 변수는 아직 설정 x
 				   String country = rs.getString("country");
-				   
+				   String album_name = rs.getString("album_name");
 				   
 				   
 				   
@@ -1013,6 +1014,8 @@ public class JavaFood_DAO {
 				   vo.setPlaytime(playtime);
 				   vo.setLink(link);
 				   vo.setCountry(country);
+				   vo.setSongnumber(songnumber);
+				   vo.setAlbum_name(album_name);
 				   list.add(vo);
 			   }
 			   

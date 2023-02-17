@@ -133,7 +133,6 @@ public class JavaFood_Controller extends HttpServlet {
 			dispatch.forward(request, response);
 		}//if문 ("1")종료
 		if(request.getParameter("javafood").equals("2")) {
-			System.out.println("2번 진입");
 			java2(request,response);
 		}
 		if(request.getParameter("javafood").equals("3")) {
@@ -534,16 +533,15 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		
 		// 좋아요
-		if(request.getParameter("good")!=null) {
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa : "+request.getParameter("good"));
-			service.javafood5_4(request.getParameter("good"));
+		if(request.getParameter("good_like")!=null) {
+			service.javafood5_4(request.getParameter("good_like"));
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
 		List<song_DTO> list_login = service.javafood2();
 		request.setAttribute("list_login", list_login);
 		nextPage = "/song.jsp";
-		System.out.println("list_login size : " + list_login.size());
+//		System.out.println("list_login size : " + list_login.size());
 		
 //		list_login = service.javafood2();
 		

@@ -18,7 +18,15 @@ public class song_DTO {
 	private String album;
 	private String imglink;
 	private String country;
+	private String album_name;
 	
+	
+	public String getAlbum_name() {
+		return album_name;
+	}
+	public void setAlbum_name(String album_name) {
+		this.album_name = album_name;
+	}
 	public String getCountry() {
 		return country;
 	}
