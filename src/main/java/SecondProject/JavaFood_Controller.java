@@ -43,13 +43,22 @@ public class JavaFood_Controller extends HttpServlet {
 	//doget실행
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("get 실행");
-		doHand(request, response);
+		try {
+			doHand(request, response);
+		} catch (Exception e) {
+			System.out.println("주소를 잘못입력하셨습니다.");
+			System.out.println("javafood?javafood=m 을 입력해 주세요");
+		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//post실행
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("post 실행");
-		doHand(request, response);
+		try {
+			doHand(request, response);
+		} catch (Exception e) {
+			System.out.println("주소를 잘못입력하셨습니다.");
+		} 
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					//실행은 이곳에서만!
@@ -808,14 +817,12 @@ public class JavaFood_Controller extends HttpServlet {
 	//태연
 	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println("메인 실행");
-		
 		List hitList = service.javafoodm();
 		request.setAttribute("hitList", hitList);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");
 		dispatch.forward(request, response);
-		
+
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

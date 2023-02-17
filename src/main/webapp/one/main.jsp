@@ -9,6 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Java Food</title>
+<c:if test="${mmm!=null }">
+	<script> alert('정확한 주소를 입력해 주세요.');</script>
+</c:if> 
 </head>
 <body>
 	<jsp:include page="/menu.jsp" />

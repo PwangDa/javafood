@@ -36,16 +36,18 @@
 	</script>
 <meta charset="UTF-8">
 <title>My Page</title>
+<!--     <script src="https://code.jquery.com/jquery-3.6.3.js"></script> -->
+	<link rel="stylesheet" href="javafoodCSS/mypageCSS.css?css=css">
  <style>      
-         body{background-color :black;}
- 		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    }
-        .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;}
-        .left{width: 88%;float: left; font-size: 60px;}
-        .right{line-height: 80px; width: 11%;float: right; background-image:url(${session_user.myimg}); background-repeat: no-repeat; background-size: cover;background-position: center; }
-        .tbody{ position: sticky;top: 100px; height: 40px; background: white;}
-        input{vertical-align: middle;}
-        .butt{font-size: 0px; background: url(https://zrr.kr/Ovva)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;}
-        .text{ height: 30px;width: 350px; margin: 0;}
+/*          body{background-color :black;} */
+/*  		 div{text-align: center;     width: 100%; height: 100%; display: inline-block;    } */
+/*         .head{width: 100%; position: sticky;top:0px; height: 100px; background-color: black; color: white;} */
+/*         .left{width: 88%;float: left; font-size: 60px;} */
+/*         .right{line-height: 80px; width: 11%;float: right; background-image:url(${session_user.myimg}); background-repeat: no-repeat; background-size: cover;background-position: center; } */
+/*         .tbody{ position: sticky;top: 100px; height: 40px; background: white;} */
+/*         input{vertical-align: middle;} */
+/*         .butt{font-size: 0px; background: url(https://zrr.kr/Ovva)no-repeat; border: none;width: 32px;height: 32px;cursor: pointer;} */
+/*         .text{ height: 30px;width: 350px; margin: 0;} */
         
 /*         .body{height: 100%; text-align: center;margin: 30px;} */
 /*         table{margin: auto; border: 1px solid black; border-collapse: collapse;} */
