@@ -196,6 +196,7 @@
 			        <tr class="tr">
 			            <th><c:out value=" 아이디 : "/></th>
 			            <td><c:out value="${session_user.id }"/> </td>
+			            <td><input type="hidden" value="remove" name="remove"></td>
 			        </tr>
 			        <tr>
 			            <th><c:out value="비밀번호 1 :  "/></th>
