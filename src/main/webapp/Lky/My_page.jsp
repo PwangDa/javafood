@@ -9,13 +9,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<c:if test="${link!=null }">	<script>location.href='${link }'</script>	</c:if> 
+	
 	<c:if test="${login==null }">
 		<script>
 			alert('로그인을 하셔야합니다.')
             location.href='javafood?javafood=4';
 		</script>
 	</c:if>
+	
+	<c:if test="${out!=null }">
+		<script>
+			if(${out==1}){
+				alert('회원이 정상적으로 탈퇴되었습니다.')
+				location.href='javafood?javafood=m';
+			}
+			else			alert('회원탈퇴가 실패하였습니다.')
+		</script>
+	</c:if>
+	
+	<c:if test="${link!=null }">	<script>location.href='${link }'</script>	</c:if> 
 	<script>
 		(function (){  
 			document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}
@@ -174,7 +186,7 @@
 							cache: false,
 							success: function () {
 								alert("이미지 저장 성공")
-								location.href='javafood?javafood=5';
+								location.href='javafood?javafood=5&remove=1';
 							},
 							error: function () {
 								alert("이미지 저장 실패")
@@ -190,7 +202,7 @@
 						            <th><c:out value="이미지url : "/></th>
 						            <th><c:out value="서버없어서 이미지url만 적용됩니다."/></th>
 						            <td><input type="text" id="img" name="img" placeholder="${lo[0].myimg }"></td>
-						            <td><input type="hidden" value="remove" name="remove"></td>
+						            <td><input type="hidden" value="1" name="remove"></td>
 						        </tr>
 						        <tr class="tr">
 						            <th><c:out value=" 아이디 : "/></th>
@@ -320,7 +332,34 @@
 		
 		
 		
-		<p><a href="javafood?javafood=5&remove=2">회원정보 탈퇴</a></p>
-		
+		<input type="button" id="out" value="로그아웃">
+		<input type="button" id="outt" value="회원 탈퇴">
+		<script>
+			
+			$('#out').on('click',function(){
+				var li = confirm('정말 로그아웃을 하겠습니까?')
+				if(li===true)	
+					location.href='javafood?javafood=5&iid=${session_user.id}'; 
+				else alert('취소하였습니다.');	
+			});
+			
+			
+			$('#outt').on('click',function(){
+				var li1 = confirm('정말로 회원탈퇴를 하실건가요?');
+				var li2 = false;
+				var li3 = false;
+				var li4 = false;
+				var li5 = false;
+				var li6 = false;
+				if(li1===true)	li2=confirm('한번 탈퇴하면 되돌릴수가 업습니다!')
+				if(li2===true)	li3= confirm('그래도 하시겠습니까?')
+				if(li3===true)	li4= confirm('다시한번 생각해 주세요.')
+				if(li4===true)	li5= confirm('마지막 기회 입니다.')
+				if(li5===true)	li6= confirm('진짜?')
+				if(li6===true)	{
+					alert('회원탈퇴를 합니다.ㅜㅜ')
+					location.href='javafood?javafood=5&remove=3&idd=${session_user.id}' }
+			})
+		</script>
 </body>
 </html>

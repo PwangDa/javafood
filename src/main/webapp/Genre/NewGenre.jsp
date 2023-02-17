@@ -569,10 +569,10 @@
 
 	<c:forEach var="i" begin="<%= firstSec %>" end="<%= lastSec %>" >
 		<c:if test="${ i == pageNum2 }">
-			<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=${i }" class="num_p"><strong>[${i}]</strong></a>
+			<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=${i }" class="num_p"><strong>${i}</strong></a>
 		</c:if>
 		<c:if test="${ i != pageNum2 }">
-			<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=${i }" class="num_p">[${i}]</a>
+			<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=${i }" class="num_p">${i}</a>
 		</c:if>
 	</c:forEach>
 

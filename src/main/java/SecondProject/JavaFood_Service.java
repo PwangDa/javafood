@@ -268,6 +268,7 @@ public class JavaFood_Service {
 	 */
 	public void javafood5_4(String songnumber) {
 		dao.like(songnumber);
+		System.out.println("sdfasdfasdfasfdasdfasdf : "+songnumber);
 	}
 	/**
 	 * my_page 이동값 전달
@@ -279,6 +280,13 @@ public class JavaFood_Service {
 			if("1".equals(remove)) a="1";
 		}
 		return a;
+	}
+	/**
+	 * my_page 이동값 전달
+	 * @param String : 마이페이지 이동값을 넣어주세요
+	 */
+	public String javafood5_6(String id) {
+		return dao.outId(id);
 	}
 //	//음악추가
 //	public void javafood51(String a,String b,String c,String d){

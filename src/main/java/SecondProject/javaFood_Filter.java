@@ -10,13 +10,16 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 
-@WebFilter("/*")
+@WebFilter("/javafood/*")
 public class javaFood_Filter extends HttpFilter implements Filter {
        
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		System.out.println("필터 정상작동");
 		request.setCharacterEncoding("utf-8");
-//		response.setContentType("text/html; charset=utf-8;");
+		if(request.getParameter("css")==null) {
+			System.out.println("css예외처리");
+			response.setContentType("text/html; charset=utf-8;");
+		}
 		chain.doFilter(request, response);
 		
 	}

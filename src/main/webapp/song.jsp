@@ -155,7 +155,18 @@ body {
 	border-radius: 2px;
 	width : 30px;
 }
-        <%--/*해당 div에 커서올리면 체크박스 나오게*/
+.like {
+	border-radius: 2px;
+	width : 20px;
+	background-position:  0px 0px;
+    background-repeat: no-repeat;
+    border: 1px;
+ 	cursor:pointer;
+ 	outline: 0;
+	
+}
+	
+	 커서올리면 체크박스 나오게*/
         <% for(int i=0; i<list.size(); i++) {%>
         .cont2_<%= i+1%>:hover span{
         	display : none;
@@ -239,6 +250,7 @@ body {
 				<td style="width:120px;">재생 시간</td>
 				<td style="width:120px;">재생</td>
 				<td style="width:120px;">담기</td>
+				<td style="width:120px;">국적</td>
 			</tr>
 			<c:forEach var="dao" items="${ list_login}" >
 				<tr class="table3 table3_${dao.songnumber }">
@@ -250,10 +262,18 @@ body {
 					<td>${dao.artistname }</td>
 					<td>${dao.bygenre }</td>
 					<td>${dao.hits }</td>
-					<td>${dao.likes }</td>
+					
+					<form method="post" action="/javafood_team/javafood?javafood=2">
+						<td>
+							${dao.likes }<input type="image" value=""src="https://c11.kr/1asbx" class="like">
+							<input type="hidden" name="good" value="${dao.songnumber}">
+						</td>
+					</form>
+					
 					<td>${dao.playtime }</td>
 					<td><a href="${dao.link }"target='_blank'><img class="play" src="https://c11.kr/1asd1"></a></td>
 					<td><img class="save" src="https://c11.kr/1asd6"></td>
+					<td>${dao.country }</td>
 				</tr>
 			</c:forEach>
 		</table>
