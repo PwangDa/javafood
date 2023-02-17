@@ -16,7 +16,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Artist.jsp Test전용</title>
- <script></script>
+ <script>
+ function fn_sendComment(){
+ 	
+ 	var frmCommand = document.frmComment;
+ 	var id = frmCommand.id.value;
+ 	var cont = frmCommand.cont.value;
+ 	if(id.length == 0 || id == ""){
+ 		alert("아이디를 입력해주세요")
+ 	}else if(cont.length == 0 || cont == ""){
+ 		alert("내용을 입력해주세요")
+ 	}else{
+     frmComment.method = "post";
+     frmComment.action = "/javafood_team/javafood?javafood=1&num=1&command=addcommnet.do";
+     frmComment.submit();
+ 	}
+ } 
+ 
+ </script>
  <script link src ="javafoodScript/artistScript.js"></script>
  <style>
   	    #cont{

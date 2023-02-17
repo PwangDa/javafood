@@ -158,7 +158,7 @@ header{
 	        <a href="javafood?javafood=5"><img class="menu-img" src=" ${lo[0].myimg }"></a>
         </c:if>
         <c:if test="${lo[0].myimg==null}">
-	        <a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
+			<a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
         </c:if>
         
     </header>

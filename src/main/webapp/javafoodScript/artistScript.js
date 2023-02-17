@@ -1,10 +1,9 @@
  		/*댓글 입력창 if문*/
-         function fn_sendComment(){
+        /* function fn_sendComment(){
         	
         	var frmCommand = document.frmComment;
         	var id = frmCommand.id.value;
         	var cont = frmCommand.cont.value;
-        	
         	if(id.length == 0 || id == ""){
         		alert("아이디를 입력해주세요")
         	}else if(cont.length == 0 || cont == ""){
@@ -14,7 +13,7 @@
             frmComment.action = "/javafood_team/javafood?javafood=1&command=addcommnet.do";
             frmComment.submit();
         	}
-        } 
+        } */
  		
         function fn_sendComment_2(){
         	
