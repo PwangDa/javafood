@@ -26,7 +26,7 @@
         	}       
         </c:forEach>
 </style>
-<link rel="stylesheet" href="javafoodCSS/albumCSS.css">
+<link rel="stylesheet" href="javafoodCSS/albumCSS.css?css=css">
 </head>
 <body>
    <jsp:include page="menu.jsp"></jsp:include>
