@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Artist.jsp Test전용</title>
+<title>Artist.jsp TTTTest전용</title>
  <script>
 <%-- function fn_sendComment(){
  	
