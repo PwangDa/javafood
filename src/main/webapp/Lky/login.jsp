@@ -31,7 +31,7 @@
 
 <c:if test="${re!=null }">
 	<script>
-		alert('회원정보 수정이 완료되었습니다. 다시 로그인 해주세요.')
+		alert('다시 로그인 해주세요.')
 	</script>
 </c:if>
 
@@ -60,7 +60,7 @@
 					<div style="width: 200px; height: 250px">
 						<div>
 							<input type="file" name="file1">
-							<p><strong> 프로필 사진 </strong></p>
+							<p><strong> 프로필 사진 (서버가 없어서 다른컴퓨터에서 이미지 출력 불가)</strong></p>
 							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
 						</div>
 						<div>

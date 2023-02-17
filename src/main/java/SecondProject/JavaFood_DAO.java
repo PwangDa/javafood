@@ -45,19 +45,19 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
-	public void addsong1(String b,String c,String d) {
-		try {
-			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
-			this.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void addsong1(String b,String c,String d) {
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 //	public void addsong1(int i ,String b,String c,String d) {
 //		try {
 //			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("INSERT INTO Genre VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'POP',null , '"+d+"',null)").executeUpdate();
+//			this.con.prepareStatement("INSERT INTO song1 VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'top100',null , '"+d+"',null,null)").executeUpdate();
 //			this.con.close();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -373,15 +373,56 @@ public class JavaFood_DAO {
 	 * @param a : song1음악의 장르를 입력해 주세요.
 	 * @return list : song1의 장르별로 음악list를 가져옵니다.
 	 */
-	public List<song_DTO> getGenre (String a) {
+//	public List<song_DTO> getGenre (String a) {
+//		List<song_DTO> list = new ArrayList<>();
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			String genre = " SELECT * FROM  Genre";
+//			genre += " where bygenre = ?";
+//			genre += " ORDER BY songnumber";
+//			this.pstmt = con.prepareStatement (genre);
+//			this.pstmt.setString(1, a);
+//			ResultSet rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				song_DTO vo = new song_DTO();
+//				vo.setArtistname(rs.getString("artistname"));
+//				vo.setBygenre(rs.getString("bygenre"));
+//				vo.setHits(rs.getString("hits"));
+//				vo.setLikes(rs.getString("likes"));
+//				vo.setSongname(rs.getString("songname"));
+//				vo.setSongnumber(rs.getString("songnumber"));
+//				vo.setLink(rs.getString("link"));
+//				vo.setPlaytime(rs.getString("playtime"));
+//				vo.setAlbum(rs.getString("album_name"));
+//				vo.setImglink(rs.getString("imagelink"));
+//				list.add(vo);
+//			}
+//			rs.close();
+//			this.pstmt.close();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return list;
+//	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 장르별로 노래 가져오기 -페이징
+	 * @param a : song1음악의 장르를 입력해 주세요.
+	 * @return list : song1의 장르별로 음악list를 가져옵니다.
+	 */
+	public List<song_DTO> getGenre (String a, int start, int end) {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			String genre = " SELECT * FROM  Genre";
 			genre += " where bygenre = ?";
+			genre += " AND SONGNUMBER >= ? AND SONGNUMBER<= ? ";
 			genre += " ORDER BY songnumber";
 			this.pstmt = con.prepareStatement (genre);
-			this.pstmt.setString(1, a);
+			this.pstmt.setString(1, a); 
+			this.pstmt.setInt(2, start);
+			this.pstmt.setInt(3, end);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -405,7 +446,32 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+* 장르별로 노래 가져오기 -페이징
+* @param a : song1음악의 장르를 입력해 주세요.
+* @return list : song1의 장르별로 음악list를 가져옵니다.
+*/
+	public int pagetotal () {
+		List<song_DTO> list = new ArrayList<>();
+		int totalcnt = 0;
+		try {
+			this.con = this.dataFactory.getConnection();
+			String genre = " SELECT count(*) cnt FROM  Genre";
+			this.pstmt = con.prepareStatement (genre);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				totalcnt = rs.getInt("cnt");
+			}
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return totalcnt;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 최신음악 노래 가져오기
 	 * @param a : song1음악의 가져오기
@@ -914,7 +980,6 @@ public class JavaFood_DAO {
 			   ResultSet rs = pstmt.executeQuery();
 			   
 			   while(rs.next()) {
-				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
 				   String famous = rs.getString("famous");
 				   String imglink = rs.getString("imagelink");
@@ -929,7 +994,6 @@ public class JavaFood_DAO {
 				   
 				   
 				   song_DTO vo = new song_DTO();
-				   vo.setSongnumber(songnumber);
 				   vo.setRanking(ranking);
 				   vo.setFamous(famous);
 				   vo.setImglink(imglink);
