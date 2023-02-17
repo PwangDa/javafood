@@ -198,7 +198,10 @@ public class JavaFood_DAO {
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
+
+			vo.setPn1(rs.getString("pn").split("-")[0]);
 			vo.setPn(rs.getString("pn"));
+			
 			vo.setPhone(rs.getString("phone"));
 			vo.setEmail(rs.getString("email"));
 			vo.setMyimg(rs.getString("img"));
@@ -264,7 +267,7 @@ public class JavaFood_DAO {
 	public void removeId(login_DTO vo) {
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='https://zrr.kr/NuiP' WHERE id = '"+vo.getId()+"'");
+			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='"+vo.getMyimg()+"' WHERE id = '"+vo.getId()+"'");
 			this.pstmt.executeUpdate();
 			this.pstmt.close();
 			this.con.close();
@@ -370,15 +373,56 @@ public class JavaFood_DAO {
 	 * @param a : song1음악의 장르를 입력해 주세요.
 	 * @return list : song1의 장르별로 음악list를 가져옵니다.
 	 */
-	public List<song_DTO> getGenre (String a) {
+//	public List<song_DTO> getGenre (String a) {
+//		List<song_DTO> list = new ArrayList<>();
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			String genre = " SELECT * FROM  Genre";
+//			genre += " where bygenre = ?";
+//			genre += " ORDER BY songnumber";
+//			this.pstmt = con.prepareStatement (genre);
+//			this.pstmt.setString(1, a);
+//			ResultSet rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				song_DTO vo = new song_DTO();
+//				vo.setArtistname(rs.getString("artistname"));
+//				vo.setBygenre(rs.getString("bygenre"));
+//				vo.setHits(rs.getString("hits"));
+//				vo.setLikes(rs.getString("likes"));
+//				vo.setSongname(rs.getString("songname"));
+//				vo.setSongnumber(rs.getString("songnumber"));
+//				vo.setLink(rs.getString("link"));
+//				vo.setPlaytime(rs.getString("playtime"));
+//				vo.setAlbum(rs.getString("album_name"));
+//				vo.setImglink(rs.getString("imagelink"));
+//				list.add(vo);
+//			}
+//			rs.close();
+//			this.pstmt.close();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return list;
+//	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 장르별로 노래 가져오기 -페이징
+	 * @param a : song1음악의 장르를 입력해 주세요.
+	 * @return list : song1의 장르별로 음악list를 가져옵니다.
+	 */
+	public List<song_DTO> getGenre (String a, int start, int end) {
 		List<song_DTO> list = new ArrayList<>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			String genre = " SELECT * FROM  Genre";
 			genre += " where bygenre = ?";
+			genre += " AND SONGNUMBER >= ? AND SONGNUMBER<= ? ";
 			genre += " ORDER BY songnumber";
 			this.pstmt = con.prepareStatement (genre);
-			this.pstmt.setString(1, a);
+			this.pstmt.setString(1, a); 
+			this.pstmt.setInt(2, start);
+			this.pstmt.setInt(3, end);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -402,7 +446,32 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+* 장르별로 노래 가져오기 -페이징
+* @param a : song1음악의 장르를 입력해 주세요.
+* @return list : song1의 장르별로 음악list를 가져옵니다.
+*/
+	public int pagetotal () {
+		List<song_DTO> list = new ArrayList<>();
+		int totalcnt = 0;
+		try {
+			this.con = this.dataFactory.getConnection();
+			String genre = " SELECT count(*) cnt FROM  Genre";
+			this.pstmt = con.prepareStatement (genre);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				totalcnt = rs.getInt("cnt");
+			}
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return totalcnt;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 최신음악 노래 가져오기
 	 * @param a : song1음악의 가져오기

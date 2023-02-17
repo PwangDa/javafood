@@ -181,6 +181,7 @@ public class JavaFood_Service {
 						dto.setNic(list.get(q).getNic());
 						dto.setId(list.get(q).getId());
 						dto.setPw(list.get(q).getPw());
+						dto.setMyimg(list.get(q).getMyimg());
 						li.add(dto);
 						ma.put("login", li);
 					}
@@ -260,17 +261,49 @@ public class JavaFood_Service {
 	public void javafood5_4(String songnumber) {
 		dao.like(songnumber);
 	}
+	/**
+	 * my_page 이동값 전달
+	 * @param String : 마이페이지 이동값을 넣어주세요
+	 */
+	public String javafood5_5(String remove) {
+		String a = "0";
+		if(remove!=null) {
+			if("1".equals(remove)) a="1";
+		}
+		return a;
+	}
 //	//음악추가
 //	public void javafood51(String a,String b,String c,String d){
 //		dao.addsong1(a, b, c, d);
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//용준  장르별
-	public List<song_DTO> javafood6(String song){
+//	//용준  장르별
+//	public List<song_DTO> javafood6(String song){
+//		System.out.println("6번 장르 실행");
+//		return dao.getGenre(song);
+//		
+//	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//용준  장르별 페이징
+	public Map javafood6(String song, int pageNum, int countPerPage){
 		System.out.println("6번 장르 실행");
-		return dao.getGenre(song);
+//		dao.getGenre(song);
 		
-	}
+		int start = 0;
+		int end = 0;
+		start = (countPerPage*(pageNum-1))+1;
+		end = start + countPerPage - 1;
+		List list = dao.getGenre(song, start, end);
+		int totalCount = dao.pagetotal();
+		
+		Map map = new HashMap();
+		map.put("list", list);
+		map.put("totalCount", totalCount);
+		return map;
+		
+		
+	}	
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 최신음악

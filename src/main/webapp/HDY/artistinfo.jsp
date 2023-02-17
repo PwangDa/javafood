@@ -16,6 +16,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Artist.jsp Test전용</title>
+<%-- 		CommentDAO dao = new CommentDAO();
+
+		String command = request.getParameter("command"); 
+		
+		if("addcomment".equals(command)) {
+			String id_1 = request.getParameter("id");
+			String cont_1 = request.getParameter("cont");
+			
+			CommentVO vo = new CommentVO();
+			vo.setComment_id(id_1);
+			vo.setComment_cont(cont_1);
+			
+			dao.addcomment(vo);
+		}else if("delcommnet".equals(command)) {
+			
+			String id_2 = request.getParameter("id");
+			System.out.println("delete 확인"+id_2);
+			dao.delcomment(id_2);
+		}
+		
+		List<CommentVO> list = dao.listComment();--%>
  <script>
  		/*댓글 입력창 if문*/
          function fn_sendComment(){
@@ -130,7 +151,7 @@
                 rgba(0, 0, 0, 0.75) 75%,
                 rgb(0, 0, 0) 100%
             ),
-            url("${album_list[1].artist_img}") ;
+            url("${listAlbum[0].artist_img}") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -379,17 +400,15 @@
         }
 
         .clides{
-            border: 1px solid white;
             position: absolute;
             left: 0;
             top: 0;
-            width: 5000px; /* 슬라이드할 사진과 마진 총 넓이 */
+            width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
          }
 
          .clides li{
             float: left;
             margin-right: 25px;
-
             }
             
         /* < > 화살표 */    
@@ -419,38 +438,77 @@
         .marLeft{
         	margin-left: -885px;
         }
-
-        .al_name{
-            /* border: 1px solid white; */
-            display: inline-block;
-            width: 180px;
-            
-        }
     </style>
 </head>
 <body  onscroll="headerbarToggle()">
-	<jsp:include page="menu.jsp"></jsp:include>
+	<jsp:include page="/menu.jsp"></jsp:include>
     <div id = "home">
         <div id = "cont" class = "contain">     
             <div class = "text1"> 
             <%--forEach 안하고 하나의 값만 가져오고 싶을때 --%>
-                <h1>${album_list[0].artistname }</h1>
-                <p style="width: 690px;">${album_list[1].artist_info }</p>
+                <h1>${listAlbum[0].artistname }</h1>
+                <p style="width: 690px;">${listAlbum[0].artist_info }</p>
                 <div> <a target="_blank" href="https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0">출처:namuwiki</a></div>
             </div>
         </div>
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
             <jsp:useBean id="daoTest" class="album.info.AlbumDAO"></jsp:useBean>
-
-           <c:forEach var="album" items="${album_list}" varStatus="loop">
+            <%-- service에 
+            AlbumDAO albumDAO = new AlbumDAO(); 생성 [생성자선언해도 되나?]   
+            
+            public List<AlbumVO> Albumlist(){
+            	List<AlbumVO> Albumlist = albumDAO.listAlbum(); 
+            	return Albumlist;선언하고 
+            }
+                  
+            controller.java 에서 
+            listAlbum = Service.Albumlist();
+			request.setAttribute("listAlbum", listAlbum);
+			nextPage = "/artistinfo.jsp";
+			dispatch.forward();
+		    하면 jsp로 송출
+				 
+            jsp 이 페이지에서
+            AlbumVO vo = Albumlist.get(j); 
+            가 vo에 .get(j)로 for문으로 (0), (1) 하나씩 뽑아 넣어서 넣었다면
+            
+            향상된 for문으로 
+             album에 하나씩 넣어서 
+            <c:forEach var:"album" items="${listAlbum}">로 앨범목록출력
+            	 <div id = "cont1">
+                	<div class = "box1">
+                    <img class="img1" src="${album.cover}">
+                  </div>
+                  <div class = "box1 text2"><a href="${album.link}">
+                  
+            --%>
+            <%-- 
+            AlbumDAO albumDAO = new AlbumDAO();
+        	String num = request.getParameter("a.ALBUM_NUM");
+        	System.out.println("num : "+num);
+    	    List<AlbumVO> Albumlist = albumDAO.listAlbum(); 
+    	    
+    	    
+            for(int j=0; j<Albumlist.size(); j++) {
+            	AlbumVO vo = Albumlist.get(j);
+    	    	
+            	String alNum = vo.getAlbum_num();
+    	    	String cover = vo.getAlbum_cover();
+    			String alname = vo.getAlbum_name();
+    			String artist = vo.getArtist();
+            	
+    			String music_name = vo.getMusic_name();
+    			String music_link = vo.getMusic_link();
+            	--%>
+           <c:forEach var="album" items="${listAlbum}">
 	            <div id = "cont1">
 	                <div class = "box1">
 	                    <img class="img1" src="${album.album_cover }">
 	                </div>
-	                <div class = "box1 text2"><a href="${loop.count}"><strong>${album.music_name}</strong></a></div>
-	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album_list[0].artistname }</div>
-	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}">${album.album_name }</a></div>
+	                <div class = "box1 text2"><a href="${album.music_link}"><strong>${album.music_name }</strong></a></div>
+	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artistname }</div>
+	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_num}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
             </c:forEach>
@@ -462,13 +520,21 @@
                 <p class="point next">&rang;</p>
             <div id="cont3_1">
                 <ul id = "slds" class="clides">
+                <%-- for(int h=0; h<Albumlist.size(); h++){ 
+                	AlbumVO vo = Albumlist.get(h);
+                	
+                	String alNum = vo.getAlbum_num();
+        	    	String cover = vo.getAlbum_cover();
+        			String alname = vo.getAlbum_name();
 
-                <c:forEach var ="album" items="${album_list}" varStatus="loop">
+                --%>
+                <c:forEach var ="album" items="${listAlbum}">
                     <li>
-                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}"><img  class="image" src="${album.album_cover }"></a>
+                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_num}"><img  class="image" src="${album.album_cover }"></a>
                         <br>
-                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span class="al_name"><strong>${album.album_name }</strong></span></a>
+                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span><strong>${album.album_name }</strong></span></a>
                     </li>
+                    <%--} --%>
                 </c:forEach>
                 </ul>
             </div>
@@ -494,6 +560,12 @@
             </div>
         <div class="command">
             <hr>
+                <%-- for(int i= 0; i<list.size(); i++) {
+	    	    	  CommentVO vo = list.get(i);
+	    	    	  
+	    	    	  String id = vo.getComment_id();
+	    	    	  String cont = vo.getComment_cont();
+	    	    	  Date date = vo.getComment_Date(); --%>
 	    	<div>
 	    	  	<c:forEach var ="comment" items="${commentList}">
 	            	<c:if test="${comment.level == 1 }">

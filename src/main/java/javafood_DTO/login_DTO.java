@@ -8,10 +8,19 @@ public class login_DTO {
 	private String pw;
 	private String nic;
 	private String pn;
+	private String pn1;
 	private String phone;
 	private String email;
 	private String home;
 	private String myimg;
+	
+	
+	public String getPn1() {
+		return pn1;
+	}
+	public void setPn1(String pn1) {
+		this.pn1 = pn1;
+	}
 	public String getId() {
 		return id;
 	}
