@@ -45,19 +45,19 @@ public class JavaFood_DAO {
 //	 * @param c : song1 의 앨범 이름
 //	 * @param d : song1 의 노래의 이미지 주소
 //	 */
-	public void addsong1(String b,String c,String d) {
-		try {
-			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
-			this.con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void addsong1(String b,String c,String d) {
+//		try {
+//			this.con = this.dataFactory.getConnection();
+//			this.con.prepareStatement("INSERT INTO Genre VALUES (genre_s.nextval, 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, NULL, NULL, '"+d+"')").executeUpdate();
+//			this.con.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 //	public void addsong1(int i ,String b,String c,String d) {
 //		try {
 //			this.con = this.dataFactory.getConnection();
-//			this.con.prepareStatement("INSERT INTO Genre VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'POP',null , '"+d+"',null)").executeUpdate();
+//			this.con.prepareStatement("INSERT INTO song1 VALUES ('"+i+"', 'a', '"+b+"', 'https://www.youtube.com/results?search_query="+b+"', '"+c+"', 0, 0, 'top100',null , '"+d+"',null,null)").executeUpdate();
 //			this.con.close();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
@@ -911,7 +911,6 @@ public class JavaFood_DAO {
 			   ResultSet rs = pstmt.executeQuery();
 			   
 			   while(rs.next()) {
-				   String songnumber = rs.getString("songnumber");
 				   String ranking = rs.getString("ranking");
 				   String famous = rs.getString("famous");
 				   String imglink = rs.getString("imagelink");
@@ -926,7 +925,6 @@ public class JavaFood_DAO {
 				   
 				   
 				   song_DTO vo = new song_DTO();
-				   vo.setSongnumber(songnumber);
 				   vo.setRanking(ranking);
 				   vo.setFamous(famous);
 				   vo.setImglink(imglink);
