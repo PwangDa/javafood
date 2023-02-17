@@ -379,15 +379,17 @@
         }
 
         .clides{
+            border: 1px solid white;
             position: absolute;
             left: 0;
             top: 0;
-            width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+            width: 5000px; /* 슬라이드할 사진과 마진 총 넓이 */
          }
 
          .clides li{
             float: left;
             margin-right: 25px;
+
             }
             
         /* < > 화살표 */    
@@ -417,6 +419,13 @@
         .marLeft{
         	margin-left: -885px;
         }
+
+        .al_name{
+            /* border: 1px solid white; */
+            display: inline-block;
+            width: 180px;
+            
+        }
     </style>
 </head>
 <body  onscroll="headerbarToggle()">
@@ -439,8 +448,8 @@
 	                <div class = "box1">
 	                    <img class="img1" src="${album.album_cover }">
 	                </div>
-	                <div class = "box1 text2"><a href="${loop.count}"><strong>${loop.count}</strong></a></div>
-	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artistname }</div>
+	                <div class = "box1 text2"><a href="${loop.count}"><strong>${album.music_name}</strong></a></div>
+	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album_list[0].artistname }</div>
 	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
@@ -458,7 +467,7 @@
                     <li>
                         <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}"><img  class="image" src="${album.album_cover }"></a>
                         <br>
-                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span><strong>${album.album_name }</strong></span></a>
+                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span class="al_name"><strong>${album.album_name }</strong></span></a>
                     </li>
                 </c:forEach>
                 </ul>

@@ -228,7 +228,6 @@ body {
 		<table class="table">
 			<tr class="table2">
 				<td style="width:50px;">체크</td>
-				<td style="width:50px;">번호</td>
 				<td style="width:50px;">순위</td>
 				<td style="width:120px;">인기점수</td>
 				<td>앨범</td>
@@ -244,7 +243,6 @@ body {
 			<c:forEach var="dao" items="${ list_login}" >
 				<tr class="table3 table3_${dao.songnumber }">
 					<td> <input type="checkbox" class="but btn${dao.songnumber }"></td>
-					<td>${dao.songnumber }</td>
 					<td>${dao.ranking }</td>
 					<td>${dao.famous }</td>
 					<td><img src="${dao.imglink }" style="width:80px;"></td>

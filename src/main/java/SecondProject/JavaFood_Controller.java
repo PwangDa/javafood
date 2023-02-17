@@ -203,21 +203,19 @@ public class JavaFood_Controller extends HttpServlet {
 //		//음악추가
 //		if(request.getParameter("javafood").equals("add")) {
 //
-//			String url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900&steadyYn=Y";
+//			String url = "https://www.melon.com/chart/month/index.htm?classCd=GN0000";
 //			org.jsoup.nodes.Document doc = Jsoup.connect(url).get();		
 //			Elements e1 = doc.getElementsByAttributeValue("class", "checkEllipsis");
 //			Elements e2 = doc.getElementsByAttributeValue("class", "ellipsis rank01").select("a");
 //			Elements e3 = doc.getElementsByAttributeValue("class", "ellipsis rank03").select("a");
 //			Elements e4 =  doc.getElementsByAttributeValue("class", "wrap").select("a").select("img");
 //			JavaFood_DAO dao = new JavaFood_DAO();
-//			int z=351;
-//			for(int i=0; i<e1.size(); i++) {
+//			int z=1;
+//			for(int i=0; i<e4.size(); i++) {
 //				System.out.println("제목 : "+(String)e2.get(i).text());
 //				System.out.println("앨범 : "+(String)e3.get(i).text());
 //				System.out.println("이미지 주소 : "+(String)e4.get(i).attr("src"));
-//				System.out.println();
-//				
-//				
+//				System.out.println(i);
 //				
 //				
 //				String b = (String)e2.get(i).text().replace("'", "").trim();
@@ -227,8 +225,12 @@ public class JavaFood_Controller extends HttpServlet {
 //				z++;
 //			}
 			////////////////
-//			z=51;
-//			List list = new ArrayList();
+//			z=1;
+//			System.out.println(e1.size());
+//			System.out.println(e2.size());
+//			System.out.println(e3.size());
+//			System.out.println(e4.size());
+//			String b;
 //				for(int i=0; i<e1.size(); i++) {
 //				System.out.println("가수 : "+(String)e1.get(i).text());
 //				String a = (String)e1.get(i).text().replace("'", "").trim();
@@ -261,14 +263,16 @@ public class JavaFood_Controller extends HttpServlet {
 //				}
 //				System.out.println("가수 : " + result);
 //				a=result;
-//				list.add(a);
+////				list.add(a);
 //				System.out.println((z)+"  "+a);
+//				z++;
+				
 //			}
-//				System.out.println("sldfhsladfhsakjdhfkjsadf : "+list.size());
+//			System.out.println("sldfhsladfhsakjdhfkjsadf : "+list.size());
 //				for(int i=0; i<list.size(); i++) {
-//					list.get(i)
+//				b =(String) list.get(i);
 //				}
-//				dao.addsong2(a,z);
+//			dao.addsong2(b,z);
 //				z++;
 //		}//if문 ("add")종료
 			////////////////
@@ -276,7 +280,7 @@ public class JavaFood_Controller extends HttpServlet {
 ////다영이것 건들면 큰1납니다. 말아주세요. 젭알. 부탁드립니다. (음악추가)
 //http://localhost:8080/javafood_team/javafood?javafood=Albumadd
 	if(request.getParameter("javafood").equals("Albumadd")) {
-		/*JavaFood_DAO dao = new JavaFood_DAO();
+		JavaFood_DAO dao = new JavaFood_DAO();
 		
 		//1단계 : 일단 주소 가져오려면 한번은 실행해서 db에 넣어주기 
 		//(장르로 따지면 발라드 주소 한번 실행/ pop주소 한번 실행)	
@@ -291,7 +295,10 @@ public class JavaFood_Controller extends HttpServlet {
 		  String rock = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0600&steadyYn=Y"; 
 		  String trott = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0700&steadyYn=Y"; 
 		  String POP = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0900&steadyYn=Y";
-		  org.jsoup.nodes.Document doc = Jsoup.connect(POP).get();
+		  
+		  String TOP100 = "https://www.melon.com/chart/month/index.htm";
+		  String J_POP100 = "https://www.melon.com/genre/song_list.htm?gnrCode=GN1900&steadyYn=Y";
+		  org.jsoup.nodes.Document doc = Jsoup.connect(TOP100).get();
 		 
 		//아티스트용
 		Elements artistURL_1 = doc.getElementsByAttributeValue("class", "ellipsis rank02").select("span").select("a");
@@ -305,15 +312,15 @@ public class JavaFood_Controller extends HttpServlet {
 			artisturl = artisturl.substring(0, tempNum);
 			String[] artistNUM= artisturl.split("'");
 			artist_add=artistNUM[1];
-			System.out.println(350+(i+1) + "번  : "+ artist_add);
+			System.out.println((i+1)+ "번  : "+ artist_add);
 			
 			String albumurl = albumURL.get(i).toString();
 			String[] albumNUM= albumurl.split("'");
 			album_add="https://www.melon.com/album/detail.htm?albumId="+albumNUM[1];
-			System.out.println(350+(i+1) + " 송넘버: "+ album_add);
+			System.out.println((i+1) + " 송넘버: "+ album_add);
 			
-			dao.url_add(artist_add, album_add, 350+(i+1)); //51번부터 넣을땐 i에 50넣고
-		} */
+			dao.url_add(artist_add, album_add, (i+1)); //51번부터 넣을땐 i에 50넣고
+		} 
 				
 	}//if ("Albumadd") 종료
 	if(request.getParameter("javafood").equals("ArtistList")) {
@@ -329,69 +336,59 @@ public class JavaFood_Controller extends HttpServlet {
 		org.jsoup.nodes.Document doc_song = Jsoup.connect(song).get();	
 		
 		String artistIMG = doc_detail.getElementsByAttributeValue("id", "artistImgArea").select("img").attr("src");
-		Element artistINFO = doc_detail.getElementsByAttributeValue("id", "d_artist_intro").select("div").first();
-		String artistName = doc_detail.getElementsByAttributeValue("class", "title_atist").attr("text");
+//		Element artistINFO = doc_detail.getElementsByAttributeValue("id", "d_artist_intro").select("div").first();
+//		String artistName = doc_detail.getElementsByAttributeValue("class", "title_atist").attr("text");
 		Elements artistALBUM = doc_song.getElementsByAttributeValue("class", "wrap_album04").select("img");
-		Elements artistSONG = doc_song.getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
+		Elements artistSONG = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
+		Elements albumTitle = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "songname12");
 		
 		
+		//아티스트 이름
 		Elements a = doc_detail.getElementsByClass("title_atist");
-		Elements aristi_info = doc_detail.getElementsByClass("atist_insdc");
 		String b = a.get(0).text();
-		String artist_i = "";
-		
-		if(aristi_info.size() == 0) {
-			System.out.println("00");
-		}else if(aristi_info.size() == 1) {
-			System.out.println("11"); //num3 /하이포가 1임
+		System.out.println(b);
+		//아티스트 정보
+		Elements aristi_info = doc_detail.getElementsByClass("atist_insdc");
+		String artist_i = "";		
+		if(aristi_info.size() == 1) {
+			//num3 /하이포가 1임
 			artist_i = aristi_info.get(0).text();
-			System.out.println("aristi_info : "+aristi_info.get(0).text()); //num3은 인덱스가 한개여서 0으로 해야함
+//			System.out.println("aristi_info : "+aristi_info.get(0).text()); //num3은 인덱스가 한개여서 0으로 해야함
 		}else if(aristi_info.size() >= 2) {
-			System.out.println("22");
 			artist_i = aristi_info.get(1).text();
-			System.out.println("aristi_info : "+aristi_info.get(1).text());
+//			System.out.println("aristi_info : "+aristi_info.get(1).text());
 		}
 		
-//		System.out.println("artistINFO: "+artistINFO);
-		
-
 //		String[] c = b.split("명");
 //		int target_num = b.indexOf(" "); //아티스트명 '명'에서 띄어쓰기까지만 나오게
 		String artist_n = b.substring(5);
-		System.out.println("아티스트이름 : "+artist_n);
-		/*if(aristi_info.get(0).text().length() == 1) {
-			 artist_i = aristi_info.get(0).text();
-			System.out.println("아티스트 설명 : "+artist_i);
-		}else {
-			 artist_i = aristi_info.get(1).text();
-			System.out.println("아티스트 설명 : "+artist_i);
-		}*/
-//		System.out.println("아티스트 이미지 : "+artistIMG); 
-//		System.out.println("------------------");
-//		System.out.println(artistName);
-//		System.out.println("------------------");
-//		System.out.println("앨범이미지 : "+artistALBUM);
+		System.out.println(artist_n);
 		System.out.println("------------------");
-//		System.out.println("대표곡 : "+artistSONG);
-		
 		
 		//각 앨범 이름
 		List<String> album_song = new ArrayList<String>();
 		//앨범 이미지링크 리스트배열
 		List<String> src = new ArrayList<String>();
-		String[] artist_song = null;	
+		String[] artist_song = null;
+		
+		//num으로 db에서 가져온 값이 있어서 다시 새 빈 리스트 선언해서 덮어주기
+		album_list =  new ArrayList();
 		for(int i=0; i<artistSONG.size(); i++) {
 			AlbumDTO dto = new AlbumDTO();
 			dto.setArtistname(artist_n);
 			dto.setArtist_info(artist_i);
 			dto.setArtist_img(artistIMG);
 			
+			String music_name = albumTitle.get(i).text();
+//			System.out.println("music_name"+(i)+" : "+music_name);
+			dto.setMusic_name(music_name);
+			
 			String artistsong = artistSONG.get(i).toString();
 			int tempNum = artistsong.indexOf(">");
 			artistsong = artistsong.substring(tempNum+1);
 			artist_song= artistsong.split("<");
-//			System.out.println("album_title"+(i+1)+" : "+artist_song[0]);
-			dto.setAlbum_name(artistsong);
+//			System.out.println("album_title"+(i)+" : "+artist_song[0]);
+			dto.setAlbum_name(artist_song[0]);
 //			album_song.add(artist_song[0]);
 			
 			String adg = artistALBUM.get(i).attr("src");
@@ -733,25 +730,66 @@ public class JavaFood_Controller extends HttpServlet {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 장르
+//	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		// 장르별 리스트
+//		String song="발라드";
+//		if(request.getParameter("genre")!=null) {
+//			song = request.getParameter("genre");
+//		}
+//		System.out.println("song  전: " + song);
+//		List genre_list = service.javafood6(song);
+//		request.setAttribute("genre", genre_list);
+//		request.setAttribute("song", song);
+//		System.out.println("song 후: " + song);
+//		
+//		// 페이징
+//		int pegeNum = 1;		// 현재 페이지
+//		int countPerPage = 10;	// 한 페이지당 표시 수 
+//		
+//		//좋아요
+//		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
+//		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
+//		dispatch.forward(request, response);
+//		
+//	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//용준 장르
 	private void java6(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
+		// 페이징
+		int pageNum = 1;		// 현재 페이지
+		int countPerPage = 10;	// 한 페이지당 표시 수 
+
 		// 장르별 리스트
 		String song="발라드";
 		if(request.getParameter("genre")!=null) {
 			song = request.getParameter("genre");
 		}
+		String tmp_pageNum = request.getParameter("pageNum");
+		if(tmp_pageNum != null) {
+			pageNum = Integer.parseInt(tmp_pageNum);
+		}
 		System.out.println("song  전: " + song);
-		List genre_list = service.javafood6(song);
-		request.setAttribute("genre", genre_list);
+		System.out.println("pageNum : " + pageNum);
+		System.out.println("countPerPage : " + countPerPage);
+		Map genre_list = service.javafood6(song, pageNum, countPerPage);
+		request.setAttribute("genre", genre_list.get("list"));
+		request.setAttribute("totalCount", genre_list.get("totalCount"));
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("countPerPage", countPerPage);
 		request.setAttribute("song", song);
+//		request.setAttribute("genre", genre_list);
 		System.out.println("song 후: " + song);
-		
-		//좋아요
+
+		// 좋아요
 		if(request.getParameter("good")!=null) service.javafood5_4(request.getParameter("good"));
 		RequestDispatcher dispatch = request.getRequestDispatcher("Genre/NewGenre.jsp");
 		dispatch.forward(request, response);
-		
-	}
+
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//용준 최신음악
 	private void java7(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
