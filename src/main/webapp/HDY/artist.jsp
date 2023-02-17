@@ -8,17 +8,35 @@
     import = "java.sql.Date"
     import = "java.util.List"
     %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Artist.jsp Test전용</title>
+<% 		CommentDAO dao = new CommentDAO();
+
+		String command = request.getParameter("command"); 
+		
+		if("addcomment".equals(command)) {
+			String id_1 = request.getParameter("id");
+			String cont_1 = request.getParameter("cont");
+			
+			CommentVO vo = new CommentVO();
+			vo.setComment_id(id_1);
+			vo.setComment_cont(cont_1);
+			
+			dao.addcomment(vo);
+		}else if("delcommnet".equals(command)) {
+			
+			String id_2 = request.getParameter("id");
+			System.out.println("delete 확인"+id_2);
+			dao.delcomment(id_2);
+		}
+		
+		List<CommentVO> list = dao.listComment();%>
  <script>
  		/*댓글 입력창 if문*/
-         function fn_sendComment(){
+        function fn_sendComment(){
         	
         	var frmCommand = document.frmComment;
         	var id = frmCommand.id.value;
@@ -30,24 +48,7 @@
         		alert("내용을 입력해주세요")
         	}else{
             frmComment.method = "post";
-            frmComment.action = "/javafood_team/javafood?javafood=1&command=addcommnet.do";
-            frmComment.submit();
-        	}
-        } 
- 		
-        function fn_sendComment_2(){
-        	
-        	var frmCommand = document.frmComment_2;
-        	var id = frmCommand.id_2.value;
-        	var cont = frmCommand.cont_2.value;
-        	
-        	if(id.length == 0 || id == ""){
-        		alert("아이디를 입력해주세요")
-        	}else if(cont.length == 0 || cont == ""){
-        		alert("내용을 입력해주세요")
-        	}else{
-            frmComment.method = "post";
-            frmComment.action = "/javafood_team/javafood?javafood=1&command=addReply.do";
+            frmComment.action = "artist.jsp";
             frmComment.submit();
         	}
         }
@@ -120,6 +121,106 @@
             color: white;
         }
         
+        /*메뉴 상단바*/
+        header{
+            background-color: black;
+            color: white;
+            width: 100%;
+            position:fixed;
+            height: 53px;
+            border-bottom:1px solid rgb(70, 70, 70);
+            z-index: 1;
+            transition: opacity 0.4s;
+        }
+		
+        /*홈, 인기차트, 보관함, 검색창 있는 div박스*/
+        #menu{
+            margin: 0;
+        }
+
+        .menu-box{
+            display: inline-block;
+            position:absolute;
+            left: 50%;
+            top: 10px;
+        }
+		.main{
+            color: rgb(159, 159, 159);
+			font-size: 20px; 
+            font-weight: 600;
+            margin: 0px 13px;
+		}
+
+        .main_1:hover{
+            color: white;
+            cursor: pointer;
+        }
+        .main_2:hover{
+            color: white;
+            cursor: pointer;
+        }
+        .main_3:hover{
+            color: white;
+            cursor: pointer;
+        }
+        .main_4:hover{
+            color: white;
+        }
+
+        .main-box{
+            display: inline-block;
+            height: 32px;
+            width:260px;
+            border: 1px solid rgb(98, 98, 98);
+            background-color: transparent;
+        }
+        .main-box:hover{
+            border: 1px solid rgb(176, 176, 176);
+        }
+        /*검색 입력창*/
+        .search-txt::placeholder{
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .search-txt::placeholder:hover{
+            color:rgb(172, 172, 172);
+        }
+
+        .search-txt{
+            width: 190px;
+            padding: 10px;
+            border: 0px;
+            outline:none;
+            background-color: transparent;
+            color: white;
+            
+        }
+        /*검색 버튼*/
+        .search-btn{
+            border : 0px;
+            width: 44px;
+            height: 100%;
+            float:right;
+            outline:none;
+            background-color: rgb(45, 45, 45);
+            color: rgb(159, 159, 159);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .search-btn:hover{
+            color: rgb(206, 206, 206);
+            background-color: rgb(91, 91, 91);
+        }
+
+        /*프로필사진*/
+        .menu-img{
+            width: 38px;
+            float: right;
+            border-radius: 70%;
+            margin: 6px 14px;
+        }
+        
         #cont{
             background-image:
             linear-gradient(
@@ -130,7 +231,7 @@
                 rgba(0, 0, 0, 0.75) 75%,
                 rgb(0, 0, 0) 100%
             ),
-            url("${album_list[1].artist_img}") ;
+            url("https://i.pinimg.com/1200x/08/81/34/088134b9c3c6d6a1fa2c037bae1d5b49.jpg") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -172,9 +273,7 @@
         .comment{
             display: flex;
             justify-content: center;
-            
         }
-
         .text2{
             padding-top: 20px;
         }
@@ -212,7 +311,7 @@
             color:white;
             background-color:rgb(70, 70, 70);
             padding: 15px 30px;
-            height: 90px;
+            height: 110px;
             margin: 10px;
             border-radius: 15px;
             border: none;
@@ -275,27 +374,26 @@
         }
 
         .comment_1{
+            
             height: 40px;
             /* vertical-align: top; */
         }
 
         .comment_1_1{
             display: inline-block;
-            margin-right: 4px;
+          
             height: 20px;
             vertical-align: top;
         }
         .comment_1_2{
             height: 24px;
             vertical-align: top;
-            margin: 12px 10px 0px 10px;
+
         }
         
         .comment_1_3{
-           text-align: left;
-            width: 520px;
-            margin: 3px;
-            padding: 2px;
+           
+            width: 530px;
         }
 
 
@@ -341,13 +439,6 @@
         	text-align: left;
         	font-size: 14px;
             cursor: pointer;
-        }
-
-        .reply{
-            /* border: 1px solid white; */
-            display: inline-block;
-            width: 530px;
-            text-align: left;
         }
         
         /* 앨범  < > 용 스타일*/
@@ -420,32 +511,57 @@
     </style>
 </head>
 <body  onscroll="headerbarToggle()">
-	<jsp:include page="menu.jsp"></jsp:include>
+    <header id ="menu" >
+        <span style="font-size: 34px; font-weight: 600; cursor: pointer;">JV Music</span>
+        <div class="menu-box">
+            <span class="main main_1" >홈</span>
+            <span class="main main_2" >인기차트</span>
+            <span class="main main_3" >보관함</span>
+            <div class = "main-box main_4">
+                <input class="search-txt" type="text" placeholder="검색">
+                <button class="search-btn" type="submit">검색</button>
+            </div>
+        </div>
+        <img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+    </header>
     <div id = "home">
-        <div id = "cont" class = "contain">     
-            <div class = "text1"> 
-            <%--forEach 안하고 하나의 값만 가져오고 싶을때 --%>
-                <h1>${album_list[0].artistname }</h1>
-                <p style="width: 690px;">${album_list[1].artist_info }</p>
+        <div id = "cont" class = "contain">
+            <div class = "text1">
+                <h1>아이유(IU)</h1>
+                <p>아이유는 대한민국의 가수이자 배우이다. 배우로 활동할 때는 본명을 사용한다. 
+                <br>'아이유'라는 예명은 'I'와 'You'를 합친 합성어로 '너와 내가 음악으로 하나가 된다.'라는 의미이다.</p>
                 <div> <a target="_blank" href="https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0">출처:namuwiki</a></div>
             </div>
         </div>
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
-            <jsp:useBean id="daoTest" class="album.info.AlbumDAO"></jsp:useBean>
-
-           <c:forEach var="album" items="${album_list}" varStatus="loop">
-	            <div id = "cont1">
-	                <div class = "box1">
-	                    <img class="img1" src="${album.album_cover }">
-	                </div>
-	                <div class = "box1 text2"><a href="${loop.count}"><strong>${loop.count}</strong></a></div>
-	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artistname }</div>
-	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}">${album.album_name }</a></div>
-	            </div>
-	            <hr>
-            </c:forEach>
-            <%--} --%>
+            <% 	    
+            AlbumDAO albumDAO = new AlbumDAO();
+        	String num = request.getParameter("a.ALBUM_NUM");
+        	System.out.println("num : "+num);
+    	    List<AlbumVO> Albumlist = albumDAO.listAlbum(); 
+            for(int j=0; j<Albumlist.size(); j++) {
+            	AlbumVO vo = Albumlist.get(j);
+    	    	
+            	String alNum = vo.getAlbum_num();
+    	    	String cover = vo.getAlbum_cover();
+    			String alname = vo.getAlbum_name();
+    			String artist = vo.getArtist();
+            	
+    			String music_name = vo.getMusic_name();
+    			String music_link = vo.getMusic_link();
+            	%>
+            
+            <div id = "cont1">
+                <div class = "box1">
+                    <img class="img1" src="<%= cover%>">
+                </div>
+                <div class = "box1 text2"><a href="<%= music_link %>"><strong><%= music_name %></strong></a></div>
+                <div class = "box1 text2" style = "color:rgb(192, 192, 192);"><%= artist %></div>
+                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><%= alname %></a></div>
+            </div>
+            <hr>
+            <%} %>
         </div>
         <div id = "cont3">
                 <p class="point prev">&lang;</p>
@@ -453,14 +569,20 @@
                 <p class="point next">&rang;</p>
             <div id="cont3_1">
                 <ul id = "slds" class="clides">
+                <% for(int h=0; h<Albumlist.size(); h++){ 
+                	AlbumVO vo = Albumlist.get(h);
+                	
+                	String alNum = vo.getAlbum_num();
+        	    	String cover = vo.getAlbum_cover();
+        			String alname = vo.getAlbum_name();
 
-                <c:forEach var ="album" items="${album_list}" varStatus="loop">
+                %>
                     <li>
-                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}"><img  class="image" src="${album.album_cover }"></a>
+                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><img  class="image" src="<%= cover%>"></a>
                         <br>
-                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span><strong>${album.album_name }</strong></span></a>
+                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=<%= alNum %>"><span><strong><%= alname %></strong></span></a>
                     </li>
-                </c:forEach>
+                    <%} %>
                 </ul>
             </div>
         </div>
@@ -483,65 +605,52 @@
                 </div>
             </form>
             </div>
-        <div class="command">
+            <div class="command">
             <hr>
-	    	<div>
-	    	  	<c:forEach var ="comment" items="${commentList}">
-	            	<c:if test="${comment.level == 1 }">
-	                	<div class="comment" >
-                            <div class="text2 cont2_1">
-	                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-	                            <div class="id2">${comment.comment_id }</div>
-	                        </div>
-	                        <div class="text2">
-	                            <div class="cont2">${comment.comment_cont }</div>
-	                            <div class="date1">${comment.comment_Date }</div>
-	                            <details id="detail">
-		                   		 	<summary style="color: rgb(150, 150, 150);">답글달기</summary>
-		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=addReply.do">
-			                    		<div class="comment" >
-						                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-						                        <input class="input2" type="text" name="id_2" placeholder=" ID">
-						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
-						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
-						                        <input class="btn1" type="submit" value="답글"> 
-						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
-			                			</div>
-		                            </form>
-                				</details>
-	                        </div>
-	                        <!-- 삭제하기 기능도 
-	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
-	                        -->
-	                        <div class="text2">
-	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
-	                        </div>
-	                	</div>
-                        
-	             	</c:if>
-                    	<%--대댓글 등록했을 때 form --%>
-	             		<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=delcommnet.do">
-			            	<c:if test="${comment.level >= 2}">
-			            		<div class="reply">
-				        			<div class="comment_1">
-                                            <span class="comment_1_1">└</span>
-						                    <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-						                    <p class="comment_1_1">${comment.comment_id }</p>
-						                    <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
-						                    <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2" type="button"> 삭제</button></a>
-				        			</div>
-				        			<div class="comment_1_3">
-				                        <span class="comment_1_4" style="margin-right :70px;"></span>
-				                        ${comment.comment_cont }
-				                    </div>
-				                </div>
-			            	</c:if>
-			            </form>
-                    </c:forEach>  
-                <%-- } --%>
-            </div>                 
+                <% for(int i= 0; i<list.size(); i++) {
+	    	    	  CommentVO vo = list.get(i);
+	    	    	  
+	    	    	  String id = vo.getComment_id();
+	    	    	  String cont = vo.getComment_cont();
+	    	    	  Date date = vo.getComment_Date(); %>
+                <div class="comment">
+                        <div class="text2 cont2_1">
+                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+                            <div class="id2"><%= id %></div>
+                        </div>
+                        <div class="text2">
+                            <div class="cont2"><%= cont %></div>
+                            <div class="date1"><%= date %></div>
+                        <details id="detail">
+                   		 	<summary style="color: rgb(150, 150, 150);">답글달기</summary>
+                    		<div class="comment">
+			                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+			                        <input class="input2" type="text" name="id" placeholder=" ID">
+			                        <input class="input3" type="text" name="cont" placeholder="답글 추가...">
+			                        <button class="btn1" type="button" onclick="fn_sendComment()"> 답글 </button>
+			                    	<input type ="hidden" name="command" value="addcomment">
+                			</div>
+                			<div class="comment_1">
+			                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+			                        <p class="comment_1_1">아이디</p>
+			                        <p class="comment_1_1" style="color: rgb(113, 113, 113);">등록날짜</p>
+			                        <button class="btn1 comment_1_2" type="button" onclick="fn_sendComment()"> 삭제</button>
+			  
+                			</div>
+                			<div class="comment_1_3">
+                                <span class="comment_1_4" style="margin-right :40px;"></span>
+                                아이유는 대한민국의 가수이자 배우이다. 배우 활동 할 땐 본명을 쓴다.</div>
+                		</details>
+                        </div>
+                        <div class="text2">
+                            <a href="/javafood_team/artist.jsp?command=delcommnet&id=<%= id%>"><button class='btn' type='button'> 삭제 </button></a>
+                        </div>
+                       
+                </div> <% } %>
+                
+                
+            </div>
         </div>
-    </div>
 
 
 </body>
