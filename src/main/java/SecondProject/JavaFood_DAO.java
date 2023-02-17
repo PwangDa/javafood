@@ -198,7 +198,10 @@ public class JavaFood_DAO {
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
+
+			vo.setPn1(rs.getString("pn").split("-")[0]);
 			vo.setPn(rs.getString("pn"));
+			
 			vo.setPhone(rs.getString("phone"));
 			vo.setEmail(rs.getString("email"));
 			vo.setMyimg(rs.getString("img"));
@@ -264,7 +267,7 @@ public class JavaFood_DAO {
 	public void removeId(login_DTO vo) {
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='https://zrr.kr/NuiP' WHERE id = '"+vo.getId()+"'");
+			this.pstmt = this.con.prepareStatement("UPDATE login SET pwd = '"+vo.getPw()+"', nic = '"+vo.getNic()+"', phone='"+vo.getPhone()+"', email='"+vo.getEmail()+"', img='"+vo.getMyimg()+"' WHERE id = '"+vo.getId()+"'");
 			this.pstmt.executeUpdate();
 			this.pstmt.close();
 			this.con.close();

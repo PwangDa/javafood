@@ -659,6 +659,7 @@ public class JavaFood_Controller extends HttpServlet {
 			System.out.println("ID");
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
+			request.getSession().setAttribute("lo", (List<login_DTO>) map.get("login"));
 			request.setAttribute("log", (int) map.get("log"));
 			request.getSession().setAttribute("login", request.getParameter("ID"));
 		}
@@ -678,9 +679,10 @@ public class JavaFood_Controller extends HttpServlet {
 			vo.setPw(request.getParameter("PW1"));
 			vo.setNic(request.getParameter("nic"));
 			vo.setEmail(request.getParameter("mail"));
-			vo.setPn(request.getParameter("pn1")+"-"+request.getParameter("pn2"));
+			vo.setMyimg(request.getParameter("img"));
 			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
-			request.setAttribute("remove", service.javafood4_3(vo));
+			service.javafood4_3(vo);
+			request.setAttribute("re", "re");
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
@@ -694,8 +696,6 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getSession().getAttribute("login")!=null) {
 			System.out.println("login : !=null");
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
-			System.out.println("session 아이디 : "+session_user.get(0).getId());
-			System.out.println("session 닉네임: "+session_user.get(0).getNic());
 			request.setAttribute("session_user", session_user.get(0));
 		}
 		if(request.getParameter("option")!=null) {
@@ -714,6 +714,8 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
+		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
+		
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 		
 	}
