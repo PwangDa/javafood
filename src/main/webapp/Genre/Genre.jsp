@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="javafood_ajax.dbon" import="My_Page.vod"%>
+	pageEncoding="UTF-8" %><%-- import="javafood_ajax.dbon" import="My_Page.vod"%> --%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -9,22 +9,22 @@
 	%>
 	
 	<%
-		dbon db = new dbon();
+// 		dbon db = new dbon();
 	%>
 	<%
 		if(request.getParameter("number")!=null){
-		db.like(request.getParameter("number"));
+// 		db.like(request.getParameter("number"));
 		}
 	%>
 	<%
-	List<login_DTO> vo = null;
+// 	List<login_DTO> vo = null;
 	%>
 	
 	<%
 		if (song == null) {
-			vo = db.list();
+// 			vo = db.list();
 		} else {
-			vo = db.getGenre(song);
+// 			vo = db.getGenre(song);
 		}
 	%>
 <meta charset="UTF-8">
@@ -396,27 +396,27 @@
 
 		
 		<%
-			for (int i = 0; i < vo.size(); i++) {
+// 			for (int i = 0; i < vo.size(); i++) {
 			%>
-        <div class= "musiclist">
-             <div class="cont2">
-             	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
-                <div class="left_item"><%=(i+1) %></div>
-                <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"target='_blank'><%=vo.get(i).getSongname() %></a></div>
-                <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div>
-                <div class="right_item"><%= vo.get(i).getPlayTime() %></div>
-                <form method="post" action="/javafood_team/Genre/NewGenre.jsp">
-                <div class="right_item" id="like"><%= vo.get(i).getLikes() %><input type="submit" value="" class="sub"><input type="hidden" name="good" value="<%= i+1%>">
-                <input type="hidden" name="number" value="<%= vo.get(i).getSongnumber()%>">
-                </div>
-                </form>
-                <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div>
-                <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div>
-             </div>
+<!--         <div class= "musiclist"> -->
+<!--              <div class="cont2"> -->
+<!--              	<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()"> -->
+<%--                 <div class="left_item"><%=(i+1) %></div> --%>
+<%--                 <div class="left_item left_name"><a href="<%= vo.get(i).getLink() %>"target='_blank'><%=vo.get(i).getSongname() %></a></div> --%>
+<%--                 <div class="left_artist" title="<%=vo.get(i).getArtistname()%>"><%= vo.get(i).getArtistname()%></div> --%>
+<%--                 <div class="right_item"><%= vo.get(i).getPlayTime() %></div> --%>
+<!--                 <form method="post" action="/javafood_team/Genre/NewGenre.jsp"> -->
+<%--                 <div class="right_item" id="like"><%= vo.get(i).getLikes() %><input type="submit" value="" class="sub"><input type="hidden" name="good" value="<%= i+1%>"> --%>
+<%--                 <input type="hidden" name="number" value="<%= vo.get(i).getSongnumber()%>"> --%>
+<!--                 </div> -->
+<!--                 </form> -->
+<%--                 <div> <button type="button" class="btn"><a href="<%= vo.get(i).getLink() %>"target='_blank'><img class="img" src="https://url.kr/e4lkai"></a></button></div> --%>
+<!--                 <div> <button type="button" class="btn"><img class="img" src="https://han.gl/vTHCa"></button></div> -->
+<!--              </div> -->
             
-        </div>
+<!--         </div> -->
         <%
-			}
+// 			}
 			%>
     </div>
 </body>
