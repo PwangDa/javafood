@@ -69,7 +69,7 @@
 
            <c:forEach var="album" items="${album_list}" varStatus="loop">
 	            <div id = "cont1">
-	                <div class = "box1">
+	                <div class = "box1_1">
 	                    <img class="img1" src="${album.album_cover }">
 	                </div>
 	                <div class = "box1 text2"><a href="${loop.count}"><strong>${album.music_name}</strong></a></div>
