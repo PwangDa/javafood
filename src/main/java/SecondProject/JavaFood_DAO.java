@@ -146,12 +146,12 @@ public class JavaFood_DAO {
 			this.pstmt = this.con.prepareStatement("SELECT * FROM GENRE WHERE songnumber="+songnumber+"");
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
-			int a = (Integer.parseInt(rs.getString("songnumber"))+1);
+			int a = (Integer.parseInt(rs.getString("HITS"))+1);
 			rs.close();
 			this.pstmt.close();
 			this.con.close();
 			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("UPDATE songhit SET HITS = '"+a+"' WHERE SONGNUMBER = '"+songnumber+"'").executeUpdate();
+			this.con.prepareStatement("UPDATE GENRE SET HITS = '"+a+"' WHERE SONGNUMBER = '"+songnumber+"'").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1031,6 +1031,8 @@ public class JavaFood_DAO {
 				   String likes = rs.getString("likes");
 				   String playtime = rs.getString("playtime");
 				   String songnumber = rs.getString("songnumber");
+				   
+//				   System.out.println("songnumber : "+songnumber);
 				   // 재생 버튼 클릭 시 유튜브 검색
 				   String link = rs.getString("link");
 				   // 담기 변수는 아직 설정 x
@@ -1054,6 +1056,8 @@ public class JavaFood_DAO {
 				   vo.setSongnumber(songnumber);
 				   vo.setAlbum_name(album_name);
 				   list.add(vo);
+				   
+//				   System.out.println("vo songnumber : "+vo.getSongnumber());
 			   }
 			   
 			   rs.close();

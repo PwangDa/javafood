@@ -98,7 +98,7 @@
 					</form>
 					
 					<td>${dao.playtime }</td>
-					<td><a href="${dao.link }"target='_blank'><img class="play" src="https://c11.kr/1asd1"></a></td>
+					<td><a href="#" onclick="addhit('${login}','${dao.songnumber },${dao.link }')"><img class="play" src="https://c11.kr/1asd1"></a></td>
 					<td><img class="save" src="https://c11.kr/1asd6"></td>
 					<td>${dao.country }</td>
 				</tr>

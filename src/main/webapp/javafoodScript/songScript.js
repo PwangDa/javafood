@@ -39,6 +39,13 @@
 				nowtime();
 			}, 1000); //1초 단위
 		}
+		
+		function addhit(id,song) {
+			console.log("id = "+id)
+			console.log("song = "+song)
+			location.href = 'javafood?javafood=2&play='+song+'&id='+id;
+			
+		}
 //////////////////////////////////////////////////////////////////////////////////////////
 			/* refresh(); */
 			
