@@ -48,3 +48,10 @@ input[type="checkbox"]{
 .head1{
 	margin-top: 50px;
 	} 
+.tt{
+	color : white;	    
+   	height: 32px;
+    width:260px;
+    border: 1px solid rgb(98, 98, 98);
+    background-color: transparent;
+}
