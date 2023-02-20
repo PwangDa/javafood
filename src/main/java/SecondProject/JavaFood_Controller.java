@@ -58,6 +58,7 @@ public class JavaFood_Controller extends HttpServlet {
 			doHand(request, response);
 		} catch (Exception e) {
 			System.out.println("주소를 잘못입력하셨습니다.");
+			System.out.println("javafood?javafood=m 을 입력해 주세요");
 		} 
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

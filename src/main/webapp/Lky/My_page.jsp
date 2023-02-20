@@ -33,9 +33,11 @@
                         </strong>
                     </a>
                 </div>
-                <div class="right" style="background-image:url(${session_user.myimg})">
+                <c:if test="${session_user.myimg!=null}"><div class="right" style="background-image:url(${session_user.myimg})"></c:if>
+                <c:if test="${session_user.myimg==null}"><div class="right" style="background-image:url(http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png)"></c:if>
                     <strong>
-                        <c:out value="${session_user.nic }"/>
+                    <c:if test="${session_user.nic!=null }"><c:out value="${session_user.nic }"/></c:if>
+                    <c:if test="${session_user.nic==null }"><c:out value="닉네임을 수정해주세요"/></c:if>
                     </strong>
                 </div>
             </div>
