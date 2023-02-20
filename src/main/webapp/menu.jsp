@@ -140,7 +140,7 @@ header{
 }
 </style>
 </head>
-<body onscroll="headerbarToggle()">
+<body>
     <header id ="menu" >
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
         <a href="javafood?javafood=m" class="a1"><img src="https://c11.kr/1asbb" class="logo-img">Music</a>

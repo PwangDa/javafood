@@ -356,12 +356,14 @@ public class JavaFood_Controller extends HttpServlet {
 		Elements artistALBUM = doc_song.getElementsByAttributeValue("class", "wrap_album04").select("img");
 		Elements artistSONG = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
 		Elements albumTitle = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "songname12");
+		Elements albumURL = doc_song.getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
 		
+		System.out.println("albumURL >>>> \n"+albumURL);
 		
 		//아티스트 이름
 		Elements a = doc_detail.getElementsByClass("title_atist");
 		String b = a.get(0).text();
-		System.out.println(b);
+//		System.out.println(b);
 		//아티스트 정보
 		Elements aristi_info = doc_detail.getElementsByClass("atist_insdc");
 		String artist_i = "";		
@@ -388,7 +390,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		//num으로 db에서 가져온 값이 있어서 다시 새 빈 리스트 선언해서 덮어주기
 		album_list =  new ArrayList();
-		System.out.println("songnumber : "+num);
+//		System.out.println("songnumber : "+num);
 		for(int i=0; i<artistSONG.size(); i++) {
 			AlbumDTO dto = new AlbumDTO();
 			dto.setArtistname(artist_n);
@@ -406,6 +408,12 @@ public class JavaFood_Controller extends HttpServlet {
 //			System.out.println("album_title"+(i)+" : "+artist_song[0]);
 			dto.setAlbum_name(artist_song[0]);
 //			album_song.add(artist_song[0]);
+			
+			
+			String album_url = artistSONG.get(i).toString();
+			String[] aart = album_url.split("'");
+			System.out.println("각 앨범 숫자 : "+aart[1]);
+			dto.setAlbum_add(aart[1]);
 			
 			String adg = artistALBUM.get(i).attr("src");
 //			System.out.println((i+1)+"의앨범 이미지링크 : "+adg); 	
@@ -438,7 +446,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistname(artist.get(0).getArtistname());
 			
 			service.addcomment(dto);
-			commentList = service.listComment(artist.get(0).getArtistname());
+//			commentList = service.listComment(artist.get(0).getArtistname());
 		}else if("addReply.do".equals(command) && command != null) {
 			String id = request.getParameter("id_2");
 			String cont = request.getParameter("cont_2");
@@ -458,8 +466,13 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistname(artist.get(0).getArtistname());
 			
 			service.addcomment(dto);
-			commentList = service.listComment(artist.get(0).getArtistname());
+//			commentList = service.listComment(artist.get(0).getArtistname());
+		}else if("delcommnet.do".equals(command) && command != null) {
+			int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+			System.out.println("articleNO : "+articleNO);
+			List<Integer> articleNOList = service.removeComment(articleNO);
 		}
+		commentList = service.listComment(artist.get(0).getArtistname());
 		System.out.println("무한반복 살려줘");
 		request.setAttribute("album_list", album_list); //아티스트 정보
 		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
@@ -471,6 +484,16 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		
 	}//if ("ArtistList") 종료
+	if(request.getParameter("javafood").equals("AlbumInfo")) {
+		//localhost:8080/javafood_team/javafood?javafood=AlbumInfo&albumId=10346650
+		String albumID = request.getParameter("albumId");
+		System.out.println("albumID : "+albumID);
+		List<AlbumDTO> list = service.Albuminfo(albumID);
+		
+		request.setAttribute("album_info", list);
+		RequestDispatcher dispatch = request.getRequestDispatcher("albumTest.jsp");
+		dispatch.forward(request, response);
+	}
 	if(request.getParameter("javafood").equals("AlbumList")) {		
 		//이제 for문돌면서 그 주소의 해당하는 값을 가져와서 dto에 저장해서 리스트로 가져옴
 		//앨범 수록록 나오게 전달인자 값 받아서 forward
