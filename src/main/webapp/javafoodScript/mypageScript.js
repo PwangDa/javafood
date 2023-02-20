@@ -145,3 +145,6 @@ function outt(id){
                 location.href = 'javafood?javafood=5&idd='+id;
             }
         }
+function replay(id){
+	location.href = 'javafood?javafood=5&usre='+id
+}

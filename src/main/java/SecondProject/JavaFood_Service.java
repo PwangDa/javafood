@@ -273,6 +273,17 @@ public class JavaFood_Service {
 	 * my_page 이동값 전달
 	 * @param String : 마이페이지 이동값을 넣어주세요
 	 */
+	public String javafood5_5(String remove) {
+		String a = "0";
+		if(remove!=null) {
+			if("1".equals(remove)) a="1";
+		}
+		return a;
+	}
+	/**
+	 * my_page 이동값 전달
+	 * @param String : 마이페이지 이동값을 넣어주세요
+	 */
 	public String javafood5_6(String id) {
 		return dao.outId(id);
 	}

@@ -59,11 +59,6 @@
                         <input type="submit" class="butt">
                     </td>
                 </form>
-                <div style="color: white;">
-                    <a href="javafood?javafood=5&usre=${session_user.id }" class="at">
-                        <c:out value="${session_user.id } 의 재생기록 확인"/>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -71,11 +66,15 @@
     
     
     
-    
+    <div>
+	    <div class="mume"><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></div>
+	    <div class="mume"><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></div>
+	    <div class="mume"><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></div>
+	    <div class="mume"><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></div>
+    </div>
     
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
     
-    <div class="mume"><p><a href="javafood?javafood=5&remove=1">회원정보 수정</a></p></div>
     
     <c:if test="${remove==1}">
         <h1><c:out value="회원정보 수정"/></h1>
@@ -167,8 +166,6 @@
             </div>
         </form>
     </c:if>
-    <div class="mume"><a href="#" onclick="outt('${session_user.id}')">로그아웃</a></div>
-    <div class="mume"><a href="#" onclick="out('${session_user.id}')">회원 탈퇴</a></div>
 </body>
 </html>
 
