@@ -1,9 +1,14 @@
 package SecondProject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
@@ -40,6 +45,80 @@ public class JavaFood_Service {
     public List<AlbumDTO > Albumlist(){
     	List<AlbumDTO> Albumlist = dao.listAlbum(); 
     	return Albumlist; 
+    }
+    
+    public List<AlbumDTO > Albuminfo(String ID){
+    	System.out.println("Albuminfo 접속");
+    	List<AlbumDTO> albumID = new ArrayList<AlbumDTO>();
+    	
+    	try {
+    		String song= "https://www.melon.com/album/detail.htm?albumId="+ID;
+    		System.out.println("커넥트 될 주소는 : "+song);
+			org.jsoup.nodes.Document doc_song = Jsoup.connect(song).get();
+			String albumURL = doc_song.getElementsByAttributeValue("id", "d_album_org").select("img").attr("src");			
+			Elements album_name = doc_song.getElementsByClass("song_name");
+			Elements artist = doc_song.getElementsByClass("artist").select("a");
+			Elements music_name = doc_song.getElementsByAttributeValue("class", "ellipsis").select("span").select("a");
+			Elements album_info = doc_song.getElementsByClass("dtl_albuminfo").select("strong");
+			
+			String aann = "";
+			if(doc_song.getElementsByClass("artist_name").select("span").first() == null) {
+				System.out.println("널입니다");
+				aann = "Various Artists";
+			}else {
+				Element artist_name = doc_song.getElementsByClass("artist_name").select("span").first();
+				aann = artist_name.toString();
+				int temp = aann.indexOf(">");
+				aann = aann.substring(temp+1);
+				int temp1 = aann.indexOf("<");
+				aann = aann.substring(0, temp1);
+				System.out.println("아티스트 이름은 : "+aann);//아티스트 이름 출력
+			
+			}
+			
+			System.out.println("아티스트 사이트넘버는 : "+artist);
+			String[] artti = null;
+			String arti = artist.toString();
+			artti = arti.split("'");
+			System.out.println(artti[1]);
+//			System.out.println("앨범 이름은 :"+album_name);
+//			System.out.println("아티스트 이름은 :"+artist_name);
+//			System.out.println("앨범 수록곡은 :"+music_name);
+//			System.out.println("앨범 소개글은 : "+album_info.get(1));
+			
+			//앨범 이름 자르기
+			String alname = album_name.toString();
+			int temp2 = alname.indexOf("g> ");
+			alname = alname.substring(temp2+2);
+			int temp3 = alname.indexOf("<");
+			alname = alname.substring(0, temp3);
+//			System.out.println("앨범 이름은 : "+alname);
+			//아티스트 이름 자르기
+				
+			//앨범에 담겨있는 수록곡 + 추출한것들 dto에 set 해줌
+			String[] music_song = null;
+			for(int i=0; i<music_name.size(); i++) {
+				AlbumDTO dto = new AlbumDTO();
+				dto.setAlbum_cover(albumURL); //앨범 img src링크
+				dto.setAlbum_name(alname); //앨범명
+				dto.setArtistname(aann); //아티스트 이름
+				dto.setAlbum_add(artti[1]);
+				
+				String musicSong = music_name.get(i).toString();
+				int tempNum = musicSong.indexOf(">");
+				musicSong = musicSong.substring(tempNum+1);
+				music_song= musicSong.split("<");
+//				System.out.println("앨범 수록곡은 :"+music_song[0]);
+				dto.setMusic_name(music_song[0]); //앨범수록곡 1번부터 ~ 
+				
+				albumID.add(dto);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return albumID;
     }
 
     //댓글 삭제 메소드
