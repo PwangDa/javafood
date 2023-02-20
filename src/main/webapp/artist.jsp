@@ -17,7 +17,7 @@
 <meta charset="UTF-8">
 <title>Artist.jsp TTTTest전용</title>
  <script>
-<%-- function fn_sendComment(){
+ function fn_sendComment(){
  	
  	var frmCommand = document.frmComment;
  	var id = frmCommand.id.value;
@@ -26,12 +26,8 @@
  		alert("아이디를 입력해주세요")
  	}else if(cont.length == 0 || cont == ""){
  		alert("내용을 입력해주세요")
- 	}else{
-     frmComment.method = "post";
-     frmComment.action = "/javafood?javafood=ArtistList&num="${album_list[0].songnumber}"&command=addcommnet.do";
-     frmComment.submit();
  	}
- } --%>
+ } 
  
  </script>
  <script link src ="javafoodScript/artistScript.js"></script>
@@ -49,7 +45,7 @@
             url("${album_list[1].artist_img}") ; 
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
             height: 550px;     
             position: relative;
         }
@@ -78,7 +74,7 @@
 	                </div>
 	                <div class = "box1 text2"><a href="${loop.count}"><strong>${album.music_name}</strong></a></div>
 	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album_list[0].artistname }</div>
-	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}">${album.album_name }</a></div>
+	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
             </c:forEach>
@@ -93,9 +89,9 @@
 
                 <c:forEach var ="album" items="${album_list}" varStatus="loop">
                     <li>
-                        <a href="/javafood_team/Album.jsp?a.ALBUM_NUM=${loop.count}"><img  class="image" src="${album.album_cover }"></a>
+                        <a href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}"><img  class="image" src="${album.album_cover }"></a>
                         <br>
-                        <a style = "font-size:14px;" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_name}"><span class="al_name"><strong>${album.album_name }</strong></span></a>
+                        <a style = "font-size:14px;" href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}"><span class="al_name"><strong>${album.album_name }</strong></span></a>
                     </li>
                 </c:forEach>
                 </ul>
@@ -147,7 +143,7 @@
                 				</details>
 	                        </div>
 	                        <div class="text2">
-	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
+	                            <a href="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
 	                        </div>
 	                	</div>
                         
@@ -161,7 +157,7 @@
 						                    <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
 						                    <p class="comment_1_1">${comment.comment_id }</p>
 						                    <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
-						                    <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2" type="button"> 삭제</button></a>
+						                    <a href="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2" type="button"> 삭제</button></a>
 				        			</div>
 				        			<div class="comment_1_3">
 				                        <span class="comment_1_4" style="margin-right :70px;"></span>

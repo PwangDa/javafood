@@ -85,28 +85,6 @@ window.onload = function(){
             })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $('#outt').on('click', function () {
-            var li1 = confirm('정말로 회원탈퇴를 하실건가요?');
-            var li2 = false;
-            var li3 = false;
-            var li4 = false;
-            var li5 = false;
-            var li6 = false;
-            if (li1 === true) 
-                li2 = confirm('한번 탈퇴하면 되돌릴수가 업습니다!')
-            if (li2 === true) 
-                li3 = confirm('그래도 하시겠습니까?')
-            if (li3 === true) 
-                li4 = confirm('다시한번 생각해 주세요.')
-            if (li4 === true) 
-                li5 = confirm('마지막 기회 입니다.')
-            if (li5 === true) 
-                li6 = confirm('진짜?')
-            if (li6 === true) {
-                alert('회원탈퇴를 합니다.ㅜㅜ')
-                location.href = 'javafood?javafood=5&remove=3&idd=${session_user.id}'
-            }
-        })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -114,14 +92,10 @@ function notlogin(){
 	alert('로그인을 하셔야합니다.')
     location.href = 'javafood?javafood=4';
 }
-/*
-function urseout(){
-	if ($ {out == 1}) {
-		 alert('회원이 정상적으로 탈퇴되었습니다.')
-         location.href = 'javafood?javafood=m';
-	     } 
+function urseout(out){
+	if (out == 1)  alert('회원이 정상적으로 탈퇴되었습니다.')
 	else alert('회원탈퇴가 실패하였습니다.')
-}*/
+	}
 function but() {
     var url = $("#form").attr("action");
     var form = $('#form')[0];
@@ -148,3 +122,29 @@ function outt(id){
     else 
     	alert('취소하였습니다.');
     }
+
+        function out (id) {
+            var li1 = confirm('정말로 회원탈퇴를 하실건가요?');
+            var li2 = false;
+            var li3 = false;
+            var li4 = false;
+            var li5 = false;
+            var li6 = false;
+            if (li1 === true) 
+                li2 = confirm('한번 탈퇴하면 되돌릴수가 업습니다!')
+            if (li2 === true) 
+                li3 = confirm('그래도 하시겠습니까?')
+            if (li3 === true) 
+                li4 = confirm('다시한번 생각해 주세요.')
+            if (li4 === true) 
+                li5 = confirm('마지막 기회 입니다.')
+            if (li5 === true) 
+                li6 = confirm('진짜?')
+            if (li6 === true) {
+                alert('회원탈퇴를 합니다.ㅜㅜ')
+                location.href = 'javafood?javafood=5&idd='+id;
+            }
+        }
+function replay(id){
+	location.href = 'javafood?javafood=5&usre='+id
+}

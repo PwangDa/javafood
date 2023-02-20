@@ -16,7 +16,7 @@ div{
 	height: 30px;
 	}
 .at{
-	color: white; 
+	color: rgb(159, 159, 159); 
 	text-decoration: none;
 	}
 .head{
@@ -45,3 +45,16 @@ table{
 input[type="checkbox"]{
 	display: none;
 	}
+.a{
+	display: inline-block;
+    position:absolute;
+    left: 50%;
+    top: 10px;
+}
+.at:hover{
+    color: white;
+    cursor: pointer;
+}
+.mume{
+	width: 20%
+}
