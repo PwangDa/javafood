@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@charset "UTF-8";
 body{
 	background-size: contain; 
 	color: white; 
@@ -29,7 +30,7 @@ div{
 	width: 26%;
 	}
 td{
-	width: 100px;
+	width: auto;
 	}
 table{
 	background-size: contain; 
@@ -38,6 +39,7 @@ table{
 	margin: auto; 
 	border: 1px solid black; 
 	border-collapse: collapse;
+     width: 100%;
 	}
 .tr{
 	height: 80px; 
@@ -58,4 +60,11 @@ input[type="checkbox"]{
 .mume{
 	width: 20%
 }
-
+ th, td {
+ 	text-align:center;
+	 border: 0px;
+     border-bottom: 1px solid white;
+}
+tr:hover { 
+	background-color: rgb(26, 26, 26); 
+}

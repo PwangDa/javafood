@@ -78,13 +78,14 @@
     
     
 	<c:if test="${usre!=null }">
+    <link rel="stylesheet" href="javafoodCSS/mypageCSS3.css?css=css">
 		<table border="1">
 		<tr>
 			<th>이미지</th>
 			<th>노래</th>
 			<th>가수</th>
 			<th>앨범</th>
-			<th>재생시간</th>
+			<th>시간</th>
 			<th>하트</th>
 			<th>보관</th>
 		</tr>
@@ -95,6 +96,7 @@
 				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
 				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
 				<td><c:out value="${i.playtime }"/></td>
+				<td><c:out value="${i.likes }"/></td>
 				<td><c:out value="${i.likes }"/></td>
 			</tr>
 		</c:forEach>
