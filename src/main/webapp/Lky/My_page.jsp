@@ -38,7 +38,7 @@
                         </strong>
                     </a>
                 </div>
-                <div class="right">
+                <div class="right" style="background-image:url(${session_user.myimg})">
                     <strong>
                         <c:out value="${session_user.nic }"/>
                     </strong>
@@ -79,7 +79,9 @@
     
     
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
-    <p><a href="javafood?javafood=5&remove=1">회원정보 수정</a></p>
+    
+    <div class="mume"><p><a href="javafood?javafood=5&remove=1">회원정보 수정</a></p></div>
+    
     <c:if test="${remove==1}">
         <h1><c:out value="회원정보 수정"/></h1>
         <form
@@ -170,8 +172,8 @@
             </div>
         </form>
     </c:if>
-    <input type="button" id="out" onclick="outt('${session_user.id}')" value="로그아웃">
-    <input type="button" id="outt" value="회원 탈퇴">
+    <div class="mume"><input type="button" id="out" onclick="outt('${session_user.id}')" value="로그아웃"></div>
+    <div class="mume"><input type="button" id="outt" value="회원 탈퇴"></div>
 </body>
 </html>
 
