@@ -68,14 +68,38 @@
     
     
     
+    <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
     <div>
-	    <div class="mume"><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></div>
-	    <div class="mume"><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></div>
-	    <div class="mume"><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></div>
-	    <div class="mume"><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></div>
+	    <div class="mume"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>
+	    <div class="mume"><h3><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></h3></div>
+	    <div class="mume"><h3><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></h3></div>
+	    <div class="mume"><h3><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></h3></div>
     </div>
     
-    <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
+    
+	<c:if test="${usre!=null }">
+		<table border="1">
+		<tr>
+			<th>이미지</th>
+			<th>노래</th>
+			<th>가수</th>
+			<th>앨범</th>
+			<th>재생시간</th>
+			<th>하트</th>
+			<th>보관</th>
+		</tr>
+		<c:forEach items="${usre }" var="i">
+			<tr>
+				<td><a class="at" href="${i.link }"><img src="${i.imglink }"></a></td>
+				<td><a class="at" href="${i.link }"><c:out value="${i.songname }"/></a></td>
+				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
+				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
+				<td><c:out value="${i.playtime }"/></td>
+				<td><c:out value="${i.likes }"/></td>
+			</tr>
+		</c:forEach>
+		</table>
+	</c:if>    
     
     
     <c:if test="${remove==1}">

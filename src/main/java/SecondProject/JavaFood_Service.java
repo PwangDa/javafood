@@ -76,11 +76,11 @@ public class JavaFood_Service {
 			
 			}
 			
-			System.out.println("아티스트 사이트넘버는 : "+artist);
+/*			System.out.println("아티스트 사이트넘버는 : "+artist);
 			String[] artti = null;
 			String arti = artist.toString();
 			artti = arti.split("'");
-			System.out.println(artti[1]);
+			System.out.println(artti[1]);*/
 //			System.out.println("앨범 이름은 :"+album_name);
 //			System.out.println("아티스트 이름은 :"+artist_name);
 //			System.out.println("앨범 수록곡은 :"+music_name);
@@ -102,7 +102,7 @@ public class JavaFood_Service {
 				dto.setAlbum_cover(albumURL); //앨범 img src링크
 				dto.setAlbum_name(alname); //앨범명
 				dto.setArtistname(aann); //아티스트 이름
-				dto.setAlbum_add(artti[1]);
+//				dto.setAlbum_add(artti[1]);
 				
 				String musicSong = music_name.get(i).toString();
 				int tempNum = musicSong.indexOf(">");
