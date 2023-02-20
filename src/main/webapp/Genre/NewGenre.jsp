@@ -25,11 +25,12 @@
 <body>
 
 <jsp:include page="/menu.jsp"></jsp:include>
+<%-- <h1>${login }</h1> --%>
     <!-- <header id ="menu">
         <span style="font-size: 34px; font-weight: 600;">Music</span>
     </header> -->
     <div id="home">
-        <h1><a href='http://localhost:8080/javafood_team/javafood?javafood=6'>장르${login }</a></h1>
+        <h1><a href='http://localhost:8080/javafood_team/javafood?javafood=6'>장르</a></h1>
         
        <c:choose>
 		<c:when test="${song eq '발라드'}"> 
@@ -173,16 +174,16 @@
                 <div class="left_album_bot" title="${ genre_list.album}"><a href = "/javafood_team/javafood?javafood=AlbumList&num=${genre_list.songnumber}">${ genre_list.album}</a></div> <!-- 앨범 --> 
                 <div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 <form method="post" action="/javafood_team/javafood?javafood=6">
-                <div class="right_item_bot" id="like">${ genre_list.likes}<input type="image"  src="https://c11.kr/1asbx"  onmouseover="this.src='https://c11.kr/1asby'" onmouseout="this.src='https://c11.kr/1asbx'"value="" class="sub"><input type="hidden" name="good" value="${genre_list.songnumber}"><!-- 좋아요 --> 
+                <div class="right_item_bot" id="like">${ genre_list.likes}<input type="image"  src="https://c11.kr/1asbx" onmouseover="this.src='https://c11.kr/1asby'" onmouseout="this.src='https://c11.kr/1asbx'" value="" class="sub"><input type="hidden" name="good" value="${genre_list.songnumber}"><!-- 좋아요 --> 
 <%--                 <div class="right_item_bot" id="like">${ genre_list.likes}<input type="image"  src="https://c11.kr/1asbx"  value="" class="sub"><input type="hidden" name="good" value="${genre_list.songnumber}"><!-- 좋아요 -->  --%>
                 <input type="hidden" name="number" value="${ genre_list.songnumber}"> <!-- 곡 번호 -->
                 </div>
                 </form>
                 <form method="post" action="/javafood_team/javafood?javafood=3">
-                <div> <input type="hidden" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1"></a></div><!-- 노래재생 유튜브 -->
+                <div> <input type="hidden" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1" onmouseover="this.src='https://c11.kr/1asd5'" onmouseout="this.src='https://c11.kr/1asd1'"></a></div><!-- 노래재생 유튜브 -->
                 </form>
                 <form method="post" action="/javafood_team/javafood?javafood=3">
-                <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
+                <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'"></div><!-- 담기 버튼 -->
              	</form>
              </div>
 		</c:forEach>
@@ -210,7 +211,7 @@
 	<div class="page">
 
 	<c:if test="<%= firstSec != 1 %>"> 
-		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= firstSec-1 %>"><img class="img" src="https://c11.kr/1ascb"></a> 
+		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= firstSec-1 %>"><img class="img" src="https://c11.kr/1ascb" onmouseover="this.src='https://c11.kr/1ascc'" onmouseout="this.src='https://c11.kr/1ascb'"></a> 
 	</c:if>
 
 	<c:forEach var="i" begin="<%= firstSec %>" end="<%= lastSec %>" >
@@ -223,7 +224,7 @@
 	</c:forEach>
 
 	<c:if test="<%= lastSec != lastPage %>">
-		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= lastSec+1 %>"><img class="img" src="https://c11.kr/1ascx"></a>
+		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= lastSec+1 %>"><img class="img" src="https://c11.kr/1ascx" onmouseover="this.src='https://c11.kr/1ascy'" onmouseout="this.src='https://c11.kr/1ascx'"></a>
 	</c:if>
 
 	</div>
