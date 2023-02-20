@@ -609,7 +609,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//태연
+	//매뉴
 	private void javam(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		List hitList = service.javafoodm();

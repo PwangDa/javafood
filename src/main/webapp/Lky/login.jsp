@@ -135,8 +135,8 @@
 			<h1><c:out value="javafood 로그인"/></h1>
 		    <form method="post" action="javafood?javafood=4">
 		        <div class="head1">
-		            <c:out value="아 이 디 : "/>&nbsp;<input type="text" name="ID"><br><br>
-		            <c:out value=" 비밀번호 : "/><input type="text" name="PW"><br><br>
+		            <c:out value="아 이 디 : "/>&nbsp;<input class = "tt" type="text" name="ID" placeholder="USER NAME"><br><br>
+		            <c:out value=" 비밀번호 : "/><input class = "tt" type="password" name="PW" placeholder="PASSWORD"><br><br>
 		            <a href="javafood?javafood=4&membership=O" class="at"><c:out value="회원가입"/></a>
 		            <input class="sub" type="submit" value="로그인">
 		            <input class="sub" type="reset" value="다시작성">
