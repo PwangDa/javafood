@@ -58,6 +58,7 @@ public class JavaFood_Controller extends HttpServlet {
 			doHand(request, response);
 		} catch (Exception e) {
 			System.out.println("주소를 잘못입력하셨습니다.");
+			System.out.println("javafood?javafood=m 을 입력해 주세요");
 		} 
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -594,8 +595,13 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		String nextPage = "";
 		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		System.out.println("play : " + request.getParameter("play"));
+		System.out.println("id : " + request.getParameter("id"));
+		if(request.getParameter("play") != null) {
+			System.out.println("전달인자 실행 test");
+			service.addhit(request.getParameter("play"), request.getParameter("id"));
+		}
+		
 		
 		nextPage = "/javafood/listsong.do";
 		String action = request.getPathInfo();

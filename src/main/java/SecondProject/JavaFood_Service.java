@@ -169,6 +169,12 @@ public class JavaFood_Service {
 		return list;
 		
 	}
+	
+	public void addhit(String songnumber, String id) {
+		dao.addhit(id, songnumber);
+		dao.song1addhit(songnumber);
+		
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 플레이 리스트 불러오기
 	public List s_loadPL(String id)

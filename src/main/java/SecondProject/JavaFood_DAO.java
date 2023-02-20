@@ -88,29 +88,37 @@ public class JavaFood_DAO {
 		int s = (Integer.parseInt(songnumber));
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
-			ResultSet rs = this.pstmt.executeQuery();
-			List list = new ArrayList();
-			while(rs.next()) {
-				list.add(rs.getString("songnumber"));
-			}
-			rs.close();
-			int q =0;
-			for(int i=0; i<list.size(); i++) {
-				int a = Integer.parseInt((String) list.get(i));
-				if(a==s) {
-					q++;
-					break;
+			try {
+				this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
+
+				ResultSet rs = this.pstmt.executeQuery();
+				List list = new ArrayList();
+				while(rs.next()) {
+					list.add(rs.getString("songnumber"));
 				}
-			}
-			if(q==0) {
-				try {
-					this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+s+"')");
-					this.pstmt.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				rs.close();
+				int q =0;
+				for(int i=0; i<list.size(); i++) {
+					int a = Integer.parseInt((String) list.get(i));
+					if(a==s) {
+						q++;
+						break;
+					}
 				}
+				if(q==0) {
+					try {
+						this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+s+"')");
+						this.pstmt.executeUpdate();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (Exception e) {
+				System.out.println("빈아이디");
+				this.con.prepareStatement("insert into songhit values('"+id+"','0','"+songnumber+"');").executeUpdate();
+				System.out.println("아이디값 생성");
 			}
+			
 			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"' AND SONGNUMBER  = '"+s+"'");
 			ResultSet rs1 = this.pstmt.executeQuery();
 			rs1.next();
@@ -128,22 +136,22 @@ public class JavaFood_DAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * song1목록에 조회수 증가
-	 * @param songnumber : song1 목록의 조회수를 증가시킬 노래의 번호를 입력해주세요.
+	 * genre목록에 조회수 증가
+	 * @param songnumber : GENRE 목록의 조회수를 증가시킬 노래의 번호를 입력해주세요.
 	 */
 	public void song1addhit(String songnumber) {
 		int s = (Integer.parseInt(songnumber));
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM SONG1 WHERE songnumber="+songnumber+"");
+			this.pstmt = this.con.prepareStatement("SELECT * FROM GENRE WHERE songnumber="+songnumber+"");
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
-			int a = (Integer.parseInt(rs.getString("songnumber"))+1);
+			int a = (Integer.parseInt(rs.getString("HITS"))+1);
 			rs.close();
 			this.pstmt.close();
 			this.con.close();
 			this.con = this.dataFactory.getConnection();
-			this.con.prepareStatement("UPDATE songhit SET HITS = '"+a+"' WHERE SONGNUMBER = '"+songnumber+"'").executeUpdate();
+			this.con.prepareStatement("UPDATE GENRE SET HITS = '"+a+"' WHERE SONGNUMBER = '"+songnumber+"'").executeUpdate();
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -159,19 +167,22 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<song_DTO>();
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s JOIN song1 s2 \n"
-					+ "ON s.SONGNUMBER =s2.SONGNUMBER \n"
+			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit s \r\n"
+					+ "JOIN GENRE g ON s.SONGNUMBER =g.SONGNUMBER \r\n"
 					+ "WHERE s.ID = '"+id+"' ORDER BY s.HIT DESC");
 			ResultSet rs = this.pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
-				vo.setHits(rs.getString("hit"));
-				vo.setImglink(rs.getString("imglink"));
 				vo.setSongnumber(rs.getString("songnumber"));
-				vo.setArtistname(rs.getString("artistname"));
-				vo.setLikes(rs.getString("likes"));
-				vo.setSongname(rs.getString("songname"));
 				vo.setLink(rs.getString("link"));
+				vo.setImglink(rs.getString("imagelink"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setBygenre(rs.getString("bygenre"));
+				vo.setHits(rs.getString("hits"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setPlaytime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album_add"));
 				list.add(vo);
 			}
 			rs.close();
@@ -308,15 +319,14 @@ public class JavaFood_DAO {
 				song_DTO vo = new song_DTO();
 				vo.setSongnumber(rs.getString("songnumber"));
 				vo.setLink(rs.getString("link"));
-//				vo.setImglink(rs.getString("imglink"));
+				vo.setImglink(rs.getString("imagelink"));
 				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
-//				vo.setAlbum(rs.getString("album"));
-//				vo.setImglink(rs.getString("Imglink"));
+				vo.setAlbum(rs.getString("album_add"));
 				list.add(vo);
 			}
 			rs.close();
@@ -1021,6 +1031,8 @@ public class JavaFood_DAO {
 				   String likes = rs.getString("likes");
 				   String playtime = rs.getString("playtime");
 				   String songnumber = rs.getString("songnumber");
+				   
+//				   System.out.println("songnumber : "+songnumber);
 				   // 재생 버튼 클릭 시 유튜브 검색
 				   String link = rs.getString("link");
 				   // 담기 변수는 아직 설정 x
@@ -1044,6 +1056,8 @@ public class JavaFood_DAO {
 				   vo.setSongnumber(songnumber);
 				   vo.setAlbum_name(album_name);
 				   list.add(vo);
+				   
+//				   System.out.println("vo songnumber : "+vo.getSongnumber());
 			   }
 			   
 			   rs.close();

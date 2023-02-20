@@ -11,15 +11,10 @@
     <head>
     	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
    		<script link src ="javafoodScript/mypageScript.js"></script>
-        <c:if test="${login==null }">
-          <script>notlogin();</script>
-        </c:if>
-        <c:if test="${out!=null }">
-            <script>urseout();</script>
-        </c:if>
-        <c:if test="${link!=null }">
-            <script> location.href = '${link }' </script>
-        </c:if>
+   		<c:if test="${out!=null }"><script>urseout('${out}');</script></c:if>
+        <c:if test="${login==null }"><script>notlogin();</script></c:if>
+        <c:if test="${out!=null }"><script>urseout();</script></c:if>
+        <c:if test="${link!=null }"><script> location.href ='${link }'</script></c:if>
         <meta charset="UTF-8">
         <title>My Page</title>
     </head>
@@ -38,9 +33,11 @@
                         </strong>
                     </a>
                 </div>
-                <div class="right">
+                <c:if test="${session_user.myimg!=null}"><div class="right" style="background-image:url(${session_user.myimg})"></c:if>
+                <c:if test="${session_user.myimg==null}"><div class="right" style="background-image:url(http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png)"></c:if>
                     <strong>
-                        <c:out value="${session_user.nic }"/>
+                    <c:if test="${session_user.nic!=null }"><c:out value="${session_user.nic }"/></c:if>
+                    <c:if test="${session_user.nic==null }"><c:out value="닉네임을 수정해주세요"/></c:if>
                     </strong>
                 </div>
             </div>
@@ -64,11 +61,6 @@
                         <input type="submit" class="butt">
                     </td>
                 </form>
-                <div style="color: white;">
-                    <a href="javafood?javafood=5&usre=${session_user.id }" class="at">
-                        <c:out value="${session_user.id } 의 재생기록 확인"/>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -76,10 +68,16 @@
     
     
     
-    
+    <div>
+	    <div class="mume"><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></div>
+	    <div class="mume"><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></div>
+	    <div class="mume"><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></div>
+	    <div class="mume"><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></div>
+    </div>
     
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
-    <p><a href="javafood?javafood=5&remove=1">회원정보 수정</a></p>
+    
+    
     <c:if test="${remove==1}">
         <h1><c:out value="회원정보 수정"/></h1>
         <form
@@ -170,8 +168,6 @@
             </div>
         </form>
     </c:if>
-    <input type="button" id="out" onclick="outt('${session_user.id}')" value="로그아웃">
-    <input type="button" id="outt" value="회원 탈퇴">
 </body>
 </html>
 

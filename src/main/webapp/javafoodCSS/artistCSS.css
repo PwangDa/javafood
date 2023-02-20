@@ -256,7 +256,7 @@
             text-align: center;
         }
         #cont3_1{
-            /* border: 1px solid blue; */
+            border: 1px solid blue;
             width: 900px;
             height: 250px;
             position: relative;
@@ -276,7 +276,7 @@
         }
 
         .clides{
-            /* border: 1px solid white; */
+            border: 1px solid white;
             position: absolute;
             left: 0;
             top: 0;
