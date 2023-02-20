@@ -11,6 +11,11 @@
             color : white;
             /* vertical-align: middle; */
         }
+        .div_size {
+        color : white;
+        width: 60px;
+        height: 60px;
+        }
         header{
             background-color: black;
             color: white;
@@ -284,6 +289,19 @@
             text-align: center;
             line-height: 40px;
         }
+      /*  .right_item_bot_good{
+       		position:relative;
+            width: 20px;
+ 			height: 20px;
+            background-image: url('https://c11.kr/1asbx');
+            background-size: 100% 100%;
+  			background-position:center;
+            
+        }  
+       .right_item_bot_good:hover{
+        	background-image: url('https://c11.kr/1asby');
+        }  */
+
         .left_item_bot{
             width: 100px;
             height: 40px;

@@ -77,56 +77,6 @@
             text-decoration: none;
             color: white;
         }
-      /*   .tab{
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
-            height: 50px;
-        }
-        .tab1{
-            background-color: rgb(42, 42, 42);
-            
-            border-radius: 15px;
-            width: 174px;
-        }
-        .tab1:hover{
-            cursor: pointer;
-            background-color:rgba(173, 173, 173, 0.545);
-        }
-        .tab1:active{
-            transform: scale(1.1);
-        }
-        .tab1_1{
-            border-left: 6px solid rgb(194, 233, 255);
-        }
-        .tab1_2{
-            border-left: 6px solid rgb(79, 82, 255);
-        }
-        .tab1_3{
-            border-left: 6px solid rgb(235, 81, 255);
-        }
-        .tab1_4{
-            border-left: 6px solid rgb(89, 224, 81);
-        }
-        .tab1_5{
-            border-left: 6px solid rgb(255, 122, 60);
-        }
-        .tab1_6{
-            border-left: 6px solid rgb(239, 255, 62);
-        }
-        .tab1_7{
-            border-left: 6px solid rgb(255, 179, 179);
-        }
-        .tab1_8{
-            border-left: 6px solid rgb(179, 255, 217);
-        }
- */
-        /*담기*/
-
-        <%--.push{
-            margin-top: 40px;
-            height: 60px;
-        }--%>
 
         input[type="checkbox"]{
             -webkit-appearance: none;
