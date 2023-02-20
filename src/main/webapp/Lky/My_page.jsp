@@ -11,15 +11,10 @@
     <head>
     	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
    		<script link src ="javafoodScript/mypageScript.js"></script>
-        <c:if test="${login==null }">
-          <script>notlogin();</script>
-        </c:if>
-        <c:if test="${out!=null }">
-            <script>urseout();</script>
-        </c:if>
-        <c:if test="${link!=null }">
-            <script> location.href = '${link }' </script>
-        </c:if>
+   		<c:if test="${out!=null }"><script>urseout('${out}');</script></c:if>
+        <c:if test="${login==null }"><script>notlogin();</script></c:if>
+        <c:if test="${out!=null }"><script>urseout();</script></c:if>
+        <c:if test="${link!=null }"><script> location.href ='${link }'</script></c:if>
         <meta charset="UTF-8">
         <title>My Page</title>
     </head>
@@ -172,8 +167,8 @@
             </div>
         </form>
     </c:if>
-    <div class="mume"><input type="button" id="out" onclick="outt('${session_user.id}')" value="로그아웃"></div>
-    <div class="mume"><input type="button" id="outt" value="회원 탈퇴"></div>
+    <div class="mume"><a href="#" onclick="outt('${session_user.id}')">로그아웃</a></div>
+    <div class="mume"><a href="#" onclick="out('${session_user.id}')">회원 탈퇴</a></div>
 </body>
 </html>
 

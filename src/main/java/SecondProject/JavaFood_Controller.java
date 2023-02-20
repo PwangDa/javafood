@@ -775,7 +775,6 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
-		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
 		if(request.getParameter("iid")!=null) request.getSession().invalidate();
 		if(request.getParameter("idd")!=null) {
 			request.setAttribute("out", service.javafood5_6(request.getParameter("idd")));
