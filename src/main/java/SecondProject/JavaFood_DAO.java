@@ -88,29 +88,37 @@ public class JavaFood_DAO {
 		int s = (Integer.parseInt(songnumber));
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
-			ResultSet rs = this.pstmt.executeQuery();
-			List list = new ArrayList();
-			while(rs.next()) {
-				list.add(rs.getString("songnumber"));
-			}
-			rs.close();
-			int q =0;
-			for(int i=0; i<list.size(); i++) {
-				int a = Integer.parseInt((String) list.get(i));
-				if(a==s) {
-					q++;
-					break;
+			try {
+				this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"'");
+
+				ResultSet rs = this.pstmt.executeQuery();
+				List list = new ArrayList();
+				while(rs.next()) {
+					list.add(rs.getString("songnumber"));
 				}
-			}
-			if(q==0) {
-				try {
-					this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+s+"')");
-					this.pstmt.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				rs.close();
+				int q =0;
+				for(int i=0; i<list.size(); i++) {
+					int a = Integer.parseInt((String) list.get(i));
+					if(a==s) {
+						q++;
+						break;
+					}
 				}
+				if(q==0) {
+					try {
+						this.pstmt = this.con.prepareStatement("insert into songhit values('"+id+"', 0,'"+s+"')");
+						this.pstmt.executeUpdate();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (Exception e) {
+				System.out.println("빈아이디");
+				this.con.prepareStatement("insert into songhit values('"+id+"','0','"+songnumber+"');").executeUpdate();
+				System.out.println("아이디값 생성");
 			}
+			
 			this.pstmt = this.con.prepareStatement("SELECT * FROM songhit WHERE ID = '"+id+"' AND SONGNUMBER  = '"+s+"'");
 			ResultSet rs1 = this.pstmt.executeQuery();
 			rs1.next();
