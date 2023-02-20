@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>javafood menu</title>
 <link rel="stylesheet" href="javafoodCSS/menuCSS.css?css=css">
 </head>
 <body>
