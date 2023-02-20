@@ -23,6 +23,7 @@
 
 	<%
 	List<javafood_DTO.song_DTO> list = dao.listSong();
+	JavaFood_DAO addhit = new JavaFood_DAO();
 	%>
 
 	<meta charset="UTF-8">
@@ -82,7 +83,12 @@
 					<td><a href="/javafood_team/javafood?javafood=ArtistList&num=${dao.songnumber}">${ dao.artistname}</a></td>
 					
 					<td>${dao.bygenre }</td>
-					<td>${dao.hits }</td>
+					
+					<form method="post" action="/javafood_team/javafood?javafood=2" >
+					<td>${dao.hits }
+						<input type="hidden" name="addhit" value= "${dao.songnumber}">
+					</td>
+					</form>
 					
 					<form method="post" action="/javafood_team/javafood?javafood=2">
 						<td>
