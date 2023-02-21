@@ -75,6 +75,8 @@
         /* border:1px solid green; */
 
         height:25px;
+        
+        font-weight:bolder;
 
         margin-top:5px;
     }
@@ -83,6 +85,8 @@
         /* border:1px solid purple; */
 
         height:25px;
+        
+        color: gray;
     }
     img.thumnail
     {
@@ -114,6 +118,8 @@
         /* margin-top : 20px; */
         text-align: center;
     }
+    
+   
 
     .point{
             border: 1px solid rgb(98, 98, 98);
@@ -135,6 +141,10 @@
         cursor: pointer;
     }
     
+    div.songContent
+    {
+    	font-size:13px;
+    }
     div.songContentPage0
     {
         display:flex;

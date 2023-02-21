@@ -12,9 +12,6 @@
 
 <% 
 	String id = (String)request.getAttribute("id");
-
-	String doAddList = request.getParameter("doAddList");
-	String doDeleteList = request.getParameter("doDeleteList");
 %>
 <!DOCTYPE html>
 <html>
@@ -53,7 +50,7 @@
 			<c:forEach var="list" items="${playList }">
 			<a href="javafood?javafood=3_3&PL_ID=${list.pl_id }">
 				<div class="playList">
-					<!-- 앨범 표지가 추가되면 해당 부분의 scr를 수정할 것. -->
+					<!-- 앨범 표지가 추가되면 해당 부분의 src를 수정할 것. -->
 					<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
 					<div class="plText">${list.listTitle }</div>
 				</div>
