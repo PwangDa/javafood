@@ -13,7 +13,6 @@
 <% 
 	String id = (String)request.getAttribute("id");
 
-	
 	String doAddList = request.getParameter("doAddList");
 	String doDeleteList = request.getParameter("doDeleteList");
 %>
@@ -29,7 +28,7 @@
 	<div class="title"><h1> <%=id %>님의 플레이 리스트 </h1></div>
     <br>
     <hr>
-    <img class="addList" src="https://cdn-icons-png.flaticon.com/512/7598/7598663.png"> <span class="addList">리스트 추가</span>
+    <img class="addList" src="https://c11.kr/1asbg"> <span class="addList">리스트 추가</span>
     
     <div class="search hidden">
         <form name = "PL_addList">
