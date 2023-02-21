@@ -12,44 +12,47 @@
 	 
 	 hitListNextButton.addEventListener("click", ()=>
 	 {
-		if(hitListPage >= 0 || hitListPage <= 4)
+		hitListPage++;
+		if(hitListPage > 4)
 		{
-			hitListPage++;
+			hitListPage = 4;
+		}
 			
-			hitListContent.classList.add("songContentPage" + hitListPage);
+		hitListContent.classList.add("songContentPage" + hitListPage);
 			
-			for(let i = 0; i <= 4; i++)
+		for(let i = 0; i <= 4; i++)
+		{
+			if(i == hitListPage)
 			{
-				if(i == hitListPage)
-				{
-					continue;
-				}
-				else
-				{
-					hitListContent.ClassList.remove("songContentPage" + i);
-				}
+				continue;
+			}
+			else if(hitListContent.classList.contains("songContentPage" + i) )
+			{
+				hitListContent.classList.remove("songContentPage" + i);
 			}
 		}
 	});
 	
 	hitListPrevButton.addEventListener("click", ()=>
 	 {
-		if(hitListPage >= 0 || hitListPage <= 4)
+
+		hitListPage--;
+		if(hitListPage < 0)
 		{
-			hitListPage--;
+			hitListPage = 0;
+		}
 			
-			hitListContent.classList.add("songContentPage" + hitListPage);
+		hitListContent.classList.add("songContentPage" + hitListPage);
 			
-			for(let i = 0; i <= 4; i++)
+		for(let i = 0; i <= 4; i++)
+		{
+			if(i == hitListPage)
 			{
-				if(i == hitListPage)
-				{
-					continue;
-				}
-				else
-				{
-					hitListContent.ClassList.remove("songContentPage" + i);
-				}
+				continue;
+			}
+			else if(hitListContent.classList.contains("songContentPage" + i) )
+			{
+				hitListContent.classList.remove("songContentPage" + i);
 			}
 		}
 	});

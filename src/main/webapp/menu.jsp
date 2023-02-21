@@ -15,7 +15,8 @@
 <script>
     window.onload=function(){
         $("#cli").on("click",function(){
-            location.href="javafood?javafood=m";
+        	var tex = ($("select[name=option] option:selected").text());
+            location.href="javafood?javafood=m$option="+tex+"&point="+$('#potion').val();
         })
 
     }
@@ -28,12 +29,12 @@
             <a href="javafood?javafood=m" class="a1"><span class="main main_1" >홈</span></a>
             <a href="javafood?javafood=6" class="a1"><span class="main main_2" >장르별</span></a>
             <a href="javafood?javafood=3" class="a1"><span class="main main_3" >보관함</span></a>
-           	<select name="option" style="height: 30px;">
+           	<select name="option" id="opt" style="height: 30px;">
                 <option value="sing"><c:out value="노래검색"/></option>
 	            <option value="man"><c:out value="가수검색"/></option>
             </select>
             <div class = "main-box main_4">
-                <input class="search-txt" type="text" placeholder="검색">
+                <input id="potion" class="search-txt" type="text" placeholder="검색">
                 <button class="search-btn" type="submit" id="cli">검색</button>
             </div>
         </div>
