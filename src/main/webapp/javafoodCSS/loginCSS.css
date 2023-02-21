@@ -1,10 +1,9 @@
 @charset "UTF-8";
 body{
-	background-size: contain; 
 	color: white; 
 	background-color: black; 
-	text-align: center;
-	}
+	text-align: center;	
+}
 div{
 	display: inline-block;
 	width: 100%; 
@@ -54,4 +53,66 @@ input[type="checkbox"]{
     width:260px;
     border: 1px solid rgb(98, 98, 98);
     background-color: transparent;
+}
+.logo-img{
+	width: 90px;
+}
+.table{
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.table1{
+	border: 1px solid rgba(124, 124, 124, 0.615);
+	background-color: rgba(59, 59, 59, 0.564);
+	background: linear-gradient(45deg, rgb(0, rgb(0, 0, 0)rgb(54, 54, 54)));
+	border-radius: 15%;
+	margin-top: 10px;
+	padding: 10px;
+	width: 450px;
+}
+
+.h1_1{
+	margin: 3px;
+}
+.sub1{
+	border-radius: 14px;
+	color: white;
+	background-color: rgb(143, 143, 143);
+	width: 200px;
+}
+.p_1{
+	margin: 3px;
+}
+.inputbtn{
+	position: relative;
+	display: inline-block;
+}
+
+/* .inputbtn .btnClear{
+	 position: absolute; 
+	float:right;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	background: url(https://c11.kr/1asdc) center center no-repeat;
+	background-size: 50%; 
+	border: none;
+	outline: none;
+	cursor: pointer;
+} */
+
+.btnClear{
+	position: absolute; 
+	/* left: -10px; */
+	width: 30px;
+	height: 30px;
+	background: url(https://c11.kr/1asdc) ;
+	background-size: 60%;
+	background-repeat: no-repeat;
+	border: none;
+	outline: none;
+	cursor: pointer;
 }

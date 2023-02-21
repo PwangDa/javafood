@@ -126,25 +126,41 @@
 	</html>
  </c:if>
 <c:if test="${log==0 }"><script>alert('아이디가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
-<c:if test="${log==1 }"><script>alert('페스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
+<c:if test="${log==1 }"><script>alert('패스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
 
 <c:if test="${membership==null&&log==null }">
-	<title>javafood 로그인</title>
+	<title>Log In</title>
 	</head>
 		<body>
-			<h1><c:out value="javafood 로그인"/></h1>
-		    <form method="post" action="javafood?javafood=4">
-		        <div class="head1">
-		            <c:out value="아 이 디 : "/>&nbsp;<input class = "tt" type="text" name="ID" placeholder="USER NAME"><br><br>
-		            <c:out value=" 비밀번호 : "/><input class = "tt" type="password" name="PW" placeholder="PASSWORD"><br><br>
-		            <a href="javafood?javafood=4&membership=O" class="at"><c:out value="회원가입"/></a>
-		            <input class="sub" type="submit" value="로그인">
-		            <input class="sub" type="reset" value="다시작성">
-		        </div>
-		    </form>
-		    <div class="body"></div>
+			<div class="table">
+				<div>
+					<div>
+						<img src="https://c11.kr/1asbb" class="logo-img">
+						<h2>MUSIC</h2>
+					</div>
+					<div class="table1">
+						<h1 class="h1_1"><c:out value="Log in to your account"/></h1>
+					    <form method="post" action="javafood?javafood=4">
+					        <div class="head1">
+					            <p class = "p_1"><c:out value="아이디"/></p>
+					            <div class = "inputbtn">
+					            	<input class = "tt" type="text" name="ID" placeholder="USER NAME">
+					            	<button class="btnClear" type="button" ></button>
+					            </div>
+					            <br>
+					            <p class = "p_1"><c:out value=" 비밀번호"/></p>
+					            <input class = "tt" type="password" name="PW" placeholder="PASSWORD">
+					            <button class="btnClear" type="button" ></button>
+					            <input class="sub sub1" type="submit" value="로그인">
+					            <p><a href="javafood?javafood=4&membership=O" class="at"><c:out value="아직 JavaMusic을 사용하고 있지 않으신가요? 가입하기"/></a></p>
+					            </div>
+					        </div>
+					    </form>
+					    <div class="body"></div>
+					    <div></div>
+			    </div >
+		    </div>
 		</body>
 	</html>
 	<br>
-	<hr>
 </c:if>
