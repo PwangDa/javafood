@@ -39,7 +39,7 @@
 							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
 						</div>
 						<div>
-							<input type="button" onclick="but()" value="업로드">
+							<input type="button" id="but" value="업로드">
 						</div>
 					</div>
 				</div>
