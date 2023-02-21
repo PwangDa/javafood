@@ -15,7 +15,6 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 	<script link src ="javafoodScript/loginScript.js"></script>
 	<link rel="stylesheet" href="javafoodCSS/loginCSS.css?css=css">
-
 <c:if test="${good!=null }">
 	<c:if test="${good==1 }"><script>alert("회원가입 성공")</script></c:if>
 	<c:if test="${good==0 }"><script>alert("회원가입 실패")</script></c:if>
@@ -24,6 +23,7 @@
 <c:if test="${re!=null }"><script>alert('회원정보 수정이 완료되었습니다. 다시 로그인 해주세요.')</script></c:if>
 
 <c:if test="${membership!=null }">
+
 	<title>javafood 회원가입</title>
 	</head>
 	<body>

@@ -18,30 +18,30 @@
         <meta charset="UTF-8">
         <title>My Page</title>
     </head>
+ <jsp:include page="/menu.jsp" />   
     <body>
     
     
-    
-    
         <link rel="stylesheet" href="javafoodCSS/mypageCSS1.css?css=css">
-        <div style="width: 100%;height: 100%;">
-            <div class="head">
-                <div class="left">
+        
+        <div class="div" style="width: 100%;height: 100%;">
+            <div class="head div">
+                <div class="div left">
                     <a href="javafood?javafood=5" class="at">
                         <strong>
                             <c:out value="My pages"/>
                         </strong>
                     </a>
                 </div>
-                <c:if test="${session_user.myimg!=null}"><div class="right" style="background-image:url(${session_user.myimg})"></c:if>
-                <c:if test="${session_user.myimg==null}"><div class="right" style="background-image:url(http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png)"></c:if>
+                <c:if test="${session_user.myimg!=null}"><div class=" div right" style="background-image:url(${session_user.myimg})"></c:if>
+                <c:if test="${session_user.myimg==null}"><div class=" div right" style="background-image:url(http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png)"></c:if>
                     <strong>
                     <c:if test="${session_user.nic!=null }"><c:out value="${session_user.nic }"/></c:if>
                     <c:if test="${session_user.nic==null }"><c:out value="닉네임을 수정해주세요"/></c:if>
                     </strong>
                 </div>
             </div>
-            <div class="tbody">
+            <div class="tbody div">
                 <form method="get" action="javafood">
                     <input type="hidden" name="javafood" value="5">
                     <td>
@@ -70,10 +70,10 @@
     
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
     <div>
-	    <div class="mume"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>
-	    <div class="mume"><h3><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></h3></div>
-	    <div class="mume"><h3><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></h3></div>
-	    <div class="mume"><h3><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></h3></div>
+	    <div class="mume div"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>
+	    <div class="mume div"><h3><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></h3></div>
+	    <div class="mume div"><h3><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></h3></div>
+	    <div class="mume div"><h3><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></h3></div>
     </div>
     
     
@@ -113,19 +113,19 @@
             enctype="multipart/form-data"
             accept-charset="utf-8">
             <div>
-                <div style="width: 200px; height: 250px">
-                    <div>
+                <div class="div" style="width: 200px; height: 250px">
+                    <div class="div">
                         <input type="file" name="file1">
                         <p><strong>프로필 사진</strong></p>
                         <img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG"
                             style="width: 150px;height: 150px;">
                     </div>
-                    <div><input type="button" onclick="but()" value="업로드"></div>
+                    <div class="div"><input type="button" onclick="but()" value="업로드"></div>
                 </div>
             </div>
         </form>
         <form method="post" action="javafood?javafood=4">
-            <div class="head">
+            <div class="head div">
                 <table>
                     <tr class="tr">
                         <th><c:out value="이미지url : "/></th>

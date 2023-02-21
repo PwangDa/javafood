@@ -85,9 +85,9 @@
 					<td>${dao.bygenre }</td>
 					
 					<form method="post" action="/javafood_team/javafood?javafood=2" >
-					<td>${dao.hits }
-						<input type="hidden" name="addhit" value= "${dao.songnumber}">
-					</td>
+						<td>${dao.hits }
+							<input type="hidden" name="addhit" value= "${dao.songnumber}">
+						</td>
 					</form>
 					
 					<form method="post" action="/javafood_team/javafood?javafood=2">
@@ -98,8 +98,15 @@
 					</form>
 					
 					<td>${dao.playtime }</td>
-					<td><a href="#" onclick="addhit('${login}','${dao.songnumber }')"><img class="play" src="https://c11.kr/1asd1"></a></td>
-					<td><img class="save" src="https://c11.kr/1asd6"></td>
+					
+					<td><a href="#" onclick="window.open('https://www.youtube.com/results?search_query=${dao.songname }'); addhit('${login}','${dao.songnumber }'); "><img class="play" src="https://c11.kr/1asd1"></a></td>
+					
+					<form method="post" action="/javafood_team/javafood?javafood=3">
+						<td> 
+							<input type="hidden"><img class="save" src="https://c11.kr/1asd6">
+						</td>
+					</form>
+					
 					<td>${dao.country }</td>
 				</tr>
 			</c:forEach>
