@@ -325,7 +325,7 @@ public class JavaFood_Service {
 	 * @param songnumber : 조회수 증가할 노래 번호입력
 	 */
 	public void javafood5_2(String id, String songnumber){
-		dao.addhit(id, songnumber);
+		if(id!=null) dao.addhit(id, songnumber);
 		dao.song1addhit(songnumber);
 	}
 	/**

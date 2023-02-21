@@ -39,7 +39,7 @@
 							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
 						</div>
 						<div>
-							<input type="button" onclick="but()" value="업로드">
+							<input type="button" id="but" value="업로드">
 						</div>
 					</div>
 				</div>
@@ -142,16 +142,17 @@
 						<h1 class="h1_1"><c:out value="Log in to your account"/></h1>
 					    <form method="post" action="javafood?javafood=4">
 					        <div class="head1">
-					            <p class = "p_1"><c:out value="아이디"/></p>
+					           
 					            <div class = "inputbtn">
 					            	<input class = "tt" type="text" name="ID" placeholder="USER NAME">
 					            	<button class="btnClear" type="button" ></button>
 					            </div>
 					            <br>
-					            <p class = "p_1"><c:out value=" 비밀번호"/></p>
+					            
 					            <input class = "tt" type="password" name="PW" placeholder="PASSWORD">
 					            <button class="btnClear" type="button" ></button>
-					            <input class="sub sub1" type="submit" value="로그인">
+					            <input class="sub sub1" type="submit" value="Log In"><br>
+					            <span class = "chec"><input type="checkbox" name="ID" value="ID">Remember me</span>
 					            <p><a href="javafood?javafood=4&membership=O" class="at"><c:out value="아직 JavaMusic을 사용하고 있지 않으신가요? 가입하기"/></a></p>
 					            </div>
 					        </div>

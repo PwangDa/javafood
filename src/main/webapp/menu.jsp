@@ -15,8 +15,8 @@
 <script>
     window.onload=function(){
         $("#cli").on("click",function(){
-            console($('opt').val())
-            // location.href="javafood?javafood=m&"+$('opt');
+        	var tex = ($("select[name=option] option:selected").text());
+            location.href="javafood?javafood=m$option="+tex+"&point="+$('#potion').val();
         })
 
     }
@@ -34,7 +34,7 @@
 	            <option value="man"><c:out value="가수검색"/></option>
             </select>
             <div class = "main-box main_4">
-                <input class="search-txt" type="text" placeholder="검색">
+                <input id="potion" class="search-txt" type="text" placeholder="검색">
                 <button class="search-btn" type="submit" id="cli">검색</button>
             </div>
         </div>
