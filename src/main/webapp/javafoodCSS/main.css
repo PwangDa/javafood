@@ -94,14 +94,6 @@
         padding-top:20px;
         margin:0 10px;
     }
-    div.songContentPage0
-    {
-        display:flex;
-        
-        margin : 0 9%;
-
-        overflow:hidden;
-    }
     div.songContentInfo
     {
         display:flex;
@@ -133,33 +125,41 @@
         cursor: pointer;
     }
     
-    .songContentPaging1
+    div.songContentPage0
     {
-    	margin : 0 -820px;
+        display:flex;
+        
+        margin : 0 9%;
+
+        overflow:hidden;
+    }
+    div.songContentPage1
+    {
+    	margin : 0 9% 0 -820px;
     	
     	display:flex;
 
         overflow:hidden;
     }
-    .songContentPaging2
+    div.songContentPage2
     {
-    	margin : 0 -1640px;
+    	margin : 0 9% 0 -1640px;
     	
     	display:flex;
 
         overflow:hidden;
     }
-    .songContentPaging3
+    div.songContentPage3
     {
-    	margin : 0 -2460px;
+    	margin : 0 9% 0 -2460px;
     	
     	display:flex;
 
         overflow:hidden;
     }
-    .songContentPaging4
+    div.songContentPage4
     {
-    	margin : 0 -3280px;
+    	margin : 0 9% 0 -3280px;
     	
     	display:flex;
 
