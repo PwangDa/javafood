@@ -22,7 +22,6 @@
     <body>
     
     
-  <%-- --%>  
         <link rel="stylesheet" href="javafoodCSS/mypageCSS1.css?css=css">
         
         <div class="div" style="width: 100%;height: 100%;">

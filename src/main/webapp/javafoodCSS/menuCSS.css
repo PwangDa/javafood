@@ -11,7 +11,17 @@ div{
     color : white;
     /* vertical-align: middle; */
 }
-
+select {
+    color: white;
+    font-size: 12px;
+    background: transparent;
+    display: inline-block;
+    height: 32px;
+    border: 1px solid rgb(98, 98, 98);
+}
+select option{
+	background-color: #82caff;
+}
 img{
     border-radius: 12px;
 }
@@ -71,7 +81,7 @@ header{
 .main-box{
     display: inline-block;
     height: 32px;
-    width:260px;
+    width:250px;
     border: 1px solid rgb(98, 98, 98);
     background-color: transparent;
 }
