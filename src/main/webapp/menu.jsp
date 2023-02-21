@@ -12,15 +12,9 @@
 <body>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
-
-
 <script>
 	
 </script>
-
-
-
-
     <header id ="menu" >
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
         <a href="javafood?javafood=m" class="a1"><img src="https://c11.kr/1asbb" class="logo-img">Music</a>
