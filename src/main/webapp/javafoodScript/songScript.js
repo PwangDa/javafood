@@ -46,6 +46,20 @@
 			location.href = 'javafood?javafood=2&play='+song+'&id='+id;
 			
 		}
+		
+		/*function playVideo() {
+			
+			const login = "${login}";
+			const songnumber = "${dao.songnumber}";
+			
+			// 유튜브 동영상 ID 생성
+			const videoId = "유튜브 동영상 ID를 여기에 입력하세요";
+			// 유튜브 동영상 링크 생성
+  			const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+  			// 새 창에서 유튜브 동영상 링크 열기
+ 			 window.open(videoUrl, '_blank');
+		}*/
+
 //////////////////////////////////////////////////////////////////////////////////////////
 			/* refresh(); */
 			

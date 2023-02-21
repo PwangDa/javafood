@@ -11,44 +11,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <% 
-	//주소로 넘어 온 id값 받기.
-// 	String id = (String)session.getAttribute("id"); //로그인 세션이 완성될 때 사용할 것.
 	String id = (String)request.getAttribute("id");
 
-	
-	//주소로 넘어온 값을 받기.
-// 	String doAddList = (String) request.getAttribute("doAddList");
-// 	String doDeleteList = (String) request.getAttribute("doDeleteList");
-	
 	String doAddList = request.getParameter("doAddList");
 	String doDeleteList = request.getParameter("doDeleteList");
-	
-	//플레이 리스트 추가하기
-// 	if("doAdd".equals(doAddList) )
-// 	{
-// 		System.out.println("playList.jsp의 doAddList 실행됨."); //확인용
-		
-// // 		//주소로 넘어 온 값들을 받기
-// // 		String addList_title = request.getParameter("addList_title");
-// // 		String addList_explain = request.getParameter("addList_explain");
-		
-// 		//페이지 새로고침
-// 		response.sendRedirect("javafood?javafood=3");
-// 	}
-	
-	//플레이 리스트 삭제하기
-// 	else if("doDelete".equals(doDeleteList) )
-// 	{
-// 		//주소로 넘어온 값들을 받기
-// 		String res_PL_ID = request.getParameter("res.PL_ID");
-		
-// 		//Controller에서 리스트를 제거하도록 명령하는 메서드 실행하기
-// 		JavaFood_Controller jfc = new JavaFood_Controller();
-// 		jfc.java3_3(res_PL_ID, id);
-		
-// 		//페이지 새로고침
-// 		response.sendRedirect("javafood?javafood=3");
-// 	}
 %>
 <!DOCTYPE html>
 <html>
@@ -62,7 +28,7 @@
 	<div class="title"><h1> <%=id %>님의 플레이 리스트 </h1></div>
     <br>
     <hr>
-    <img class="addList" src="https://cdn-icons-png.flaticon.com/512/7598/7598663.png"> <span class="addList">리스트 추가</span>
+    <img class="addList" src="https://c11.kr/1asbg"> <span class="addList">리스트 추가</span>
     
     <div class="search hidden">
         <form name = "PL_addList">

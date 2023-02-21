@@ -343,7 +343,7 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("play : " + request.getParameter("play"));
 		System.out.println("id : " + request.getParameter("id"));
 		if(request.getParameter("play") != null) {
-			System.out.println("전달인자 실행 test");
+//			System.out.println("전달인자 실행 test");
 			service.addhit(request.getParameter("play"), request.getParameter("id"));
 		}
 		

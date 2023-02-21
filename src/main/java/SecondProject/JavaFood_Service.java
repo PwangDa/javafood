@@ -171,7 +171,7 @@ public class JavaFood_Service {
 	}
 	
 	public void addhit(String songnumber, String id) {
-		System.out.println("addhit test");
+//		System.out.println("addhit test");
 		dao.addhit(id, songnumber);
 		dao.song1addhit(songnumber);
 		

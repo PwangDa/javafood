@@ -1119,6 +1119,20 @@ public class JavaFood_DAO {
 //		
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 차트 페이징
+//	public List<song_DTO> chartPaging(List<song_DTO> listsong, int page, int pageSize){
+//		List<song_DTO> list = new ArrayList<>();
+//		int startIndex = (page -1) * pageSize;
+//		int endIndex = Math.min(startIndex + pageSize, listsong.size());
+//		
+//		return listsong.subList(startIndex, endIndex);
+//		
+//	}
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * 플레이 리스트를 추가하는 메서드 입니다.
@@ -1459,7 +1473,7 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<song_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT * FROM  Genre WHERE songNumber <= 40");
+			this.pstmt = this.con.prepareStatement("SELECT * FROM  Song1 WHERE songNumber <= 40");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
