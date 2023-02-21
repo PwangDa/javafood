@@ -49,8 +49,6 @@
         /* border:1px solid red; */
 
         margin:0 9%;
-
-        /* overflow:hidden; */
     }
     div.hitListViewerContent
     {
@@ -96,9 +94,13 @@
         padding-top:20px;
         margin:0 10px;
     }
-    div.songContent
+    div.songContentPage0
     {
         display:flex;
+        
+        margin : 0 9%;
+
+        overflow:hidden;
     }
     div.songContentInfo
     {
@@ -126,7 +128,40 @@
         }
 
 
-        .point:hover{
-            background-color: rgba(128, 128, 128, 0.652);
-            cursor: pointer;
-        }
+    .point:hover{
+        background-color: rgba(128, 128, 128, 0.652);
+        cursor: pointer;
+    }
+    
+    .songContentPaging1
+    {
+    	margin : 0 -820px;
+    	
+    	display:flex;
+
+        overflow:hidden;
+    }
+    .songContentPaging2
+    {
+    	margin : 0 -1640px;
+    	
+    	display:flex;
+
+        overflow:hidden;
+    }
+    .songContentPaging3
+    {
+    	margin : 0 -2460px;
+    	
+    	display:flex;
+
+        overflow:hidden;
+    }
+    .songContentPaging4
+    {
+    	margin : 0 -3280px;
+    	
+    	display:flex;
+
+        overflow:hidden;
+    }
