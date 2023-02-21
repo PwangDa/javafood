@@ -1,10 +1,7 @@
 @charset "UTF-8";
-<<<<<<< HEAD
+
 body{
-=======
-.body{
 	background-size: contain; 
->>>>>>> 999e6c26befb0ab4eb8ef64857c84c784bd72891
 	color: white; 
 	background-color: black; 
 	text-align: center;	
@@ -71,7 +68,6 @@ input[type="checkbox"]{
 .table1{
 	border: 1px solid rgba(124, 124, 124, 0.615);
 	background-color: rgba(59, 59, 59, 0.564);
-	background: linear-gradient(45deg, rgb(0, rgb(0, 0, 0)rgb(54, 54, 54)));
 	border-radius: 15%;
 	margin-top: 10px;
 	padding: 10px;
