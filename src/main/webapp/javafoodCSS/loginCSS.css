@@ -43,7 +43,7 @@ table{
 .tr{
 	height: 80px; 
 	}
-input[type="checkbox"]{
+.ch{
 	display: none;
 	}
 .head1{
@@ -110,4 +110,9 @@ input[type="checkbox"]{
 	border: none;
 	outline: none;
 	cursor: pointer;
+}
+.chec{
+	color: rgb(116, 116, 116);
+	font-size: 15px;
+	text-align: left;
 }
