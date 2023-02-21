@@ -22,6 +22,14 @@ function loging(){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 window.onload=function() {
+	
+    var btnClear = document.querySelector('.btnClear');
+    btnClear.addEventListener('click', function(){
+		console.log('123');
+        btnClear.parentNode.querySelector('.tt').value = "";
+    })
+    
+    
 	function but(){
 		var url = $("#form").attr("action");
 		var form = $('#form')[0];
