@@ -12,15 +12,20 @@ div{
     /* vertical-align: middle; */
 }
 select {
-    color: white;
+    color: rgb(159, 159, 159);
     font-size: 12px;
     background: transparent;
     display: inline-block;
-    height: 32px;
-    border: 1px solid rgb(98, 98, 98);
+    border-style: none;
+	outline: none;
 }
 select option{
-	background-color: #82caff;
+	color: white;
+	background-color: black;
+}
+select:hover{
+	color: white;
+	cursor: pointer;
 }
 img{
     border-radius: 12px;
