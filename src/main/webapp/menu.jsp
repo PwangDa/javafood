@@ -15,7 +15,8 @@
 <script>
     window.onload=function(){
         $("#cli").on("click",function(){
-            location.href="javafood?javafood=m";
+            console($('opt').val())
+            // location.href="javafood?javafood=m&"+$('opt');
         })
 
     }
@@ -28,7 +29,7 @@
             <a href="javafood?javafood=m" class="a1"><span class="main main_1" >홈</span></a>
             <a href="javafood?javafood=6" class="a1"><span class="main main_2" >장르별</span></a>
             <a href="javafood?javafood=3" class="a1"><span class="main main_3" >보관함</span></a>
-           	<select name="option" style="height: 30px;">
+           	<select name="option" id="opt" style="height: 30px;">
                 <option value="sing"><c:out value="노래검색"/></option>
 	            <option value="man"><c:out value="가수검색"/></option>
             </select>
