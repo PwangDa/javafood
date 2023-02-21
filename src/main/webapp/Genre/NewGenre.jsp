@@ -145,7 +145,7 @@
         </c:choose>
         
         <div class="no_chart">        
-                <input type="checkbox" id="cb1" name="selectall" onclick="selectAll(this)" value="selectall">
+                <input type="checkbox" id="cb1" name="selectall" onclick="selectAll(this); getCheckedValue()" value="selectall; ${ genre_list.songnumber}">
                    <!-- <label for="cd1"></label> -->
             <div class="left_num">NO</div>
             <div class="left_song">곡이름</div>
@@ -167,7 +167,7 @@
 			<c:forEach var="genre_list" items="${genre}" varStatus="status">
         	<div class= "musiclist">
             	 <div class="cont2">
-             		<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll()">
+             		<input type="checkbox" id="cb1" name="chk" onclick="checkSelectAll(); getCheckedValue()" value="${ genre_list.songnumber}">
                 	<div class="left_item_bot">${ status.count} </div>  <!-- 곡 순서 -->
                 	<div class="div_size"><img class="left_img" src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
                 	<div class="left_song_bot"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->

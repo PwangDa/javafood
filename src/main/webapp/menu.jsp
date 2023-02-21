@@ -13,7 +13,12 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 <script>
-	
+    window.onload=function(){
+        $("#cli").on("click",function(){
+            location.href="javafood?javafood=m";
+        })
+
+    }
 </script>
     <header id ="menu" >
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
@@ -29,7 +34,7 @@
             </select>
             <div class = "main-box main_4">
                 <input class="search-txt" type="text" placeholder="검색">
-                <button class="search-btn" type="submit">검색</button>
+                <button class="search-btn" type="submit" id="cli">검색</button>
             </div>
         </div>
         <span>
