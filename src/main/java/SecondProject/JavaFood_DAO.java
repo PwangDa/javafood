@@ -1119,6 +1119,20 @@ public class JavaFood_DAO {
 //		
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 차트 페이징
+//	public List<song_DTO> chartPaging(List<song_DTO> listsong, int page, int pageSize){
+//		List<song_DTO> list = new ArrayList<>();
+//		int startIndex = (page -1) * pageSize;
+//		int endIndex = Math.min(startIndex + pageSize, listsong.size());
+//		
+//		return listsong.subList(startIndex, endIndex);
+//		
+//	}
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * 플레이 리스트를 추가하는 메서드 입니다.
