@@ -103,7 +103,7 @@
 					
 					<form method="post" action="/javafood_team/javafood?javafood=3">
 						<td> 
-							<input type="hidden"><img class="save" src="https://c11.kr/1asd6">
+							<input type="hidden" ><img class="save" src="https://c11.kr/1asd6">
 						</td>
 					</form>
 					
