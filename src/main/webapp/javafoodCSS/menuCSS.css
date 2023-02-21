@@ -11,7 +11,22 @@ div{
     color : white;
     /* vertical-align: middle; */
 }
-
+select {
+    color: rgb(159, 159, 159);
+    font-size: 12px;
+    background: transparent;
+    display: inline-block;
+    border-style: none;
+	outline: none;
+}
+select option{
+	color: white;
+	background-color: black;
+}
+select:hover{
+	color: white;
+	cursor: pointer;
+}
 img{
     border-radius: 12px;
 }
@@ -71,7 +86,7 @@ header{
 .main-box{
     display: inline-block;
     height: 32px;
-    width:260px;
+    width:250px;
     border: 1px solid rgb(98, 98, 98);
     background-color: transparent;
 }
@@ -92,7 +107,7 @@ header{
 }
 
 .search-txt{
-    width: 190px;
+    width: 150px;
     padding: 10px;
     border: 0px;
     outline:none;
