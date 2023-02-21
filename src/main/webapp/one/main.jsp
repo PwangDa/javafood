@@ -127,9 +127,24 @@
         <a class="topButton" href="javafood?javafood=6"><span>장르</span></a>
     </div>
     
+    <br>
+    <br>
     
+    <div class="hitList">
+    	<div class="subtitle">
+    		인기곡
+    		<div class="hitListController">
+    			<p class="point prev"><</p>
+    			<p class="point next">></p>
+    		</div>
+    	</div>
+    </div>
     
+    <br>
     
+    <div class="songContent">
+    	
+    </div>
     
     
     
