@@ -612,9 +612,9 @@ public class JavaFood_Controller extends HttpServlet {
 	{
 		List hitList = service.javafoodm();
 		request.setAttribute("hitList", hitList);
-		if(request.getParameter("option")!=null) {
-			List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("potion"));
-			
+		if(request.getParameter("opt")!=null) {
+			List<song_DTO> list = service.javafood5_1(request.getParameter("opt"), request.getParameter("pot"));
+			request.setAttribute("ls", list);
 		}
 			
 		RequestDispatcher dispatch = request.getRequestDispatcher("one/main.jsp");

@@ -4,6 +4,7 @@ window.onload=function(){
 	}
 
 function cli(){
-	var tex = ($("select[name=option] option:selected").text());
-	location.href="javafood?javafood=m$option="+tex+"&point="+$('#potion').val();
+	var tex = $('#opt').val();
+	var pot = $('#pot').val();
+	location.href="javafood?javafood=m&opt="+tex+"&pot="+pot;
 }
