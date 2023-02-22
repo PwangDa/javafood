@@ -69,8 +69,8 @@
 	    	<div class="subtitle">
 	    		인기곡
 	    		<div class="hitListController">
-	    			<p class="point prev"></p>
-	    			<p class="point next"></p>
+	    			<p class="point prev"><</p>
+	    			<p class="point next">></p>
 	    		</div>
 	    	</div>
 	    </div>

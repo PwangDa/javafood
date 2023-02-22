@@ -79,6 +79,7 @@ table{
 }
 .logo-img{
 	width: 90px;
+	margin-top: 30px;
 }
 .table{
 	
@@ -185,8 +186,5 @@ table{
 .butt:hover{
 	background-color: rgb(138, 138, 138);
 }
-.logo_img{
-	width: 15px;
-	height: 15px;
-}
+
 
