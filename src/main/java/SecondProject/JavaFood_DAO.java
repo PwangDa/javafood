@@ -363,6 +363,7 @@ public class JavaFood_DAO {
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
 				vo.setAlbum(rs.getString("album_add"));
+				vo.setAlbum_name(rs.getString("album_name"));
 				list.add(vo);
 			}
 			rs.close();

@@ -171,3 +171,10 @@ function good(num){
 		data : 'text'
 	})
 }
+
+function list(num){
+	
+	location.href="javafood_team/javafood?javafood=3_6"
+}
+
+
