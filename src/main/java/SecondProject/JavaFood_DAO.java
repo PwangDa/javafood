@@ -1484,20 +1484,13 @@ public class JavaFood_DAO {
 
 	public List<PlayListDTO> loadPLC(int PL_ID, String id) {
 		List<PlayListDTO> playListContent = new ArrayList<PlayListDTO>();
-<<<<<<< HEAD
 
-		// 쿼리문 작성
-		String loadList_query = "SELECT * FROM playList_Content plc" + " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
-				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)" + "	WHERE plc.PL_ID = ?"
-=======
-		
 		//쿼리문 작성
 		String loadList_query =
 				"SELECT * FROM playList_Content plc"
 				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
 				+ " JOIN genre g ON (plc.songNumber = g.songNumber)"
 				+ "	WHERE plc.PL_ID = ?"
->>>>>>> 6ec7ca5c6803a9fbffcb739ad98f31c356c8539e
 				+ " ORDER BY listNumber";
 
 		// 쿼리 실행
@@ -1514,14 +1507,7 @@ public class JavaFood_DAO {
 				String temp_plTitle = rs.getString("pl_title");
 				String temp_plExplain = rs.getString("pl_explain");
 				String temp_artistName = rs.getString("artistName");
-<<<<<<< HEAD
-				String temp_imgLink = rs.getString("imgLink");
-				String temp_album = rs.getString("album");
 
-				PlayListDTO playListDTO = new PlayListDTO(temp_pl_id, temp_listNumber, temp_songName, temp_plTitle,
-						temp_plExplain, temp_artistName, temp_imgLink, temp_album);
-
-=======
 				String temp_imgLink = rs.getString("imageLink");
 				String temp_album = rs.getString("album_name");
 				
@@ -1537,8 +1523,6 @@ public class JavaFood_DAO {
 							temp_imgLink,
 							temp_album
 						);
-				
->>>>>>> 6ec7ca5c6803a9fbffcb739ad98f31c356c8539e
 				playListContent.add(playListDTO);
 			}
 
