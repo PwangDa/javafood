@@ -549,14 +549,14 @@ public class JavaFood_DAO {
 	public void like_music(String i) {
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM song1 WHERE SONGNUMBER ="+i);
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM genre WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			song_DTO vo = new song_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
-			this.pstmt = con.prepareStatement("UPDATE song1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt = con.prepareStatement("UPDATE genre SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();
@@ -1416,7 +1416,7 @@ public class JavaFood_DAO {
 		String loadList_query =
 				"SELECT * FROM playList_Content plc"
 				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
-				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)"
+				+ " JOIN genre g ON (plc.songNumber = g.songNumber)"
 				+ "	WHERE plc.PL_ID = ?"
 				+ " ORDER BY listNumber";
 		
@@ -1436,8 +1436,8 @@ public class JavaFood_DAO {
 				String temp_plTitle = rs.getString("pl_title");
 				String temp_plExplain = rs.getString("pl_explain");
 				String temp_artistName = rs.getString("artistName");
-				String temp_imgLink = rs.getString("imgLink");
-				String temp_album = rs.getString("album");
+				String temp_imgLink = rs.getString("imageLink");
+				String temp_album = rs.getString("album_name");
 				
 				PlayListDTO playListDTO = 
 						new PlayListDTO
@@ -1498,6 +1498,52 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
+	
+	public void addSongToPlayList(int pl_id, int songNumber, String addWhere)
+	{
+		System.out.println("DAO에서 addSongToPlayList 메서드 실행됨."); //확인용
+		
+		System.out.println("DAO의 pl_id : " + pl_id); //확인용
+		System.out.println("DAO의 songNumber : " + songNumber); //확인용
+		System.out.println("DAO의 addWhere : " + addWhere); //확인용
+		
+		if("NewGenre".equals(addWhere) ) //만약 장르별 노래차트 페이지에서 곡 추가를 요청했다면
+		{
+			//쿼리문 작성
+			String addSongQuery =
+							  "INSERT INTO playList_Content "
+							+ "(PL_ID_ID, PL_ID, ListNumber, SongName, SongNumber)"
+							+ " VALUES"
+							+ "(?, ?, seq_listNumber.nextval, "
+							+ " (SELECT songName FROM genre WHERE songNumber = ?), "
+							+ " (SELECT songNumber FROM genre WHERE songNumber = ?)"
+							+ ")";
+			
+			//쿼리문 실행
+			try
+			{
+				this.con = dataFactory.getConnection();
+				
+				pstmt = con.prepareStatement(addSongQuery);
+				pstmt.setInt(1, pl_id);
+				pstmt.setInt(2, pl_id);
+				pstmt.setInt(3, songNumber);
+				pstmt.setInt(4, songNumber);
+				pstmt.executeQuery();
+				
+				pstmt.close();
+				con.close();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+				System.out.println("genre에서 노래 추가 실패..."); //확인용
+			}
+			
+			System.out.println("genre에서 노래 추가 성공!"); //확인용
+		}
+	}
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

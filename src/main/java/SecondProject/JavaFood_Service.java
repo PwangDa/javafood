@@ -213,9 +213,9 @@ public class JavaFood_Service {
 	}
 	
 	//범주 플레이 리스트 안에 곡 추가하기(예정)
-	public void s_addSongToPlayList()
+	public void s_addSongToPlayList(int pl_id, int songNumber, String addWhere)
 	{
-//		dao.
+		dao.addSongToPlayList(pl_id, songNumber, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 

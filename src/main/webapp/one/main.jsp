@@ -48,8 +48,17 @@
 					<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
 					<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
 					<td><c:out value="${i.playtime }"/></td>
-					<td><c:out value="${i.likes }"/></td>
-					<td><c:out value="${i.likes }"/></td>
+					<td>
+						<input type="image"  src="https://c11.kr/1asbx" 
+						onmouseover="this.src='https://c11.kr/1asby'" 
+						onmouseout="this.src='https://c11.kr/1asbx'"
+						class="sub" onclick="good(${i.songnumber})">
+					</td>
+					<td>
+						<img class="img" src="https://c11.kr/1asd6" 
+						onmouseover="this.src='https://c11.kr/1asd9'" 
+						onmouseout="this.src='https://c11.kr/1asd6'">
+					</td>
 				</tr>
    			</c:forEach>
  		</table>
@@ -60,8 +69,8 @@
 	    	<div class="subtitle">
 	    		인기곡
 	    		<div class="hitListController">
-	    			<p class="point prev"></p>
-	    			<p class="point next"></p>
+	    			<p class="point prev"><</p>
+	    			<p class="point next">></p>
 	    		</div>
 	    	</div>
 	    </div>

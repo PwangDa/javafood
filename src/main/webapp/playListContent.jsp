@@ -28,9 +28,8 @@
 <title><%=id %>님의 ${playListContent[0].listTitle }</title>
 </head>
 <body>
+
 	<jsp:include page="menu.jsp" />
-	<br>
-	
 	<c:choose>
 		<%-- 해당 플레이 리스트의 내용이 하나도 없다면 --%>
 		<c:when test="${empty playListContent }">
@@ -92,7 +91,7 @@
 			</div>
 		</c:when>
 	</c:choose>
-	
+
 <style>
 	body
     {
@@ -101,6 +100,7 @@
         background-color: black;
         color:white;
     }
+    
     div.album_info
     {
         /* border:1px solid black; */
@@ -121,6 +121,7 @@
     {
         /* border:1px solid red; */
         
+        margin-top:70px;
         border-left:1px dotted gray;
         /* display:inline-block; */
         width:78%;
@@ -198,6 +199,7 @@
     {
         color:white;
         margin:0.3%;
+        margin-top: 60px;
         height: 5%;
     }
     
