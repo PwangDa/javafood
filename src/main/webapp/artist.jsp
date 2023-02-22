@@ -59,26 +59,41 @@
             <div class = "text1"> 
             <%--forEach 안하고 하나의 값만 가져오고 싶을때 --%>
                 <h1>${album_list[0].artistname }</h1>
-                <p style="width: 690px;">${album_list[1].artist_info }</p>
+                <p class="text_box">${album_list[1].artist_info }</p>
                 <div> <a target="_blank" href="https://namu.wiki/w/%EC%95%84%EC%9D%B4%EC%9C%A0">출처:namuwiki</a></div>
             </div>
         </div>
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
             <jsp:useBean id="daoTest" class="album.info.AlbumDAO"></jsp:useBean>
-
-           <c:forEach var="album" items="${album_list}" varStatus="loop">
+			<%-- 음악 부분 forEach --%>
+           	
+           		<c:forEach var="album" items="${album_list}" end="5" varStatus="loop">
 	            <div id = "cont1">
 	                <div class = "box1_1">
-	                    <img class="img1" src="${album.album_cover }">
+	                    <a href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}"><img class="img1" src="${album.album_cover }"></a>
 	                </div>
 	                <div class = "box1 text2"><a href="${loop.count}"><strong>${album.music_name}</strong></a></div>
 	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album_list[0].artistname }</div>
 	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
-            </c:forEach>
-            <%--} --%>
+            	</c:forEach>
+	        	<details class="detail">
+                    <summary style="color: rgb(150, 150, 150);">펼치기</summary>
+                    <c:forEach var="album" items="${album_list}" begin="6" varStatus="loop">
+	            		<div id = "cont1">
+			                <div class = "box1_1">
+			                    <a href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}"><img class="img1" src="${album.album_cover }"></a>
+			                </div>
+			                <div class = "box1 text2"><a href="${loop.count}"><strong>${album.music_name}</strong></a></div>
+			                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album_list[0].artistname }</div>
+			                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}">${album.album_name }</a></div>
+	            		</div>
+	            		<hr>
+            		</c:forEach>
+                </details>
+           
         </div>
         <div id = "cont3">
                 <p class="point prev">&lang;</p>
@@ -86,7 +101,7 @@
                 <p class="point next">&rang;</p>
             <div id="cont3_1">
                 <ul id = "slds" class="clides">
-
+				<%-- 앨범 부분 forEach --%>
                 <c:forEach var ="album" items="${album_list}" varStatus="loop">
                     <li>
                         <a href="/javafood_team/javafood?javafood=AlbumInfo&albumId=${album.album_add}"><img  class="image" src="${album.album_cover }"></a>
@@ -118,7 +133,7 @@
             </div>
         <div class="command">
             <hr>
-	    	<div>
+	    	<div><%-- 댓글 부분 forEach --%>
 	    	  	<c:forEach var ="comment" items="${commentList}">
 	            	<c:if test="${comment.level == 1 }">
 	                	<div class="comment" >
