@@ -14,7 +14,10 @@
 	String id = (String)request.getAttribute("id");
 
 	/* 어느 페이지에서 노래 추가를 요청했는지 판단하는 변수. */
-	String addWhere = (String)request.getParameter("void(0)");
+	String addWhere = request.getParameter("addWhere");
+	
+	/* 요청된 노래의 값을 가져온 변수. */
+	int songNumber = Integer.parseInt(request.getParameter("songNumber") );
 %>
 <!DOCTYPE html>
 <html>
@@ -30,7 +33,7 @@
 	<hr>
 	<c:forEach var="playList" items="${playList }">
 		<!-- 누르면 추가하는  -->
-		<a href="javafood?javafood=3_7&pl_id=${playList.pl_id }">
+		<a href="javafood?javafood=3_7&pl_id=${playList.pl_id }&addWhere=<%=addWhere%>&songNumber=<%=songNumber%>">
 			<div class="playList">
 				<!-- 앨범 표지가 추가되면 해당 부분의 src를 수정할 것. -->
 				<img class="album" src="https://image.bugsm.co.kr/album/images/original/203228/20322838.jpg?version=undefined">
