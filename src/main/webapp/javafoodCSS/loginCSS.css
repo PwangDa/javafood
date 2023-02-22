@@ -20,7 +20,8 @@ div{
 	outline: none;
 	}
 .upload_img{
-	border-radius: 15px;
+	border-radius: 50%;
+	border: 1px solid rgb(167, 167, 167);
 }
 .at{
 	color: white; 
@@ -38,11 +39,13 @@ div{
 td{
 	width: 100px;
 	padding: 2px 10px;
-	/* margin-bottom: 10px; */
 	}
 
 .upload{
-	width: 350px;
+	width: 400px;
+}
+#but{
+	margin-left: 19px;
 }
 table{
 	background-size: contain; 
@@ -168,13 +171,22 @@ table{
 }
 
 .butt{
-	color: rgba(255, 255, 255, 0.792);
-	background-color: rgb(93, 93, 93);
+	color: rgba(255, 255, 255, 0.747);
+	background-color: rgb(80, 80, 80);
 	width: 90px;
 	height: 28px;
+	padding: 3px;
 	cursor: pointer;
 	border: none;
 	outline: none;
-	
+	border-radius: 7px;
+}
+
+.butt:hover{
+	background-color: rgb(138, 138, 138);
+}
+.logo_img{
+	width: 15px;
+	height: 15px;
 }
 
