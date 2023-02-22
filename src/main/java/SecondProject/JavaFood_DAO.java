@@ -381,9 +381,9 @@ public class JavaFood_DAO {
 			this.con = this.dataFactory.getConnection();
 
 			if ("man".equals(option))
-				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%" + text + "%'");
-			else if ("sing".equals(option))
-				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%" + text + "%'");
+				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if ("song".equals(option))
+				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -405,6 +405,7 @@ public class JavaFood_DAO {
 			this.pstmt.close();
 			this.con.close();
 		} catch (SQLException e) {
+			System.out.println("실패");
 			list = null;
 			e.printStackTrace();
 		}

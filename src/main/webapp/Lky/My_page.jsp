@@ -52,15 +52,19 @@
 				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
 				<td><c:out value="${i.playtime }"/></td>
 				<td>
-					<input type="image"  src="https://c11.kr/1asbx" 
+					<img class="img" src="https://c11.kr/1asbx" 
 						onmouseover="this.src='https://c11.kr/1asby'" 
 						onmouseout="this.src='https://c11.kr/1asbx'"
 						class="sub" onclick="good(${i.songnumber})">
 				</td>
 				<td>
-					<img class="img" src="https://c11.kr/1asd6" 
-					onmouseover="this.src='https://c11.kr/1asd9'" 
-					onmouseout="this.src='https://c11.kr/1asd6'">
+					<form name="addPlayList" method="post" action="/javafood_team/javafood?javafood=3_6" onclick="this.submit();">
+						<img class="img" src="https://c11.kr/1asd6" 
+							onmouseover="this.src='https://c11.kr/1asd9'" 
+							onmouseout="this.src='https://c11.kr/1asd6'">
+               			<input type="hidden" name="songNumber" value="${i.songnumber }">
+               			<input type="hidden" name="addWhere" value="My_page">
+         	  		</form>
 				</td>
 			</tr>
 		</c:forEach>

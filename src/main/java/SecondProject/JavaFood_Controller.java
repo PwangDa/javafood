@@ -151,7 +151,7 @@ public class JavaFood_Controller extends HttpServlet {
 			int pl_id = Integer.parseInt(request.getParameter("pl_id") );
 			int songNumber = Integer.parseInt(request.getParameter("songNumber") );
 			String addWhere = request.getParameter("addWhere");
-			
+			System.out.println("addwhere : "+addWhere);
 			java3_7(pl_id, songNumber, addWhere);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("javafood?javafood=3_3&PL_ID="+pl_id);

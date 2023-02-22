@@ -27,7 +27,7 @@
             </select>
             <div class = "main-box main_4">
                 <input id="pot" class="search-txt" type="text" placeholder="검색">
-                <button class="search-btn" type="submit" id="cli">검색</button>
+                <button class="search-btn" type="button" id="cli">검색</button>
             </div>
         </div>
         <span>

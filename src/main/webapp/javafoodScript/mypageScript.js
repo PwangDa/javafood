@@ -12,7 +12,7 @@
             );
         }());
 window.onload = function(){
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $('#re').on('click', function () {
                 $('#end').attr('disabled', true);
             })
@@ -152,16 +152,14 @@ function outt(id){
 function replay(id){
 	location.href = 'javafood?javafood=5&usre='+id
 }
-
 function hit(num){
-	var id = $('#id').val()
-	console.log(num)
-	console.log("실행");
-	$.ajax({
-		type : 'get',
-		url : 'http://localhost:8080/javafood_team/aj?id1='+id+'&num='+num,
-		data: 'text'
-	})
+    var id = $('#id').val()
+    console.log(num)
+    $.ajax({
+        type : 'get',
+        url : 'http://localhost:8080/javafood_team/aj?id1='+id+'&num='+num,
+        data: 'text'
+    })
 }
 function good(num){
 	console.log(num)
@@ -171,10 +169,4 @@ function good(num){
 		data : 'text'
 	})
 }
-
-function list(num){
-	
-	location.href="javafood_team/javafood?javafood=3_6"
-}
-
 
