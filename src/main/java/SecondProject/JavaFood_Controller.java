@@ -504,6 +504,7 @@ public class JavaFood_Controller extends HttpServlet {
 		service.s_doDeleteList(PL_ID, id);
 	}
 	
+	//범주 곡을 추가할 리스트 선택하기.
 	private List java3_6(String id)
 	{
 		System.out.println("JavaFood_Controller의 java3_6 메소드 실행됨."); //확인용

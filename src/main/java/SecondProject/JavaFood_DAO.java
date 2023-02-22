@@ -379,6 +379,7 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<song_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
+<<<<<<< HEAD
 
 			if ("man".equals(option))
 				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%" + text + "%'");
@@ -388,6 +389,10 @@ public class JavaFood_DAO {
 			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
 			else if("song".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
 
+=======
+			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
+			else if("song".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -401,6 +406,7 @@ public class JavaFood_DAO {
 				vo.setLikes(rs.getString("likes"));
 				vo.setPlaytime(rs.getString("playtime"));
 				vo.setAlbum(rs.getString("album_add"));
+				vo.setAlbum_name(rs.getString("album_name"));
 				list.add(vo);
 			}
 			rs.close();
@@ -596,6 +602,7 @@ public class JavaFood_DAO {
 	 */
 	public void like_music(String i) {
 		try {
+<<<<<<< HEAD
 
 			this.con = this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM song1 WHERE SONGNUMBER =" + i);
@@ -603,17 +610,25 @@ public class JavaFood_DAO {
 			this.con=this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM genre WHERE SONGNUMBER ="+i);
 
+=======
+			this.con=this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM genre WHERE SONGNUMBER =" + i);
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			song_DTO vo = new song_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes()) + 1;
 			System.out.println(a);
+<<<<<<< HEAD
 
 			this.pstmt = con.prepareStatement("UPDATE song1 SET LIKES = " + a + " WHERE SONGNUMBER = " + i);
 
 			this.pstmt = con.prepareStatement("UPDATE genre SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 
+=======
+			this.pstmt = con.prepareStatement("UPDATE genre SET LIKES = " + a + " WHERE SONGNUMBER = " + i);
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();
@@ -1499,6 +1514,7 @@ public class JavaFood_DAO {
 
 	public List<PlayListDTO> loadPLC(int PL_ID, String id) {
 		List<PlayListDTO> playListContent = new ArrayList<PlayListDTO>();
+<<<<<<< HEAD
 
 
 		// 쿼리문 작성
@@ -1506,13 +1522,19 @@ public class JavaFood_DAO {
 				+ " JOIN Song1 s ON (plc.songNumber = s.songNumber)" + "	WHERE plc.PL_ID = ?"
 
 		
+=======
+
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 		//쿼리문 작성
 		String loadList_query =
 				"SELECT * FROM playList_Content plc"
 				+ " JOIN playList pl ON (plc.PL_ID = pl.PL_ID)"
 				+ " JOIN genre g ON (plc.songNumber = g.songNumber)"
 				+ "	WHERE plc.PL_ID = ?"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 				+ " ORDER BY listNumber";
 
 		// 쿼리 실행
@@ -1529,6 +1551,7 @@ public class JavaFood_DAO {
 				String temp_plTitle = rs.getString("pl_title");
 				String temp_plExplain = rs.getString("pl_explain");
 				String temp_artistName = rs.getString("artistName");
+<<<<<<< HEAD
 
 				String temp_imgLink = rs.getString("imgLink");
 				String temp_album = rs.getString("album");
@@ -1537,6 +1560,9 @@ public class JavaFood_DAO {
 						temp_plExplain, temp_artistName, temp_imgLink, temp_album);
 
 
+=======
+
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 				String temp_imgLink = rs.getString("imageLink");
 				String temp_album = rs.getString("album_name");
 				
@@ -1552,8 +1578,11 @@ public class JavaFood_DAO {
 							temp_imgLink,
 							temp_album
 						);
+<<<<<<< HEAD
 				
 
+=======
+>>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 				playListContent.add(playListDTO);
 			}
 
