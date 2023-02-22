@@ -19,55 +19,7 @@
         <title>My Page</title>
     </head>
     <body>
- <jsp:include page="/menu.jsp" />   
-    
-   <%-- 
-        <link rel="stylesheet" href="javafoodCSS/mypageCSS1.css?css=css">
-        
-        <div class="div" style="width: 100%;height: 100%;">
-            <div class="head div">
-                <div class="div left">
-                    <a href="javafood?javafood=5" class="at">
-                        <strong>
-                            <c:out value="My pages"/>
-                        </strong>
-                    </a>
-                </div>
-                <c:if test="${session_user.myimg!=null}"><div class=" div right" style="background-image:url(${session_user.myimg})"></c:if>
-                <c:if test="${session_user.myimg==null}"><div class=" div right" style="background-image:url(http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png)"></c:if>
-                    <strong>
-                    <c:if test="${session_user.nic!=null }"><c:out value="${session_user.nic }"/></c:if>
-                    <c:if test="${session_user.nic==null }"><c:out value="닉네임을 수정해주세요"/></c:if>
-                    </strong>
-                </div>
-            </div>
-            <div class="tbody div">
-                <form method="get" action="javafood">
-                    <input type="hidden" name="javafood" value="5">
-                    <td>
-                        <select name="option" style="height: 30px;">
-                            <option value="sing">
-                                <c:out value="노래검색"/>
-                            </option>
-                            <option value="man">
-                                <c:out value="가수검색"/>
-                            </option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="text" name="text">
-                    </td>
-                    <td>
-                        <input type="submit" class="butt">
-                    </td>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    --%> 
-    
-    
+ 	<jsp:include page="/menu.jsp" />   
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
     <div class="div ddr">
 	    <div class="mume div"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>

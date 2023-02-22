@@ -9,9 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Java Food</title>
-<c:if test="${mmm!=null }">
-	<script> alert('정확한 주소를 입력해 주세요.');</script>
-</c:if>
+	<c:if test="${mmm!=null }">
+		<script> alert('정확한 주소를 입력해 주세요.');</script>
+	</c:if>
 	<!-- css파일 불러오기 -->
 	<link rel="stylesheet" href="./javafoodCSS/main.css">
 </head>
@@ -29,9 +29,32 @@
     
     <br>
     <br>
+    <%--검색 내용 출력 --%>
     <c:if test="${ls!=null }">
-    
+  		<table>
+   			<tr>
+   				<th>이미지</th>
+				<th>노래</th>
+				<th>가수</th>
+				<th>앨범</th>
+				<th>시간</th>
+				<th>하트</th>
+				<th>보관</th>
+   			</tr>
+   			<c:forEach items="${ls }" var="i">
+	   			<tr class="ddr">
+					<td><a class="at" href="${i.link }"><img src="${i.imglink }"></a></td>
+					<td><a class="at" href="${i.link }"><c:out value="${i.songname }"/></a></td>
+					<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
+					<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
+					<td><c:out value="${i.playtime }"/></td>
+					<td><c:out value="${i.likes }"/></td>
+					<td><c:out value="${i.likes }"/></td>
+				</tr>
+   			</c:forEach>
+ 		</table>
     </c:if>
+    <%-- 매인 리스트 목록 --%>
     <c:if test="${ls==null }">
 	    <div class="hitList">
 	    	<div class="subtitle">
