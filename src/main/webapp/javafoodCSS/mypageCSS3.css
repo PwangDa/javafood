@@ -67,3 +67,12 @@ input[type="checkbox"]{
 tr:hover { 
 	background-color: rgb(26, 26, 26); 
 }
+.sub{
+	background-position:  0px 0px;
+	background-repeat: no-repeat;
+	cursor:pointer;
+	outline: 0;
+	width: 20px;
+	height: 20px;
+	background-size: contain;
+    }
