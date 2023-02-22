@@ -9,8 +9,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+    
     	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
    		<script link src ="javafoodScript/mypageScript.js"></script>
+   		
    		<c:if test="${out!=null }"><script>urseout('${out}');</script></c:if>
         <c:if test="${login==null }"><script>notlogin();</script></c:if>
         <c:if test="${out!=null }"><script>urseout();</script></c:if>
@@ -30,7 +32,7 @@
     
     
 	<c:if test="${usre!=null }">
-    <link rel="stylesheet" href="javafoodCSS/mypageCSS3.css?css=css">
+    	<link rel="stylesheet" href="javafoodCSS/mypageCSS3.css?css=css">
 		<table border="1">
 		<tr>
 			<th>이미지</th>
@@ -43,8 +45,8 @@
 		</tr>
 		<c:forEach items="${usre }" var="i">
 			<tr class="ddr">
-				<td><a class="at" href="${i.link }"><img src="${i.imglink }"></a></td>
-				<td><a class="at" href="${i.link }"><c:out value="${i.songname }"/></a></td>
+				<td><a class="at" id='z1' href="${i.link }" target="blank"><img src="${i.imglink }"></a></td>
+				<td><a class="at" id='z2' href="${i.link }" target="blank"><c:out value="${i.songname }"/></a></td>
 				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
 				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
 				<td><c:out value="${i.playtime }"/></td>
@@ -148,62 +150,3 @@
     </c:if>
 </body>
 </html>
-<%--
-      
-      <div class="body">
-          <h2><c:out value="최근재생목록"/></h2>
-          <table border="1">
-              <tr>
-                  <th><c:out value="순위"/></th>
-                  <th><c:out value="이미지"/></th>
-                  <th><c:out value="아티스트 이름"/></th>
-                  <th><c:out value="노래 제목"/></th>
-                  <th><c:out value="조회수"/></th>
-                  <th><c:out value="유튜브 검색"/></th>
-                  <th><c:out value="좋아요"/></th>
-              </tr>
-		<c:if test="${song!=null }">
-			<c:forEach items="${song }" var="i">
-				<tr class="low">
-					<td><c:out value="${i.songnumber}"/></td>
-					<td> <img src="${i.imglink}"></td>
-					<td><c:out value="${i.artistname}"/></td>
-					<td><c:out value="${i.songname}"/></td>
-					<td><c:out value="${i.hits}"/></td>
-					<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-					<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${usre!=null }">
-			<c:forEach items="${usre }" var="i">
-				<tr class="low">
-					<td><c:out value="${i.songnumber}"/></td>
-					<td> <img src="${i.imglink}"></td>
-					<td><c:out value="${i.artistname}"/></td>
-					<td><c:out value="${i.songname}"/></td>
-					<td><c:out value="${i.hits}"/></td>
-					<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-					<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${song==null&&usre==null }">
-			<c:forEach items="${list }" var="i">
-				<tr class="low">
-					<td><c:out value="${i.songnumber}"/></td>
-					<td> <img src="${i.imglink}"></td>
-					<td><c:out value="${i.artistname}"/></td>
-					<td><c:out value="${i.songname}"/></td>
-					<td><c:out value="${i.hits}"/></td>
-					<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-					<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
-				</tr>
-			</c:forEach>
-		</c:if>
-	</table>
-</div>
-
---%>
-
-<%-- 	<c:if test="${a!=null }"> --%>
