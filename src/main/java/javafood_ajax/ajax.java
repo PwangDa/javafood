@@ -133,6 +133,12 @@ public class ajax extends HttpServlet {
 			dao.song1addhit(num);
 			System.out.println("ajax 조회수증가 성공");
 		}
+		if(request.getParameter("good")!=null) {
+			String i = request.getParameter("good");
+			JavaFood_DAO dao = new JavaFood_DAO();
+			dao.like_music(i);
+			System.out.println(i+"번 노래 좋아요!");
+		}
 		
 	}
 	
