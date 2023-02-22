@@ -4,7 +4,7 @@
     import = "java.util.ArrayList"
     import = "java.util.List"
     import = "javafood_DTO.PlayListDTO"
-    import = "SecondProject.JavaFood_Controller""%>
+    import = "SecondProject.JavaFood_Controller"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -21,6 +21,8 @@
 <head>
 <meta charset="UTF-8">
 <title>리스트에 노래 추가</title>
+	<!-- css파일 불러오기 -->
+	<link rel="stylesheet" href="/javafoodCSS/playList.css">
 </head>
 <body>
 	<div class="title"><h1>노래를 추가할 플레이 리스트를 선택하세요.</h1></div>

@@ -137,12 +137,13 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("3_6") )
 		{
-			String id = (String)request.getAttribute("id");
+			List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
+			String id = (String)session_user.get(0).getId();
 			
 			List playList = java3_6(id);
 			request.setAttribute("playList", playList);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("playListAdd.jsp");
 			dispatch.forward(request, response);
 		}
 
