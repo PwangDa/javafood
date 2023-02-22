@@ -185,3 +185,29 @@
 
         overflow:hidden;
     }
+/*     검색	테이블 		 */
+    .at{
+		color: rgb(159, 159, 159); 
+		text-decoration: none;
+	}
+	td{
+		width: 100px;
+	}
+	table{
+		background-size: contain; 
+		background-color: black;   
+		text-align: right; 
+		margin: auto; 
+		border: 1px solid black; 
+		border-collapse: collapse;
+	}
+	.sub{
+		margin-top: 10px;
+		width: 100px; 
+		height: 30px;
+	}
+	.img{
+		width: 30px;
+		margin-left: 0px;
+		border-radius: 30%;
+	}

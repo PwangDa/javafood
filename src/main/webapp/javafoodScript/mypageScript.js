@@ -92,10 +92,12 @@ function notlogin(){
 	alert('로그인을 하셔야합니다.')
     location.href = 'javafood?javafood=4';
 }
+
 function urseout(out){
 	if (out == 1)  alert('회원이 정상적으로 탈퇴되었습니다.')
 	else alert('회원탈퇴가 실패하였습니다.')
 	}
+	
 function but() {
     var url = $("#form").attr("action");
     var form = $('#form')[0];
@@ -116,6 +118,7 @@ function but() {
         }
     })
 }
+
 function outt(id){
 	if (confirm('정말 로그아웃을 하겠습니까?')) 
 		location.href = 'javafood?javafood=5&iid='+id
@@ -145,6 +148,26 @@ function outt(id){
                 location.href = 'javafood?javafood=5&idd='+id;
             }
         }
+        
 function replay(id){
 	location.href = 'javafood?javafood=5&usre='+id
+}
+
+function hit(num){
+	var id = $('#id').val()
+	console.log(num)
+	console.log("실행");
+	$.ajax({
+		type : 'get',
+		url : 'http://localhost:8080/javafood_team/aj?id1='+id+'&num='+num,
+		data: 'text'
+	})
+}
+function good(num){
+	console.log(num)
+	$.ajax({
+		type : 'get',
+		url : 'http://localhost:8080/javafood_team/aj?&good='+num,
+		data : 'text'
+	})
 }

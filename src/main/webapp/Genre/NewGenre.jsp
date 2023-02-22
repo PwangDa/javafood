@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="javafoodCSS/NewGenre.css?css=css">
-<script link src ="javafoodScript/NewGenre.js"></script>
+
        
 </head>
 <body>
@@ -158,7 +158,7 @@
             <form method="post" action="/javafood_team/javafood?javafood=3">
             <div> <input type="hidden" class="btn" id="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1" onmouseover="this.src='https://c11.kr/1asd5'" onmouseout="this.src='https://c11.kr/1asd1'"></a></div><!-- 노래재생 유튜브 -->
             </form>
-            <form method="post" action="/javafood_team/javafood?javafood=3">
+            <form method="post" action="/javafood_team/javafood?javafood=3_6">
             <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'"></div><!-- 담기 버튼 -->
             </form>
         </div>
@@ -183,8 +183,8 @@
                 	<form method="post" action="/javafood_team/javafood?javafood=3">
                 	<div> <input type="hidden" class="btn"><a href="${ genre_list.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1" onmouseover="this.src='https://c11.kr/1asd5'" onmouseout="this.src='https://c11.kr/1asd1'"></a></div><!-- 노래재생 유튜브 -->
                 	</form>
-                	<form method="post" action="/javafood_team/javafood?javafood=3">
-                	<div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'"></div><!-- 담기 버튼 -->
+                	<form name="addPlayList" method="post" action="/javafood_team/javafood?javafood=3_6">
+                	<div> <input type="hidden" class="put" name="songNumber" value="${ genre_list.songnumber }"><input type="hidden" class="put" name="addWhere" value="NewGenre"><img class="img addList" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'"></div><!-- 담기 버튼 -->
              		</form>
              	</div>
              	</div>
@@ -235,6 +235,8 @@
 	</c:if>
 
 	</div>
+	
+	<script link src ="javafoodScript/NewGenre.js"></script>
 </body>
 
 </html>

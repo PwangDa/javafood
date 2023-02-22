@@ -4,6 +4,20 @@
             background-color: black;
             margin: 0;
         }
+        
+        body::-webkit-scrollbar {
+            width: 15px; /*스크롤바의 너비*/
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: rgb(92, 92, 92); /*스크롤바의 색상*/
+            border: none;
+        }
+
+        body::-webkit-scrollbar-track {
+            background-color: rgb(39, 39, 39); /*스크롤바 트랙 색상*/ 
+            border: none;
+        }
 
         div{
             /* border: 1px solid white; */
@@ -40,11 +54,33 @@
         
         .text1{
             color : white;
-            padding: 0px 10px;
+            padding: 0px 13px;
             position : absolute;
             bottom : 0;
         }
-        
+        .text_box{
+            width: 640px;
+            height: 100px;
+            text-overflow: ellipsis;
+            overflow-y: scroll; 
+            padding: 7px;
+        }
+        .text_box::-webkit-scrollbar {
+            width: 5px; /*스크롤바의 너비*/
+        }
+
+        .text_box::-webkit-scrollbar-thumb {
+            background-color: rgb(92, 92, 92); /*스크롤바의 색상*/
+            border-radius: 15px;
+            border: none;
+        }
+
+        .text_box::-webkit-scrollbar-track {
+            background-color: rgb(53, 53, 53); /*스크롤바 트랙 색상*/
+            border-radius: 15px;
+            border: none;
+        }
+
         /* 노래목록 style */
         #cont1{
             display : flex;
@@ -75,6 +111,10 @@
         }
         .img1{
             width: 60px;
+        }
+
+        .detail{
+            text-align: center;
         }
 		
 		/* 댓글 style*/

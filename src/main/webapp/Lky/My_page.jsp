@@ -9,8 +9,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+    
     	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
    		<script link src ="javafoodScript/mypageScript.js"></script>
+   		
    		<c:if test="${out!=null }"><script>urseout('${out}');</script></c:if>
         <c:if test="${login==null }"><script>notlogin();</script></c:if>
         <c:if test="${out!=null }"><script>urseout();</script></c:if>
@@ -18,58 +20,11 @@
         <meta charset="UTF-8">
         <title>My Page</title>
     </head>
- <jsp:include page="/menu.jsp" />   
     <body>
-    
-    
-        <link rel="stylesheet" href="javafoodCSS/mypageCSS1.css?css=css">
-        
-        <div class="div" style="width: 100%;height: 100%;">
-            <div class="head div">
-                <div class="div left">
-                    <a href="javafood?javafood=5" class="at">
-                        <strong>
-                            <c:out value="My pages"/>
-                        </strong>
-                    </a>
-                </div>
-                <c:if test="${session_user.myimg!=null}"><div class=" div right" style="background-image:url(${session_user.myimg})"></c:if>
-                <c:if test="${session_user.myimg==null}"><div class=" div right" style="background-image:url(http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png)"></c:if>
-                    <strong>
-                    <c:if test="${session_user.nic!=null }"><c:out value="${session_user.nic }"/></c:if>
-                    <c:if test="${session_user.nic==null }"><c:out value="닉네임을 수정해주세요"/></c:if>
-                    </strong>
-                </div>
-            </div>
-            <div class="tbody div">
-                <form method="get" action="javafood">
-                    <input type="hidden" name="javafood" value="5">
-                    <td>
-                        <select name="option" style="height: 30px;">
-                            <option value="sing">
-                                <c:out value="노래검색"/>
-                            </option>
-                            <option value="man">
-                                <c:out value="가수검색"/>
-                            </option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="text" name="text">
-                    </td>
-                    <td>
-                        <input type="submit" class="butt">
-                    </td>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    
-    
-    
+	<input type="hidden" id='id' value='${session_user.id}'>
+ 	<jsp:include page="/menu.jsp" />   
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
-    <div>
+    <div class="div ddr">
 	    <div class="mume div"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>
 	    <div class="mume div"><h3><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></h3></div>
 	    <div class="mume div"><h3><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></h3></div>
@@ -78,7 +33,7 @@
     
     
 	<c:if test="${usre!=null }">
-    <link rel="stylesheet" href="javafoodCSS/mypageCSS3.css?css=css">
+    	<link rel="stylesheet" href="javafoodCSS/mypageCSS3.css?css=css">
 		<table border="1">
 		<tr>
 			<th>이미지</th>
@@ -89,30 +44,39 @@
 			<th>하트</th>
 			<th>보관</th>
 		</tr>
-		<c:forEach items="${usre }" var="i">
-			<tr>
-				<td><a class="at" href="${i.link }"><img src="${i.imglink }"></a></td>
-				<td><a class="at" href="${i.link }"><c:out value="${i.songname }"/></a></td>
-				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
+		<c:forEach items="${usre }" var="i" varStatus="z" >
+			<tr class="ddr">
+				<td><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><img src="${i.imglink }"></a></td>
+				<td><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><c:out value="${i.songname }"/></a></td>
+				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/><img src=""></a></td>
 				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
 				<td><c:out value="${i.playtime }"/></td>
-				<td><c:out value="${i.likes }"/></td>
-				<td><c:out value="${i.likes }"/></td>
+				<td>
+					<input type="image"  src="https://c11.kr/1asbx" 
+						onmouseover="this.src='https://c11.kr/1asby'" 
+						onmouseout="this.src='https://c11.kr/1asbx'"
+						class="sub" onclick="good(${i.songnumber})">
+				</td>
+				<td>
+					<img class="img" src="https://c11.kr/1asd6" 
+					onmouseover="this.src='https://c11.kr/1asd9'" 
+					onmouseout="this.src='https://c11.kr/1asd6'">
+				</td>
 			</tr>
 		</c:forEach>
 		</table>
 	</c:if>    
     
     
-    <c:if test="${remove==1}">
-        <h1><c:out value="회원정보 수정"/></h1>
+    <c:if test="${remove==1}" >
+        <h1 class="ddr"><c:out value="회원정보 수정"/></h1>
         <form
         	id="form"
             method="post"
             action="http://localhost:8080/javafood_team/aj"
             enctype="multipart/form-data"
             accept-charset="utf-8">
-            <div>
+            <div class="ddr div">
                 <div class="div" style="width: 200px; height: 250px">
                     <div class="div">
                         <input type="file" name="file1">
@@ -196,63 +160,3 @@
     </c:if>
 </body>
 </html>
-
-<%--
-      
-      <div class="body">
-          <h2><c:out value="최근재생목록"/></h2>
-          <table border="1">
-              <tr>
-                  <th><c:out value="순위"/></th>
-                  <th><c:out value="이미지"/></th>
-                  <th><c:out value="아티스트 이름"/></th>
-                  <th><c:out value="노래 제목"/></th>
-                  <th><c:out value="조회수"/></th>
-                  <th><c:out value="유튜브 검색"/></th>
-                  <th><c:out value="좋아요"/></th>
-              </tr>
-		<c:if test="${song!=null }">
-			<c:forEach items="${song }" var="i">
-				<tr class="low">
-					<td><c:out value="${i.songnumber}"/></td>
-					<td> <img src="${i.imglink}"></td>
-					<td><c:out value="${i.artistname}"/></td>
-					<td><c:out value="${i.songname}"/></td>
-					<td><c:out value="${i.hits}"/></td>
-					<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-					<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${usre!=null }">
-			<c:forEach items="${usre }" var="i">
-				<tr class="low">
-					<td><c:out value="${i.songnumber}"/></td>
-					<td> <img src="${i.imglink}"></td>
-					<td><c:out value="${i.artistname}"/></td>
-					<td><c:out value="${i.songname}"/></td>
-					<td><c:out value="${i.hits}"/></td>
-					<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-					<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${song==null&&usre==null }">
-			<c:forEach items="${list }" var="i">
-				<tr class="low">
-					<td><c:out value="${i.songnumber}"/></td>
-					<td> <img src="${i.imglink}"></td>
-					<td><c:out value="${i.artistname}"/></td>
-					<td><c:out value="${i.songname}"/></td>
-					<td><c:out value="${i.hits}"/></td>
-					<td><a class="athe" href="javafood?javafood=5&user=${i.songnumber }&link=${i.link }" target="_blank"><c:out value="검색"/></a></td>
-					<td><a class="atge" href="javafood?javafood=5&likes=${i.songnumber }"><c:out value="${i.likes}"/></a></td>
-				</tr>
-			</c:forEach>
-		</c:if>
-	</table>
-</div>
-
---%>
-
-<%-- 	<c:if test="${a!=null }"> --%>

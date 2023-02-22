@@ -270,8 +270,8 @@
     		background-repeat: no-repeat;
  			cursor:pointer;
  			outline: 0;
- 			width: 20px;
- 			height: 20px;
+ 			width: 40px;
+ 			height: 40px;
  			background-size: contain;
         }
         .left_song_bot{
@@ -347,8 +347,6 @@
             justify-content: space-between;
             text-align: center;
         }
-        
-        
         
         
         
