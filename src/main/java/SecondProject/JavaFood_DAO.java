@@ -1580,7 +1580,8 @@ public class JavaFood_DAO {
 		System.out.println("DAO의 songNumber : " + songNumber); //확인용
 		System.out.println("DAO의 addWhere : " + addWhere); //확인용
 		
-		if("NewGenre".equals(addWhere) ) //만약 장르별 노래차트 페이지에서 곡 추가를 요청했다면
+		//나중에 if문 수정하기
+		if("void(0)".equals(addWhere) == false ) //만약 장르별 노래차트 페이지에서 곡 추가를 요청했다면
 		{
 			//쿼리문 작성
 			String addSongQuery =
