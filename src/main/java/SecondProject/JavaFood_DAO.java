@@ -345,22 +345,24 @@ public class JavaFood_DAO {
 	 * @return list : 검색된 내용의 song1의 목록을 list로 가져옵니다.
 	 */
 	public List<song_DTO> Search(String option, String text) {
-		List<song_DTO> list = new ArrayList<>();
+		List<song_DTO> list = new ArrayList<song_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
 			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("sing".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
+			else if("song".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				song_DTO vo = new song_DTO();
+				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setLink(rs.getString("link"));
+				vo.setImglink(rs.getString("imagelink"));
+				vo.setSongname(rs.getString("songname"));
 				vo.setArtistname(rs.getString("artistname"));
 				vo.setBygenre(rs.getString("bygenre"));
 				vo.setHits(rs.getString("hits"));
-				vo.setImglink(rs.getString("imglink"));
 				vo.setLikes(rs.getString("likes"));
-				vo.setSongname(rs.getString("songname"));
-				vo.setSongnumber(rs.getString("songnumber"));
-				vo.setLink(rs.getString("link"));
+				vo.setPlaytime(rs.getString("playtime"));
+				vo.setAlbum(rs.getString("album_add"));
 				list.add(vo);
 			}
 			rs.close();

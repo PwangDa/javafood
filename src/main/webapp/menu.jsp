@@ -22,12 +22,12 @@
             <a href="javafood?javafood=m" class="a1"><span class="main main_1" >홈</span></a>
             <a href="javafood?javafood=6" class="a1"><span class="main main_2" >장르별</span></a>
             <a href="javafood?javafood=3" class="a1"><span class="main main_3" >보관함</span></a>
-           	<select name="option" id="opt" style="height: 30px;">
-                <option value="sing"><c:out value="노래검색"/></option>
+           	<select id="opt" style="height: 30px;">
+                <option value="song"><c:out value="노래검색"/></option>
 	            <option value="man"><c:out value="가수검색"/></option>
             </select>
             <div class = "main-box main_4">
-                <input id="potion" class="search-txt" type="text" placeholder="검색">
+                <input id="pot" class="search-txt" type="text" placeholder="검색">
                 <button class="search-btn" type="submit" id="cli">검색</button>
             </div>
         </div>
