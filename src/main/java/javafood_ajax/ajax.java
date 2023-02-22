@@ -125,7 +125,14 @@ public class ajax extends HttpServlet {
 			}
 			response.getWriter().println(a);
 		}
-		
+		if(request.getParameter("id1")!=null) {
+			String id = request.getParameter("id1");
+			String num = request.getParameter("num");
+			JavaFood_DAO dao = new JavaFood_DAO();
+			dao.addhit(id, num);
+			dao.song1addhit(num);
+			System.out.println("ajax 조회수증가 성공");
+		}
 		
 	}
 	
