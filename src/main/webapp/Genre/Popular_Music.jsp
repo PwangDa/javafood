@@ -344,7 +344,7 @@
                 <div> <input type="hidden" class="btn"><a href="${ popular_music.link}"target='_blank'><img class="img" src="https://c11.kr/1asd1"></a></div><!-- 노래재생 유튜브 -->
                 </form>
                 <form method="post" action="/javafood_team/javafood?javafood=3">
-                <div> <input type="hidden" class="put"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
+                <div> <input type="hidden" class="put" name="songName" value="${ popular_music.songname }"><img class="img" src="https://c11.kr/1asd6"></div><!-- 담기 버튼 -->
              	</form>
              </div>
 		</c:forEach>
