@@ -21,6 +21,7 @@
         <title>My Page</title>
     </head>
     <body>
+	<input type="hidden" id='id' value='${session_user.id}'>
  	<jsp:include page="/menu.jsp" />   
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
     <div class="div ddr">
@@ -43,15 +44,24 @@
 			<th>하트</th>
 			<th>보관</th>
 		</tr>
-		<c:forEach items="${usre }" var="i">
+		<c:forEach items="${usre }" var="i" varStatus="z" >
 			<tr class="ddr">
-				<td><a class="at" id='z1' href="${i.link }" target="blank"><img src="${i.imglink }"></a></td>
-				<td><a class="at" id='z2' href="${i.link }" target="blank"><c:out value="${i.songname }"/></a></td>
-				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
+				<td><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><img src="${i.imglink }"></a></td>
+				<td><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><c:out value="${i.songname }"/></a></td>
+				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/><img src=""></a></td>
 				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
 				<td><c:out value="${i.playtime }"/></td>
-				<td><c:out value="${i.likes }"/></td>
-				<td><c:out value="${i.likes }"/></td>
+				<td>
+					<input type="image"  src="https://c11.kr/1asbx" 
+						onmouseover="this.src='https://c11.kr/1asby'" 
+						onmouseout="this.src='https://c11.kr/1asbx'"
+						class="sub">
+				</td>
+				<td>
+					<img class="img" src="https://c11.kr/1asd6" 
+					onmouseover="this.src='https://c11.kr/1asd9'" 
+					onmouseout="this.src='https://c11.kr/1asd6'">
+				</td>
 			</tr>
 		</c:forEach>
 		</table>

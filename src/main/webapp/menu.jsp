@@ -9,7 +9,6 @@
 
 <link rel="stylesheet" href="javafoodCSS/menuCSS.css?css=css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<script link src ="javafoodScript/menuScript.js"></script>
 
 </head>
 <body>
@@ -42,4 +41,5 @@
         
     </header>
 </body>
+<script link src ="javafoodScript/menuScript.js"></script>
 </html>
