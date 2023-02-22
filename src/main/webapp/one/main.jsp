@@ -55,9 +55,13 @@
 						class="sub" onclick="good(${i.songnumber})">
 					</td>
 					<td>
-						<img class="img" src="https://c11.kr/1asd6" 
-						onmouseover="this.src='https://c11.kr/1asd9'" 
-						onmouseout="this.src='https://c11.kr/1asd6'">
+						<form name="addPlayList" method="post" action="/javafood_team/javafood?javafood=3_6" onclick="this.submit();">
+							<img class="img" src="https://c11.kr/1asd6" 
+								onmouseover="this.src='https://c11.kr/1asd9'" 
+								onmouseout="this.src='https://c11.kr/1asd6'">
+	               			<input type="hidden" name="songNumber" value="${i.songnumber }">
+	               			<input type="hidden" name="addWhere" value="main">
+         	  			</form>
 					</td>
 				</tr>
    			</c:forEach>

@@ -57,18 +57,15 @@
 						onmouseout="this.src='https://c11.kr/1asbx'"
 						class="sub" onclick="good(${i.songnumber})">
 				</td>
-				<%-- 
-				<form name="addPlayList" method="post" action="/javafood_team/javafood?javafood=3_6">
-					<td>
-						<img class="img addList" src="https://c11.kr/1asd6" 
+				<td>
+					<form name="addPlayList" method="post" action="/javafood_team/javafood?javafood=3_6" onclick="this.submit();">
+						<img class="img" src="https://c11.kr/1asd6" 
 							onmouseover="this.src='https://c11.kr/1asd9'" 
-							onmouseout="this.src='https://c11.kr/1asd6'"
-							onclick="list(${i.songnumber})">
-               			<input type="hidden" class="put" name="songNumber" value="${i.songnumber }">
-               			<input type="hidden" class="put" name="addWhere" value="My_page">
-					</td>
-           		</form>
-           		--%>
+							onmouseout="this.src='https://c11.kr/1asd6'">
+               			<input type="hidden" name="songNumber" value="${i.songnumber }">
+               			<input type="hidden" name="addWhere" value="My_page">
+         	  		</form>
+				</td>
 			</tr>
 		</c:forEach>
 		</table>
