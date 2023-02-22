@@ -55,7 +55,7 @@
 					<input type="image"  src="https://c11.kr/1asbx" 
 						onmouseover="this.src='https://c11.kr/1asby'" 
 						onmouseout="this.src='https://c11.kr/1asbx'"
-						class="sub">
+						class="sub" onclick="good(${i.songnumber})">
 				</td>
 				<td>
 					<img class="img" src="https://c11.kr/1asd6" 

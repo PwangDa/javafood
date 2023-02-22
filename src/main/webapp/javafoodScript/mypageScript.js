@@ -163,3 +163,11 @@ function hit(num){
 		data: 'text'
 	})
 }
+function good(num){
+	console.log(num)
+	$.ajax({
+		type : 'get',
+		url : 'http://localhost:8080/javafood_team/aj?&good='+num,
+		data : 'text'
+	})
+}

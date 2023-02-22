@@ -549,14 +549,14 @@ public class JavaFood_DAO {
 	public void like_music(String i) {
 		try {
 			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM song1 WHERE SONGNUMBER ="+i);
+			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM genre WHERE SONGNUMBER ="+i);
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			song_DTO vo = new song_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes())+1;
 			System.out.println(a);
-			this.pstmt = con.prepareStatement("UPDATE song1 SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
+			this.pstmt = con.prepareStatement("UPDATE genre SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();

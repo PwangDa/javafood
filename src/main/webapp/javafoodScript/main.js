@@ -56,3 +56,21 @@
 			}
 		}
 	});
+	function hit(num){
+		var id = $('#id').val()
+		console.log(num)
+		console.log("실행");
+		$.ajax({
+			type : 'get',
+			url : 'http://localhost:8080/javafood_team/aj?id1='+id+'&num='+num,
+			data: 'text'
+		})
+	}
+	function good(num){
+		console.log(num)
+		$.ajax({
+			type : 'get',
+			url : 'http://localhost:8080/javafood_team/aj?&good='+num,
+			data : 'text'
+		})
+	}
