@@ -31,15 +31,15 @@
 	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 		   		   enctype="multipart/form-data" 
 		  		   accept-charset="utf-8">
-		  		<div>
+		  		<div class="div_1">
 					<div style="width: 200px; height: 250px">
 						<div>
-							<input type="file" name="file1">
 							<p><strong> 프로필 사진 (서버가 없어서 다른컴퓨터에서 이미지 출력 불가)</strong></p>
-							<img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+							<img class="upload_img" src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
 						</div>
-						<div>
-							<input type="button" id="but" value="업로드">
+						<div class="upload">
+							<input type="file" name="file1">
+							<input class="butt" type="button" id="but" value="업로드">
 						</div>
 					</div>
 				</div>
@@ -47,65 +47,78 @@
 	        
 	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
-	              <table>
+	             	<table class="tdtd">
 	        <tr class="tr">
-	            <th><c:out value=" 아이디 : "/></th>
-	            <td><input type="text" name="Id1" id="Id1" placeholder="아이디를 입력하시오"></td>
-	            <td><input type="button" id="idbutt" value="중복 확인"></td>
+	            <th></th>
+	            <td>
+	            <strong><c:out value=" 아이디"/></strong>
+	            <input class="ttt" type="text" name="Id1" id="Id1" placeholder="아이디"></td>
+	            <td><input class="butt" type="button" id="idbutt" value="중복 확인"></td>
 	            <td><input type="checkbox" id="ch1" class="ch"></td>
 	        </tr>
-	        <tr>
-	            <th><c:out value="비밀번호 1 :  "/></th>
-	            <td><input type="password" id="pw1" name="PW1"placeholder="비밀번호를 입력하시오"></td>
-	            <td rowspan="2"><input type="button" id="pwbutt" value="일치 확인"></td>
-	            <td><input type="checkbox" id="ch2" class="ch"></td>
-	        </tr>
-	        <tr>
-	            <th><c:out value="비밀번호 2 :  "/></th>
-	            <td><input type="password" id="pw2" placeholder="다시입력하시오"></td>
-	            <td></td>
-	        </tr>
 	        <tr class="tr">
-	            <th><c:out value="닉네임 : "/></th>
-	            <td><input type="text" id="nic" name="nic" placeholder="닉네임"></td>
-	            <td><input type="button" id="nicbutt" value="중복확인"></td>
+	            <th></th>
+	            <td>
+	            <strong><c:out value="닉네임" /></strong>
+	            <input class="ttt" type="text" id="nic" name="nic" placeholder="닉네임"></td>
+	            <td><input class="butt" type="button" id="nicbutt" value="중복확인"></td>
 	            <td><input type="checkbox" id="ch3" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th><c:out value="이메일 : "/></th>
-	            <td><input type="text" id="email" name="mail" placeholder="mail@naver.com"></td>
-	            <td><input type="button" id="mailbutt" value="인증하기"></td>
+	            <th></th>
+	            <td>
+	            <strong><c:out value="비밀번호"/></strong>
+	            <input class="ttt" type="password" id="pw1" name="PW1"placeholder="비밀번호">
+	            </td>
+	            <td rowspan="2"><input class="butt" type="button" id="pwbutt" value="일치 확인"></td>
+	            <td><input type="checkbox" id="ch2" class="ch"></td>
+	        </tr>
+	        <tr>
+	            <th></th>
+	            <td>
+	            <input class="ttt" type="password" id="pw2" placeholder="비밀번호(확인)"></td>
+	            <td></td>
+	        </tr>
+	        <tr>
+	            <th></th>
+	            <td>
+	            <strong><c:out value="이메일"/></strong>
+	            <input class="ttt" type="text" id="email" name="mail" placeholder="이메일"></td>
+	            <td><input class="butt" type="button" id="mailbutt" value="인증번호 전송"></td>
 	            <td><input type="checkbox" id="ch4" class="ch"></td>
 	        </tr>
 	        <tr id="mail">
-	            <th><c:out value="인증번호 : "/></th>
-	            <td><input type="text" placeholder="메일 인증번호"></td>
-	            <td><input type="button" id="mailchbutt" value="인증확인"></td>
+	            <th></th>
+	            <td>
+	            <input class="ttt_2" type="text" placeholder="메일 인증번호"></td>
+	            <td><input class="butt" type="button" id="mailchbutt" value="인증확인"></td>
 	            <td><input type="checkbox" id="ch5" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th id="pn" class="tr"><c:out value="주민등록 번호 : "/></th>
+	            <th id="pn" class="tr"></th>
 	            <td>
-	                <input type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
-	                <input type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
+	            	<strong><c:out value="주민등록 번호"/></strong><br>
+	                <input class="ttt_2" type="text" class="pn" name="pn1" id="pn1" placeholder="911222">
+	                <input class="ttt_2" type="password" class="pn" name="pn2" id="pn2" placeholder="1234567">
 	            </td>
-	            <td><input type="button" id="pnbutt" value="중복확인"></td>
+	            <td><input class="butt" type="button" id="pnbutt" value="중복확인"></td>
 	            <td><input type="checkbox" id="ch6" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th class="tr"><c:out value=" 휴대폰 번호 : "/></th>
+	            <th class="tr"></th>
 	            <td>
-	                <input type="text" class="phone" name="phone1" id="phone1" placeholder="010">
-	                <input type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
-	                <input type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
+	            	<strong><c:out value=" 휴대폰 번호"/></strong><br>
+	                <input class="ttt_1" type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+	                <input class="ttt_1" type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+	                <input class="ttt_1" type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
 	            </td>
-	            <td><input type="button" id="phonebutt" value="연락처 확인"></td>
+	            <td><input class="butt" type="button" id="phonebutt" value="연락처 확인"></td>
 	            <td><input type="checkbox" id="ch7" class="ch"></td>
 	        </tr>
 	        <tr>
-	            <th><a href="javafood?javafood=4" class="at"><c:out value=" 취 소 "/></a></th>
-	            <th><input class="sub" type="submit" value="회원가입" id="end"disabled></th>
-	            <th><input class="sub" type="reset" id="re" value="다시작성"></th>
+	            <th><a href="javafood?javafood=4" class="at"><c:out value=" 뒤로가기 "/></a></th>
+	            <th><input class="sub butt" type="reset" id="re" value="다시작성"></th>
+	            <th><input class="sub" type="submit" value="회원가입" id="end" disabled></th>
 	        </tr>
 	    </table>
 	            </div>

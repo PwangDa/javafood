@@ -3,9 +3,13 @@ body{
 	background-size: contain; 
 	color: white; 
 	background-color: black; 
-	text-align: center;
+/* 	text-align: center; */
 	}
-.div1{
+.ddr{
+	text-align: center;
+	padding-top: 53px
+}
+.div{
 	display: inline-block; 
 	width: 100%; 
 	height: 100%;

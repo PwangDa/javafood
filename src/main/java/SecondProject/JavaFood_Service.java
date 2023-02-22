@@ -317,7 +317,8 @@ public class JavaFood_Service {
 	 * @return  Map : 검색된 내용의 song1의 목록을 list로 가져옵니다
 	 */
 	public List<song_DTO> javafood5_1(String option, String text){
-		return dao.Search(option, text);
+		List<song_DTO> list = dao.Search(option, text);
+		return  list;
 	}
 	/**
 	 * 노래 조회수 증가
