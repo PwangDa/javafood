@@ -65,6 +65,29 @@ body {
  	outline: 0;
 	
 }
+
+.mouse{
+        	width: 30px;
+        	margin-left: 0px;
+        	border-radius: 30%;
+        	
+        }
+.paging{
+           
+            display: block;
+            text-align: center;  
+            margin-top: 40px;          
+        }
+        
+.number{
+            
+            vertical-align: top;
+        }
+        
+ a{
+            text-decoration: none;
+            color: white;
+        }
 	  /*체크박스*/
         /*.but{
             display : none;

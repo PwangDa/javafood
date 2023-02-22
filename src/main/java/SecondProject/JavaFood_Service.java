@@ -170,6 +170,7 @@ public class JavaFood_Service {
 		
 	}
 	
+	// 조회수 증가
 	public void addhit(String songnumber, String id) {
 //		System.out.println("addhit test");
 		dao.addhit(id, songnumber);
@@ -177,6 +178,27 @@ public class JavaFood_Service {
 		
 		
 	}
+	
+
+	// 차트 페이징
+		public Map javafood2(int pageNum, int countPerPage){
+			System.out.println("페이징 실행");
+			
+			int start = 0;
+			int end = 0;
+			start = (countPerPage*(pageNum-1))+1;
+			end = start + countPerPage - 1;
+			List<song_DTO> chart_list = dao.chartPaging(start, end);
+			
+			int totalCount = dao.totalpaging();
+			
+			Map map = new HashMap();
+			map.put("list", chart_list);
+			map.put("totalCount", totalCount);
+			return map;
+			
+			
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 플레이 리스트 불러오기
 	public List s_loadPL(String id)

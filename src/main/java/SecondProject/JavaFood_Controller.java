@@ -386,21 +386,53 @@ public class JavaFood_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+
+		// 페이징 변수
+		int pageNum = 1;		// 현재 페이지
+		int countPerPage = 50;	// 한 페이지당 표시 수 
+		
+		// 차트 페이징
+		
+				String show="페이지";
+				if(request.getParameter("songnumber")!=null) {
+					show = request.getParameter("songnumber");
+				}
+				String tmp_pageNum = request.getParameter("pageNum");
+				if(tmp_pageNum != null) {
+					pageNum = Integer.parseInt(tmp_pageNum);
+				}
+//				System.out.println("show  전: " + show);
+//				System.out.println("pageNum : " + pageNum);
+//				System.out.println("countPerPage : " + countPerPage);
+		
+		Map chart_list = service.javafood2(pageNum, countPerPage);
+		
+		request.setAttribute("list", chart_list.get("list"));
+		request.setAttribute("totalCount", chart_list.get("totalCount"));
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("countPerPage", countPerPage);
+		request.setAttribute("show", show);
+		
 		// 좋아요
 		if(request.getParameter("good_like")!=null) {
 			service.javafood5_4(request.getParameter("good_like"));
 		}
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
-		List<song_DTO> list_login = service.javafood2();
-		request.setAttribute("list_login", list_login);
-		nextPage = "/song.jsp";
+		// 플레이 리스트 추가
+//		if(request.getParameter("playlist")!=null) {
+//			
+//		}
+		
+//		RequestDispatcher dispatch = request.getRequestDispatcher("song.jsp");
+//		Map list_login = service.javafood2(pageNum, countPerPage);
+//		request.setAttribute("list_login", list_login);
+		
 //		System.out.println("list_login size : " + list_login.size());
 		
 //		list_login = service.javafood2();
 		
-		
-		dispatch = request.getRequestDispatcher(nextPage);
+		nextPage = "/song.jsp";
+		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 //		doGet(request, response);
 		
