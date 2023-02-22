@@ -6,21 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>javafood menu</title>
+
 <link rel="stylesheet" href="javafoodCSS/menuCSS.css?css=css">
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script link src ="javafoodScript/menuScript.js"></script>
 
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-
-<script>
-    window.onload=function(){
-        $("#cli").on("click",function(){
-        	var tex = ($("select[name=option] option:selected").text());
-            location.href="javafood?javafood=m$option="+tex+"&point="+$('#potion').val();
-        })
-
-    }
-</script>
+	
     <header id ="menu" >
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
         <a href="javafood?javafood=m" class="a1"><img src="https://c11.kr/1asbb" class="logo-img">Music</a>
@@ -45,7 +38,7 @@
         <c:if test="${lo[0].myimg==null}">
 			<a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
         </c:if>
-        </span>>
+        </span>
         
     </header>
 </body>

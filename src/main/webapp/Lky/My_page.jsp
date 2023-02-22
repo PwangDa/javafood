@@ -18,10 +18,10 @@
         <meta charset="UTF-8">
         <title>My Page</title>
     </head>
- <jsp:include page="/menu.jsp" />   
     <body>
+ <jsp:include page="/menu.jsp" />   
     
-    
+   <%-- 
         <link rel="stylesheet" href="javafoodCSS/mypageCSS1.css?css=css">
         
         <div class="div" style="width: 100%;height: 100%;">
@@ -65,11 +65,11 @@
         </div>
     </div>
     
-    
+    --%> 
     
     
     <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
-    <div>
+    <div class="div ddr">
 	    <div class="mume div"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>
 	    <div class="mume div"><h3><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></h3></div>
 	    <div class="mume div"><h3><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></h3></div>
@@ -90,7 +90,7 @@
 			<th>보관</th>
 		</tr>
 		<c:forEach items="${usre }" var="i">
-			<tr>
+			<tr class="ddr">
 				<td><a class="at" href="${i.link }"><img src="${i.imglink }"></a></td>
 				<td><a class="at" href="${i.link }"><c:out value="${i.songname }"/></a></td>
 				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/></a></td>
@@ -104,15 +104,15 @@
 	</c:if>    
     
     
-    <c:if test="${remove==1}">
-        <h1><c:out value="회원정보 수정"/></h1>
+    <c:if test="${remove==1}" >
+        <h1 class="ddr"><c:out value="회원정보 수정"/></h1>
         <form
         	id="form"
             method="post"
             action="http://localhost:8080/javafood_team/aj"
             enctype="multipart/form-data"
             accept-charset="utf-8">
-            <div>
+            <div class="ddr div">
                 <div class="div" style="width: 200px; height: 250px">
                     <div class="div">
                         <input type="file" name="file1">
@@ -196,7 +196,6 @@
     </c:if>
 </body>
 </html>
-
 <%--
       
       <div class="body">
