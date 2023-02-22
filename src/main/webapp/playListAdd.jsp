@@ -22,7 +22,7 @@
 <meta charset="UTF-8">
 <title>리스트에 노래 추가</title>
 	<!-- css파일 불러오기 -->
-	<link rel="stylesheet" href="/javafoodCSS/playList.css">
+	<link rel="stylesheet" href="javafoodCSS/playList.css">
 </head>
 <body>
 	<div class="title"><h1>노래를 추가할 플레이 리스트를 선택하세요.</h1></div>
@@ -38,6 +38,5 @@
 			</div>
 		</a>
 	</c:forEach>
-	
 </body>
 </html>
