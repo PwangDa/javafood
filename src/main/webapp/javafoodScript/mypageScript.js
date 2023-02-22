@@ -12,6 +12,22 @@
             );
         }());
 window.onload = function(){
+	/*
+	let addList = document.querySelectorAll("img.addList");
+
+console.log(addList);
+
+	for(let i = 0; i < addList.length; i++)
+{
+	addList[i].addEventListener("click", (event)=> //()=>는 화살표 함수
+	{
+		console.log("img.addList의 EventListener 실행됨."); //확인용
+		
+		addList[i].parentNode.parentNode.target = "_blank"; //새 창으로 열기
+		addList[i].parentNode.parentNode.submit(); //form 서밋하기
+	});
+}
+*/
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             $('#re').on('click', function () {
                 $('#end').attr('disabled', true);
@@ -152,16 +168,14 @@ function outt(id){
 function replay(id){
 	location.href = 'javafood?javafood=5&usre='+id
 }
-
 function hit(num){
-	var id = $('#id').val()
-	console.log(num)
-	console.log("실행");
-	$.ajax({
-		type : 'get',
-		url : 'http://localhost:8080/javafood_team/aj?id1='+id+'&num='+num,
-		data: 'text'
-	})
+    var id = $('#id').val()
+    console.log(num)
+    $.ajax({
+        type : 'get',
+        url : 'http://localhost:8080/javafood_team/aj?id1='+id+'&num='+num,
+        data: 'text'
+    })
 }
 function good(num){
 	console.log(num)
@@ -171,10 +185,16 @@ function good(num){
 		data : 'text'
 	})
 }
-
+/*
 function list(num){
-	
-	location.href="javafood_team/javafood?javafood=3_6"
+	var form = $("<form>", {
+	  	method: "post",
+	  	action: "/javafood_team/javafood?javafood=3_6?addWhere= &songNumber="+num
+	}).appendTo("body");
+	form.submit();
 }
+*/
+
+
 
 
