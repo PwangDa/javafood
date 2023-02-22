@@ -379,20 +379,12 @@ public class JavaFood_DAO {
 		List<song_DTO> list = new ArrayList<song_DTO>();
 		try {
 			this.con = this.dataFactory.getConnection();
-<<<<<<< HEAD
 
 			if ("man".equals(option))
 				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%" + text + "%'");
 			else if ("sing".equals(option))
 				this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%" + text + "%'");
 
-			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("song".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
-
-=======
-			if("man".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE ARTISTNAME  LIKE '%"+text+"%'");
-			else if("song".equals(option)) this.pstmt = this.con.prepareStatement("SELECT * FROM Genre WHERE SONGNAME  LIKE '%"+text+"%'");
->>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				song_DTO vo = new song_DTO();
@@ -602,33 +594,15 @@ public class JavaFood_DAO {
 	 */
 	public void like_music(String i) {
 		try {
-<<<<<<< HEAD
-
-			this.con = this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM song1 WHERE SONGNUMBER =" + i);
-
-			this.con=this.dataFactory.getConnection();
-			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM genre WHERE SONGNUMBER ="+i);
-
-=======
 			this.con=this.dataFactory.getConnection();
 			this.pstmt = this.con.prepareStatement("SELECT LIKES  FROM genre WHERE SONGNUMBER =" + i);
->>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 			ResultSet rs = this.pstmt.executeQuery();
 			rs.next();
 			song_DTO vo = new song_DTO();
 			vo.setLikes(rs.getString("likes"));
 			int a = Integer.parseInt(vo.getLikes()) + 1;
 			System.out.println(a);
-<<<<<<< HEAD
-
-			this.pstmt = con.prepareStatement("UPDATE song1 SET LIKES = " + a + " WHERE SONGNUMBER = " + i);
-
-			this.pstmt = con.prepareStatement("UPDATE genre SET LIKES = "+a+" WHERE SONGNUMBER = "+i);
-
-=======
 			this.pstmt = con.prepareStatement("UPDATE genre SET LIKES = " + a + " WHERE SONGNUMBER = " + i);
->>>>>>> 2ed8e947d0d7793e30d32311a378063f27981621
 			this.pstmt.executeUpdate();
 			rs.close();
 			this.pstmt.close();
