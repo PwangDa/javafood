@@ -29,17 +29,18 @@
 
 			document.getElementById("timebox").value = hour + ":" + minute
 					+ ":" + second;
+				console.log(123, document.getElementById("timebox"));
 		}
-
-		window.onload = function() {
+		window.addEventListener("load", function() {
 			//HTML이 다 load가 완료 됐을 때 실행됨
 			nowtime();
 			setInterval(function() {
 			
 				nowtime();
 			}, 1000); //1초 단위
-		}
-		
+		})
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		function addhit(id,song) {
 			console.log("id = "+id)
 			console.log("song = "+song)
