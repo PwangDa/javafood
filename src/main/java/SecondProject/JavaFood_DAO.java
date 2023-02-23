@@ -221,7 +221,7 @@ public class JavaFood_DAO {
 			ResultSet rs = con.prepareStatement("SELECT *  FROM login WHERE ID = '" + login + "'").executeQuery();
 			login_DTO vo = new login_DTO();
 			rs.next();
-//			vo.setId(rs.getString("id"));
+			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
 
