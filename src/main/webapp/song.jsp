@@ -22,7 +22,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link rel="stylesheet" href="javafoodCSS/songCSS.css?css=css">
-<script link src="javafoodScript/songScript.js"></script>
+
 
 
 </head>
@@ -84,10 +84,13 @@
 						onclick="window.open('https://www.youtube.com/results?search_query=${dao.songname }'); addhit('${login}','${dao.songnumber }'); "><img
 							class="play" src="https://c11.kr/1asd1"></a></td>
 
-					<form method="post" action="/javafood_team/javafood?javafood=3">
-						<td><input type="hidden"><img class="save"
-							src="https://c11.kr/1asd6"></td>
-					</form>
+					<td>
+						<form method="post" action="/javafood_team/javafood?javafood=3_6">
+							<input type="hidden" name="songNumber" value="${dao.songnumber }">
+							<input type="hidden" name="addWhere" value="song">
+							<img class="save" src="https://c11.kr/1asd6">
+						</form>
+					</td>
 
 					<td>${dao.country }</td>
 				</tr>
@@ -144,5 +147,6 @@ if (lastSec > lastPage) {
 			</c:if>
 
 		</div>
+<script link src="javafoodScript/songScript.js"></script>
 </body>
 </html>

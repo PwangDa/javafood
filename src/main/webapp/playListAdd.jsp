@@ -11,8 +11,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
-	String id = (String)request.getAttribute("id");
-
 	/* 어느 페이지에서 노래 추가를 요청했는지 판단하는 변수. */
 	String addWhere = request.getParameter("addWhere");
 	
@@ -28,6 +26,16 @@
 	<link rel="stylesheet" href="javafoodCSS/playList.css">
 </head>
 <body>
+<%-- 	<% if(id.equals(null) ) --%>
+<%-- 		{%> --%>
+<!-- 			<div class="title"> -->
+<!-- 				<h1>로그인이 필요한 서비스 입니다.</h1> -->
+<!-- 				<br> -->
+<!-- 				<a href="javafood?javafood=4">로그인</a> -->
+<!-- 			</div> -->
+<%-- 	<%	} --%>
+// 		else
+<%-- 		{%> --%>
 	<div class="title"><h1>노래를 추가할 플레이 리스트를 선택하세요.</h1></div>
 	<br>
 	<hr>
@@ -41,5 +49,6 @@
 			</div>
 		</a>
 	</c:forEach>
+<%-- 	<%	} %> --%>
 </body>
 </html>

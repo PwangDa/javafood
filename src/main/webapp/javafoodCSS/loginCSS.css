@@ -204,5 +204,7 @@ table{
 .butt:hover{
 	background-color: rgb(138, 138, 138);
 }
-
+.logo-img:hover {
+	cursor: pointer;
+}
 

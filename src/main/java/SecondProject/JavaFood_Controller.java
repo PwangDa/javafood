@@ -522,6 +522,8 @@ public class JavaFood_Controller extends HttpServlet {
 	{
 		System.out.println("JavaFood_Controller의 java3_6 메소드 실행됨."); //확인용
 		
+//		if(id)
+		
 		List playList = service.s_loadPL(id);
 		
 		return playList;
@@ -530,6 +532,8 @@ public class JavaFood_Controller extends HttpServlet {
 	//범주 플레이 리스트 안에 곡 추가하기.
 	private void java3_7(int pl_id, int songNumber, String addWhere)
 	{
+		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
+		
 		service.s_addSongToPlayList(pl_id, songNumber, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -602,7 +606,10 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
-		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
+		if(request.getParameter("usre")!=null) {
+			request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
+			request.setAttribute("page", request.getParameter("page"));
+		}
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
 		if(request.getParameter("iid")!=null) request.getSession().invalidate();

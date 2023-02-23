@@ -270,9 +270,11 @@
     		background-repeat: no-repeat;
  			cursor:pointer;
  			outline: 0;
- 			width: 40px;
- 			height: 40px;
+ 			width: 35px;
+ 			height: 30px;
  			background-size: contain;
+ 			margin-right: 3px;
+ 			
         }
         .left_song_bot{
             margin-left: 10px;
@@ -288,6 +290,7 @@
             height: 40px;
             text-align: center;
             line-height: 40px;
+            
         }
       /*  .right_item_bot_good{
        		position:relative;
