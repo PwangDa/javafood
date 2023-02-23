@@ -40,9 +40,8 @@
     </span>
         
     </header>
-    
-    <div style="width: 94%;margin-top:55px; height:100px; border: 1px solid red; text-align: center; display: inline-block;"></div>
-    <div style="width: 5%;height:100px; border: 1px solid red; text-align: center; display: inline-block;"></div>
+<!--     <div style="width: 94%;margin-top:55px; height:100px; border: 1px solid red; text-align: center; display: inline-block;"></div> -->
+<!--     <div style="width: 5%;height:100px; border: 1px solid red; text-align: center; display: inline-block;"></div> -->
 </body>
 <script link src ="javafoodScript/menuScript.js"></script>
 </html>
