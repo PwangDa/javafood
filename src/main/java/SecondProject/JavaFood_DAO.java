@@ -697,13 +697,73 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 
 			String query = "SELECT * FROM ALBUM a";
-			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NUM = i.ALBUM_NUM)";
+			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NAME = i.ALBUM_NAME)";
 			// query += " WHERE a.ALBUM_NUM = 1";
-			query += " WHERE a.ALBUM_NUM = ?";
+			query += " WHERE a.ALBUM_NAME = ?";
 
 			System.out.println("num : " + num);
 			pstmt = this.con.prepareStatement(query);
 			pstmt.setString(1, num);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String alNum = rs.getString("album_num");
+				String cover = rs.getString("album_cover");
+				String alname = rs.getString("album_name");
+				String into = rs.getString("album_into");
+//				String artist = rs.getString("artist");
+				String artistname = rs.getString("artistname");
+				String artistimg = rs.getString("artist_img");
+				String info = rs.getString("artist_info");
+
+				String music_num = rs.getString("music_num");
+				String music_name = rs.getString("music_name");
+				String music_link = rs.getString("music_link");
+				String music_time = rs.getString("music_time");
+
+				AlbumDTO albumDTO = new AlbumDTO();
+
+				albumDTO.setAlbum_num(alNum);
+				albumDTO.setAlbum_cover(cover);
+				albumDTO.setAlbum_name(alname);
+				albumDTO.setAlbum_into(into);
+				albumDTO.setArtist_info(info);
+				albumDTO.setArtist_img(artistimg);
+				albumDTO.setArtistname(artistname);
+
+				albumDTO.setMusic_num(music_num);
+				albumDTO.setMusic_name(music_name);
+				albumDTO.setMusic_link(music_link);
+				albumDTO.setMusic_time(music_time);
+
+				listAlbum.add(albumDTO);
+
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return listAlbum;
+	}
+	
+	public List<AlbumDTO> listAlbum() {
+		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+
+		try {
+			this.con = dataFactory.getConnection();
+
+			String query = "SELECT * FROM ALBUM a";
+			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NUM = i.ALBUM_NUM)";
+//		query += " WHERE a.ALBUM_NUM = 1";
+			query += " WHERE i.MUSIC_NUM = 1";
+
+//		System.out.println("num : "+num);
+			pstmt = this.con.prepareStatement(query);
+//		pstmt.setString(1, num);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -759,14 +819,14 @@ public class JavaFood_DAO {
 	 * 
 	 * @return list : 각 앨범의 1번음악만 list를 가져옵니다.
 	 */
-	public List<AlbumDTO> listAlbum() {
+	public List<AlbumDTO> listAlbum_artid(String artid) {
 		List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 
 		try {
 			this.con = dataFactory.getConnection();
 
 			String query = "SELECT * FROM ALBUM a";
-			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NUM = i.ALBUM_NUM)";
+			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NAME = i.ALBUM_NAME)";
 //		query += " WHERE a.ALBUM_NUM = 1";
 			query += " WHERE i.MUSIC_NUM = 1";
 

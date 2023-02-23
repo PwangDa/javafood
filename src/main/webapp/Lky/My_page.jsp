@@ -165,5 +165,9 @@
             </div>
         </form>
     </c:if>
+    <c:if test="${user_search}">
+    	
+    	
+    </c:if>
 </body>
 </html>

@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
-header {
+ header {
 	top: 0;
-}
+} 
+
 
 body {
 	margin: 0 63px;
@@ -11,7 +12,6 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	
 }
 
 .table {
@@ -39,13 +39,13 @@ body {
 
 .time {
 	width : 100%;
-	margin : 60px;
-	margin-bottom : 0px;
+	margin : 0px;
+	margin-top : 61px;
 	text-align : right;
 }
 
 .list {
-	margin : -51px;
+	margin : 0px;
 	width : 100%;
 }
 .play {
@@ -68,9 +68,9 @@ body {
 }
 
 #allsave {
-	width : 50px; 
-	margin-right : 1200px;
-	margin-bottom : 50px;
+	width: 50px;
+    margin-right: 1213px;
+    margin-bottom: -91px;
 	
 }
 
