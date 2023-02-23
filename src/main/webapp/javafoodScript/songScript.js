@@ -64,6 +64,8 @@
 	for(let i=0; i<save.length; i++){
 		save[i].addEventListener("click",function(){
 			console.log("담기 버튼 눌림");
+			
+			save[i].parentNode.target = "_blank";
 			save[i].parentNode.submit();
 		});
 	}
