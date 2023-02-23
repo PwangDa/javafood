@@ -23,7 +23,6 @@
             position:fixed;
             height: 53px;
             border-bottom:1px solid rgb(70, 70, 70);
-            z-index: 1;
             /* transition: opacity 0.4s; */
         }
 
@@ -33,6 +32,7 @@
             width: 87%;
             padding: 25px;
             margin: 0 auto;
+            
         }
 
         a{
@@ -184,6 +184,7 @@
         .musiclist{
            /*  margin-top: 20px; */
 /*             display : inline-block; */
+			z-index: -1;
         }
         .cont2{
             display: flex;
@@ -337,7 +338,8 @@
            
             display: block;
             text-align: center;  
-            margin-top: 40px;          
+            margin-top: 40px; 
+            position: relative;         
         }
 
         .num_p{
