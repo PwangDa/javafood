@@ -30,18 +30,24 @@
                 <button class="search-btn" type="button" id="cli">검색</button>
             </div>
         </div>
-        <span>
-        <c:if test="${lo[0].myimg!=null}">
-	        <a href="javafood?javafood=5"><img class="menu-img" src=" ${lo[0].myimg }"></a>
-        </c:if>
-        <c:if test="${lo[0].myimg==null}">
-			<a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
-        </c:if>
-    </span>
+        <span id="spa" class="abc">
+	        <c:if test="${lo[0].myimg!=null}">
+		        <a href="javafood?javafood=5"><img class="menu-img" src=" ${lo[0].myimg }"></a>
+	        </c:if>
+	        <c:if test="${lo[0].myimg==null}">
+				<a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
+	        </c:if>
+    	</span>
         
     </header>
-<!--     <div style="width: 94%;margin-top:55px; height:100px; border: 1px solid red; text-align: center; display: inline-block;"></div> -->
-<!--     <div style="width: 5%;height:100px; border: 1px solid red; text-align: center; display: inline-block;"></div> -->
+    <div style="width: 94%;margin-top:55px; height:100PX; BORDER: 1PX SOLID RED; TEXT-ALIGN: CENTER; DISPLAY: INLINE-BLOCK;">321</div>
+    <div id="di" STYLE=" WIDTH: 5%;HEIGHT:100PX; BORDER: 1PX SOlid red; text-align: center; display: inline-block;">123</div>
+	<script>
+	
+		$("#di").hide();
+	</script>
+	
+
 </body>
 <script link src ="javafoodScript/menuScript.js"></script>
 </html>

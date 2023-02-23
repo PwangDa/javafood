@@ -608,13 +608,13 @@ public class JavaFood_Controller extends HttpServlet {
 				vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 				service.javafood4_3(vo);
 			}
-			if("2".equals(request.getParameter("remove"))) {
-				
-			}
-			if("3".equals(request.getParameter("remove"))) {
-				
-			}
 			request.setAttribute("re", "re");
+		}
+		if(request.getParameter("user_search")!=null) {
+			//계정찾기
+			
+			
+			
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
