@@ -478,11 +478,13 @@ public class JavaFood_Controller extends HttpServlet {
 	//범주 playList.jsp 접속+리스트 불러오기
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JavaFood_Controller의 java3 메소드 실행됨."); //확인용
-		
+		System.out.println(request.getSession().getAttribute("login") );
 
 		//세션에 저장된 id값 받아오기
-		List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
-		String c_id = (String)session_user.get(0).getId();
+//		List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
+		String c_id = (String)request.getSession().getAttribute("login");
+		
+		System.out.println("java3의 c_id 값 : " + c_id);
 //		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 테스트용 아이디.
 		
 		//Service에서 플레이 리스트 불러오는 메서드 실행하기
@@ -491,6 +493,9 @@ public class JavaFood_Controller extends HttpServlet {
 
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
+		
+		String testId = (String)request.getAttribute("c_id");
+		System.out.println("java3의 testId : " + testId);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
 
