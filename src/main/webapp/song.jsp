@@ -31,10 +31,15 @@
 	<div class="time">
 		<input type="text" size="10" id="timebox"> 현재시각 기준
 	</div>
+		<form method="post" action="/javafood_team/javafood?javafood=3_6">
+				<input type="hidden" name="songNumber" value="${dao.songnumber }">
+				<input type="hidden" name="addWhere" value="song">
+				<img id="allsave" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'">
+		</form>
 	<div class="list">
 		<table class="table">
 			<tr class="table2">
-				<td style="width: 60px;">체크</td>
+				<td style="width: 200px;"><input type="checkbox" id="selectbtn" name="checkall" onclick="selectAll(this); getChecked" " value="checkall; ${dao.songnumber }">체크</td>
 				<td style="width: 60px;">순위</td>
 				<td style="width: 250px;">인기점수</td>
 				<td style="width: 100px;">번호</td>
@@ -52,7 +57,7 @@
 			</tr>
 			<c:forEach var="dao" items="${ list}">
 				<tr class="table3 table3_${dao.songnumber }">
-					<td><input type="checkbox" class="but btn" value="${dao.songnumber }"></td>
+					<td><input type="checkbox" id="checkbox1" name="check" onclick="checkSelectAll(); getCheckedValue()" value="${dao.songnumber }"></td>
 					<td>${dao.ranking }</td>
 					<td>${dao.famous }</td>
 					<td>${dao.songnumber }</td>
@@ -88,7 +93,7 @@
 						<form method="post" action="/javafood_team/javafood?javafood=3_6">
 							<input type="hidden" name="songNumber" value="${dao.songnumber }">
 							<input type="hidden" name="addWhere" value="song">
-							<img class="save" src="https://c11.kr/1asd6">
+							<img class="save" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'">
 						</form>
 					</td>
 
@@ -147,6 +152,7 @@ if (lastSec > lastPage) {
 			</c:if>
 
 		</div>
+	</div>
 <script link src="javafoodScript/songScript.js"></script>
 </body>
 </html>
