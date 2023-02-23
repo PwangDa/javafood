@@ -9,6 +9,7 @@
 	}());
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function loging(){
+			location.href='javafood?javafood=m';
 	let time=3;
 	$("#time").append(time);
 	setInterval (function(){
@@ -16,7 +17,6 @@ function loging(){
 		time--;
 		$("#time").text(time);
 		if (time==0){
-			location.href='javafood?javafood=m';
 		}
 	},1000)
 }
