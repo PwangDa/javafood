@@ -132,7 +132,7 @@
                 <c:if test="${not empty login_dto[0].nic}">
                     <div class="text2">
                         <img class="image1" src="${login_dto[0].myimg }">
-                        <input class="input1" type="text" name="id" placeholder="${login_dto[0].nic }" value="${login_dto[0].nic }">
+                        <input class="input1" type="text" name="id" placeholder="${login_dto[0].nic }" value="${login_dto[0].nic }" readonly>
                     </div>
                     <div class="text2">
                         <textarea class="text_area" name="cont" placeholder="*게시물의 저작권 등 분쟁, 개인정보 노출로 인한 책임은 작성자 또는 게시자에게 있음을 유의해 주세요."></textarea>
@@ -164,7 +164,7 @@
 		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=addReply.do">
 			                    		<div class="comment" >
 						                        <img class="image3" src="${login_dto[0].myimg }">
-						                        <input class="input2" type="text" name="id_2" placeholder=" ID">
+						                        <input class="input2" type="text" name="id_2" placeholder=" ID" value="${login_dto[0].nic }" readonly>
 						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
 						                        <input class="btn1" type="submit" value="답글"> 
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
