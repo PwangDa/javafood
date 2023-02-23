@@ -640,7 +640,7 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("usre")!=null) {
 			
 			
-			service.javafood5_3(request.getParameter("usre"),request.getParameter("page"));
+			map = service.javafood5_3(request.getParameter("usre"),request.getParameter("page"));
 			System.out.println(map.get("list"));
 //			System.out.println(map.get("size"));
 			
