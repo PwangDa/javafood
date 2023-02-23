@@ -13,7 +13,7 @@
 </head>
 <body>
 	
-    <header id ="menu" >
+    <header id ="menu" style="display: inline-block;" >
         <span style="font-size: 34px; font-weight: 600; cursor: pointer;">
         <a href="javafood?javafood=m" class="a1"><img src="https://c11.kr/1asbb" class="logo-img">Music</a>
         </span>
@@ -37,9 +37,11 @@
         <c:if test="${lo[0].myimg==null}">
 			<a href="javafood?javafood=5"><img class="menu-img" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png"></a>
         </c:if>
-        </span>
+    </span>
         
     </header>
+    <div style="width: 79%;height:100px border: 1px solid red; text-align: center; display: inline-block;">asdf123123123fdsa</div>
+    <div style="width: 20%; border: 1px solid red; text-align: center; display: inline-block;">asdf123123123fdsa</div>
 </body>
 <script link src ="javafoodScript/menuScript.js"></script>
 </html>
