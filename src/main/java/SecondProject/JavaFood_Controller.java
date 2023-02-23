@@ -66,6 +66,89 @@ public class JavaFood_Controller extends HttpServlet {
 	protected void doHand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("javafood").equals("1")) {
+			///다영 javafood=1 로 접속했을 때 
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			
+			String nextPage = "";
+			String uri = request.getRequestURI();
+			String command = request.getParameter("command");
+			String artid = request.getParameter("artid");
+			
+			System.out.println("command : "+command);		
+			System.out.println("uri : "+uri);
+			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+			
+			listAlbum = service.Albumlist_artid(artid);
+			
+			
+			if("artistinfo.do".equals(command)) {
+//				List<AlbumDTO> listAlbum = service.Albumlist();
+				listAlbum = service.Albumlist();
+//				commentList = service.listComment();
+				request.setAttribute("listAlbum", listAlbum);
+				request.setAttribute("commentList", commentList);
+				nextPage = "/artistinfo.jsp";
+				
+			}else if("addcommnet.do".equals(command)) {
+				System.out.println("addcomment 입장");
+				String id_1 = request.getParameter("id");
+				String cont_1 = request.getParameter("cont");
+				String num = request.getParameter("num");
+				
+				System.out.println("댓글등록 num"+num);
+				
+				CommentDTO dto = new CommentDTO();
+				dto.setComment_id(id_1);
+				dto.setComment_cont(cont_1);
+				dto.setArtistlist_num(Integer.parseInt(num));
+				
+				service.addcomment(dto);
+//				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+				nextPage = "/javafood?javafood=ArtistList&num="+num;
+				
+			}else if("addReply.do".equals(command)) {
+				String id = request.getParameter("id_2");
+				String cont = request.getParameter("cont_2");
+				String parentNO = request.getParameter("parentNO");
+				String articleNO = request.getParameter("command_articleNO");
+				
+				System.out.println("id : "+ id);
+				System.out.println("cont : "+ cont);
+				System.out.println("parentNO : "+ parentNO);
+				System.out.println("articleNO : "+ articleNO);
+				
+				CommentDTO dto = new CommentDTO();
+				dto.setComment_id(id);
+				dto.setComment_cont(cont);
+				dto.setParentNO(Integer.parseInt(articleNO));
+				
+				service.addcomment(dto);
+				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+				
+			}else if("delcommnet.do".equals(command)) {
+				
+				  String id = request.getParameter("id");
+				  System.out.println("delete id : "+id); service.delcomment(id);
+				 
+				int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+				System.out.println("articleNO : "+articleNO);
+				List<Integer> articleNOList = service.removeComment(articleNO);
+				
+				nextPage = "/javafood?javafood=1&command=artistinfo.do";
+			}else {
+//				System.out.println("else action : "+action);
+				listAlbum = service.Albumlist();
+//				commentList = service.listComment();
+				request.setAttribute("listAlbum", listAlbum);
+				request.setAttribute("commentList", commentList);
+				nextPage = "/artistinfo.jsp";
+			}
+			
+			System.out.println("nextPage : "+nextPage);
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+			dispatch.forward(request, response);
 			
 		}//if문 ("1")종료
 		if(request.getParameter("javafood").equals("2")) {
