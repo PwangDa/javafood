@@ -234,10 +234,17 @@ public class JavaFood_Service {
 		dao.deleteList(PL_ID, id);
 	}
 	
-	//범주 플레이 리스트 안에 곡 추가하기(예정)
+	//범주 플레이 리스트 안에 곡 추가하기
 	public void s_addSongToPlayList(int pl_id, int songNumber, String addWhere)
 	{
 		dao.addSongToPlayList(pl_id, songNumber, addWhere);
+	}
+	//범주 플레이 리스트 안에 곡 여러 개 추가하기
+	public void s_addSongsToPlayList(int pl_id, int[] songNumbers, String addWhere)
+	{
+		System.out.println("service의 s_addSongsToPlayList 메서드 실행됨."); //확인용
+		
+		dao.addSongsToPlayList(pl_id, songNumbers, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인 
