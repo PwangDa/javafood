@@ -26,16 +26,16 @@
 	<link rel="stylesheet" href="javafoodCSS/playList.css">
 </head>
 <body>
-	<% if(id.equals(null) )
-		{%>
-			<div class="title">
-				<h1>로그인이 필요한 서비스 입니다.</h1>
-				<br>
-				<a href="javafood?javafood=4">로그인</a>
-			</div>
-	<%	}
-		else
-		{%>
+<%-- 	<% if(id.equals(null) ) --%>
+<%-- 		{%> --%>
+<!-- 			<div class="title"> -->
+<!-- 				<h1>로그인이 필요한 서비스 입니다.</h1> -->
+<!-- 				<br> -->
+<!-- 				<a href="javafood?javafood=4">로그인</a> -->
+<!-- 			</div> -->
+<%-- 	<%	} --%>
+// 		else
+<%-- 		{%> --%>
 	<div class="title"><h1>노래를 추가할 플레이 리스트를 선택하세요.</h1></div>
 	<br>
 	<hr>
@@ -49,6 +49,6 @@
 			</div>
 		</a>
 	</c:forEach>
-	<%	} %>
+<%-- 	<%	} %> --%>
 </body>
 </html>
