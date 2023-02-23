@@ -138,10 +138,10 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("3_6") )
 		{
-			List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
-			String id = (String)session_user.get(0).getId();
+//			List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
+			String c_id = (String)request.getSession().getAttribute("login");
 			
-			List playList = java3_6(id);
+			List playList = java3_6(c_id);
 			request.setAttribute("playList", playList);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("playListAdd.jsp");
@@ -150,11 +150,32 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("3_7") )
 		{
 			int pl_id = Integer.parseInt(request.getParameter("pl_id") );
-			int songNumber = Integer.parseInt(request.getParameter("songNumber") );
 			String addWhere = request.getParameter("addWhere");
-			System.out.println("addwhere : "+addWhere);
-			java3_7(pl_id, songNumber, addWhere);
 			
+			//추가할 곡이 한 곡일 때
+			if(!request.getParameter("songNumber").equals("") )
+			{
+				int songNumber = Integer.parseInt(request.getParameter("songNumber") );
+				
+				java3_7(pl_id, songNumber, addWhere);
+			}
+			
+			//추가할 곡이 여러 곡일 때
+			if(!request.getParameter("songNumbers").equals("") )
+			{
+				String temp_songNumbers = request.getParameter("songNumbers");
+				String[] temp_splited = temp_songNumbers.split(",");
+				int[] songNumbers = new int[temp_splited.length];
+				for(int i = 0; i < temp_splited.length; i++)
+				{
+					songNumbers[i] = Integer.parseInt(temp_splited[i]);
+				}
+				
+				java3_7_1(pl_id, songNumbers, addWhere);
+			}
+			
+//			System.out.println("addwhere : "+addWhere);
+		
 			RequestDispatcher dispatch = request.getRequestDispatcher("javafood?javafood=3_3&PL_ID="+pl_id);
 			dispatch.forward(request, response);
 		}
@@ -459,11 +480,13 @@ public class JavaFood_Controller extends HttpServlet {
 	//범주 playList.jsp 접속+리스트 불러오기
 	private void java3(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JavaFood_Controller의 java3 메소드 실행됨."); //확인용
-		
+		System.out.println(request.getSession().getAttribute("login") );
 
 		//세션에 저장된 id값 받아오기
-		List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
-		String c_id = (String)session_user.get(0).getId();
+//		List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
+		String c_id = (String)request.getSession().getAttribute("login");
+		
+		System.out.println("java3의 c_id 값 : " + c_id);
 //		String c_id = "testAdmin"; //플레이 리스트를 정상적으로 불러오는 지 확인하는 테스트용 아이디.
 		
 		//Service에서 플레이 리스트 불러오는 메서드 실행하기
@@ -472,6 +495,9 @@ public class JavaFood_Controller extends HttpServlet {
 
 		request.setAttribute("playList", playList);
 		request.setAttribute("id", c_id);
+		
+		String testId = (String)request.getAttribute("c_id");
+		System.out.println("java3의 testId : " + testId);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("playList.jsp");
 
@@ -524,8 +550,6 @@ public class JavaFood_Controller extends HttpServlet {
 	{
 		System.out.println("JavaFood_Controller의 java3_6 메소드 실행됨."); //확인용
 		
-//		if(id)
-		
 		List playList = service.s_loadPL(id);
 		
 		return playList;
@@ -537,6 +561,13 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
 		
 		service.s_addSongToPlayList(pl_id, songNumber, addWhere);
+	}
+	//범주 플레이 리스트 안에 곡 여러 개 추가하기.
+	private void java3_7_1(int pl_id, int[] songNumbers, String addWhere)
+	{
+		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
+		
+		service.s_addSongsToPlayList(pl_id, songNumbers, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
@@ -611,14 +642,13 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("usre")!=null) {
 			
 			
-			service.javafood5_3(request.getParameter("usre"),request.getParameter("page"));
-			
-//			System.out.println(map.get("list"));
+			map = service.javafood5_3(request.getParameter("usre"),request.getParameter("page"));
+			System.out.println(map.get("list"));
 //			System.out.println(map.get("size"));
 			
 			
-			request.setAttribute("usre" ,map.get("list"));
-			request.setAttribute("page", request.getParameter("page"));
+			request.setAttribute("usre" ,"list");
+//			request.setAttribute("page", request.getParameter("page"));
 		}
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));

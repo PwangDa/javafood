@@ -221,7 +221,7 @@ public class JavaFood_DAO {
 			ResultSet rs = con.prepareStatement("SELECT *  FROM login WHERE ID = '" + login + "'").executeQuery();
 			login_DTO vo = new login_DTO();
 			rs.next();
-//			vo.setId(rs.getString("id"));
+			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
 
@@ -1619,6 +1619,55 @@ public class JavaFood_DAO {
 			{
 				e.printStackTrace();
 				System.out.println("genre에서 노래 추가 실패..."); //확인용
+			}
+			
+			System.out.println("genre에서 노래 추가 성공!"); //확인용
+		}
+	}
+	
+	public void addSongsToPlayList(int pl_id, int[] songNumbers, String addWhere)
+	{
+		System.out.println("DAO에서 addSongToPlayList 메서드 실행됨."); //확인용
+		
+//		System.out.println("DAO의 pl_id : " + pl_id); //확인용
+//		System.out.println("DAO의 songNumber : " + songNumbers); //확인용
+//		System.out.println("DAO의 addWhere : " + addWhere); //확인용
+		
+		//나중에 if문 수정하기
+		if("void(0)".equals(addWhere) == false ) //만약 장르별 노래차트 페이지에서 곡 추가를 요청했다면
+		{
+			//쿼리문 작성
+			String addSongQuery =
+							  "INSERT INTO playList_Content "
+							+ "(PL_ID_ID, PL_ID, ListNumber, SongName, SongNumber)"
+							+ " VALUES"
+							+ "(?, ?, seq_listNumber.nextval, "
+							+ " (SELECT songName FROM genre WHERE songNumber = ?), "
+							+ " (SELECT songNumber FROM genre WHERE songNumber = ?)"
+							+ ")";
+			
+			//쿼리문 실행
+			for(int i=0; i<songNumbers.length; i++)
+			{
+				try
+				{
+					this.con = dataFactory.getConnection();
+					
+					pstmt = con.prepareStatement(addSongQuery);
+					pstmt.setInt(1, pl_id);
+					pstmt.setInt(2, pl_id);
+					pstmt.setInt(3, songNumbers[i]);
+					pstmt.setInt(4, songNumbers[i]);
+					pstmt.executeQuery();
+					
+					pstmt.close();
+					con.close();
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+					System.out.println("genre에서 노래 추가 실패..."); //확인용
+				}
 			}
 			
 			System.out.println("genre에서 노래 추가 성공!"); //확인용

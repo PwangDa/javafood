@@ -52,7 +52,7 @@
 			</tr>
 			<c:forEach var="dao" items="${ list}">
 				<tr class="table3 table3_${dao.songnumber }">
-					<td><input type="checkbox" class="but btn" ${dao.songnumber }></td>
+					<td><input type="checkbox" class="but btn" value="${dao.songnumber }"></td>
 					<td>${dao.ranking }</td>
 					<td>${dao.famous }</td>
 					<td>${dao.songnumber }</td>
