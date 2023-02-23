@@ -9,14 +9,14 @@
 	}());
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function loging(){
-	let time=0;
+			location.href='javafood?javafood=m';
+	let time=3;
 	$("#time").append(time);
 	setInterval (function(){
 		console.log(time);
 		time--;
 		$("#time").text(time);
 		if (time==0){
-			location.href='javafood?javafood=m';
 		}
 	},1000)
 }
