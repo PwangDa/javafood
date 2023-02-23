@@ -23,7 +23,11 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link rel="stylesheet" href="javafoodCSS/songCSS.css?css=css">
 
-
+<form method="post" action="/javafood_team/javafood?javafood=3_6">
+	<input type="hidden" name="songNumber" value="${dao.songnumber }">
+	<input type="hidden" name="addWhere" value="song">
+	<img id="allsave" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'">
+</form>
 
 </head>
 <jsp:include page="/menu.jsp"></jsp:include>
@@ -31,11 +35,6 @@
 	<div class="time">
 		<input type="text" size="10" id="timebox"> 현재시각 기준
 	</div>
-		<form method="post" action="/javafood_team/javafood?javafood=3_6">
-				<input type="hidden" name="songNumber" value="${dao.songnumber }">
-				<input type="hidden" name="addWhere" value="song">
-				<img id="allsave" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'">
-		</form>
 	<div class="list">
 		<table class="table">
 			<tr class="table2">
