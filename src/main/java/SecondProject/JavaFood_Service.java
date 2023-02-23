@@ -237,8 +237,6 @@ public class JavaFood_Service {
 	//범주 플레이 리스트 안에 곡 추가하기(예정)
 	public void s_addSongToPlayList(int pl_id, int songNumber, String addWhere)
 	{
-		System.out.println("service의 s_addSongToPlayList 메서드 실행됨."); //확인용
-		
 		dao.addSongToPlayList(pl_id, songNumber, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -358,13 +356,25 @@ public class JavaFood_Service {
 	 * @param id : 세션 아이디값 입력
 	 * @return list : 아이디의 조회된 song1 노래목록 리턴 
 	 */
-//	public Map javafood5_3(String id){
-//		List<song_DTO> list = dao.uresong(id);
-//		Map map = new HashMap();
-//		list.size();
-//		
-//		return list;
-//	}
+	public Map javafood5_3(String id,String size){
+		int size1 = Integer.getInteger(size);
+		List<song_DTO> list = dao.uresong(id);
+		List<song_DTO> list1 = null;
+		Map map = new HashMap();
+		
+		int siz = size1*5;
+		for(int i=siz-5; i<siz; i++) {
+			if(list.get(i)!=null) {
+				list1.add(list.get(i));
+			}
+		}
+		System.out.println("list1.size : "+list1.size());
+		
+		map.put("list", list);
+		map.put("size", list.size());
+		
+		return map;
+	}
 	/**
 	 * 노래 좋아요 증가
 	 * @param songnumber : 좋아요 증가할 노래 번호입력
