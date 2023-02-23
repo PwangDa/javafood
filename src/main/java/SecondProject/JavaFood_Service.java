@@ -356,9 +356,13 @@ public class JavaFood_Service {
 	 * @param id : 세션 아이디값 입력
 	 * @return list : 아이디의 조회된 song1 노래목록 리턴 
 	 */
-	public List<song_DTO>javafood5_3(String id){
-		return dao.uresong(id);
-	}
+//	public Map javafood5_3(String id){
+//		List<song_DTO> list = dao.uresong(id);
+//		Map map = new HashMap();
+//		list.size();
+//		
+//		return list;
+//	}
 	/**
 	 * 노래 좋아요 증가
 	 * @param songnumber : 좋아요 증가할 노래 번호입력
