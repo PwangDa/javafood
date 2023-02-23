@@ -356,24 +356,16 @@ public class JavaFood_Service {
 	 * @param id : 세션 아이디값 입력
 	 * @return list : 아이디의 조회된 song1 노래목록 리턴 
 	 */
-	public Map javafood5_3(String id,String size){
-		int size1 = Integer.getInteger(size);
+	public void javafood5_3(String id,String siz){
 		List<song_DTO> list = dao.uresong(id);
 		List<song_DTO> list1 = null;
-		Map map = new HashMap();
 		
-		int siz = size1*5;
-		for(int i=siz-5; i<siz; i++) {
-			if(list.get(i)!=null) {
-				list1.add(list.get(i));
-			}
-		}
-		System.out.println("list1.size : "+list1.size());
+		int size = Integer.getInteger(siz);
 		
-		map.put("list", list);
-		map.put("size", list.size());
 		
-		return map;
+		
+		
+		
 	}
 	/**
 	 * 노래 좋아요 증가
