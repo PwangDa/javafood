@@ -23,7 +23,7 @@
     <body>
 	<input type="hidden" id='id' value='${session_user.id}'>
  	<jsp:include page="/menu.jsp" />   
-    <link rel="stylesheet" href="javafoodCSS/mypageCSS2.css?css=css">
+    <link rel="stylesheet" href="javafoodCSS/mypageCSS.css?css=css">
     <div class="div ddr">
 	    <div class="mume div"><h3><a class="at" href="javafood?javafood=5&remove=1"><c:out value="회원정보 수정"/></a></h3></div>
 	    <div class="mume div"><h3><a class="at" href="#" onclick="replay('${session_user.id}')"><c:out value="재생기록"/></a></h3></div>
@@ -33,9 +33,8 @@
     
     
 	<c:if test="${usre!=null }">
-    	<link rel="stylesheet" href="javafoodCSS/mypageCSS3.css?css=css">
-		<table border="1">
-		<tr>
+		<table class="table" border="1">
+		<tr class="tdr">
 			<th>이미지</th>
 			<th>노래</th>
 			<th>가수</th>
@@ -45,19 +44,19 @@
 			<th>보관</th>
 		</tr>
 		<c:forEach items="${usre }" var="i" varStatus="z" >
-			<tr class="ddr">
-				<td><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><img src="${i.imglink }"></a></td>
-				<td><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><c:out value="${i.songname }"/></a></td>
-				<td><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/><img src=""></a></td>
-				<td><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
-				<td><c:out value="${i.playtime }"/></td>
-				<td>
+			<tr class="tdr ddr ">
+				<td class="td"><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><img src="${i.imglink }"></a></td>
+				<td class="td"><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><c:out value="${i.songname }"/></a></td>
+				<td class="td"><a class="at" href="javafood?javafood=ArtistList&num=${i.songnumber }"><c:out value="${i.artistname }"/><img src=""></a></td>
+				<td class="td"><a class="at" href="javafood?javafood=AlbumList&num=${i.songnumber }"><c:out value="${i.album_name}"/></a></td>
+				<td class="td"><c:out value="${i.playtime }"/></td>
+				<td class="td">
 					<img class="img" src="https://c11.kr/1asbx" 
 						onmouseover="this.src='https://c11.kr/1asby'" 
 						onmouseout="this.src='https://c11.kr/1asbx'"
 						class="sub" onclick="good(${i.songnumber})">
 				</td>
-				<td>
+				<td class="td">
 					<form name="addPlayList" method="post" action="/javafood_team/javafood?javafood=3_6" onclick="this.submit();">
 						<img class="img" src="https://c11.kr/1asd6" 
 							onmouseover="this.src='https://c11.kr/1asd9'" 
@@ -69,6 +68,14 @@
 			</tr>
 		</c:forEach>
 		</table>
+		<div style="width:100%; height:50px; border: 1px solid red; display: inline-block; text-align: center;">
+			<div style="border: 1px solid red; display: inline-block;">
+				<c:forEach var="i" begin="1" end="5">
+				[${page }]
+					<a href="javafood?javafood=5&usre=${session_user.id }&page=${i}" value="abc" style="font-size: 30px">${i }</a> &emsp;
+				</c:forEach>
+			</div>
+		</div>
 	</c:if>    
     
     
@@ -155,8 +162,8 @@
                         <th>
                             <a href="javafood?javafood=5" class="at"><c:out value=" 취 소 "/></a>
                         </th>
-                        <th><input class="sub" type="submit" value="수정하기" id="end" disabled="disabled"></th>
-                        <th><input class="sub" type="reset" id="re" value="다시작성"></th>
+                        <th><input class="sub1" type="submit" value="수정하기" id="end" disabled="disabled"></th>
+                        <th><input class="sub1" type="reset" id="re" value="다시작성"></th>
                     </tr>
                 </table>
             </div>

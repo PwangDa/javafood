@@ -13,7 +13,14 @@ public class CommentDTO {
 	private int parentNO = 0;
 	private int artistlist_num;
 	private String artistname;
+	private String myimg;
 	
+	public String getMyimg() {
+		return myimg;
+	}
+	public void setMyimg(String myimg) {
+		this.myimg = myimg;
+	}
 	public String getArtistname() {
 		return artistname;
 	}

@@ -22,14 +22,18 @@ function loging(){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 window.onload=function() {
-	/*
-    var btnClear = document.querySelector('.btnClear');
-    btnClear.addEventListener('click', function(){
-		console.log('123');
-        btnClear.parentNode.querySelector('.tt').value = "";
-    })
+	if(document.querySelector('.btnClear')!=null){
+	    var btnClear = document.querySelector('.btnClear');
+	    btnClear.addEventListener('click', function(){
+			console.log('123');
+	        btnClear.parentNode.querySelector('.tt').value = "";
+	    })
+	}
     
-    */
+    $('.logo-img').on('click',function(){
+		location.href='javafood?javafood=m'
+	})
+    
 	$('#but').on(function (){
 		var url = $("#form").attr("action");
 		var form = $('#form')[0];

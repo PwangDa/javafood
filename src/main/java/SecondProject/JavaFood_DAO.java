@@ -221,7 +221,7 @@ public class JavaFood_DAO {
 			ResultSet rs = con.prepareStatement("SELECT *  FROM login WHERE ID = '" + login + "'").executeQuery();
 			login_DTO vo = new login_DTO();
 			rs.next();
-			vo.setId(rs.getString("id"));
+//			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
 
@@ -800,10 +800,11 @@ public class JavaFood_DAO {
 			String cont = commentDTO.getComment_cont();
 			int artist_num = commentDTO.getArtistlist_num();
 			String artist_name = commentDTO.getArtistname();
-
+			String myimg = commentDTO.getMyimg();
+			
 			String query = "insert into comment_com";
-			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname)";
-			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?)"; // 띄어쓰기 필수!
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname, myimg)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?, ?)"; // 띄어쓰기 필수!
 
 			System.out.println("query check" + query);
 
@@ -814,6 +815,7 @@ public class JavaFood_DAO {
 			pstmt.setString(3, cont);
 			pstmt.setInt(4, artist_num);
 			pstmt.setString(5, artist_name);
+			pstmt.setString(6, myimg);
 			pstmt.executeUpdate();
 
 			pstmt.close();
@@ -877,7 +879,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 
 			// 가져올 테이블 선택(불러오기)
-			String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date \n";
+			String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date, myimg \n";
 			query += " from comment_com \n";
 			query += " WHERE artistname= ? \n"; // 전달인자로 num받아서 그것만 보이게?
 			query += " START WITH parentNO=0 \n";
@@ -897,6 +899,7 @@ public class JavaFood_DAO {
 				String id = rs.getString("comment_id");
 				String cont = rs.getString("comment_cont");
 				Date date = rs.getDate("comment_date");
+				String myimg = rs.getString("myimg");
 
 				CommentDTO vo = new CommentDTO();
 				vo.setLevel(level);
@@ -905,6 +908,7 @@ public class JavaFood_DAO {
 				vo.setComment_id(id);
 				vo.setComment_cont(cont);
 				vo.setComment_Date(date);
+				vo.setMyimg(myimg);
 				list.add(vo);
 			}
 			rs.close();
