@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -164,6 +165,10 @@ public class JavaFood_Controller extends HttpServlet {
 		//localhost:8080/javafood_team/javafood?javafood=ArtistList&num=1
 		JavaFood_DAO dao = new JavaFood_DAO();
 		String num = request.getParameter("num"); //1이면 1테이블값들어감
+		String sess = (String)request.getSession().getAttribute("login");
+		System.out.println("세션id값 >> "+sess);
+		List<login_DTO> login_dto = dao.session(sess);
+		
 		List<AlbumDTO> album_list =  dao.album_add(num);
 		String artist_num = album_list.get(0).getArtist_add();
 		String detail="https://www.melon.com/artist/detail.htm?artistId="+artist_num;
@@ -257,8 +262,11 @@ public class JavaFood_Controller extends HttpServlet {
 			String id_1 = request.getParameter("id");
 			String cont_1 = request.getParameter("cont");
 			String num_1 = request.getParameter("songnum");
+			String myimg = request.getParameter("myimg");
 			
 			System.out.println("댓글등록 num : "+num_1);
+			System.out.println("아이디아이디: "+id_1);
+			System.out.println("마이 이미지>>>> : "+myimg);
 			
 			
 			CommentDTO dto = new CommentDTO();
@@ -266,6 +274,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont_1);
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
+			dto.setMyimg(myimg);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -274,11 +283,13 @@ public class JavaFood_Controller extends HttpServlet {
 			String cont = request.getParameter("cont_2");
 //			String parentNO = request.getParameter("parentNO");
 			String articleNO = request.getParameter("command_articleNO");
+			String myimg = request.getParameter("command_myimg");
 			
 			System.out.println("id : "+ id);
 			System.out.println("cont : "+ cont);
 			System.out.println("대댓글 num : "+ num);
 			System.out.println("articleNO : "+ articleNO);
+			System.out.println("이이미미지 : "+ myimg);
 			
 			CommentDTO dto = new CommentDTO();
 			dto.setComment_id(id);
@@ -286,6 +297,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setParentNO(Integer.parseInt(articleNO));
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
+			dto.setMyimg(myimg);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -296,6 +308,7 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		commentList = service.listComment(artist.get(0).getArtistname());
 		System.out.println("무한반복 살려줘");
+		request.setAttribute("login_dto", login_dto);
 		request.setAttribute("album_list", album_list); //아티스트 정보
 		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
 		request.setAttribute("src", src); //각 앨범 이름 리스트
