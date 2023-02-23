@@ -14,7 +14,14 @@ public class CommentDTO {
 	private int artistlist_num;
 	private String artistname;
 	private String myimg;
+	private String id;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getMyimg() {
 		return myimg;
 	}

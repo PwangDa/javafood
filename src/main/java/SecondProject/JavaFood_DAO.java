@@ -801,10 +801,11 @@ public class JavaFood_DAO {
 			int artist_num = commentDTO.getArtistlist_num();
 			String artist_name = commentDTO.getArtistname();
 			String myimg = commentDTO.getMyimg();
+			String real_id = commentDTO.getId();
 			
 			String query = "insert into comment_com";
-			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname, myimg)";
-			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?, ?)"; // 띄어쓰기 필수!
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname, myimg, id)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?, ?, ?)"; // 띄어쓰기 필수!
 
 			System.out.println("query check" + query);
 
@@ -816,6 +817,7 @@ public class JavaFood_DAO {
 			pstmt.setInt(4, artist_num);
 			pstmt.setString(5, artist_name);
 			pstmt.setString(6, myimg);
+			pstmt.setString(7, real_id);
 			pstmt.executeUpdate();
 
 			pstmt.close();

@@ -30,9 +30,6 @@
 	    <div class="mume div"><h3><a class="at" href="#" onclick="outt('${session_user.id}')"><c:out value="로그아웃"/></a></h3></div>
 	    <div class="mume div"><h3><a class="at" href="#" onclick="out('${session_user.id}')"><c:out value="회원탈퇴"/></a></h3></div>
     </div>
-    
-    
-<%-- 
 	<c:if test="${usre!=null }">
 		<table class="table" border="1">
 		<tr class="tdr">
@@ -44,7 +41,7 @@
 			<th>하트</th>
 			<th>보관</th>
 		</tr>
-		<c:forEach items="${usre }" var="i" varStatus="z" >
+		<c:forEach items="${usre }" var="i" begin="${(page-1)*5 }" end="${((page-1)*5)+4 }" >
 			<tr class="tdr ddr ">
 				<td class="td"><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><img src="${i.imglink }"></a></td>
 				<td class="td"><a class="at" href="${i.link }" onclick="hit(${i.songnumber })" target="blank"><c:out value="${i.songname }"/></a></td>
@@ -69,16 +66,14 @@
 			</tr>
 		</c:forEach>
 		</table>
-		<div style="width:100%; height:50px; border: 1px solid red; display: inline-block; text-align: center;">
-			<div style="border: 1px solid red; display: inline-block;">
+		<div class="page1">
+			<div>
 				<c:forEach var="i" begin="1" end="5">
 					<a href="javafood?javafood=5&usre=${session_user.id }&page=${i}" value="abc" style="font-size: 30px">${i }</a> &emsp;
 				</c:forEach>
 			</div>
 		</div>
 	</c:if>    
---%>
-    
     
     <c:if test="${remove==1}" >
         <h1 class="ddr"><c:out value="회원정보 수정"/></h1>

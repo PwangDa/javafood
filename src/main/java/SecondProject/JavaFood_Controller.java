@@ -47,8 +47,6 @@ public class JavaFood_Controller extends HttpServlet {
 		try {
 			doHand(request, response);
 		} catch (Exception e) {
-			System.out.println("주소를 잘못입력하셨습니다.");
-			System.out.println("javafood?javafood=m 을 입력해 주세요");
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,6 +294,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
+			dto.setId(sess);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -319,6 +318,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
+			dto.setId(sess);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -621,6 +621,7 @@ public class JavaFood_Controller extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 마이페이지
 	private void java5(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("java5");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
 		if(request.getSession().getAttribute("login")!=null) {
@@ -638,15 +639,11 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
 		if(request.getParameter("usre")!=null) {
-			
-			
-			map = service.javafood5_3(request.getParameter("usre"),request.getParameter("page"));
-			System.out.println(map.get("list"));
-//			System.out.println(map.get("size"));
-			
-			
-			request.setAttribute("usre" ,"list");
-//			request.setAttribute("page", request.getParameter("page"));
+			if(request.getParameter("page")==null) 
+				request.setAttribute("page", 1);
+			else 
+				request.setAttribute("page", request.getParameter("page"));
+			request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
 		}
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
