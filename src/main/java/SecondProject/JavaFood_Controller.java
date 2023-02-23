@@ -275,6 +275,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
+			dto.setId(sess);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -298,6 +299,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
+			dto.setId(sess);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());

@@ -31,7 +31,15 @@
             frmComment.submit();
         	}
         }
-        	
+        
+        let btn_del = document.querySelector(".btn_del");
+        
+         /*btn_del.addEventListener('click', function() {
+    	           if(){
+    	           		console.log('안녕 친구들');
+
+    	           }
+    	     });*/
         
         var prevScrollpos = window.pageYOffset;
         window.onscroll = headerbarToggle
