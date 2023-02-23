@@ -141,7 +141,7 @@ public class JavaFood_Controller extends HttpServlet {
 //			List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
 			String c_id = (String)request.getSession().getAttribute("login");
 			
-			List playList = java3_6(id);
+			List playList = java3_6(c_id);
 			request.setAttribute("playList", playList);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("playListAdd.jsp");
