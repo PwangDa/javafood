@@ -32,7 +32,7 @@ function getCheckedValue() {
 		checkedValue.push(checkbox.value);
 	})
 	console.log(checkedValue)
-	document.getElementByID("btn").value = checkedValue;
+	//document.getElementByID("btn").value = checkedValue;
 	return checkedValue;
 }
 
@@ -45,7 +45,7 @@ function getCheckedValue() {
 //담기 버튼 누르면, 곡이 추가될 플레이 리스트 선택하는 팝업 뜨게 하기
 let addList = document.querySelectorAll("img.addList");
 
-console.log(addList);
+//console.log(addList);
 
 for(let i = 0; i < addList.length; i++)
 {
@@ -57,3 +57,12 @@ for(let i = 0; i < addList.length; i++)
 		addList[i].parentNode.parentNode.submit(); //form 서밋하기
 	});
 }
+
+//여러 개가 체크 된 곡들을 플레이 리스트에 추가하기
+let addLists = document.querySelector("img.addLists");
+
+addLists.addEventListener("click", ()=>{
+	addLists.parentNode.parentNode.action = "javafood?javafood=3_6&songNumbers="+getCheckedValue()+"&addWhere=NewGenre";
+	addLists.parentNode.parentNode.submit();
+});
+

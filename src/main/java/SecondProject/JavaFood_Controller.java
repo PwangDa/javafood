@@ -149,11 +149,32 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("3_7") )
 		{
 			int pl_id = Integer.parseInt(request.getParameter("pl_id") );
-			int songNumber = Integer.parseInt(request.getParameter("songNumber") );
 			String addWhere = request.getParameter("addWhere");
-			System.out.println("addwhere : "+addWhere);
-			java3_7(pl_id, songNumber, addWhere);
 			
+			//추가할 곡이 한 곡일 때
+			if(!request.getParameter("songNumber").equals("") )
+			{
+				int songNumber = Integer.parseInt(request.getParameter("songNumber") );
+				
+				java3_7(pl_id, songNumber, addWhere);
+			}
+			
+			//추가할 곡이 여러 곡일 때
+			if(!request.getParameter("songNumbers").equals("") )
+			{
+				String temp_songNumbers = request.getParameter("songNumbers");
+				String[] temp_splited = temp_songNumbers.split(",");
+				int[] songNumbers = new int[temp_splited.length];
+				for(int i = 0; i < temp_splited.length; i++)
+				{
+					songNumbers[i] = Integer.parseInt(temp_splited[i]);
+				}
+				
+				java3_7_1(pl_id, songNumbers, addWhere);
+			}
+			
+//			System.out.println("addwhere : "+addWhere);
+		
 			RequestDispatcher dispatch = request.getRequestDispatcher("javafood?javafood=3_3&PL_ID="+pl_id);
 			dispatch.forward(request, response);
 		}
@@ -509,7 +530,7 @@ public class JavaFood_Controller extends HttpServlet {
 	{
 		System.out.println("JavaFood_Controller의 java3_6 메소드 실행됨."); //확인용
 		
-//		if(id)
+		
 		
 		List playList = service.s_loadPL(id);
 		
@@ -522,6 +543,13 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
 		
 		service.s_addSongToPlayList(pl_id, songNumber, addWhere);
+	}
+	//범주 플레이 리스트 안에 곡 여러 개 추가하기.
+	private void java3_7_1(int pl_id, int[] songNumbers, String addWhere)
+	{
+		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
+		
+		service.s_addSongsToPlayList(pl_id, songNumbers, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
