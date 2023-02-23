@@ -31,6 +31,7 @@
             frmComment.submit();
         	}
         }
+        	
         
         var prevScrollpos = window.pageYOffset;
         window.onscroll = headerbarToggle
