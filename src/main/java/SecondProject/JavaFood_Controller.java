@@ -136,10 +136,10 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("javafood").equals("3_6") )
 		{
-			List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
-			String id = (String)session_user.get(0).getId();
+//			List<login_DTO> session_user = service.session_user( (String) request.getSession().getAttribute("login") );
+			String c_id = (String)request.getSession().getAttribute("login");
 			
-			List playList = java3_6(id);
+			List playList = java3_6(c_id);
 			request.setAttribute("playList", playList);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("playListAdd.jsp");
@@ -294,6 +294,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
+			dto.setId(sess);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -317,6 +318,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
+			dto.setId(sess);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -545,8 +547,6 @@ public class JavaFood_Controller extends HttpServlet {
 	private List java3_6(String id)
 	{
 		System.out.println("JavaFood_Controller의 java3_6 메소드 실행됨."); //확인용
-		
-		
 		
 		List playList = service.s_loadPL(id);
 		
