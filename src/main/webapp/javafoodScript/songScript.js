@@ -72,26 +72,37 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 			/* refresh(); */
 			
-			 let checkbox = document.querySelectorAll(".but");
-		     let cont2 = document.getElementsByClassName("table3");
+			function checkSelectAll() {
 
-		        for(let x=0; x<checkbox.length; x++){
-		            checkbox[x].addEventListener('click', function(event){
-		                //부모의 부모가져오기
-		                // console.log("커렌트타켓"+event.currentTarget.parentNode.parentNode);
-		                let checked = checkbox[x].checked;
-		    
-		                for(let i=0; i<cont2.length; i++){
-		                    if(checked == true){
-		                        console.log(checked);
-		                        event.currentTarget.parentNode.style.backgroundColor = 'rgba(86, 86, 86, 0.423)';           
-		                    }else if(checked == false){
-		                        console.log(checked);
-		                        event.currentTarget.parentNode.style.backgroundColor = 'transparent';
-		                    }
-		            }
-		            });
-		        }
+	const checkboxes = document.querySelectorAll('input[name="check"]');
+	const checked = document.querySelectorAll('input[name="check"]:checked');
+	const selectAll = document.querySelector('input[name="checkall"]');
+
+	if (checkboxes.length === checked.length) {
+		selectAll.checked = true;
+	} else {
+		selectAll.checked = false;
+	}
+
+}
+function selectAll(selectAll) {
+	console.log(selectAll.checked);
+	const checkboxes = document.getElementsByName("check");
+
+	checkboxes.forEach((checkbox) => {
+		checkbox.checked = selectAll.checked;
+	})
+}
+// 체크박스에서 값 가져오기
+function getCheckedValue() {
+	const checkboxes = document.querySelectorAll('input[name="check"]:checked');
+	let checkedValue = [];
+	checkboxes.forEach((checkbox) => {
+		checkedValue.push(checkbox.value);
+	})
+	console.log(checkedValue)
+	return checkedValue;
+}
 		
          (function (){  
             document.onmousemove=function (e){ var ob=document.getElementById("foo").style; ob.left=e.pageX+15+"px"; ob.top=e.pageY+15+"px";}

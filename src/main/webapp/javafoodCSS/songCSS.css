@@ -40,6 +40,7 @@ body {
 .time {
 	width : 100%;
 	margin : 60px;
+	margin-bottom : 0px;
 	text-align : right;
 }
 
@@ -66,6 +67,13 @@ body {
 	
 }
 
+#allsave {
+	width : 50px; 
+	margin-right : 1200px;
+	margin-bottom : 50px;
+	
+}
+
 .mouse{
         	width: 30px;
         	margin-left: 0px;
@@ -83,11 +91,38 @@ body {
             
             vertical-align: top;
         }
+.allbtn {
+	-webkit-appearance: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    outline: none !important;
+    border: 1px solid #eeeeee;
+    border-radius: 2px;
+    background: #000000;
+    text-align: center;
+    margin-left: 0px;
+}
+#selectbtn {
+	-webkit-appearance: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    outline: none !important;
+    border: 1px solid #eeeeee;
+    border-radius: 2px;
+    background: #000000;
+    text-align: center;
+    margin-left: 0px;
+}
         
  a{
             text-decoration: none;
             color: white;
-        }
+ 	}
+
 	  /*체크박스*/
         /*.but{
             display : none;
