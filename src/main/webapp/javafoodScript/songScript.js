@@ -60,6 +60,7 @@
   			// 새 창에서 유튜브 동영상 링크 열기
  			 window.open(videoUrl, '_blank');
 		}*/
+		
 	let save = document.querySelectorAll("img.save");
 	for(let i=0; i<save.length; i++){
 		save[i].addEventListener("click",function(){
@@ -69,6 +70,13 @@
 			save[i].parentNode.submit();
 		});
 	}
+	
+	//여러 개가 체크 된 곡들을 플레이 리스트에 추가하기
+	let allsave = document.querySelector("img#allsave");
+	allsave.addEventListener("click", function(){
+		allsave.parentNode.action = "javafood?javafood=3_6&songNumbers="+getCheckedValue()+"&addWhere=song";
+		allsave.parentNode.submit();
+	});
 //////////////////////////////////////////////////////////////////////////////////////////
 			/* refresh(); */
 			

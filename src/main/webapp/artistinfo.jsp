@@ -16,27 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Artist.jsp Test전용</title>
-<%-- 		CommentDAO dao = new CommentDAO();
 
-		String command = request.getParameter("command"); 
-		
-		if("addcomment".equals(command)) {
-			String id_1 = request.getParameter("id");
-			String cont_1 = request.getParameter("cont");
-			
-			CommentVO vo = new CommentVO();
-			vo.setComment_id(id_1);
-			vo.setComment_cont(cont_1);
-			
-			dao.addcomment(vo);
-		}else if("delcommnet".equals(command)) {
-			
-			String id_2 = request.getParameter("id");
-			System.out.println("delete 확인"+id_2);
-			dao.delcomment(id_2);
-		}
-		
-		List<CommentVO> list = dao.listComment();--%>
  <script>
  		/*댓글 입력창 if문*/
          function fn_sendComment(){
