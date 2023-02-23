@@ -206,7 +206,7 @@
 	int totalCount = (int)request.getAttribute("totalCount");
 	int pageNum = (int)request.getAttribute("pageNum");
 	int countPerPage = (int)request.getAttribute("countPerPage");
-	int lastPage = (int)Math.ceil( (double)totalCount / countPerPage);
+	int lastPage = (int)Math.ceil( (double)totalCount / countPerPage / 10);
 	int section = 2; // 페이징 보여줄 갯수
 	
 	int sec_position = ( ((int) Math.ceil( (double)pageNum / section )) -1 );
@@ -215,6 +215,7 @@
 	if(lastSec > lastPage){
 		lastSec = lastPage;
 	}
+	
 %>
 	<c:set var="pageNum2" value="<%= pageNum %>" />
 	<div class="page">
@@ -237,6 +238,9 @@
 
 	<c:if test="<%= lastSec != lastPage %>">
 		<a href="/javafood_team/javafood?javafood=6&genre=${ song}&pageNum=<%= lastSec+1 %>"><img class="img" src="https://c11.kr/1ascx" onmouseover="this.src='https://c11.kr/1ascy'" onmouseout="this.src='https://c11.kr/1ascx'"></a>
+	</c:if>
+	<c:if test="<%= lastSec == lastPage %>">
+		<img class="img" src="https://c11.kr/1ascx" onmouseover="this.src='https://c11.kr/1ascy'" onmouseout="this.src='https://c11.kr/1ascx'"></a>
 	</c:if>
 
 	</div>
