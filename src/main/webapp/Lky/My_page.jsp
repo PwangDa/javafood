@@ -32,6 +32,7 @@
     </div>
     
     
+<%-- 
 	<c:if test="${usre!=null }">
 		<table class="table" border="1">
 		<tr class="tdr">
@@ -71,12 +72,12 @@
 		<div style="width:100%; height:50px; border: 1px solid red; display: inline-block; text-align: center;">
 			<div style="border: 1px solid red; display: inline-block;">
 				<c:forEach var="i" begin="1" end="5">
-				[${page }]
 					<a href="javafood?javafood=5&usre=${session_user.id }&page=${i}" value="abc" style="font-size: 30px">${i }</a> &emsp;
 				</c:forEach>
 			</div>
 		</div>
 	</c:if>    
+--%>
     
     
     <c:if test="${remove==1}" >
