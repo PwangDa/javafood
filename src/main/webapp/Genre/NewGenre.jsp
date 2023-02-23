@@ -206,7 +206,7 @@
 	int totalCount = (int)request.getAttribute("totalCount");
 	int pageNum = (int)request.getAttribute("pageNum");
 	int countPerPage = (int)request.getAttribute("countPerPage");
-	int lastPage = (int)Math.ceil( (double)totalCount / countPerPage / 10);
+	int lastPage = (int)Math.ceil( ((double)totalCount / countPerPage) / countPerPage);
 	int section = 2; // 페이징 보여줄 갯수
 	
 	int sec_position = ( ((int) Math.ceil( (double)pageNum / section )) -1 );
@@ -216,6 +216,14 @@
 		lastSec = lastPage;
 	}
 	
+	
+	System.out.println("totalCount : " + totalCount);
+	System.out.println("pageNum : " + pageNum);
+	System.out.println("countPerPage : " + countPerPage);
+	System.out.println("lastPage : " + lastPage);
+	System.out.println("sec_position : " + sec_position);
+	System.out.println("firstSec : " + firstSec);
+	System.out.println("lastSec : " + lastSec);
 %>
 	<c:set var="pageNum2" value="<%= pageNum %>" />
 	<div class="page">

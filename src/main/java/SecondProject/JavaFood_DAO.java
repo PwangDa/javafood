@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import album.info.AlbumVO;
 import javafood_DTO.AlbumDTO;
 import javafood_DTO.CommentDTO;
 import javafood_DTO.PlayListDTO;
@@ -551,6 +552,73 @@ public class JavaFood_DAO {
 		return totalcnt;
 	}
 
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 장르별로 노래 가져오기 -페이징
+	 * 
+	 * @param a : Genre음악의 장르를 입력해 주세요.
+	 * @return list : Genre의 장르별로 음악list를 가져옵니다.
+	 */
+	public List<song_DTO> manager(song_DTO dto) {
+		List<song_DTO> list = new ArrayList<>();
+		try {
+			this.con = this.dataFactory.getConnection();
+			String insert = " INSERT INTO Genre (";
+			insert += " SONGNUMBER,";
+			insert += " ARTISTNAME,";
+			insert += " SONGNAME,";
+			insert += " LINK,";
+			insert += " ALBUM_NAME,";
+			insert += " HITS,";
+			insert += " LIKES,";
+			insert += " BYGENRE,";
+			insert += " PLAYTIME,";
+			insert += " IMAGELINK,";
+			insert += " ALBUM_ADD,";
+			insert += " ARTIST_ADD,";
+			insert += " COUNTRY)";
+			insert += " values (?, ?, ?, ?, ?, 0, 0, ?, ?, ?, ?, ?, ?)";
+			this.pstmt = con.prepareStatement(insert);
+			this.pstmt.setString(1, dto.getSongnumber());
+			this.pstmt.setString(2, dto.getArtistname());
+			this.pstmt.setString(3, dto.getSongname());
+			this.pstmt.setString(4, dto.getLink());
+			this.pstmt.setString(5, dto.getAlbum_name());
+			this.pstmt.setString(6, dto.getBygenre());
+			this.pstmt.setString(7, dto.getPlaytime());
+			this.pstmt.setString(8, dto.getImglink());
+			this.pstmt.setString(9, dto.getAlbum_add());
+			this.pstmt.setString(10, dto.getArtist_add());
+			this.pstmt.setString(11, dto.getCountry());
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				song_DTO vo = new song_DTO();
+				vo.setSongnumber(rs.getString("songnumber"));
+				vo.setArtistname(rs.getString("artistname"));
+				vo.setSongname(rs.getString("songname"));
+				vo.setLink(rs.getString("link"));
+				vo.setAlbum(rs.getString("album_name"));
+				vo.setHits(rs.getString("hits"));
+				vo.setLikes(rs.getString("likes"));
+				vo.setBygenre(rs.getString("bygenre"));
+				vo.setPlaytime(rs.getString("playtime"));
+				vo.setImglink(rs.getString("imagelink"));
+				vo.setAlbum_add(rs.getString("album_add"));
+				vo.setArtist_add(rs.getString("artist_add"));
+				vo.setCountry(rs.getString("country"));
+				list.add(vo);
+			}
+			rs.close();
+			this.pstmt.close();
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 최신음악 노래 가져오기
@@ -801,11 +869,10 @@ public class JavaFood_DAO {
 			int artist_num = commentDTO.getArtistlist_num();
 			String artist_name = commentDTO.getArtistname();
 			String myimg = commentDTO.getMyimg();
-			String real_id = commentDTO.getId();
 			
 			String query = "insert into comment_com";
-			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname, myimg, id)";
-			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?, ?, ?)"; // 띄어쓰기 필수!
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname, myimg)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?, ?)"; // 띄어쓰기 필수!
 
 			System.out.println("query check" + query);
 
@@ -817,7 +884,6 @@ public class JavaFood_DAO {
 			pstmt.setInt(4, artist_num);
 			pstmt.setString(5, artist_name);
 			pstmt.setString(6, myimg);
-			pstmt.setString(7, real_id);
 			pstmt.executeUpdate();
 
 			pstmt.close();

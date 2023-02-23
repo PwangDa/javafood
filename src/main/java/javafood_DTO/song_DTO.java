@@ -19,8 +19,22 @@ public class song_DTO {
 	private String imglink;
 	private String country;
 	private String album_name;
+	private String album_add;
+	private String artist_add;
 	
 	
+	public String getAlbum_add() {
+		return album_add;
+	}
+	public void setAlbum_add(String album_add) {
+		this.album_add = album_add;
+	}
+	public String getArtist_add() {
+		return artist_add;
+	}
+	public void setArtist_add(String artist_add) {
+		this.artist_add = artist_add;
+	}
 	public String getAlbum_name() {
 		return album_name;
 	}
