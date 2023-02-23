@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -149,11 +150,32 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("javafood").equals("3_7") )
 		{
 			int pl_id = Integer.parseInt(request.getParameter("pl_id") );
-			int songNumber = Integer.parseInt(request.getParameter("songNumber") );
 			String addWhere = request.getParameter("addWhere");
-			System.out.println("addwhere : "+addWhere);
-			java3_7(pl_id, songNumber, addWhere);
 			
+			//추가할 곡이 한 곡일 때
+			if(!request.getParameter("songNumber").equals("") )
+			{
+				int songNumber = Integer.parseInt(request.getParameter("songNumber") );
+				
+				java3_7(pl_id, songNumber, addWhere);
+			}
+			
+			//추가할 곡이 여러 곡일 때
+			if(!request.getParameter("songNumbers").equals("") )
+			{
+				String temp_songNumbers = request.getParameter("songNumbers");
+				String[] temp_splited = temp_songNumbers.split(",");
+				int[] songNumbers = new int[temp_splited.length];
+				for(int i = 0; i < temp_splited.length; i++)
+				{
+					songNumbers[i] = Integer.parseInt(temp_splited[i]);
+				}
+				
+				java3_7_1(pl_id, songNumbers, addWhere);
+			}
+			
+//			System.out.println("addwhere : "+addWhere);
+		
 			RequestDispatcher dispatch = request.getRequestDispatcher("javafood?javafood=3_3&PL_ID="+pl_id);
 			dispatch.forward(request, response);
 		}
@@ -164,6 +186,10 @@ public class JavaFood_Controller extends HttpServlet {
 		//localhost:8080/javafood_team/javafood?javafood=ArtistList&num=1
 		JavaFood_DAO dao = new JavaFood_DAO();
 		String num = request.getParameter("num"); //1이면 1테이블값들어감
+		String sess = (String)request.getSession().getAttribute("login");
+		System.out.println("세션id값 >> "+sess);
+		List<login_DTO> login_dto = dao.session(sess);
+		
 		List<AlbumDTO> album_list =  dao.album_add(num);
 		String artist_num = album_list.get(0).getArtist_add();
 		String detail="https://www.melon.com/artist/detail.htm?artistId="+artist_num;
@@ -257,8 +283,11 @@ public class JavaFood_Controller extends HttpServlet {
 			String id_1 = request.getParameter("id");
 			String cont_1 = request.getParameter("cont");
 			String num_1 = request.getParameter("songnum");
+			String myimg = request.getParameter("myimg");
 			
 			System.out.println("댓글등록 num : "+num_1);
+			System.out.println("아이디아이디: "+id_1);
+			System.out.println("마이 이미지>>>> : "+myimg);
 			
 			
 			CommentDTO dto = new CommentDTO();
@@ -266,6 +295,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont_1);
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
+			dto.setMyimg(myimg);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -274,11 +304,13 @@ public class JavaFood_Controller extends HttpServlet {
 			String cont = request.getParameter("cont_2");
 //			String parentNO = request.getParameter("parentNO");
 			String articleNO = request.getParameter("command_articleNO");
+			String myimg = request.getParameter("command_myimg");
 			
 			System.out.println("id : "+ id);
 			System.out.println("cont : "+ cont);
 			System.out.println("대댓글 num : "+ num);
 			System.out.println("articleNO : "+ articleNO);
+			System.out.println("이이미미지 : "+ myimg);
 			
 			CommentDTO dto = new CommentDTO();
 			dto.setComment_id(id);
@@ -286,6 +318,7 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setParentNO(Integer.parseInt(articleNO));
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
+			dto.setMyimg(myimg);
 			
 			service.addcomment(dto);
 //			commentList = service.listComment(artist.get(0).getArtistname());
@@ -296,6 +329,7 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		commentList = service.listComment(artist.get(0).getArtistname());
 		System.out.println("무한반복 살려줘");
+		request.setAttribute("login_dto", login_dto);
 		request.setAttribute("album_list", album_list); //아티스트 정보
 		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
 		request.setAttribute("src", src); //각 앨범 이름 리스트
@@ -509,7 +543,7 @@ public class JavaFood_Controller extends HttpServlet {
 	{
 		System.out.println("JavaFood_Controller의 java3_6 메소드 실행됨."); //확인용
 		
-//		if(id)
+		
 		
 		List playList = service.s_loadPL(id);
 		
@@ -522,6 +556,13 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
 		
 		service.s_addSongToPlayList(pl_id, songNumber, addWhere);
+	}
+	//범주 플레이 리스트 안에 곡 여러 개 추가하기.
+	private void java3_7_1(int pl_id, int[] songNumbers, String addWhere)
+	{
+		System.out.println("controller의 java3_7 메서드 실행됨."); //확인용
+		
+		service.s_addSongsToPlayList(pl_id, songNumbers, addWhere);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//경용 로그인
@@ -593,7 +634,18 @@ public class JavaFood_Controller extends HttpServlet {
 		}
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
-		if(request.getParameter("usre")!=null) request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
+		if(request.getParameter("usre")!=null) {
+			
+			
+			service.javafood5_3(request.getParameter("usre"),request.getParameter("page"));
+			
+//			System.out.println(map.get("list"));
+//			System.out.println(map.get("size"));
+			
+			
+			request.setAttribute("usre" ,map.get("list"));
+			request.setAttribute("page", request.getParameter("page"));
+		}
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
 		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
 		if(request.getParameter("iid")!=null) request.getSession().invalidate();

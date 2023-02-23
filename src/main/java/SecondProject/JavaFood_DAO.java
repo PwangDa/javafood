@@ -221,7 +221,7 @@ public class JavaFood_DAO {
 			ResultSet rs = con.prepareStatement("SELECT *  FROM login WHERE ID = '" + login + "'").executeQuery();
 			login_DTO vo = new login_DTO();
 			rs.next();
-			vo.setId(rs.getString("id"));
+//			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pwd"));
 			vo.setNic(rs.getString("nic"));
 
@@ -800,10 +800,11 @@ public class JavaFood_DAO {
 			String cont = commentDTO.getComment_cont();
 			int artist_num = commentDTO.getArtistlist_num();
 			String artist_name = commentDTO.getArtistname();
-
+			String myimg = commentDTO.getMyimg();
+			
 			String query = "insert into comment_com";
-			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname)";
-			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?)"; // 띄어쓰기 필수!
+			query += "(articleno, parentno, comment_num, comment_id, comment_cont, artistlist_num, artistname, myimg)";
+			query += " values(comment_com_seq.nextval, ?, comment_com_seq1.nextval, ?, ?, ?, ?, ?)"; // 띄어쓰기 필수!
 
 			System.out.println("query check" + query);
 
@@ -814,6 +815,7 @@ public class JavaFood_DAO {
 			pstmt.setString(3, cont);
 			pstmt.setInt(4, artist_num);
 			pstmt.setString(5, artist_name);
+			pstmt.setString(6, myimg);
 			pstmt.executeUpdate();
 
 			pstmt.close();
@@ -877,7 +879,7 @@ public class JavaFood_DAO {
 			this.con = dataFactory.getConnection();
 
 			// 가져올 테이블 선택(불러오기)
-			String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date \n";
+			String query = "SELECT LEVEL, articleNO, parentNO, comment_num, comment_id, comment_cont, comment_date, myimg \n";
 			query += " from comment_com \n";
 			query += " WHERE artistname= ? \n"; // 전달인자로 num받아서 그것만 보이게?
 			query += " START WITH parentNO=0 \n";
@@ -897,6 +899,7 @@ public class JavaFood_DAO {
 				String id = rs.getString("comment_id");
 				String cont = rs.getString("comment_cont");
 				Date date = rs.getDate("comment_date");
+				String myimg = rs.getString("myimg");
 
 				CommentDTO vo = new CommentDTO();
 				vo.setLevel(level);
@@ -905,6 +908,7 @@ public class JavaFood_DAO {
 				vo.setComment_id(id);
 				vo.setComment_cont(cont);
 				vo.setComment_Date(date);
+				vo.setMyimg(myimg);
 				list.add(vo);
 			}
 			rs.close();
@@ -1613,6 +1617,55 @@ public class JavaFood_DAO {
 			{
 				e.printStackTrace();
 				System.out.println("genre에서 노래 추가 실패..."); //확인용
+			}
+			
+			System.out.println("genre에서 노래 추가 성공!"); //확인용
+		}
+	}
+	
+	public void addSongsToPlayList(int pl_id, int[] songNumbers, String addWhere)
+	{
+		System.out.println("DAO에서 addSongToPlayList 메서드 실행됨."); //확인용
+		
+//		System.out.println("DAO의 pl_id : " + pl_id); //확인용
+//		System.out.println("DAO의 songNumber : " + songNumbers); //확인용
+//		System.out.println("DAO의 addWhere : " + addWhere); //확인용
+		
+		//나중에 if문 수정하기
+		if("void(0)".equals(addWhere) == false ) //만약 장르별 노래차트 페이지에서 곡 추가를 요청했다면
+		{
+			//쿼리문 작성
+			String addSongQuery =
+							  "INSERT INTO playList_Content "
+							+ "(PL_ID_ID, PL_ID, ListNumber, SongName, SongNumber)"
+							+ " VALUES"
+							+ "(?, ?, seq_listNumber.nextval, "
+							+ " (SELECT songName FROM genre WHERE songNumber = ?), "
+							+ " (SELECT songNumber FROM genre WHERE songNumber = ?)"
+							+ ")";
+			
+			//쿼리문 실행
+			for(int i=0; i<songNumbers.length; i++)
+			{
+				try
+				{
+					this.con = dataFactory.getConnection();
+					
+					pstmt = con.prepareStatement(addSongQuery);
+					pstmt.setInt(1, pl_id);
+					pstmt.setInt(2, pl_id);
+					pstmt.setInt(3, songNumbers[i]);
+					pstmt.setInt(4, songNumbers[i]);
+					pstmt.executeQuery();
+					
+					pstmt.close();
+					con.close();
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+					System.out.println("genre에서 노래 추가 실패..."); //확인용
+				}
 			}
 			
 			System.out.println("genre에서 노래 추가 성공!"); //확인용
