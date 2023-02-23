@@ -29,7 +29,7 @@
 
 			document.getElementById("timebox").value = hour + ":" + minute
 					+ ":" + second;
-				console.log(123, document.getElementById("timebox"));
+				//console.log(123, document.getElementById("timebox"));
 		}
 		window.addEventListener("load", function() {
 			//HTML이 다 load가 완료 됐을 때 실행됨
@@ -60,7 +60,13 @@
   			// 새 창에서 유튜브 동영상 링크 열기
  			 window.open(videoUrl, '_blank');
 		}*/
-
+	let save = document.querySelectorAll("img.save");
+	for(let i=0; i<save.length; i++){
+		save[i].addEventListener("click",function(){
+			console.log("담기 버튼 눌림");
+			save[i].parentNode.submit();
+		});
+	}
 //////////////////////////////////////////////////////////////////////////////////////////
 			/* refresh(); */
 			
