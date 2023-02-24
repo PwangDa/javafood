@@ -40,7 +40,7 @@
     	</span>
         
     </header>
-    <div id="ek" style="width: 94%;margin-top:55px; height:100PX; BORDER: 1PX SOLID RED; TEXT-ALIGN: CENTER; DISPLAY: INLINE-BLOCK;">321</div>
+    <div id="ek" style="width: 94%;margin-top:55px; height:100PX; TEXT-ALIGN: CENTER; DISPLAY: INLINE-BLOCK;">321</div>
     <div id="di" STYLE=" WIDTH: 5%;HEIGHT:100PX; BORDER: 1PX SOlid red; text-align: center; display: inline-block;">123</div>
 	<script>
 		
