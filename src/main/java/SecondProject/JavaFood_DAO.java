@@ -824,7 +824,7 @@ public class JavaFood_DAO {
 
 		try {
 			this.con = dataFactory.getConnection();
-
+			//아티스트 ?의 대표곡 1번만 출력하는 쿼리문 
 			String query = "SELECT * FROM ALBUM a";
 			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NAME = i.ALBUM_NAME)";
 			query += " WHERE i.MUSIC_NUM = 1 AND ARTISTNAME = ?";
@@ -841,7 +841,7 @@ public class JavaFood_DAO {
 				String cover = rs.getString("album_cover");
 				String alname = rs.getString("album_name");
 				String into = rs.getString("album_into");
-//				String artist = rs.getString("artist");
+
 				String artistname = rs.getString("artistname");
 				String artistimg = rs.getString("artist_img");
 				String info = rs.getString("artist_info");
@@ -1049,6 +1049,8 @@ public class JavaFood_DAO {
 		}
 		return list;
 	}
+	
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 댓글삭제버튼 구현

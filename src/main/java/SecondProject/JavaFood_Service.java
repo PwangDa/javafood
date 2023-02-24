@@ -167,9 +167,7 @@ public class JavaFood_Service {
     	return commentList;
     }
     
-	public void javafood1(){
-		
-	}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범 (차트 불러오기)
 	public List<song_DTO> javafood2(){

@@ -69,9 +69,9 @@ public class JavaFood_Controller extends HttpServlet {
 			///다영 javafood=1 로 접속했을 때 
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+			JavaFood_DAO dao = new JavaFood_DAO();
 			String sess = (String)request.getSession().getAttribute("login");
 			System.out.println("세션id값 >> "+sess);
-			JavaFood_DAO dao = new JavaFood_DAO();
 			List<login_DTO> login_dto = dao.session(sess);
 			
 			String nextPage = "";
@@ -85,9 +85,8 @@ public class JavaFood_Controller extends HttpServlet {
 			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 			List<AlbumDTO> listMusic = new ArrayList<AlbumDTO>();
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-			
+			commentList = service.listComment(artid);
 			listAlbum = service.Albumlist_artid(artid);
-//			listMusic = service.Albumlist(alname);
 			nextPage = "/artistinfo.jsp";
 			
 			for(int i=0; i<listAlbum.size(); i++) {
@@ -98,6 +97,7 @@ public class JavaFood_Controller extends HttpServlet {
 				nextPage = "/albumTest.jsp";
 			}
 			
+			request.setAttribute("login_dto", login_dto);
 			request.setAttribute("listAlbum", listAlbum);
 			request.setAttribute("listMusic", listMusic);
 			request.setAttribute("commentList", commentList);
