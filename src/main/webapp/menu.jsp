@@ -40,12 +40,13 @@
     	</span>
         
     </header>
-    <div style="width: 94%;margin-top:55px; height:100PX; BORDER: 1PX SOLID RED; TEXT-ALIGN: CENTER; DISPLAY: INLINE-BLOCK;">321</div>
-    <div id="di" STYLE=" WIDTH: 5%;HEIGHT:100PX; BORDER: 1PX SOlid red; text-align: center; display: inline-block;">123</div>
-	<script>
-	
-		$("#di").hide();
-	</script>
+    <div id="di">
+		<a class="at" href="javafood?javafood=5">마이페이지</a><br>
+		<a class="at" href="javafood?javafood=m">매인</a><br>
+		<a class="at" href="javafood?javafood=3">보관함</a><br>
+		<a class="at" href="javafood?javafood=4">로그인</a><br>
+		<a class="at" href="#">로그아웃</a><br>
+	</div>
 	
 
 </body>
