@@ -36,6 +36,7 @@
 <c:if test="${membership!=null }">
 
 	<title>javafood 회원가입</title>
+<<<<<<< HEAD
 </head>
 <body>
 	<form id="form" method="post"
@@ -159,6 +160,117 @@
 </html>
 </c:if>
 
+=======
+	</head>
+	<body>
+        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
+	   		   enctype="multipart/form-data" 
+	  		   accept-charset="utf-8">
+	  		<div class="div_1" style="margin-top:30px;">
+					<div><img src="https://c11.kr/1asbb" class="logo-img"><h1 style="margin-top:-11px;"><c:out value="Create Account"/></h1></div>
+					<div class="upload">
+						<img class="upload_img" src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+						<input type="file" name="file1">
+						<input class="butt" type="button" id="but" value="업로드">
+					</div>
+				
+			</div>
+		</form>
+        
+        <form method="post" action="javafood?javafood=4">
+            <div class="head">
+             	<table class="tdtd">
+			        <tr class="tr">
+			            <th></th>
+			            <td>
+			            <strong><c:out value=" 아이디 "/><span style="color:red;">*</span></strong>
+			            <input class="ttt" type="text" name="Id1" id="Id1" placeholder="아이디(4~16자 사이의 영문+숫자)"></td>
+			            <td></td>
+			            <td><input class="butt" type="button" id="idbutt" value="중복 확인"></td>
+			            <td><input type="checkbox" id="ch1" class="ch"></td>
+			        </tr>
+			        <tr class="tr">
+			            <th></th>
+			            <td>
+			            <strong><c:out value="닉네임 "/><span style="color:red;">*</span></strong>
+			            <input class="ttt" type="text" id="nic" name="nic" placeholder="닉네임(2~14자 사이)"></td>
+			            <td></td>
+			            <td><input class="butt" type="button" id="nicbutt" value="중복확인"></td>
+			            <td><input type="checkbox" id="ch3" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th></th>
+			            <td>
+			            <strong><c:out value="비밀번호 "/><span style="color:red;">*</span></strong>
+			            <input class="ttt" type="password" id="pw1" name="PW1"placeholder="비밀번호(6~20자 사이)">
+			            </td>
+			            <td></td>
+			            <td rowspan="2"><input class="butt" type="button" id="pwbutt" value="일치 확인"></td>
+			            <td><input type="checkbox" id="ch2" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th></th>
+			            <td>
+			            <input class="ttt" type="password" id="pw2" placeholder="비밀번호(확인)"></td>
+			            <td></td>
+			        </tr>
+			               
+			        <tr>
+			            <th></th>
+			            <td>
+			            <strong><c:out value="이메일 "/><span style="color:red;">*</span></strong>
+			            <input class="ttt" type="text" id="email" name="mail" placeholder="이메일(비밀번호 찾기에 사용됩니다.)"></td>
+			            <td></td>
+			            <td><input class="butt" type="button" id="mailbutt" value="인증번호 전송"></td>
+			            <td><input type="checkbox" id="ch4" class="ch"></td>
+			        </tr>
+			        <tr id="mail">
+			            <th></th>
+			            <td>
+			            <input class="ttt_2" type="text" placeholder="메일 인증번호"></td>
+			            <td></td>
+			            <td><input class="butt" type="button" id="mailchbutt" value="인증확인"></td>
+			            <td><input type="checkbox" id="ch5" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th id="pn" class="tr"></th>
+			            <td>
+			            	<strong><c:out value="주민등록 번호 "/><span style="color:red;">*</span></strong><br>
+			                <input class="ttt_2" type="text" class="pn" name="pn1" id="pn1" placeholder="6자리 숫자">
+			                <input class="ttt_2" type="password" class="pn" name="pn2" id="pn2" placeholder="******">
+			            </td>
+			            <td></td>
+			            <td><input class="butt" type="button" id="pnbutt" value="중복확인"></td>
+			            <td><input type="checkbox" id="ch6" class="ch"></td>
+			        </tr>
+			        <tr>
+			            <th class="tr"></th>
+			            <td>
+			            	<strong><c:out value=" 휴대폰 번호 "/><span style="color:red;">*</span></strong><br>
+			                <input class="ttt_1" type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+			                <input class="ttt_1" type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+			                <input class="ttt_1" type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
+			            </td>
+			            <td></td>
+			            <td><input class="butt" type="button" id="phonebutt" value="연락처 확인"></td>
+			            <td><input type="checkbox" id="ch7" class="ch"></td>
+			        </tr>
+			        <tr>
+			        	<th class="tr"></th>
+			            <th><input class="sub butt" type="reset" id="re" value="다시작성"></th>
+			        	<td></td>
+			            <th><input class="sub" type="submit" value="회원가입" id="end" disabled></th>
+			        </tr>
+			    </table>
+            </div>
+            <a href="javafood?javafood=4" class="at"><c:out value=" 이미 가입하셨다면, 로그인해 주세요! "/></a>
+        </form>
+		<hr>
+	</body>
+	</html>
+ </c:if>
+ 
+>>>>>>> d9084196cc8d9f7717e2dd4ec5d240a80a5bb934
 <c:if test="${log==2 }">
 	<title>javafood</title>
 	</head>
@@ -177,6 +289,7 @@
 	</body>
 	</html>
 </c:if>
+<<<<<<< HEAD
 <c:if test="${log==0 }">
 	<script>
 		alert('아이디가 틀렸습니다.');
@@ -189,6 +302,10 @@
 		location.href = 'javafood?javafood=4';
 	</script>
 </c:if>
+=======
+<c:if test="${log==0 }"><script>alert('아이디가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
+<c:if test="${log==1 }"><script>alert('패스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
+>>>>>>> d9084196cc8d9f7717e2dd4ec5d240a80a5bb934
 
 <c:if test="${membership==null&&log==null }">
 	<title>Log In</title>
@@ -197,6 +314,7 @@
 		<div class="table">
 			<div>
 				<div>
+<<<<<<< HEAD
 					<img src="https://c11.kr/1asbb" class="logo-img">
 					<h1 style="margin-top: -11px;">MUSIC</h1>
 				</div>
@@ -255,6 +373,36 @@
 		<input class="searchsubmit" type="submit" value="확인">
 	</div>
 	</body>
+=======
+					<div>
+						<img src="https://c11.kr/1asbb" class="logo-img">
+						<h1 style="margin-top:-11px;">MUSIC</h1>
+					</div>
+					<div class="table1">
+						<h1 class="h1_1"><c:out value="Log in to your account"/></h1>
+					    <form method="post" action="javafood?javafood=4">
+					        <div class="head1">
+					            <div class = "inputbtn">
+					            	<input class = "tt" type="text" name="ID" placeholder="USER NAME">
+					            	<button class="btnClear" type="button" ></button>
+					            </div>
+					            <br>
+					            
+					            <input class = "tt" type="password" name="PW" placeholder="PASSWORD">
+					            <button class="btnClear" type="button" ></button>
+					            <input class="sub sub1" type="submit" value="Log In"><br>
+					            <span class = "chec"><input type="checkbox" name="ID" value="ID">Remember me</span> <span class ="chec" style= "margin-left :77px;">계정 찾기</span>
+					            <p><a href="javafood?javafood=4&membership=O" class="at"><c:out value="아직 JavaMusic을 사용하고 있지 않으신가요? 가입하기"/></a></p>
+			            	</div>
+					    </form>
+			        </div>
+				    <br>
+				    <div class="body"></div>
+				    <div></div>
+			    </div >
+		    </div>
+		</body>
+>>>>>>> d9084196cc8d9f7717e2dd4ec5d240a80a5bb934
 	</html>
 	<br>
 </c:if>

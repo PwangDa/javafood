@@ -69,7 +69,7 @@
 		<div class="page1">
 			<div>
 				<c:forEach var="i" begin="1" end="5">
-					<a href="javafood?javafood=5&usre=${session_user.id }&page=${i}" value="abc" style="font-size: 30px">${i }</a> &emsp;
+					<a class="at" href="javafood?javafood=5&usre=${session_user.id }&page=${i}" value="abc" style="font-size: 30px">${i }</a> &emsp;
 				</c:forEach>
 			</div>
 		</div>
