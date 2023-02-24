@@ -69,22 +69,39 @@ public class JavaFood_Controller extends HttpServlet {
 			///다영 javafood=1 로 접속했을 때 
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+			String sess = (String)request.getSession().getAttribute("login");
+			System.out.println("세션id값 >> "+sess);
+			JavaFood_DAO dao = new JavaFood_DAO();
+			List<login_DTO> login_dto = dao.session(sess);
 			
 			String nextPage = "";
 			String command = request.getParameter("command");
 			String artid = request.getParameter("artid");
+			String alname = request.getParameter("alname");
 			
 			System.out.println("command : "+command);		
 			System.out.println("artid : "+artid);
 			
 			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
+			List<AlbumDTO> listMusic = new ArrayList<AlbumDTO>();
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			
 			listAlbum = service.Albumlist_artid(artid);
-			request.setAttribute("listAlbum", listAlbum);
-			request.setAttribute("commentList", commentList);
+//			listMusic = service.Albumlist(alname);
 			nextPage = "/artistinfo.jsp";
-			if("artistinfo.do".equals(command)) {
+			
+			for(int i=0; i<listAlbum.size(); i++) {
+				System.out.println(listAlbum.get(i).getMusic_name());
+			}
+			if(alname != null) {
+				listMusic = service.Albumlist(alname);
+				nextPage = "/albumTest.jsp";
+			}
+			
+			request.setAttribute("listAlbum", listAlbum);
+			request.setAttribute("listMusic", listMusic);
+			request.setAttribute("commentList", commentList);
+			/*if("artistinfo.do".equals(command)) {
 //				List<AlbumDTO> listAlbum = service.Albumlist();
 				listAlbum = service.Albumlist();
 //				commentList = service.listComment();
@@ -145,7 +162,7 @@ public class JavaFood_Controller extends HttpServlet {
 				request.setAttribute("listAlbum", listAlbum);
 				request.setAttribute("commentList", commentList);
 				nextPage = "/artistinfo.jsp";
-			}
+			}*/
 			
 			System.out.println("nextPage : "+nextPage);
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

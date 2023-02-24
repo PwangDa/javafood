@@ -434,53 +434,7 @@
         <div id ="cont1_1">
             <h2 style="text-align: center; margin: 13px;">음악</h2>
             <jsp:useBean id="daoTest" class="album.info.AlbumDAO"></jsp:useBean>
-            <%-- service에 
-            AlbumDAO albumDAO = new AlbumDAO(); 생성 [생성자선언해도 되나?]   
-            
-            public List<AlbumVO> Albumlist(){
-            	List<AlbumVO> Albumlist = albumDAO.listAlbum(); 
-            	return Albumlist;선언하고 
-            }
-                  
-            controller.java 에서 
-            listAlbum = Service.Albumlist();
-			request.setAttribute("listAlbum", listAlbum);
-			nextPage = "/artistinfo.jsp";
-			dispatch.forward();
-		    하면 jsp로 송출
-				 
-            jsp 이 페이지에서
-            AlbumVO vo = Albumlist.get(j); 
-            가 vo에 .get(j)로 for문으로 (0), (1) 하나씩 뽑아 넣어서 넣었다면
-            
-            향상된 for문으로 
-             album에 하나씩 넣어서 
-            <c:forEach var:"album" items="${listAlbum}">로 앨범목록출력
-            	 <div id = "cont1">
-                	<div class = "box1">
-                    <img class="img1" src="${album.cover}">
-                  </div>
-                  <div class = "box1 text2"><a href="${album.link}">
-                  
-            --%>
-            <%-- 
-            AlbumDAO albumDAO = new AlbumDAO();
-        	String num = request.getParameter("a.ALBUM_NUM");
-        	System.out.println("num : "+num);
-    	    List<AlbumVO> Albumlist = albumDAO.listAlbum(); 
-    	    
-    	    
-            for(int j=0; j<Albumlist.size(); j++) {
-            	AlbumVO vo = Albumlist.get(j);
-    	    	
-            	String alNum = vo.getAlbum_num();
-    	    	String cover = vo.getAlbum_cover();
-    			String alname = vo.getAlbum_name();
-    			String artist = vo.getArtist();
-            	
-    			String music_name = vo.getMusic_name();
-    			String music_link = vo.getMusic_link();
-            	--%>
+          
            <c:forEach var="album" items="${listAlbum}">
 	            <div id = "cont1">
 	                <div class = "box1">
@@ -488,7 +442,7 @@
 	                </div>
 	                <div class = "box1 text2"><a href="${album.music_link}"><strong>${album.music_name }</strong></a></div>
 	                <div class = "box1 text2" style = "color:rgb(192, 192, 192);">${album.artistname }</div>
-	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/Album.jsp?a.ALBUM_NUM=${album.album_num}">${album.album_name }</a></div>
+	                <div class = "box1 text2"><a style = "color:rgb(192, 192, 192);" href="/javafood_team/javafood?javafood=1&alname=${album.album_name}">${album.album_name }</a></div>
 	            </div>
 	            <hr>
             </c:forEach>

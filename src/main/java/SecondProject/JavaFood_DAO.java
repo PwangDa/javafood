@@ -857,6 +857,7 @@ public class JavaFood_DAO {
 				albumDTO.setAlbum_cover(cover);
 				albumDTO.setAlbum_name(alname);
 				albumDTO.setAlbum_into(into);
+				albumDTO.getAlbum_name();
 				albumDTO.setArtist_info(info);
 				albumDTO.setArtist_img(artistimg);
 				albumDTO.setArtistname(artistname);
@@ -865,7 +866,7 @@ public class JavaFood_DAO {
 				albumDTO.setMusic_name(music_name);
 				albumDTO.setMusic_link(music_link);
 				albumDTO.setMusic_time(music_time);
-
+				
 				listAlbum.add(albumDTO);
 
 			}
