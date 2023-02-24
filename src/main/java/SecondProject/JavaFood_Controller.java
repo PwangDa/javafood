@@ -70,10 +70,6 @@ public class JavaFood_Controller extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 
-			
-			
-			
-
 			JavaFood_DAO dao = new JavaFood_DAO();
 			String sess = (String)request.getSession().getAttribute("login");
 			System.out.println("세션id값 >> "+sess);
