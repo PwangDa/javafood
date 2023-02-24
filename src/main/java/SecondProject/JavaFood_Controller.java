@@ -681,15 +681,13 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-
-		service.javafood4(request.getParameter("membership"));
-		if(request.getParameter("membership") !=null) {
-			map = service.javafood4(request.getParameter("membership"));
-		}
+		
+		//회원가입 페이지 이동
 		if(request.getParameter("membership") !=null) {
 			map = service.javafood4(request.getParameter("membership"));
 			request.setAttribute("membership", map.get("membership"));
 		}
+		//로그인
 		if(request.getParameter("ID")!=null) {
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
@@ -697,6 +695,7 @@ public class JavaFood_Controller extends HttpServlet {
 			request.setAttribute("log", (int) map.get("log"));
 			request.getSession().setAttribute("login", request.getParameter("ID"));
 		}
+		//회원가입
 		if(request.getParameter("Id1")!=null) {
 			vo = new login_DTO();
 			vo.setId(request.getParameter("Id1"));
@@ -707,6 +706,7 @@ public class JavaFood_Controller extends HttpServlet {
 			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 			request.setAttribute("good",service.javafood4_2(vo));
 		}
+		//회원정보 수정
 		if(request.getParameter("remove")!=null) {
 			if("1".equals(request.getParameter("remove"))) {
 				vo = new login_DTO();
@@ -720,11 +720,8 @@ public class JavaFood_Controller extends HttpServlet {
 			}
 			request.setAttribute("re", "re");
 		}
+		//계정찾기
 		if(request.getParameter("user_search")!=null) {
-			//계정찾기
-			
-			
-			
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
