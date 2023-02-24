@@ -110,14 +110,10 @@ window.onload=function() {
 		let phone = 'phone='+$('#phone1').val() + "-" + $('#phone2').val()+ "-" + $('#phone3').val();
 		aj(phone,fn,'#ch7');
 	})
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-window.onload=function() {
 	let search = document.querySelector("span.user_search");
 	let search2=document.querySelector("div.search");
-	
 	search.addEventListener("click", function(){
 		search2.classList.toggle("hidden");
 	});
 }
-	
