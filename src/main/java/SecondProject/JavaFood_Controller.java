@@ -770,6 +770,7 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("genre")!=null) {
 			song = request.getParameter("genre");
 		}
+		// 페이징 
 		String tmp_pageNum = request.getParameter("pageNum");
 		if(tmp_pageNum != null) {
 			pageNum = Integer.parseInt(tmp_pageNum);
