@@ -336,6 +336,57 @@ public class JavaFood_DAO {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
+	 * 계정찾기
+	 * 
+	 * @param vo : 계정정보를 찾을 회원정보 DTO를 넣어줍니다.
+	 */
+	public String searchUserpn(String name, int pn) {
+		String usearch = "";
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT NAME FROM LOGIN WHERE PN =?");
+			pstmt.setInt(1, pn);
+			ResultSet rs = this.pstmt.executeQuery();
+			rs.next();
+			login_DTO dto = new login_DTO();
+			dto.setId(rs.getString("ID"));
+			usearch = dto.getId();
+			this.pstmt.executeQuery();
+			this.pstmt.close();
+			this.con.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		
+		return usearch;
+	}
+	
+	public String searchUserphone(String name, int phone) {
+		String usearch = "";
+		try {
+			this.con = this.dataFactory.getConnection();
+			this.pstmt = this.con.prepareStatement("SELECT ID FROM LOGIN WHERE PHONE =?");
+			pstmt.setInt(1, phone);
+			ResultSet rs = this.pstmt.executeQuery();
+			rs.next();
+			login_DTO dto = new login_DTO();
+			dto.setId(rs.getString("ID"));
+			usearch = dto.getId();
+			this.pstmt.close();
+			this.con.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		
+		return usearch;
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
 	 * song리스트
 	 * 
 	 * @return list : song1의 목록을 list로 가져옵니다.

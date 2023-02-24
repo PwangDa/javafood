@@ -112,3 +112,12 @@ window.onload=function() {
 	})
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+window.onload=function() {
+	let search = document.querySelector("span.user_search");
+	let search2=document.querySelector("div.search");
+	
+	search.addEventListener("click", function(){
+		search2.classList.toggle("hidden");
+	});
+}
+	

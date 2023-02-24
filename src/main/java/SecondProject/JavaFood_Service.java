@@ -204,6 +204,19 @@ public class JavaFood_Service {
 			
 			
 		}
+		
+		public String javafood4_5(String name, int pn) {
+			
+			String id = dao.searchUserpn(name, pn);
+		
+			return id;
+		}
+		
+		public	String javafood4_6(String name, int phone) {
+			String id = dao.searchUserphone(name, phone);
+			
+			return id;
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 플레이 리스트 불러오기
 	public List s_loadPL(String id)

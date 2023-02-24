@@ -207,4 +207,16 @@ table{
 .logo-img:hover {
 	cursor: pointer;
 }
-
+div.hidden{
+	display : none;
+	
+}
+.pn{
+	width: 30px;
+}
+.name{
+	width: 30px;
+}
+.phone{
+	width: 30px;
+}
