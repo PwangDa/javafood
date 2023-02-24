@@ -47,6 +47,11 @@ public class JavaFood_Service {
     	return Albumlist; 
     }
     
+    public List<AlbumDTO > Albumlist(String alname){
+    	List<AlbumDTO> Albumlist = dao.listAlbum(alname); 
+    	return Albumlist; 
+    }
+    
     public List<AlbumDTO > Albumlist_artid(String artid){
     	List<AlbumDTO> Albumlist_artid = dao.listAlbum_artid(artid);
     	return Albumlist_artid; 
