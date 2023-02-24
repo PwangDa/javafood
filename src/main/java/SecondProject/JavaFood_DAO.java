@@ -827,12 +827,11 @@ public class JavaFood_DAO {
 
 			String query = "SELECT * FROM ALBUM a";
 			query += " LEFT JOIN INTOALBUM i ON (a.ALBUM_NAME = i.ALBUM_NAME)";
-//		query += " WHERE a.ALBUM_NUM = 1";
-			query += " WHERE i.MUSIC_NUM = 1";
+			query += " WHERE i.MUSIC_NUM = 1 AND ARTISTNAME = ?";
 
-//		System.out.println("num : "+num);
+			System.out.println("artid : "+artid);
 			pstmt = this.con.prepareStatement(query);
-//		pstmt.setString(1, num);
+			pstmt.setString(1, artid);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {

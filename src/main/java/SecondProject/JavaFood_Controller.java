@@ -71,18 +71,19 @@ public class JavaFood_Controller extends HttpServlet {
 			response.setContentType("text/html;charset=utf-8");
 			
 			String nextPage = "";
-			String uri = request.getRequestURI();
 			String command = request.getParameter("command");
 			String artid = request.getParameter("artid");
 			
 			System.out.println("command : "+command);		
-			System.out.println("uri : "+uri);
+			System.out.println("artid : "+artid);
+			
 			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			
 			listAlbum = service.Albumlist_artid(artid);
-			
-			
+			request.setAttribute("listAlbum", listAlbum);
+			request.setAttribute("commentList", commentList);
+			nextPage = "/artistinfo.jsp";
 			if("artistinfo.do".equals(command)) {
 //				List<AlbumDTO> listAlbum = service.Albumlist();
 				listAlbum = service.Albumlist();
