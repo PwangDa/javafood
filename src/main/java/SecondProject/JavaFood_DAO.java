@@ -833,6 +833,8 @@ public class JavaFood_DAO {
 			pstmt = this.con.prepareStatement(query);
 			pstmt.setString(1, artid);
 			ResultSet rs = pstmt.executeQuery();
+			
+			System.out.println("query >> \n"+query);
 
 			while (rs.next()) {
 				String alNum = rs.getString("album_num");
