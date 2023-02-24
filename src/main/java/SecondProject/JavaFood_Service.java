@@ -167,9 +167,7 @@ public class JavaFood_Service {
     	return commentList;
     }
     
-	public void javafood1(){
-		
-	}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범 (차트 불러오기)
 	public List<song_DTO> javafood2(){
@@ -208,6 +206,19 @@ public class JavaFood_Service {
 			return map;
 			
 			
+		}
+		
+		public String javafood4_5(String name, int pn) {
+			
+			String id = dao.searchUserpn(name, pn);
+		
+			return id;
+		}
+		
+		public	String javafood4_6(String name, int phone) {
+			String id = dao.searchUserphone(name, phone);
+			
+			return id;
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 플레이 리스트 불러오기

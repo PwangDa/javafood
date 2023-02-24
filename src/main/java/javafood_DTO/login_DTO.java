@@ -13,8 +13,14 @@ public class login_DTO {
 	private String email;
 	private String home;
 	private String myimg;
+	private String name;
 	
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getPn1() {
 		return pn1;
 	}
