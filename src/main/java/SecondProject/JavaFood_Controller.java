@@ -371,7 +371,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		
 		
-		String nextPage = "";
+		//댓글 추가 했을 때
 		String command = request.getParameter("command");
 		System.out.println("command를 받다 : "+command);
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
@@ -379,10 +379,10 @@ public class JavaFood_Controller extends HttpServlet {
 		commentList = service.listComment(artist.get(0).getArtistname());
 		System.out.println("artist : "+artist.get(0).getArtistname());
 		if("addcommnet.do".equals(command) && command != null) {
-			String id_1 = request.getParameter("id");
-			String cont_1 = request.getParameter("cont");
-			String num_1 = request.getParameter("songnum");
-			String myimg = request.getParameter("myimg");
+			String id_1 = request.getParameter("id");	//아이디
+			String cont_1 = request.getParameter("cont"); //댓글단 내용
+			String num_1 = request.getParameter("songnum"); //댓글 단 아티스트페이지 값
+			String myimg = request.getParameter("myimg"); //설정한 프로필 사진
 			
 			System.out.println("댓글등록 num : "+num_1);
 			System.out.println("아이디아이디: "+id_1);
@@ -394,16 +394,15 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont_1);
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
-			dto.setMyimg(myimg);
-			dto.setId(sess);
+			dto.setMyimg(myimg); //댓글 단 유저들의 프로필이미지도 보이게 세팅
+			dto.setId(sess); //아이디 값도 세팅해야 누가 달았는 지 표시 가능
 			
 			service.addcomment(dto);
-//			commentList = service.listComment(artist.get(0).getArtistname());
+			//댓글의 댓글 달 때
 		}else if("addReply.do".equals(command) && command != null) {
 			String id = request.getParameter("id_2");
 			String cont = request.getParameter("cont_2");
-//			String parentNO = request.getParameter("parentNO");
-			String articleNO = request.getParameter("command_articleNO");
+			String articleNO = request.getParameter("command_articleNO"); //답글단 그 댓글의 고유숫자를 가져옴
 			String myimg = request.getParameter("command_myimg");
 			
 			System.out.println("id : "+ id);
@@ -415,14 +414,14 @@ public class JavaFood_Controller extends HttpServlet {
 			CommentDTO dto = new CommentDTO();
 			dto.setComment_id(id);
 			dto.setComment_cont(cont);
-			dto.setParentNO(Integer.parseInt(articleNO));
+			dto.setParentNO(Integer.parseInt(articleNO)); //답글단 댓글의 숫자를 셋팅
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
 			dto.setId(sess);
 			
 			service.addcomment(dto);
-//			commentList = service.listComment(artist.get(0).getArtistname());
+
 		}else if("delcommnet.do".equals(command) && command != null) {
 			int articleNO = Integer.parseInt(request.getParameter("articleNO"));
 			System.out.println("articleNO : "+articleNO);
