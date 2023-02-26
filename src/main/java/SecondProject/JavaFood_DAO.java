@@ -1377,15 +1377,17 @@ public class JavaFood_DAO {
     * @param a : db에 가지고있는 노래 수량 확인.
     * @return list : db에 가지고있는 노래 수량을 가져옴.
     */
-   public List<song_DTO> chartPaging(int start, int end) {
+   public List<song_DTO> chartPaging(String country, int start, int end) {
        List<song_DTO> list = new ArrayList<>();
        try {
            this.con = this.dataFactory.getConnection();
-           String chart = " SELECT * FROM ( SELECT rownum num, genre.* FROM ( SELECT RANK() OVER (ORDER BY FAMOUS DESC) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.*  FROM Genre s ) a ) genre ) WHERE num >=? AND num <=?";
+           String chart = " SELECT * FROM ( SELECT rownum num, genre.* FROM ( SELECT RANK() OVER (ORDER BY FAMOUS DESC) AS RANKING, a.* FROM ( SELECT (HITS *1) + (LIKES * 1.5) AS FAMOUS, s.*  FROM Genre s ) a ) genre WHERE country =?) WHERE num >=? AND num <=?";
            this.pstmt = con.prepareStatement(chart);
-           this.pstmt.setInt(1, start);
+           this.pstmt.setString(1, country);
+           System.out.println("국가는 > "+country);
+           this.pstmt.setInt(2, start);
            System.out.println(start);
-           this.pstmt.setInt(2, end);
+           this.pstmt.setInt(3, end);
            System.out.println(end);
            ResultSet rs = pstmt.executeQuery();
            while (rs.next()) {

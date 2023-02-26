@@ -503,6 +503,11 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		System.out.println("play : " + request.getParameter("play"));
 		System.out.println("id : " + request.getParameter("id"));
+		String country = request.getParameter("country");
+		if(country == null ) {
+			country = "대한민국";
+		}
+		System.out.println(country);
 		if(request.getParameter("play") != null) {
 //			System.out.println("전달인자 실행 test");
 			service.addhit(request.getParameter("play"), request.getParameter("id"));
@@ -544,10 +549,25 @@ public class JavaFood_Controller extends HttpServlet {
 //				System.out.println("pageNum : " + pageNum);
 //				System.out.println("countPerPage : " + countPerPage);
 		
-		Map chart_list = service.javafood2(pageNum, countPerPage);
-		
-		request.setAttribute("list", chart_list.get("list"));
-		request.setAttribute("totalCount", chart_list.get("totalCount"));
+		if(country.equals("일본")) {
+			
+			Map chart_list = service.javafood2(country, pageNum, countPerPage);
+			
+			request.setAttribute("list", chart_list.get("list"));
+			request.setAttribute("totalCount", chart_list.get("totalCount"));
+			
+		}else if(country.equals("미국")) {
+			Map chart_list = service.javafood2(country, pageNum, countPerPage);
+			
+			request.setAttribute("list", chart_list.get("list"));
+			request.setAttribute("totalCount", chart_list.get("totalCount"));
+		}else{
+			Map chart_list = service.javafood2(country, pageNum, countPerPage);
+			
+			request.setAttribute("list", chart_list.get("list"));
+			request.setAttribute("totalCount", chart_list.get("totalCount"));
+		}
+				
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("countPerPage", countPerPage);
 		request.setAttribute("show", show);
