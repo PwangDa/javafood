@@ -174,3 +174,28 @@ body {
                 border-color: rgb(255, 255, 255);
                 color: white;
             } 
+            
+        .tab1{
+            background-color: rgb(42, 42, 42);
+            border-radius: 15px;
+            width: 174px;
+            height: 50px;
+            color : white;
+            font-size: 20px;
+        }
+        .tab1:hover{
+            cursor: pointer;
+            background-color:rgba(173, 173, 173, 0.545);
+        }
+        .tab1:active{
+            transform: scale(1.1);
+        }
+        .tab1_1{
+            border-left: 6px solid rgb(49, 180, 255);
+        }
+        .tab1_2{
+            border-left: 6px solid rgb(255, 79, 141);
+        }
+        .tab1_3{
+            border-left: 6px solid rgb(255, 232, 81);
+        }

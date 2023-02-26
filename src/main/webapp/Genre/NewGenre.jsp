@@ -173,7 +173,12 @@
                 	<div class="left_item_bot">${ status.count} </div>  <!-- 곡 순서 -->
                 	<div class="div_size"><img class="left_img" src="${ genre_list.imglink}" ></div>  <!-- 앨범 이미지 -->
                 	<div class="left_song_bot"><a href="${ genre_list.link}"target='_blank'>${ genre_list.songname}</a></div> <!-- 곡 제목 -->
-                	<div class="left_artist_bot" title="${ genre_list.artistname}"><a href="/javafood_team/javafood?javafood=ArtistList&num=${genre_list.songnumber}">${ genre_list.artistname}</a></div> <!-- 가수명 -->
+                	<c:if test="${ genre_list.artistname == '아이유' || genre_list.artistname == 'SG워너비'}">
+                		<div class="left_artist_bot" title="${ genre_list.artistname}"><a href="/javafood_team/javafood?javafood=1&artid=${genre_list.artistname}">${ genre_list.artistname}</a></div> <!-- 가수명 -->
+                	</c:if>
+                	<c:if test="${ genre_list.artistname != '아이유' && genre_list.artistname != 'SG워너비'}">
+                		<div class="left_artist_bot" title="${ genre_list.artistname}"><a href="/javafood_team/javafood?javafood=ArtistList&num=${genre_list.songnumber}">${ genre_list.artistname}</a></div> <!-- 가수명 -->
+                	</c:if>
                 	<div class="left_album_bot" title="${ genre_list.album}"><a href = "/javafood_team/javafood?javafood=AlbumList&num=${genre_list.songnumber}">${ genre_list.album}</a></div> <!-- 앨범 --> 
                 	<div class="right_item_bot">${ genre_list.playtime}</div> <!-- 재생시간 -->
                 	<form method="post" action="/javafood_team/javafood?javafood=6">
@@ -192,10 +197,12 @@
              	</div>
 			</c:forEach>
 		</c:when>
+		
 		<c:when test="${empty genre}">
 			<div class="not">노래가 없습니다.</div>
 		</c:when>
 		</c:choose>
+		
             
         </div>
     </div>
@@ -217,13 +224,13 @@
 	}
 	
 	
-	System.out.println("totalCount : " + totalCount);
+	/* System.out.println("totalCount : " + totalCount);
 	System.out.println("pageNum : " + pageNum);
 	System.out.println("countPerPage : " + countPerPage);
 	System.out.println("lastPage : " + lastPage);
 	System.out.println("sec_position : " + sec_position);
 	System.out.println("firstSec : " + firstSec);
-	System.out.println("lastSec : " + lastSec);
+	System.out.println("lastSec : " + lastSec); */
 %>
 	<c:set var="pageNum2" value="<%= pageNum %>" />
 	<div class="page">

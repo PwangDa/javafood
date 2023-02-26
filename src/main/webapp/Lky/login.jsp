@@ -29,114 +29,113 @@
 	<title>javafood 회원가입</title>
 	</head>
 	<body>
-        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
-	   		   enctype="multipart/form-data" 
-	  		   accept-charset="utf-8">
-	  		<div class="div_1" style="margin-top:30px;">
-					<div><img src="https://c11.kr/1asbb" class="logo-img"><h1 style="margin-top:-11px;"><c:out value="Create Account"/></h1></div>
-					<div class="upload">
-						<img class="upload_img" src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
-						<input type="file" name="file1">
-						<input class="butt" type="button" id="but" value="업로드">
-					</div>
-				
-			</div>
-		</form>
-        
-        <form method="post" action="javafood?javafood=4">
-            <div class="head">
-             	<table class="tdtd">
-			        <tr class="tr">
-			            <th></th>
-			            <td>
-			            <strong><c:out value=" 아이디 "/><span style="color:red;">*</span></strong>
-			            <input class="ttt" type="text" name="Id1" id="Id1" placeholder="아이디(4~16자 사이의 영문+숫자)"></td>
-			            <td></td>
-			            <td><input class="butt" type="button" id="idbutt" value="중복 확인"></td>
-			            <td><input type="checkbox" id="ch1" class="ch"></td>
-			        </tr>
-			        <tr class="tr">
-			            <th></th>
-			            <td>
-			            <strong><c:out value="닉네임 "/><span style="color:red;">*</span></strong>
-			            <input class="ttt" type="text" id="nic" name="nic" placeholder="닉네임(2~14자 사이)"></td>
-			            <td></td>
-			            <td><input class="butt" type="button" id="nicbutt" value="중복확인"></td>
-			            <td><input type="checkbox" id="ch3" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th></th>
-			            <td>
-			            <strong><c:out value="비밀번호 "/><span style="color:red;">*</span></strong>
-			            <input class="ttt" type="password" id="pw1" name="PW1"placeholder="비밀번호(6~20자 사이)">
-			            </td>
-			            <td></td>
-			            <td rowspan="2"><input class="butt" type="button" id="pwbutt" value="일치 확인"></td>
-			            <td><input type="checkbox" id="ch2" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th></th>
-			            <td>
-			            <input class="ttt" type="password" id="pw2" placeholder="비밀번호(확인)"></td>
-			            <td></td>
-			        </tr>
-			               
-			        <tr>
-			            <th></th>
-			            <td>
-			            <strong><c:out value="이메일 "/><span style="color:red;">*</span></strong>
-			            <input class="ttt" type="text" id="email" name="mail" placeholder="이메일(비밀번호 찾기에 사용됩니다.)"></td>
-			            <td></td>
-			            <td><input class="butt" type="button" id="mailbutt" value="인증번호 전송"></td>
-			            <td><input type="checkbox" id="ch4" class="ch"></td>
-			        </tr>
-			        <tr id="mail">
-			            <th></th>
-			            <td>
-			            <input class="ttt_2" type="text" placeholder="메일 인증번호"></td>
-			            <td></td>
-			            <td><input class="butt" type="button" id="mailchbutt" value="인증확인"></td>
-			            <td><input type="checkbox" id="ch5" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th id="pn" class="tr"></th>
-			            <td>
-			            	<strong><c:out value="주민등록 번호 "/><span style="color:red;">*</span></strong><br>
-			                <input class="ttt_2" type="text" class="pn" name="pn1" id="pn1" placeholder="6자리 숫자">
-			                <input class="ttt_2" type="password" class="pn" name="pn2" id="pn2" placeholder="******">
-			            </td>
-			            <td></td>
-			            <td><input class="butt" type="button" id="pnbutt" value="중복확인"></td>
-			            <td><input type="checkbox" id="ch6" class="ch"></td>
-			        </tr>
-			        <tr>
-			            <th class="tr"></th>
-			            <td>
-			            	<strong><c:out value=" 휴대폰 번호 "/><span style="color:red;">*</span></strong><br>
-			                <input class="ttt_1" type="text" class="phone" name="phone1" id="phone1" placeholder="010">
-			                <input class="ttt_1" type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
-			                <input class="ttt_1" type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
-			            </td>
-			            <td></td>
-			            <td><input class="butt" type="button" id="phonebutt" value="연락처 확인"></td>
-			            <td><input type="checkbox" id="ch7" class="ch"></td>
-			        </tr>
-			        <tr>
-			        	<th class="tr"></th>
-			            <th><input class="sub butt" type="reset" id="re" value="다시작성"></th>
-			        	<td></td>
-			            <th><input class="sub" type="submit" value="회원가입" id="end" disabled></th>
-			        </tr>
-			    </table>
-            </div>
-            <a href="javafood?javafood=4" class="at"><c:out value=" 이미 가입하셨다면, 로그인해 주세요! "/></a>
-        </form>
-		<hr>
+	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
+		   		   enctype="multipart/form-data" 
+		  		   accept-charset="utf-8">
+		  		<div class="div_1" style="margin-top:30px;">
+						<div><img src="https://c11.kr/1asbb" class="logo-img"><h1 style="margin-top:-11px;"><c:out value="Create Account"/></h1></div>
+						<div class="upload">
+							<img class="upload_img" src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+							<input type="file" name="file1">
+							<input class="butt" type="button" id="but" value="업로드">
+						</div>
+				</div>
+			</form>
+	        
+	        <form method="post" action="javafood?javafood=4">
+	            <div class="head">
+	             	<table class="tdtd">
+	        <tr class="tr">
+	            <th></th>
+	            <td>
+	            <strong><c:out value=" 아이디 "/><span style="color:red;">*</span></strong>
+	            <input class="ttt" type="text" name="Id1" id="Id1" placeholder="아이디(4~16자 사이의 영문+숫자)"></td>
+	            <td></td>
+	            <td><input class="butt" type="button" id="idbutt" value="중복 확인"></td>
+	            <td><input type="checkbox" id="ch1" class="ch"></td>
+	        </tr>
+	        <tr class="tr">
+	            <th></th>
+	            <td>
+	            <strong><c:out value="닉네임 "/><span style="color:red;">*</span></strong>
+	            <input class="ttt" type="text" id="nic" name="nic" placeholder="닉네임(2~14자 사이)"></td>
+	            <td></td>
+	            <td><input class="butt" type="button" id="nicbutt" value="중복확인"></td>
+	            <td><input type="checkbox" id="ch3" class="ch"></td>
+	        </tr>
+	        <tr>
+	            <th></th>
+	            <td>
+	            <strong><c:out value="비밀번호 "/><span style="color:red;">*</span></strong>
+	            <input class="ttt" type="password" id="pw1" name="PW1"placeholder="비밀번호(6~20자 사이)">
+	            </td>
+	            <td></td>
+	            <td rowspan="2"><input class="butt" type="button" id="pwbutt" value="일치 확인"></td>
+	            <td><input type="checkbox" id="ch2" class="ch"></td>
+	        </tr>
+	        <tr>
+	            <th></th>
+	            <td>
+	            <input class="ttt" type="password" id="pw2" placeholder="비밀번호(확인)"></td>
+	            <td></td>
+	        </tr>
+	               
+	        <tr>
+	            <th></th>
+	            <td>
+	            <strong><c:out value="이메일 "/><span style="color:red;">*</span></strong>
+	            <input class="ttt" type="text" id="email" name="mail" placeholder="이메일(비밀번호 찾기에 사용됩니다.)"></td>
+	            <td></td>
+	            <td><input class="butt" type="button" id="mailbutt" value="인증번호 전송"></td>
+	            <td><input type="checkbox" id="ch4" class="ch"></td>
+	        </tr>
+	        <tr id="mail">
+	            <th></th>
+	            <td>
+	            <input class="ttt_2" type="text" placeholder="메일 인증번호"></td>
+	            <td></td>
+	            <td><input class="butt" type="button" id="mailchbutt" value="인증확인"></td>
+	            <td><input type="checkbox" id="ch5" class="ch"></td>
+	        </tr>
+	        <tr>
+	            <th id="pn" class="tr"></th>
+	            <td>
+	            	<strong><c:out value="주민등록 번호 "/><span style="color:red;">*</span></strong><br>
+	                <input class="ttt_2" type="text" class="pn" name="pn1" id="pn1" placeholder="6자리 숫자">
+	                <input class="ttt_2" type="password" class="pn" name="pn2" id="pn2" placeholder="******">
+	            </td>
+	            <td></td>
+	            <td><input class="butt" type="button" id="pnbutt" value="중복확인"></td>
+	            <td><input type="checkbox" id="ch6" class="ch"></td>
+	        </tr>
+	        <tr>
+	            <th class="tr"></th>
+	            <td>
+	            	<strong><c:out value=" 휴대폰 번호 "/><span style="color:red;">*</span></strong><br>
+	                <input class="ttt_1" type="text" class="phone" name="phone1" id="phone1" placeholder="010">
+	                <input class="ttt_1" type="text" class="phone" name="phone2" id="phone2" placeholder="1234">
+	                <input class="ttt_1" type="text" class="phone" name="phone3" id="phone3" placeholder="4567">
+	            </td>
+	            <td></td>
+	            <td><input class="butt" type="button" id="phonebutt" value="연락처 확인"></td>
+	            <td><input type="checkbox" id="ch7" class="ch"></td>
+	        </tr>
+	        <tr>
+	        	<th class="tr"></th>
+	            <th><input class="sub butt" type="reset" id="re" value="다시작성"></th>
+	        	<td></td>
+	            <th><input class="sub" type="submit" value="회원가입" id="end" disabled></th>
+	        </tr>
+	    </table>
+	            </div>
+	            <a href="javafood?javafood=4" class="at"><c:out value=" 이미 가입하셨다면, 로그인해 주세요! "/></a>
+	        </form>
+	        <hr>
 	</body>
 	</html>
  </c:if>
  
-<c:if test="${log==2 }">
+ <c:if test="${log==2 }">
 	<title>javafood</title>
 	</head>
 	<body>
@@ -146,7 +145,7 @@
 		<script>loging();</script>
 	</body>
 	</html>
-</c:if>
+ </c:if>
 <c:if test="${log==0 }"><script>alert('아이디가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
 <c:if test="${log==1 }"><script>alert('패스워드가 틀렸습니다.');location.href='javafood?javafood=4';</script></c:if>
 
@@ -169,24 +168,62 @@
 					            	<button class="btnClear" type="button" ></button>
 					            </div>
 					            <br>
-					            
 					            <input class = "tt" type="password" name="PW" placeholder="PASSWORD">
 					            <button class="btnClear" type="button" ></button>
 					            <input class="sub sub1" type="submit" value="Log In"><br>
 					            <span class = "chec"><input type="checkbox" name="ID" value="ID">Remember me</span> <span class ="chec" style= "margin-left :77px;">계정 찾기</span>
 					            <p><a href="javafood?javafood=4&membership=O" class="at"><c:out value="아직 JavaMusic을 사용하고 있지 않으신가요? 가입하기"/></a></p>
-			            	</div>
-					    </form>
-			        </div>
+					        </div>
+				        </div>
+				    </form>
 				    <br>
-				    <div class="body"></div>
-				    <div></div>
 			    </div >
 		    </div>
+		</c:if>
+		
+		<c:if test="${llll!=null }">
+			<div class="search hidden">
+		   	<h1>찾는 방법을 선택해 주세요.</h1>
+		    <table>
+    	    <tr>주민등록번호로 찾기</tr>
+		    	<form method="post" action="javafood?javafood=4">
+		            <td>
+		            	이름 <input class="name" type="text" name="NAME">
+		            </td>
+		            <td>
+		            	주민등록번호 
+		            	<input class="pn" type="text" name="PN" placeholder="주민등록번호">
+		            </td>
+		         </form>
+		         
+		         <form>
+		         	<tr>
+		         		전화번호로 찾기
+		         	</tr>
+			         <td>
+			         	이름 
+			         	<input class="name" type="text" name="NAME">
+			         </td>
+			         <td>
+			         	전화번호 
+			         	<input class="phone" type="text" name="PHONE" placeholder="전화번호">
+			         </td>
+		         </form>
+		      </table>
+		      <input class="searchsubmit" type="submit" value="확인">
+		   </div>
+		</c:if>
+		
 		</body>
 	</html>
 	<br>
-</c:if>
+
+
+
+
+
+
+
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
 	<path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
 </svg>

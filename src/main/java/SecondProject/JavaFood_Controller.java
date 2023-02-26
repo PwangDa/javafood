@@ -69,9 +69,11 @@ public class JavaFood_Controller extends HttpServlet {
 			///다영 javafood=1 로 접속했을 때 
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+
+			JavaFood_DAO dao = new JavaFood_DAO();
 			String sess = (String)request.getSession().getAttribute("login");
 			System.out.println("세션id값 >> "+sess);
-			JavaFood_DAO dao = new JavaFood_DAO();
+
 			List<login_DTO> login_dto = dao.session(sess);
 			
 			String nextPage = "";
@@ -85,9 +87,11 @@ public class JavaFood_Controller extends HttpServlet {
 			List<AlbumDTO> listAlbum = new ArrayList<AlbumDTO>();
 			List<AlbumDTO> listMusic = new ArrayList<AlbumDTO>();
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-			
+			commentList = service.listComment(artid);
 			listAlbum = service.Albumlist_artid(artid);
+
 //			listMusic = service.Albumlist(alname);
+
 			nextPage = "/artistinfo.jsp";
 			
 			for(int i=0; i<listAlbum.size(); i++) {
@@ -97,7 +101,8 @@ public class JavaFood_Controller extends HttpServlet {
 				listMusic = service.Albumlist(alname);
 				nextPage = "/albumTest.jsp";
 			}
-			
+
+			request.setAttribute("login_dto", login_dto);
 			request.setAttribute("listAlbum", listAlbum);
 			request.setAttribute("listMusic", listMusic);
 			request.setAttribute("commentList", commentList);
@@ -371,7 +376,7 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		
 		
-		String nextPage = "";
+		//댓글 추가 했을 때
 		String command = request.getParameter("command");
 		System.out.println("command를 받다 : "+command);
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
@@ -379,10 +384,10 @@ public class JavaFood_Controller extends HttpServlet {
 		commentList = service.listComment(artist.get(0).getArtistname());
 		System.out.println("artist : "+artist.get(0).getArtistname());
 		if("addcommnet.do".equals(command) && command != null) {
-			String id_1 = request.getParameter("id");
-			String cont_1 = request.getParameter("cont");
-			String num_1 = request.getParameter("songnum");
-			String myimg = request.getParameter("myimg");
+			String id_1 = request.getParameter("id");	//아이디
+			String cont_1 = request.getParameter("cont"); //댓글단 내용
+			String num_1 = request.getParameter("songnum"); //댓글 단 아티스트페이지 값
+			String myimg = request.getParameter("myimg"); //설정한 프로필 사진
 			
 			System.out.println("댓글등록 num : "+num_1);
 			System.out.println("아이디아이디: "+id_1);
@@ -394,16 +399,15 @@ public class JavaFood_Controller extends HttpServlet {
 			dto.setComment_cont(cont_1);
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
-			dto.setMyimg(myimg);
-			dto.setId(sess);
+			dto.setMyimg(myimg); //댓글 단 유저들의 프로필이미지도 보이게 세팅
+			dto.setId(sess); //아이디 값도 세팅해야 누가 달았는 지 표시 가능
 			
 			service.addcomment(dto);
-//			commentList = service.listComment(artist.get(0).getArtistname());
+			//댓글의 댓글 달 때
 		}else if("addReply.do".equals(command) && command != null) {
 			String id = request.getParameter("id_2");
 			String cont = request.getParameter("cont_2");
-//			String parentNO = request.getParameter("parentNO");
-			String articleNO = request.getParameter("command_articleNO");
+			String articleNO = request.getParameter("command_articleNO"); //답글단 그 댓글의 고유숫자를 가져옴
 			String myimg = request.getParameter("command_myimg");
 			
 			System.out.println("id : "+ id);
@@ -415,14 +419,14 @@ public class JavaFood_Controller extends HttpServlet {
 			CommentDTO dto = new CommentDTO();
 			dto.setComment_id(id);
 			dto.setComment_cont(cont);
-			dto.setParentNO(Integer.parseInt(articleNO));
+			dto.setParentNO(Integer.parseInt(articleNO)); //답글단 댓글의 숫자를 셋팅
 			dto.setArtistlist_num(Integer.parseInt(num));
 			dto.setArtistname(artist.get(0).getArtistname());
 			dto.setMyimg(myimg);
 			dto.setId(sess);
 			
 			service.addcomment(dto);
-//			commentList = service.listComment(artist.get(0).getArtistname());
+
 		}else if("delcommnet.do".equals(command) && command != null) {
 			int articleNO = Integer.parseInt(request.getParameter("articleNO"));
 			System.out.println("articleNO : "+articleNO);
@@ -499,6 +503,11 @@ public class JavaFood_Controller extends HttpServlet {
 		
 		System.out.println("play : " + request.getParameter("play"));
 		System.out.println("id : " + request.getParameter("id"));
+		String country = request.getParameter("country");
+		if(country == null ) {
+			country = "대한민국";
+		}
+		System.out.println(country);
 		if(request.getParameter("play") != null) {
 //			System.out.println("전달인자 실행 test");
 			service.addhit(request.getParameter("play"), request.getParameter("id"));
@@ -540,10 +549,25 @@ public class JavaFood_Controller extends HttpServlet {
 //				System.out.println("pageNum : " + pageNum);
 //				System.out.println("countPerPage : " + countPerPage);
 		
-		Map chart_list = service.javafood2(pageNum, countPerPage);
-		
-		request.setAttribute("list", chart_list.get("list"));
-		request.setAttribute("totalCount", chart_list.get("totalCount"));
+		if(country.equals("일본")) {
+			
+			Map chart_list = service.javafood2(country, pageNum, countPerPage);
+			
+			request.setAttribute("list", chart_list.get("list"));
+			request.setAttribute("totalCount", chart_list.get("totalCount"));
+			
+		}else if(country.equals("미국")) {
+			Map chart_list = service.javafood2(country, pageNum, countPerPage);
+			
+			request.setAttribute("list", chart_list.get("list"));
+			request.setAttribute("totalCount", chart_list.get("totalCount"));
+		}else{
+			Map chart_list = service.javafood2(country, pageNum, countPerPage);
+			
+			request.setAttribute("list", chart_list.get("list"));
+			request.setAttribute("totalCount", chart_list.get("totalCount"));
+		}
+				
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("countPerPage", countPerPage);
 		request.setAttribute("show", show);
@@ -672,15 +696,13 @@ public class JavaFood_Controller extends HttpServlet {
 	//경용 로그인
 	private void java4(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("4번 로그인 실행");
-
-		service.javafood4(request.getParameter("membership"));
-		if(request.getParameter("membership") !=null) {
-			map = service.javafood4(request.getParameter("membership"));
-		}
+		
+		//회원가입 페이지 이동
 		if(request.getParameter("membership") !=null) {
 			map = service.javafood4(request.getParameter("membership"));
 			request.setAttribute("membership", map.get("membership"));
 		}
+		//로그인
 		if(request.getParameter("ID")!=null) {
 			map = service.javafood4_1(request.getParameter("ID"), request.getParameter("PW"));
 			request.setAttribute("login", (List<login_DTO>) map.get("login"));
@@ -688,6 +710,7 @@ public class JavaFood_Controller extends HttpServlet {
 			request.setAttribute("log", (int) map.get("log"));
 			request.getSession().setAttribute("login", request.getParameter("ID"));
 		}
+		//회원가입
 		if(request.getParameter("Id1")!=null) {
 			vo = new login_DTO();
 			vo.setId(request.getParameter("Id1"));
@@ -698,6 +721,7 @@ public class JavaFood_Controller extends HttpServlet {
 			vo.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 			request.setAttribute("good",service.javafood4_2(vo));
 		}
+		//회원정보 수정
 		if(request.getParameter("remove")!=null) {
 			if("1".equals(request.getParameter("remove"))) {
 				vo = new login_DTO();
@@ -711,11 +735,8 @@ public class JavaFood_Controller extends HttpServlet {
 			}
 			request.setAttribute("re", "re");
 		}
+		//계정찾기
 		if(request.getParameter("user_search")!=null) {
-			//계정찾기
-			
-			
-			
 		}
 		request.getRequestDispatcher("Lky/login.jsp").forward(request, response);
 	}
@@ -769,6 +790,7 @@ public class JavaFood_Controller extends HttpServlet {
 		if(request.getParameter("genre")!=null) {
 			song = request.getParameter("genre");
 		}
+		// 페이징 
 		String tmp_pageNum = request.getParameter("pageNum");
 		if(tmp_pageNum != null) {
 			pageNum = Integer.parseInt(tmp_pageNum);

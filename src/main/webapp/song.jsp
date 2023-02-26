@@ -34,6 +34,10 @@
 			</form>
 		</div>
 		<div class="time">
+			<strong>국가 선택</strong>
+			<a href="/javafood_team/javafood?javafood=2"><input class="tab1 tab1_1" type="button" name="country" value="한국"></a>
+			<a href="/javafood_team/javafood?javafood=2&country=일본"><input class="tab1 tab1_2" type="button" name="country" value="일본"></a>
+			<a href="/javafood_team/javafood?javafood=2&country=미국"><input class="tab1 tab1_3" type="button" name="country" value="미국"></a>
 			<input type="text" size="10" id="timebox"> 현재시각 기준
 		</div>
 	<div class="list">		
@@ -53,7 +57,6 @@
 				<td style="width: 120px;">재생 시간</td>
 				<td style="width: 50px;">재생</td>
 				<td style="width: 80px;">담기</td>
-				<td style="width: 150px;">국적</td>
 			</tr>
 			<c:forEach var="dao" items="${ list}">
 				<tr class="table3 table3_${dao.songnumber }">
@@ -96,8 +99,6 @@
 							<img class="save" src="https://c11.kr/1asd6" onmouseover="this.src='https://c11.kr/1asd9'" onmouseout="this.src='https://c11.kr/1asd6'">
 						</form>
 					</td>
-
-					<td>${dao.country }</td>
 				</tr>
 			</c:forEach>
 		</table>

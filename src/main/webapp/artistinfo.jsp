@@ -476,36 +476,45 @@
         <div>
         	<br>
             <h2 style="text-align: center; margin: 0px;">댓글</h2>
-            <form name="frmComment">
+                        <form name="frmComment" method="post" action="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=addcommnet.do">
                 <div class="comment">
+                <c:if test="${empty login_dto[0].nic}">
                     <div class="text2">
                         <img class="image1" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-                        <input class="input1" type="text" name="id" placeholder=" ID를 입력해주세요">
+                        <input class="input1" type="text" name="id" placeholder="로그인을 해주세요"  disabled>
                     </div>
                     <div class="text2">
-                        <textarea name="cont" placeholder="*게시물의 저작권 등 분쟁, 개인정보 노출로 인한 책임은 작성자 또는 게시자에게 있음을 유의해 주세요."></textarea>
+                        <textarea class="text_area" name="cont" placeholder="*로그인을 해주세요" disabled></textarea>
                     </div>
                     <div class="text2">
-                        <button class="btn" type="button" onclick="fn_sendComment()"> 등록 </button>
+                        <input class="btn" type="button" disabled value="등록">
                     </div>
-                    <input type ="hidden" name="command" value="addcomment">
+                </c:if>
+                <c:if test="${not empty login_dto[0].nic}">
+                    <div class="text2">
+                        <img class="image1" src="${login_dto[0].myimg }">
+                        <input class="input1" type="text" name="id" placeholder="${login_dto[0].nic }" value="${login_dto[0].nic }" readonly>
+                    </div>
+                    <div class="text2">
+                        <textarea class="text_area" name="cont" placeholder="*게시물의 저작권 등 분쟁, 개인정보 노출로 인한 책임은 작성자 또는 게시자에게 있음을 유의해 주세요."></textarea>
+                    </div>
+                    <div class="text2">
+                        <input class="btn" type="submit" value="등록">
+                    </div>
+                </c:if>
+                    <input type ="hidden" name="songnum" value="${album_list[0].songnumber }">
+                    <input type ="hidden" name="myimg" value="${login_dto[0].myimg }">
                 </div>
             </form>
             </div>
         <div class="command">
             <hr>
-                <%-- for(int i= 0; i<list.size(); i++) {
-	    	    	  CommentVO vo = list.get(i);
-	    	    	  
-	    	    	  String id = vo.getComment_id();
-	    	    	  String cont = vo.getComment_cont();
-	    	    	  Date date = vo.getComment_Date(); --%>
-	    	<div>
+	    	<div><%-- 댓글 부분 forEach --%>
 	    	  	<c:forEach var ="comment" items="${commentList}">
 	            	<c:if test="${comment.level == 1 }">
 	                	<div class="comment" >
                             <div class="text2 cont2_1">
-	                            <img class="image2" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+	                            <img class="image2" src="${comment.myimg }">
 	                            <div class="id2">${comment.comment_id }</div>
 	                        </div>
 	                        <div class="text2">
@@ -513,23 +522,20 @@
 	                            <div class="date1">${comment.comment_Date }</div>
 	                            <details id="detail">
 		                   		 	<summary style="color: rgb(150, 150, 150);">답글달기</summary>
-		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=1&command=addReply.do">
+		                   		 	<form name="frmComment_2" method="post" action="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=addReply.do">
 			                    		<div class="comment" >
-						                        <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
-						                        <input class="input2" type="text" name="id_2" placeholder=" ID">
+						                        <img class="image3" src="${login_dto[0].myimg }">
+						                        <input class="input2" type="text" name="id_2" placeholder=" ID" value="${login_dto[0].nic }" readonly>
 						                        <input class="input3" type="text" name="cont_2" placeholder="답글 추가...">
-						                        <%-- <button class="btn1" type="button" onclick="fn_sendComment_2()"> 답글 </button>--%>
 						                        <input class="btn1" type="submit" value="답글"> 
 						                    	<input type ="hidden" name="command_articleNO" value="${comment.articleNO }">
+						                    	<input type ="hidden" name="command_myimg" value="${login_dto[0].myimg }">
 			                			</div>
 		                            </form>
                 				</details>
 	                        </div>
-	                        <!-- 삭제하기 기능도 
-	                        	<a href="/javafood_team/delcommnet.do?id=${list.id}">
-	                        -->
 	                        <div class="text2">
-	                            <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn' type='button'> 삭제 </button></a>
+	                            <a href="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=delcommnet.do&articleNO=${comment.articleNO }"><button class='btn btn_del' type='button'> 삭제 </button></a>
 	                        </div>
 	                	</div>
                         
@@ -540,10 +546,10 @@
 			            		<div class="reply">
 				        			<div class="comment_1">
                                             <span class="comment_1_1">└</span>
-						                    <img class="image3" src="http://blog.tofte-it.dk/wp-content/uploads/2018/12/profile-picture.png">
+						                    <img class="image3" src="${comment.myimg }">
 						                    <p class="comment_1_1">${comment.comment_id }</p>
 						                    <p class="comment_1_1" style="color: rgb(113, 113, 113);">${comment.comment_Date }</p>
-						                    <a href="/javafood_team/javafood?javafood=1&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2" type="button"> 삭제</button></a>
+						                    <a href="/javafood_team/javafood?javafood=ArtistList&num=${album_list[0].songnumber }&command=delcommnet.do&articleNO=${comment.articleNO }"><button class="btn1 comment_1_2 btn_del"  type="button"> 삭제</button></a>
 				        			</div>
 				        			<div class="comment_1_3">
 				                        <span class="comment_1_4" style="margin-right :70px;"></span>

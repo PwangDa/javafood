@@ -167,9 +167,7 @@ public class JavaFood_Service {
     	return commentList;
     }
     
-	public void javafood1(){
-		
-	}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//귀범 (차트 불러오기)
 	public List<song_DTO> javafood2(){
@@ -191,14 +189,14 @@ public class JavaFood_Service {
 	
 
 	// 차트 페이징
-		public Map javafood2(int pageNum, int countPerPage){
+		public Map javafood2(String country, int pageNum, int countPerPage){
 			System.out.println("페이징 실행");
 			
 			int start = 0;
 			int end = 0;
 			start = (countPerPage*(pageNum-1))+1;
 			end = start + countPerPage - 1;
-			List<song_DTO> chart_list = dao.chartPaging(start, end);
+			List<song_DTO> chart_list = dao.chartPaging(country, start, end);
 			
 			int totalCount = dao.totalpaging();
 			
@@ -208,6 +206,19 @@ public class JavaFood_Service {
 			return map;
 			
 			
+		}
+		
+		public String javafood4_5(String name, int pn) {
+			
+			String id = dao.searchUserpn(name, pn);
+		
+			return id;
+		}
+		
+		public	String javafood4_6(String name, int phone) {
+			String id = dao.searchUserphone(name, phone);
+			
+			return id;
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//범주 플레이 리스트 불러오기
