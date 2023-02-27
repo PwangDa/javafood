@@ -77,6 +77,8 @@
     
     <c:if test="${remove==1}" >
         <h1 class="ddr"><c:out value="회원정보 수정"/></h1>
+        
+        <%-- 
         <form
         	id="form"
             method="post"
@@ -95,15 +97,17 @@
                 </div>
             </div>
         </form>
+        --%>
         <form method="post" action="javafood?javafood=4">
             <div class="head div">
                 <table>
                     <tr class="tr">
                         <th><c:out value="이미지url : "/></th>
-                        <th><c:out value="서버없어서 이미지url만 적용됩니다."/></th>
+                        <%-- <th><c:out value="서버없어서 이미지url만 적용됩니다."/></th> --%>
                         <td><input type="text" id="img" name="img" placeholder="${lo[0].myimg }"></td>
                         <td><input type="hidden" value="1" name="remove"></td>
                     </tr>
+                    
                     <tr class="tr">
                         <th><c:out value=" 아이디 : "/></th>
                         <td><c:out value="${session_user.id }"/>

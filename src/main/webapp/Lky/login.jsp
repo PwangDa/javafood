@@ -29,6 +29,8 @@
 	<title>javafood 회원가입</title>
 	</head>
 	<body>
+	<h1>회원가입</h1>
+	<%-- 
 	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 		   		   enctype="multipart/form-data" 
 		  		   accept-charset="utf-8">
@@ -41,7 +43,7 @@
 						</div>
 				</div>
 			</form>
-	        
+	 --%>   
 	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
 	             	<table class="tdtd">
