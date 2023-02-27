@@ -22,19 +22,14 @@ function loging(){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 window.onload=function() {
-	if(document.querySelector('.btnClear')!=null){
-	    var btnClear = document.querySelector('.btnClear');
-	    btnClear.addEventListener('click', function(){
-			console.log('123');
-	        btnClear.parentNode.querySelector('.tt').value = "";
-	    })
+	function bu (){
+		consolr.log('ddddd');
 	}
-    
-    $('.logo-img').on('click',function(){
-		location.href='javafood?javafood=m'
-	})
-    
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+		console.log('dd1');
 	$('#but').on(function (){
+		console.log('dd2');
 		var url = $("#form").attr("action");
 		var form = $('#form')[0];
 		var formData = new FormData(form);
@@ -54,6 +49,19 @@ window.onload=function() {
 			}
 		})
 	})
+	
+	if(document.querySelector('.btnClear')!=null){
+	    var btnClear = document.querySelector('.btnClear');
+	    btnClear.addEventListener('click', function(){
+			console.log('123');
+	        btnClear.parentNode.querySelector('.tt').value = "";
+	    })
+	}
+    
+    $('.logo-img').on('click',function(){
+		location.href='javafood?javafood=m'
+	})
+    
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$('#re').on('click',function(){$('#end').attr('disabled',true);})
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,9 +119,10 @@ window.onload=function() {
 		aj(phone,fn,'#ch7');
 	})
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 	let search = document.querySelector("span.user_search");
 	let search2=document.querySelector("div.search");
 	search.addEventListener("click", function(){
 		search2.classList.toggle("hidden");
-	});
+	});*/
 }

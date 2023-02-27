@@ -30,20 +30,18 @@
 	</head>
 	<body>
 	<h1>회원가입</h1>
-	<%-- 
 	        <form id="form" method="post" action="http://localhost:8080/javafood_team/aj" 
 		   		   enctype="multipart/form-data" 
 		  		   accept-charset="utf-8">
 		  		<div class="div_1" style="margin-top:30px;">
-						<div><img src="https://c11.kr/1asbb" class="logo-img"><h1 style="margin-top:-11px;"><c:out value="Create Account"/></h1></div>
-						<div class="upload">
-							<img class="upload_img" src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
-							<input type="file" name="file1">
-							<input class="butt" type="button" id="but" value="업로드">
-						</div>
+					<div><img src="https://c11.kr/1asbb" class="logo-img"><h1 style="margin-top:-11px;"><c:out value="Create Account"/></h1></div>
+					<div class="upload">
+						<img class="upload_img" src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG" style="width: 150px;height: 150px;">
+						<input type="file" name="file1">
+						<input class="butt" type="button" id="but" value="업로드">
+					</div>
 				</div>
 			</form>
-	 --%>   
 	        <form method="post" action="javafood?javafood=4">
 	            <div class="head">
 	             	<table class="tdtd">

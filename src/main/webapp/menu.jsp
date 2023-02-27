@@ -42,7 +42,7 @@
     </header>
     <div id="di">
 		<a class="at" href="javafood?javafood=5">마이페이지</a><br>
-		<a class="at" href="javafood?javafood=m">매인</a><br>
+		<a class="at" href="javafood?javafood=m">메인</a><br>
 		<a class="at" href="javafood?javafood=3">보관함</a><br>
 		<c:if test="${login==null }">
 			<a class="at" href="javafood?javafood=4">로그인</a><br>
