@@ -87,7 +87,7 @@
                 <div class="div" style="width: 200px; height: 250px">
                     <div class="div">
                         <input type="file" name="file1">
-                        <p><strong>프로필 사진</strong></p>
+                        <p><strong>사진</strong></p>
                         <img src="http://localhost:8080/javafood_team/aj1?fileName=new_javafood.JPG"
                             style="width: 150px;height: 150px;">
                     </div>
