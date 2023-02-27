@@ -746,10 +746,12 @@ public class JavaFood_Controller extends HttpServlet {
 		System.out.println("java5");
 		map = service.javafood5();
 		request.setAttribute("list",map.get("list") );
+		//로그인 정보 확인 후에 로그인됬을떄 회원정보 보내주기.
 		if(request.getSession().getAttribute("login")!=null) {
 			List<login_DTO> session_user = service.session_user((String) request.getSession().getAttribute("login"));
 			request.setAttribute("session_user", session_user.get(0));
 		}
+		//가수/노래 검색
 		if(request.getParameter("option")!=null) {
 			if(request.getParameter("text")!=null) {
 				List<song_DTO> list = service.javafood5_1(request.getParameter("option"), request.getParameter("text"));
@@ -758,22 +760,39 @@ public class JavaFood_Controller extends HttpServlet {
 				}
 			}
 		}
+		//링크 클릭시 링크값 전달
 		if(request.getParameter("link")!=null) request.setAttribute("link", request.getParameter("link"));
+		
+		//노래 재생시에 조회수 증가
 		if(request.getParameter("like")!=null) service.javafood5_2((String) request.getSession().getAttribute("login"), request.getParameter("like"));
+		
+		//회원 정보안에 재생기록 확인
 		if(request.getParameter("usre")!=null) {
+			
+			//페이지 이동
 			if(request.getParameter("page")==null) 
 				request.setAttribute("page", 1);
 			else 
 				request.setAttribute("page", request.getParameter("page"));
 			request.setAttribute("usre" ,service.javafood5_3(request.getParameter("usre")));
 		}
+		
+		//노래 좋아요 클릭
 		if(request.getParameter("likes")!=null) service.javafood5_4(request.getParameter("likes"));
+		
+		//회원정보 수정
 		if(request.getParameter("remove")!=null) request.setAttribute("remove", service.javafood5_5(request.getParameter("remove")));
+		
+		//회원 로그아웃
 		if(request.getParameter("iid")!=null) request.getSession().invalidate();
+		
+		//회원 탈퇴
 		if(request.getParameter("idd")!=null) {
 			request.setAttribute("out", service.javafood5_6(request.getParameter("idd")));
 			request.getSession().invalidate();
 		}
+		
+		//마이페이지 이동
 		request.getRequestDispatcher("Lky/My_page.jsp").forward(request, response);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
