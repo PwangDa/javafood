@@ -1007,6 +1007,71 @@ public class JavaFood_DAO {
 		}
 
 	}
+	//테이블에 넣어봅시다
+	public void insertArtist(AlbumDTO dto) {
+		try {
+			this.con = dataFactory.getConnection();
+			System.out.println("아티스트테이블 접속");
+			String artistname = dto.getArtistname();
+			String artist_info = dto.getArtist_info();
+			String artist_img = dto.getArtist_img();
+			
+			String query = "insert into artist";
+			query += "(artistname, artist_info, artist_img)";
+			query += " values(?, ?, ?)"; // 띄어쓰기 필수!
+			
+			System.out.println("query check" + query);
+			
+			pstmt = con.prepareStatement(query);
+			
+
+			pstmt.setString(1, artistname);
+			pstmt.setString(2, artist_info);
+			pstmt.setString(3, artist_img);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//으아아아아아악에 넣어봅시다
+	public void insertAlbum(AlbumDTO dto) {
+		try {
+			this.con = dataFactory.getConnection();
+			System.out.println("앨범테이블 접속");
+//			String album_num = dto.getAlbum_num();
+			String album_cover = dto.getAlbum_cover();
+			String album_name = dto.getAlbum_name();
+			String artistname = dto.getArtistname();
+			
+			String query = "insert into ALBUM_2";
+			query += "(album_num, album_cover, album_name, album_into, artistname)";
+			query += " values(alseqqq.nextval, ?, ?, '앨범정보', ?)"; // 띄어쓰기 필수!
+			
+			System.out.println("query check" + query);
+			
+			pstmt = con.prepareStatement(query);
+			
+			
+//			pstmt.setString(1, album_num);
+			pstmt.setString(1, album_cover);
+			pstmt.setString(2, album_name);
+			pstmt.setString(3, artistname);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 댓글 리스트 읽기 구현

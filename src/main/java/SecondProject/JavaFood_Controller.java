@@ -288,161 +288,176 @@ public class JavaFood_Controller extends HttpServlet {
 	//아티스트 페이지로 넘어갈 때	
 	if(request.getParameter("javafood").equals("ArtistList")) {
 		//localhost:8080/javafood_team/javafood?javafood=ArtistList&num=1
-		JavaFood_DAO dao = new JavaFood_DAO();
 		String num = request.getParameter("num"); //1이면 1테이블값들어감
-		String sess = (String)request.getSession().getAttribute("login");
-		System.out.println("세션id값 >> "+sess);
-		List<login_DTO> login_dto = dao.session(sess);
-		
-		List<AlbumDTO> album_list =  dao.album_add(num);
-		String artist_num = album_list.get(0).getArtist_add();
-		String detail="https://www.melon.com/artist/detail.htm?artistId="+artist_num;
-		String song= "https://www.melon.com/artist/album.htm?artistId="+artist_num;
-		
-		org.jsoup.nodes.Document doc_detail = Jsoup.connect(detail).get();	
-		org.jsoup.nodes.Document doc_song = Jsoup.connect(song).get();	
-		
-		String artistIMG = doc_detail.getElementsByAttributeValue("id", "artistImgArea").select("img").attr("src");
-//		Element artistINFO = doc_detail.getElementsByAttributeValue("id", "d_artist_intro").select("div").first();
-//		String artistName = doc_detail.getElementsByAttributeValue("class", "title_atist").attr("text");
-		Elements artistALBUM = doc_song.getElementsByAttributeValue("class", "wrap_album04").select("img");
-		Elements artistSONG = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
-		Elements albumTitle = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "songname12");
-		Elements albumURL = doc_song.getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
-		
-		System.out.println("albumURL >>>> \n"+albumURL);
-		
-		//아티스트 이름
-		Elements a = doc_detail.getElementsByClass("title_atist");
-		String b = a.get(0).text();
-//		System.out.println(b);
-		//아티스트 정보
-		Elements aristi_info = doc_detail.getElementsByClass("atist_insdc");
-		String artist_i = "";		
-		if(aristi_info.size() == 1) {
-			//num3 /하이포가 1임
-			artist_i = aristi_info.get(0).text();
-//			System.out.println("aristi_info : "+aristi_info.get(0).text()); //num3은 인덱스가 한개여서 0으로 해야함
-		}else if(aristi_info.size() >= 2) {
-			artist_i = aristi_info.get(1).text();
-//			System.out.println("aristi_info : "+aristi_info.get(1).text());
-		}
-		
-//		String[] c = b.split("명");
-//		int target_num = b.indexOf(" "); //아티스트명 '명'에서 띄어쓰기까지만 나오게
-		String artist_n = b.substring(5);
-		System.out.println(artist_n);
-		System.out.println("------------------");
-		
-		//각 앨범 이름
-		List<String> album_song = new ArrayList<String>();
-		//앨범 이미지링크 리스트배열
-		List<String> src = new ArrayList<String>();
-		String[] artist_song = null;
-		
-		//num으로 db에서 가져온 값이 있어서 다시 새 빈 리스트 선언해서 덮어주기
-		album_list =  new ArrayList();
-//		System.out.println("songnumber : "+num);
-		for(int i=0; i<artistSONG.size(); i++) {
-			AlbumDTO dto = new AlbumDTO();
-			dto.setArtistname(artist_n);
-			dto.setArtist_info(artist_i);
-			dto.setArtist_img(artistIMG);
-			dto.setSongnumber(num);
-			String music_name = albumTitle.get(i).text();
-//			System.out.println("music_name"+(i)+" : "+music_name);
-			dto.setMusic_name(music_name);
-			
-			String artistsong = artistSONG.get(i).toString();
-			int tempNum = artistsong.indexOf(">");
-			artistsong = artistsong.substring(tempNum+1);
-			artist_song= artistsong.split("<");
-//			System.out.println("album_title"+(i)+" : "+artist_song[0]);
-			dto.setAlbum_name(artist_song[0]);
-//			album_song.add(artist_song[0]);
-			
-			
-			String album_url = artistSONG.get(i).toString();
-			String[] aart = album_url.split("'");
-			System.out.println("각 앨범 숫자 : "+aart[1]);
-			dto.setAlbum_add(aart[1]);
-			
-			String adg = artistALBUM.get(i).attr("src");
-//			System.out.println((i+1)+"의앨범 이미지링크 : "+adg); 	
-			dto.setAlbum_cover(adg);
-//			src.add(adg);
-			album_list.add(dto);
-		}
-		
-		
-		
-		//댓글 추가 했을 때
-		String command = request.getParameter("command");
-		System.out.println("command를 받다 : "+command);
-		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		List<AlbumDTO> artist =  dao.album_add(num);
-		commentList = service.listComment(artist.get(0).getArtistname());
-		System.out.println("artist : "+artist.get(0).getArtistname());
-		if("addcommnet.do".equals(command) && command != null) {
-			String id_1 = request.getParameter("id");	//아이디
-			String cont_1 = request.getParameter("cont"); //댓글단 내용
-			String num_1 = request.getParameter("songnum"); //댓글 단 아티스트페이지 값
-			String myimg = request.getParameter("myimg"); //설정한 프로필 사진
-			
-			System.out.println("댓글등록 num : "+num_1);
-			System.out.println("아이디아이디: "+id_1);
-			System.out.println("마이 이미지>>>> : "+myimg);
-			
-			
-			CommentDTO dto = new CommentDTO();
-			dto.setComment_id(id_1);
-			dto.setComment_cont(cont_1);
-			dto.setArtistlist_num(Integer.parseInt(num));
-			dto.setArtistname(artist.get(0).getArtistname());
-			dto.setMyimg(myimg); //댓글 단 유저들의 프로필이미지도 보이게 세팅
-			dto.setId(sess); //아이디 값도 세팅해야 누가 달았는 지 표시 가능
-			
-			service.addcomment(dto);
-			//댓글의 댓글 달 때
-		}else if("addReply.do".equals(command) && command != null) {
-			String id = request.getParameter("id_2");
-			String cont = request.getParameter("cont_2");
-			String articleNO = request.getParameter("command_articleNO"); //답글단 그 댓글의 고유숫자를 가져옴
-			String myimg = request.getParameter("command_myimg");
-			
-			System.out.println("id : "+ id);
-			System.out.println("cont : "+ cont);
-			System.out.println("대댓글 num : "+ num);
-			System.out.println("articleNO : "+ articleNO);
-			System.out.println("이이미미지 : "+ myimg);
-			
-			CommentDTO dto = new CommentDTO();
-			dto.setComment_id(id);
-			dto.setComment_cont(cont);
-			dto.setParentNO(Integer.parseInt(articleNO)); //답글단 댓글의 숫자를 셋팅
-			dto.setArtistlist_num(Integer.parseInt(num));
-			dto.setArtistname(artist.get(0).getArtistname());
-			dto.setMyimg(myimg);
-			dto.setId(sess);
-			
-			service.addcomment(dto);
+		//int k = 1;
 
-		}else if("delcommnet.do".equals(command) && command != null) {
-			int articleNO = Integer.parseInt(request.getParameter("articleNO"));
-			System.out.println("articleNO : "+articleNO);
-			List<Integer> articleNOList = service.removeComment(articleNO);
-		}
-		commentList = service.listComment(artist.get(0).getArtistname());
-		System.out.println("무한반복 살려줘");
-		request.setAttribute("login_dto", login_dto);
-		request.setAttribute("album_list", album_list); //아티스트 정보
-		request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
-		request.setAttribute("src", src); //각 앨범 이름 리스트
-		request.setAttribute("commentList", commentList);
+			JavaFood_DAO dao = new JavaFood_DAO();
+			String sess = (String)request.getSession().getAttribute("login");
+			System.out.println("세션id값 >> "+sess);
+			List<login_DTO> login_dto = dao.session(sess);
+			System.out.println("현재 순서 >>>>> "+num);
+			List<AlbumDTO> album_list =  dao.album_add(num);
+			String artist_num = album_list.get(0).getArtist_add();
+			String detail="https://www.melon.com/artist/detail.htm?artistId="+artist_num;
+			String song= "https://www.melon.com/artist/album.htm?artistId="+artist_num;
+			
+			org.jsoup.nodes.Document doc_detail = Jsoup.connect(detail).get();	
+			org.jsoup.nodes.Document doc_song = Jsoup.connect(song).get();	
+			
+			String artistIMG = doc_detail.getElementsByAttributeValue("id", "artistImgArea").select("img").attr("src");
+	//		Element artistINFO = doc_detail.getElementsByAttributeValue("id", "d_artist_intro").select("div").first();
+	//		String artistName = doc_detail.getElementsByAttributeValue("class", "title_atist").attr("text");
+			Elements artistALBUM = doc_song.getElementsByAttributeValue("class", "wrap_album04").select("img");
+			Elements artistSONG = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
+			Elements albumTitle = doc_song.getElementById("pageList").getElementsByAttributeValue("class", "songname12");
+			Elements albumURL = doc_song.getElementsByAttributeValue("class", "atist_info").select("dt").select("a");
+			
+			//System.out.println("albumURL >>>> \n"+albumURL);
+			
+			//아티스트 이름
+			Elements a = doc_detail.getElementsByClass("title_atist");
+			String b = a.get(0).text();
+	//		System.out.println(b);
+			//아티스트 정보
+			Elements aristi_info = doc_detail.getElementsByClass("atist_insdc");
+			String artist_i = "";		
+			if(aristi_info.size() == 1) {
+				//num3 /하이포가 1임
+				artist_i = aristi_info.get(0).text();
+	//			System.out.println("aristi_info : "+aristi_info.get(0).text()); //num3은 인덱스가 한개여서 0으로 해야함
+			}else if(aristi_info.size() >= 2) {
+				artist_i = aristi_info.get(1).text();
+	//			System.out.println("aristi_info : "+aristi_info.get(1).text());
+			}
+			
+	//		String[] c = b.split("명");
+	//		int target_num = b.indexOf(" "); //아티스트명 '명'에서 띄어쓰기까지만 나오게
+			String artist_n = b.substring(5);
+			System.out.println("아티스트 이미지 링크는 >>>>>"+artistIMG);
+			System.out.println("아티스트 이름은 >>>>> "+artist_n);
+			System.out.println("아티스트 정보는 >>>>> "+artist_i);
+			System.out.println("------------------");
+			
+			//각 앨범 이름
+			List<String> album_song = new ArrayList<String>();
+			//앨범 이미지링크 리스트배열
+			List<String> src = new ArrayList<String>();
+			String[] artist_song = null;
+			
+			
+				System.out.println("테이블에 넣어봅시다");
+//				AlbumDTO dto = new AlbumDTO();
+//				dto.setArtistname(artist_n);
+//				dto.setArtist_img(artistIMG);
+//				dto.setArtist_info(artist_i);
+//				
+//				dao.insertArtist(dto);
+				
+
+				
+				//num으로 db에서 가져온 값이 있어서 다시 새 빈 리스트 선언해서 덮어주기
+				album_list =  new ArrayList();
+//				System.out.println("songnumber : "+num);
+				for(int i=0; i<artistSONG.size(); i++) {
+					AlbumDTO dto = new AlbumDTO();
+					dto.setArtistname(artist_n);
+					dto.setArtist_info(artist_i);
+					dto.setArtist_img(artistIMG);
+					dto.setSongnumber(num);
+					String music_name = albumTitle.get(i).text();
+//					System.out.println("music_name"+(i)+" : "+music_name);
+					dto.setMusic_name(music_name);
+					
+					String artistsong = artistSONG.get(i).toString();
+					int tempNum = artistsong.indexOf(">");
+					artistsong = artistsong.substring(tempNum+1);
+					artist_song= artistsong.split("<");
+//					System.out.println("album_title"+(i)+" : "+artist_song[0]);
+					dto.setAlbum_name(artist_song[0]);
+//					album_song.add(artist_song[0]);
+					
+					
+					String album_url = artistSONG.get(i).toString();
+					String[] aart = album_url.split("'");
+					System.out.println("각 앨범 숫자 : "+aart[1]);
+					dto.setAlbum_add(aart[1]);
+					
+					String adg = artistALBUM.get(i).attr("src");
+//					System.out.println((i+1)+"의앨범 이미지링크 : "+adg); 	
+					dto.setAlbum_cover(adg);
+//					src.add(adg);
+					album_list.add(dto);
+				}
+				
+				
+				
+				//댓글 추가 했을 때
+				String command = request.getParameter("command");
+				System.out.println("command를 받다 : "+command);
+				List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+				List<AlbumDTO> artist =  dao.album_add(num);
+				commentList = service.listComment(artist.get(0).getArtistname());
+				System.out.println("artist : "+artist.get(0).getArtistname());
+				if("addcommnet.do".equals(command) && command != null) {
+					String id_1 = request.getParameter("id");	//아이디
+					String cont_1 = request.getParameter("cont"); //댓글단 내용
+					String num_1 = request.getParameter("songnum"); //댓글 단 아티스트페이지 값
+					String myimg = request.getParameter("myimg"); //설정한 프로필 사진
+					
+					System.out.println("댓글등록 num : "+num_1);
+					System.out.println("아이디아이디: "+id_1);
+					System.out.println("마이 이미지>>>> : "+myimg);
+					
+					
+					CommentDTO dto = new CommentDTO();
+					dto.setComment_id(id_1);
+					dto.setComment_cont(cont_1);
+					dto.setArtistlist_num(Integer.parseInt(num));
+					dto.setArtistname(artist.get(0).getArtistname());
+					dto.setMyimg(myimg); //댓글 단 유저들의 프로필이미지도 보이게 세팅
+					dto.setId(sess); //아이디 값도 세팅해야 누가 달았는 지 표시 가능
+					
+					service.addcomment(dto);
+					//댓글의 댓글 달 때
+				}else if("addReply.do".equals(command) && command != null) {
+					String id = request.getParameter("id_2");
+					String cont = request.getParameter("cont_2");
+					String articleNO = request.getParameter("command_articleNO"); //답글단 그 댓글의 고유숫자를 가져옴
+					String myimg = request.getParameter("command_myimg");
+					
+					System.out.println("id : "+ id);
+					System.out.println("cont : "+ cont);
+					System.out.println("대댓글 num : "+ num);
+					System.out.println("articleNO : "+ articleNO);
+					System.out.println("이이미미지 : "+ myimg);
+					
+					CommentDTO dto = new CommentDTO();
+					dto.setComment_id(id);
+					dto.setComment_cont(cont);
+					dto.setParentNO(Integer.parseInt(articleNO)); //답글단 댓글의 숫자를 셋팅
+					dto.setArtistlist_num(Integer.parseInt(num));
+					dto.setArtistname(artist.get(0).getArtistname());
+					dto.setMyimg(myimg);
+					dto.setId(sess);
+					
+					service.addcomment(dto);
+
+				}else if("delcommnet.do".equals(command) && command != null) {
+					int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+					System.out.println("articleNO : "+articleNO);
+					List<Integer> articleNOList = service.removeComment(articleNO);
+				}
+				commentList = service.listComment(artist.get(0).getArtistname());
+				System.out.println("무한반복 살려줘");
+				request.setAttribute("login_dto", login_dto);
+				request.setAttribute("album_list", album_list); //아티스트 정보
+				request.setAttribute("album_song", album_song); //각 앨범 이름 리스트
+				request.setAttribute("src", src); //각 앨범 이름 리스트
+				request.setAttribute("commentList", commentList);
+				
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("artist.jsp");
-		dispatch.forward(request, response);
 		
+		System.out.println("종료");
 		
 	}//if ("ArtistList") 종료
 	if(request.getParameter("javafood").equals("AlbumInfo")) {
@@ -461,6 +476,7 @@ public class JavaFood_Controller extends HttpServlet {
 		//localhost:8080/javafood_team/javafood?javafood=AlbumList&num=1
 		JavaFood_DAO dao = new JavaFood_DAO();
 		String num = request.getParameter("num"); //1
+
 		List<AlbumDTO> album_list =  dao.album_add(num);//1
 		List<AlbumDTO> album_addURL = new ArrayList<AlbumDTO>();
 		List list = new ArrayList();	
